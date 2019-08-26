@@ -1,0 +1,174 @@
+<%inherit file="/main.html" />
+<%namespace name='theming' file='theming_helpers.mako'/>
+<%namespace file="/static_content.html" name='static' />
+<%!
+  from django.utils.translation import ugettext as _
+  from django.core.urlresolvers import reverse
+  from openedx.core.djangolib.markup import HTML, Text
+
+  from branding import api as branding_api
+%>
+
+<%
+  downgrade_level = theming.options('home', 'downgrade_level', default= False)
+
+  home_intro_html = theming.options('home', 'home_intro_html', default= False)
+  home_intro = theming.options('home', 'home_intro', default= {})
+  home_intro_image = theming.options('home', 'home_banner_url', default= False)
+  home_intro_search = home_intro['search']
+
+  home_features_html = theming.options('home', 'home_features_html', default= False )
+  home_features = theming.options('home', 'home_features', default= [])
+
+  home_text_html = theming.options('home', 'home_text_html', default= False)
+  home_text = theming.options('home', 'home_text', default= {})
+
+  home_text_bottom_html = theming.options('home', 'home_text_bottom_html', default= False)
+  home_text_bottom = theming.options('home', 'home_text_bottom', default= {})
+%>
+
+% if downgrade_level == 'level1':
+  <div class="ednxtDowngrade-overlay"></div>
+  <div class="ednxtDowngrade-modal">
+    <div class="ednxtDowngrade-modal__close"><i class="fa fa-times" aria-hidden="true"></i></div>
+    <div class="ednxtDowngrade-modal__content">
+      <i class="content-icon fa fa-exclamation-triangle" aria-hidden="true"></i>
+      <p class="content-paragraph">${_("This site is temporarily restricted because the account limits have been reached.")}</p>
+      <p class="content-paragraph">${_('If you are the site administrator, contact {link_start}support@edunext.co{link_end}').format(link_start='<a href="mailto:{url}">'.format(url='support@edunext.co'), link_end='</a>')}</p>
+    </div>
+    <button class="ednxtDowngrade-modal__button">ok</button>
+  </div>
+% endif
+
+<main class="home">
+  ## home_intro
+  % if home_intro_html:
+    ${home_intro_html}
+  % else:
+    %if home_intro:
+      <div class="home-intro row align-items-center justify-content-center mb-4 mx-0" style="background-image: url(${home_intro_image | h});">
+        <div class="content-container text-center">
+          <h1>${home_intro.get('title', '') | h}</h1>
+          <h3>${home_intro.get('subtitle', '') | h}</h3>
+          <p>${home_intro.get('paragraph', '') | h}</p>
+          % if home_intro_search and settings.FEATURES.get('ENABLE_COURSE_DISCOVERY'):
+            <form class="form-inline justify-content-center align-items-stretch mt-2 mt-md-0" method="get" action="/courses">
+              <input class="form-control mr-sm-2" name="search_query" type="text" placeholder="${home_intro_search.get('placeholder') | h}">
+              <button class="my-2 my-sm-0" type="submit">
+                %if home_intro_search.get('icon'):
+                  <i class="${home_intro_search.get('icon')}"></i>
+                %endif
+                ${home_intro_search.get('text') | h}
+              </button>
+            </form>
+          % endif
+        </div>
+      </div>
+    %endif
+  % endif
+
+  % if home_features_html:
+    ${home_features_html}
+  % else:
+    %if home_features:
+      <div class="home-items row justify-content-center mb-4 mx-0">
+        <div class="content-container">
+          <div class="row justify-content-center mx-0">
+            %for item in home_features:
+              <div class="col d-flex justify-content-center">
+                <a href="${item.get('url', '#') | h}" target="${item.get('target', '_self') | h}">
+                  <img src="${item.get('image', '') | h}" class="img-responsive img-centered" alt="${item.get('alt', '') | h}">
+                </a>
+              </div>
+            %endfor
+          </div>
+        </div>
+      </div>
+    %endif
+  %endif
+
+  ## home_text
+  % if home_text_html:
+    ${home_text_html}
+  % else:
+    %if home_text:
+      <div class="home-text row justify-content-center mb-4 mx-0 py-4">
+        <div class="content-container text-center">
+          <h2>${home_text.get('title', '') | h}</h2>
+          <p class="mb-0">${home_text.get('paragraph', '') | h}</p>
+        </div>
+      </div>
+    % endif
+  % endif
+
+  <div class="home-courses">
+
+    <section class="courses-container">
+      <section class="highlighted-courses">
+
+        % if settings.FEATURES.get('COURSES_ARE_BROWSABLE'):
+          <section class="courses py-0">
+            <ul class="courses-listing">
+              ## limiting the course number by using HOMEPAGE_COURSE_MAX as the maximum number of courses
+              %for course in courses[:settings.HOMEPAGE_COURSE_MAX]:
+                %if settings.HOMEPAGE_COURSE_MAX and len(courses) < 2:
+                  <div class="courses-listing--ghost">
+                    <li class="courses-listing-item"></li>
+                    <li class="courses-listing-item"></li>
+                    <li class="courses-listing-item"></li>
+                    <li class="courses-listing-item"></li>
+                  </div>
+                % endif
+
+                <li class="courses-listing-item">
+                    <%include file="course.html" args="course=course" />
+                </li>
+              %endfor
+            </ul>
+          </section>
+
+          ## in case there are courses that are not shown on the homepage, a 'View all Courses' link should appear
+          % if settings.HOMEPAGE_COURSE_MAX and len(courses) > settings.HOMEPAGE_COURSE_MAX:
+            <div class="courses-more">
+              <a class="courses-more-cta" href="${marketing_link('COURSES')}"> ${_("View all Courses")} </a>
+            </div>
+          % endif
+        % endif
+
+      </section>
+    </section>
+
+  </div>
+
+  ## home_text
+  % if home_text_bottom_html:
+    ${home_text_bottom_html}
+  % else:
+    %if home_text_bottom:
+      <div class="home-text--bottom row justify-content-center mt-4 mx-0 py-4">
+        <div class="content-container text-center">
+          <h2>${home_text_bottom.get('title', '') | h}</h2>
+          <p class="mb-0">${home_text_bottom.get('paragraph', '') | h}</p>
+        </div>
+      </div>
+    % endif
+  % endif
+</main>
+
+<%block name="js_extra">
+   <script type="text/javascript">
+      $(window).load(function() {
+         if(getParameterByName('next')) {
+              $('#login').trigger("click");
+         }
+      })
+   </script>
+</%block>
+
+% if show_signup_immediately is not UNDEFINED:
+  ## NOTE: This won't work in production, because anonymous views are cached, so it will
+  ## show either with or without this extra js for 3 minutes at a time.
+<script type="text/javascript">
+  $(window).load(function() {$('#signup_action').trigger("click");});
+</script>
+% endif
