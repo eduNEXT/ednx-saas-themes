@@ -25,7 +25,7 @@ from openedx.core.djangoapps.lang_pref.api import header_language_selector_is_en
   header_langselector = theming.options('header', 'header_langselector', default=False)
 %>
 
-## <%include file="../custom_colors.html"/>
+<%include file="../custom_colors.html"/>
 
 %if header_top:
   ${header_top | n,  decode.utf}
