@@ -406,9 +406,13 @@ $btn-block-spacing-y:            .5rem !default;
 $btn-toolbar-margin:             .5rem !default;
 
 // Allows for customizing button radius independently from global border radius
-$btn-border-radius:              $border-radius !default;
-$btn-border-radius-lg:           $border-radius-lg !default;
-$btn-border-radius-sm:           $border-radius-sm !default;
+// $btn-border-radius:              $border-radius !default;
+// $btn-border-radius-lg:           $border-radius-lg !default;
+// $btn-border-radius-sm:           $border-radius-sm !default;
+
+$btn-border-radius:              .25rem !default;
+$btn-border-radius-lg:           .3rem !default;
+$btn-border-radius-sm:           .2rem !default;
 
 $btn-transition:                 all .2s ease-in-out !default;
 
@@ -763,7 +767,7 @@ $popover-content-padding-y:           9px !default;
 $popover-arrow-width:                 10px !default;
 $popover-arrow-color:                 $popover-bg !default;
 
-$popover-arrow-outer-width:           ($popover-arrow-width + 1px) !default;
+$popover-arrow-outer-width:           ($popover-arrow-width + 1rem) !default;
 $popover-arrow-outer-color:           fade-in($popover-border-color, .05) !default;
 
 
