@@ -1,5 +1,4 @@
 <%inherit file="/main.html" />
-<%namespace name='theming' file='theming_helpers.mako'/>
 <%namespace file="/static_content.html" name='static' />
 <%!
   from django.utils.translation import ugettext as _
@@ -15,7 +14,7 @@
   home_intro_html = theming.options('home', 'home_intro_html', default= False)
   home_intro = theming.options('home', 'home_intro', default= {})
   home_intro_image = theming.options('home', 'home_banner_url', default= False)
-  home_intro_search = home_intro['search']
+  home_intro_search = home_intro.get('search', None)
 
   home_features_html = theming.options('home', 'home_features_html', default= False )
   home_features = theming.options('home', 'home_features', default= [])
