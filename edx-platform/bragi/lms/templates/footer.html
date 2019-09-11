@@ -47,7 +47,7 @@
 %>
 
 %if footer_override:
-  ${footer_override}
+  ${footer_override | n, decode.utf8}
 %else:
   <footer class="footer"
     ## When rendering the footer through the branding API,
@@ -58,10 +58,10 @@
     % endif
   >
     <div class="content-container row no-gutters align-items-center py-2 px-2 px-lg-0">
-      <div class="col-12 no-gutters hidden-lg-up">
+      <div class="col-12 no-gutters d-lg-none">
         %if footer_description:
           <p class="footer-description col-12 mt-2 text-center">
-            ${footer_description}
+            ${footer_description | n, decode.utf8}
           </p>
         %endif
 
@@ -99,10 +99,10 @@
         </div>
       %endif
 
-      <div class="col-8 no-gutters px-2 hidden-md-down">
+      <div class="col-8 no-gutters px-2 d-none d-lg-block">
         %if footer_description:
           <p class="footer-description col-12 mt-2 ">
-            ${footer_description}
+            ${footer_description | n, decode.utf8}
           </p>
         %endif
 
@@ -161,7 +161,7 @@
           %endif
 
           %if footer_copy:
-            <small class="footer-copy">${footer_copy}</small>
+            <small class="footer-copy">${footer_copy | n, decode.utf8}</small>
           %endif
         </div>
       </div>
@@ -205,7 +205,7 @@
 <script src="https://d1uwn6yupg8lfo.cloudfront.net/resources/libs/enext/bragi/bootstrap.min.js"></script>
 
 % if extra_script:
-  <script type="text/javascript" src="${static.url(extra_script)}"></script>
+  <script type="text/javascript" src="${extra_script}"></script>
 % endif
 
 % if extra_script_inline:

@@ -10,22 +10,22 @@
 %>
 
 <%
-  course_intro_html = theming.options('about', 'course_intro_html', default= False)
-  course_intro = theming.options('about', 'course_intro', default= {})
-  course_intro_image = theming.options('about', 'course_banner_url', default= False)
+  course_intro_html = theming.options('course_about', 'course_intro_html', default= False)
+  course_intro = theming.options('course_about', 'course_intro', default= {})
+  course_intro_image = theming.options('course_about', 'course_banner_url', default= False)
 
-  course_text_html = theming.options('about', 'course_text_html', default= False)
-  course_text = theming.options('about', 'course_text', default= {})
-  course_text_below_html = theming.options('about', 'course_text_below_html', default= False)
+  course_text_html = theming.options('course_about', 'course_text_html', default= False)
+  course_text = theming.options('course_about', 'course_text', default= {})
+  course_text_below_html = theming.options('course_about', 'course_text_below_html', default= False)
 
-  course_text_into_html = theming.options('about', 'course_text_into_html', default= False)
-  course_text_into_bottom_html = theming.options('about', 'course_text_into_bottom_html', default= False)
-  course_text_into_bottom = theming.options('about', 'course_text_into_bottom')
+  course_text_into_html = theming.options('course_about', 'course_text_into_html', default= False)
+  course_text_into_bottom_html = theming.options('course_about', 'course_text_into_bottom_html', default= False)
+  course_text_into_bottom = theming.options('course_about', 'course_text_into_bottom')
 
-  course_text_bottom_html = theming.options('about', 'course_text_bottom_html', default= False)
-  course_text_bottom = theming.options('about', 'course_text_bottom', default= {})
+  course_text_bottom_html = theming.options('course_about', 'course_text_bottom_html', default= False)
+  course_text_bottom = theming.options('course_about', 'course_text_bottom', default= {})
 
-  course_about_new = theming.options('about', 'course_about_new', default= False)
+  course_about_new = theming.options('course_about', 'course_about_new', default= False)
 %>
 
 <%inherit file="/main.html" />
@@ -491,7 +491,7 @@
     % endif  
 
     <div class="course-info__content row container mt-5 p-4">
-      <div class="col col-12 hidden-lg-up course-sidebar mobile mb-5">
+      <div class="col col-12 d-lg-none course-sidebar mobile mb-5">
         <%include file="./course_about_sidebar.html" />
       </div>
 
@@ -515,7 +515,7 @@
         % endif
       </div>
 
-      <div class="course-sidebar col col-12 col-lg-3 hidden-md-down">
+      <div class="course-sidebar col col-12 col-lg-3 d-none d-lg-block">
         <%include file="./course_about_sidebar.html" />
       </div>
     </div>

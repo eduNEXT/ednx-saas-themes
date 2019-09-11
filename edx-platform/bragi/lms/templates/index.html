@@ -42,7 +42,7 @@
 <main class="home">
   ## home_intro
   % if home_intro_html:
-    ${home_intro_html}
+    ${home_intro_html | n, decode.utf8}
   % else:
     %if home_intro:
       <div class="home-intro row align-items-center justify-content-center mb-4 mx-0" style="background-image: url(${home_intro_image | h});">

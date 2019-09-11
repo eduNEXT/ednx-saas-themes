@@ -7,7 +7,6 @@
   from django.utils import html
   from django_countries import countries
   from django.utils.translation import ugettext as _
-  from microsite_configuration import microsite
   from django.conf import settings
   from student.models import UserProfile
 
@@ -15,18 +14,16 @@
   import third_party_auth
   from third_party_auth import pipeline, provider
   import calendar
-
-  from microsite_configuration import microsite
 %>
 
 <%
-  register_header_html = microsite.get_value('register_header_html')
+  register_header_html = theming.options('register', 'register_header_html', default=False)
 
-  register_text_html = microsite.get_value('register_text_html')
-  register_text = microsite.get_value('register_text')
+  register_text_html = theming.options('register', 'register_text_html', default=False)
+  register_text = theming.options('register', 'register_text', default= {})
 
-  register_text_bottom_html = microsite.get_value('register_text_bottom_html')
-  register_text_bottom = microsite.get_value('register_text_bottom')
+  register_text_bottom_html = theming.options('register', 'register_text_bottom_html', default=False)
+  register_text_bottom = theming.options('register', 'register_text_bottom', default= {})
 %>
 
 <%block name="pagetitle">${_("Register for {platform_name}").format(platform_name=platform_name)}</%block>

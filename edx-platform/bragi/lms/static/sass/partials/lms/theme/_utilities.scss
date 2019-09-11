@@ -112,3 +112,8 @@ Other Components
   }
 }
 
+@mixin button-size-edx($padding-y, $padding-x, $font-size, $border-radius) {
+  padding: $padding-y $padding-x;
+  font-size: $font-size;
+  @include border-radius($border-radius);
+}

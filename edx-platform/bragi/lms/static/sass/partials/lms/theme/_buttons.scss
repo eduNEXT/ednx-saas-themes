@@ -3,8 +3,8 @@
 // A bunch of extendable mixins to get the weird login buttons to work
 
 %btn {
-  // @include button-size($btn-padding-y, $btn-padding-x, $font-size-base, .25rem);
-  @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
+  @include button-size-edx($btn-padding-y, $btn-padding-x, $font-size-base, $border-radius);
+  @include button-variant($btn-primary-bg, $btn-primary-border);
   @include transition($btn-transition);
   display: inline-block;
   height: auto;
@@ -23,7 +23,7 @@
   &:focus,
   &:hover,
   &:hover:not(:disabled) {
-    @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
+    @include button-variant($btn-primary-bg, $btn-primary-border);
     text-decoration: none;
     outline: 0;
     background-image: none;
@@ -47,14 +47,14 @@
 
 %btn-flat {
   @extend %btn;
-  @include button-variant($btn-primary-bg, $btn-primary-color, $btn-primary-border);
+  @include button-variant($btn-primary-color, $btn-primary-border);
   border: $input-btn-border-width solid $btn-primary-border;
 
   // Share hover and focus styles
   &:focus,
   &:hover,
   &:hover:not(:disabled) {
-    @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
+    @include button-variant($btn-primary-bg, $btn-primary-border);
   }
 }
 

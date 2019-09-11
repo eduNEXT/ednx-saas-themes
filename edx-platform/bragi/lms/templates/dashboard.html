@@ -232,7 +232,7 @@ from student.models import CourseEnrollment
 
         ## dashboard_sidebar_html
         % if dashboard_sidebar_html:
-        <div class="col col-12 mx-0 px-0 hidden-md-down">
+        <div class="col col-12 mx-0 px-0 d-none d-lg-block">
           ${dashboard_sidebar_html | n,  decode.utf8}
         </div>
         % endif
@@ -360,7 +360,7 @@ from student.models import CourseEnrollment
 
      ## dashboard_sidebar_html
     % if dashboard_sidebar_html:
-      <div class="col col-12 mx-0 hidden-lg-up">
+      <div class="col col-12 mx-0 d-lg-none">
         ${dashboard_sidebar_html | n,  decode.utf8}
       </div>
     % endif
