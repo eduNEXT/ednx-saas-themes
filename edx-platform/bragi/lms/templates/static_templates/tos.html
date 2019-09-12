@@ -1,0 +1,18 @@
+<%! 
+	from django.core.urlresolvers import reverse
+	from django.utils.translation import ugettext as _
+%>
+<%inherit file="/main.html" />
+<%namespace name='static' file='/static_content.html'/>
+
+<%
+  static_tos_html = theming.options('static', 'static_tos_html', default= ' ')
+%>
+
+<%block name="title"><title>${theming.options('static', 'static_tos_title', default= _('Terms of Service'))}</title></%block>
+
+<section class="content-container p-5">
+  <div class="row static_page container p-4">
+    ${static_tos_html | n,  decode.utf8}
+  </div>
+</section>

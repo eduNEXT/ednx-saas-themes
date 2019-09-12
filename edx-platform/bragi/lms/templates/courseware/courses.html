@@ -1,0 +1,236 @@
+<%!
+  import json
+  from django.utils.translation import ugettext as _
+  from openedx.core.djangolib.js_utils import dump_js_escaped_json
+%>
+<%inherit file="/main.html" />
+<%
+  course_discovery_enabled = settings.FEATURES.get('ENABLE_COURSE_DISCOVERY')
+
+  courses_intro_html = theming.options('courses', 'courses_intro_html', default= False)
+  courses_intro = theming.options('courses', 'courses_intro', default= {})
+  courses_intro_image = theming.options('courses' ,'courses_banner_url', default= False)
+
+  courses_features_html = theming.options('courses', 'courses_features_html', default= False)
+  courses_features = theming.options('courses', 'courses_features', default= [])
+
+  courses_text_html = theming.options('courses', 'courses_text_html', default= False)
+  courses_text = theming.options('courses', 'courses_text', default= {})
+
+  courses_text_into_html = theming.options('courses', 'courses_text_into_html', default= False)
+  courses_hide_filters = theming.options('courses', 'courses_hide_filters', default= True)
+  courses_sidebar_html = theming.options('courses', 'courses_sidebar_html', default= False)
+  courses_text_into_bottom_html = theming.options('courses', 'courses_text_into_bottom_html', default= False)
+
+  courses_text_bottom_html = theming.options('courses', 'courses_text_bottom_html', default= False)
+  courses_text_bottom = theming.options('courses', 'courses_text_bottom', default= {})
+%>
+
+<%namespace name='static' file='/static_content.html'/>
+
+<%def name="include_with_theme(path)">
+  <%
+    from django.conf import settings
+    from django.template.engine import Engine
+    from django.template.loaders.filesystem import Loader
+    from openedx.core.djangoapps.theming.helpers import get_all_theme_template_dirs
+
+    directories = list(settings.DEFAULT_TEMPLATE_ENGINE['DIRS'])
+    for template_dir in get_all_theme_template_dirs():
+        directories.insert(0, template_dir)
+
+    engine = Engine(dirs=directories)
+    source, template_path = Loader(engine).load_template_source(path)
+  %>
+  ${source | n, decode.utf8}
+</%def>
+
+## =====================================================================
+## This flag has disabled but we need review this code for a future use.
+## =====================================================================
+% if course_discovery_enabled:
+<%block name="header_extras">
+  % for template_name in ["course_card", "filter_bar", "filter", "facet", "facet_option"]:
+  <%
+    path = ""
+    if template_name in ["course_card"]:
+      path = "templates/bragi/templates/"
+  %>
+  <script type="text/template" id="${template_name}-tpl">
+      <%static:include path="${path}discovery/${template_name}.underscore" />
+  </script>
+  % endfor
+  <%static:require_module module_name="js/discovery/discovery_factory" class_name="DiscoveryFactory">
+    DiscoveryFactory(
+      ${ dump_js_escaped_json(course_discovery_meanings) | n },
+      getParameterByName('search_query')
+    );
+  </%static:require_module>
+</%block>
+% endif
+
+<%block name="pagetitle">${_("Courses")}</%block>
+
+## courses_intro
+% if courses_intro_html:
+  ${courses_intro_html | n,  decode.utf8}
+% else:
+  %if courses_intro:
+    <div class="courses-intro row align-items-center justify-content-center mx-0" style="background-image: url(${courses_intro_image | h});">
+      <div class="content-container text-center">
+        <h1>${courses_intro.get('title', '') | h}</h1>
+        <h3>${courses_intro.get('subtitle', '') | h}</h3>
+        <p>${courses_intro.get('paragraph', '') | h}</p>
+      </div>
+    </div>
+  %endif
+% endif
+
+% if courses_features_html:
+  ${courses_features_html}
+% else:
+  %if courses_features:
+    <div class="courses-items row justify-content-center mb-4 mx-0">
+      <div class="content-container">
+        <div class="row justify-content-center mx-0">
+          %for item in courses_features:
+            <div class="col d-flex justify-content-center">
+              <a href="${item.get('url', '#') | h}" target="${item.get('target', '_self') | h}">
+                <img src="${item.get('image', '') | h}" class="img-responsive img-centered" alt="${item.get('alt', '') | h}">
+              </a>
+            </div>
+          %endfor
+        </div>
+      </div>
+    </div>
+  %endif
+%endif
+
+<section class="find-courses py-4">
+  ## courses_text
+  % if courses_text_html:
+    ${courses_text_html}
+  % else:
+    %if courses_text:
+      <div class="courses-text row justify-content-center mb-4 mx-0 py-4">
+        <div class="content-container text-center">
+          <h2>${courses_text.get('title', '') | h}</h2>
+          <p class="mb-0">${courses_text.get('paragraph', '') | h}</p>
+        </div>
+      </div>
+    % endif
+  % endif
+
+  <section class="courses-container row">
+    % if courses_text_into_html:
+      <div class="col col-12">
+        ${courses_text_into_html | n, decode.utf8}
+      </div>
+    % endif
+    
+    ## =====================================================================
+    ## This flag has disabled but we need review this code for a future use.
+    ## =====================================================================
+    % if course_discovery_enabled:
+      <div id="discovery-form" class="row align-items-center no-gutters col col-12" role="search" aria-label="course">
+        <div id="discovery-message" class="search-status-label col col-12 col-lg-9"></div>
+        <form class="wrapper-search-input col col-12 col-lg-3">
+          <label for="discovery-input" class="sr">${_('Search for a course')}</label>
+          <input class="discovery-input" placeholder="${_('Search for a course')}" type="text"/>
+          <button type="submit" class="button postfix discovery-submit" aria-label="${_('Search')}">
+            <i class="icon fa fa-search" aria-hidden="true"></i>
+            <div aria-live="polite" aria-relevant="all">
+              <div id="loading-indicator" class="loading-spinner hidden">
+                <i class="icon fa fa-spinner fa-spin"></i>
+                <span class="sr">${_('Loading')}</span>
+              </div>
+            </div>
+          </button>
+        </form>
+      </div>
+
+      <div class="col col-12 col-lg-9">
+        <div id="filter-bar" class="col col-12 mx-0 px-0 filters hide-phone is-collapsed"></div>
+        <div class="wrapper-search-context col col-12 mx-0 px-0"></div>
+        <div class="courses col col-12 m-0 py-2 px-0" role="region" aria-label="${_('List of Courses')}">
+          <ul class="courses-listing"></ul>
+        </div>
+      </div>
+      
+      <div class="col col-12 col-lg-3">
+        % if not courses_hide_filters:
+          <aside aria-label="${_('Refine Your Search')}" class="col col-12 mx-0 px-0 search-facets phone-menu">
+            <h2 class="header-search-facets">${_('Refine Your Search')}</h2>
+            <section class="search-facets-lists">
+            </section>
+          </aside>
+        % endif
+
+        % if courses_sidebar_html:
+          <div class="col col-12 mx-0 px-0 d-none d-lg-block">
+            ${courses_sidebar_html | n, decode.utf8}
+          </div>
+        % endif
+      </div>
+    % else:
+      % if courses_sidebar_html:
+      
+      <div class=" courses col col-12 col-lg-9 mx-0">
+        <div class="course-component" role="region" aria-label="${_('List of Courses')}">
+          <ul class="courses-listing">
+            %for course in courses:
+              <li class="courses-listing-item">
+                <%include file="../course.html" args="course=course" />
+              </li>
+            %endfor
+          </ul>
+        </div>
+      </div>
+      <div class="col col-12 col-lg-3">        
+          <div class="col col-12 mx-0 px-0 d-none d-lg-block">
+            ${courses_sidebar_html | n, decode.utf8}
+          </div>        
+      </div>
+      % else:
+
+      <div class=" courses col col-12">
+        <div class="course-component" role="region" aria-label="${_('List of Courses')}">
+          <ul class="courses-listing">
+            %for course in courses:
+              <li class="courses-listing-item">
+                <%include file="../course.html" args="course=course" />
+              </li>
+            %endfor
+          </ul>
+        </div>
+      </div>
+      % endif
+
+    % endif
+
+    % if courses_sidebar_html:
+      <div class="col col-12 mx-0 px-0 d-lg-none">
+        ${courses_sidebar_html | n, decode.utf8}
+      </div>
+    % endif
+
+    % if courses_text_into_bottom_html:
+      <div class="col col-12">
+        ${courses_text_into_bottom_html | n, decode.utf8}
+      </div>
+    % endif
+  </section>
+</section>
+
+% if courses_text_bottom_html:
+  ${courses_text_bottom_html}
+% else:
+  %if courses_text_bottom:
+    <div class="courses-text--bottom row justify-content-center mt-4 mx-0 py-4">
+      <div class="content-container text-center">
+        <h2>${courses_text_bottom.get('title', '') | h}</h2>
+        <p class="mb-0">${courses_text_bottom.get('paragraph', '') | h}</p>
+      </div>
+    </div>
+  % endif
+% endif

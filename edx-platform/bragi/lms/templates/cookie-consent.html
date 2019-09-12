@@ -1,0 +1,83 @@
+<!-- Cookie Consent -->
+<%page expression_filter="h"/>
+<%! from django.utils.translation import ugettext as _ 
+%>
+<%namespace name='static' file='/static_content.html'/>
+ 
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.1/cookieconsent.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.1/cookieconsent.min.js"></script>
+
+<script>
+  <%
+  ednx_cookie_content = theming.options('general', 'cookie_content', default=False)
+  %>
+  
+  % if ednx_cookie_content:
+  var cookie_content ={
+    popup_colorbackground: "${ednx_cookie_content.get('popup_colorbackground','#323538')}",
+    popup_colortext: "${ednx_cookie_content.get('popup_colortext','#ffffff')}",
+    button_colorbackground: "${ednx_cookie_content.get('button_colorbackground', '#005379')}",
+    button_colortext: "${ednx_cookie_content.get('button_colortext', '#ffffff')}",
+    message: "${ednx_cookie_content.get('message', 'This website uses cookies to ensure you get the best experience on our website.')}",
+    message_button: "${ednx_cookie_content.get('message_button', 'Got it!')}",
+    message_link: "${ednx_cookie_content.get('message_link', 'Learn more')}",
+    link_href: "${ednx_cookie_content.get('link_href','http://cookiesandyou.com')}"
+
+  }
+  % else:
+  var cookie_content ={
+    popup_colorbackground: "#323538",
+    popup_colortext: "#ffffff",
+    button_colorbackground: "#005379",
+    button_colortext: "#ffffff",
+    message: "This website uses cookies to ensure you get the best experience on our website.",
+    message_button: "Got it!",
+    message_link: "Learn more",
+    link_href: "http://cookiesandyou.com"
+
+  }
+  % endif
+</script>
+
+<script>
+window.addEventListener("load", function(){
+  window.cookieconsent.initialise({
+
+    window: '<div dir="${static.dir_rtl()}" role="dialog" tabindex="-1" id="cookiepopup" aria-label="cookieconsent" class="cc-window {{classes}}"><!--googleoff: all-->{{children}}<!--googleon: all--></div>',
+
+    palette:{
+      popup: {background: cookie_content.popup_colorbackground,
+       text: cookie_content.popup_colortext},
+      button: {background: cookie_content.button_colorbackground, 
+      text: cookie_content.button_colortext},
+    },
+    "content": {
+      "message": cookie_content.message,
+      "dismiss": cookie_content.message_button,
+      "link": cookie_content.message_link,
+      "href" : cookie_content.link_href,
+    },
+    theme: "classic",
+    "elements": {
+        "dismiss": '<a aria-label="dismiss cookie message" id="dismiss" role=button tabindex="2" class="cc-btn cc-dismiss:focus">{{dismiss}}</a>',
+    },
+    "position": "bottom",
+    "static": "true"
+  },
+  function(popup){
+
+    $(".cc-window").on('keydown', function(event) {
+      if (event.keyCode == 27 ){
+        popup.close();
+      } 
+    });
+
+    $("#dismiss").on('keydown', function(event) {
+      if (event.keyCode == 13 || event.keyCode == 32 ) {
+        popup.onButtonClick(event);
+      }
+    });  
+  });
+  $(".cc-message").css({'color':cookie_content && cookie_content.popup_colortext || '#ffffff'});
+});
+</script>
