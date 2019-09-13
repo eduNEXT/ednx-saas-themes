@@ -1,0 +1,213 @@
+## mako
+
+#############################################################
+##                                                         ##
+##   | ____|   __| |  _   _   _ __     ___  __  __ | |     ##
+##   |  _|    / _` | | | | | | '_ \   / _ \ \ \/ / | __|   ##
+##   | |___  | (_| | | |_| | | | | | |  __/  >  <  | |     ##
+##   |_____|  \__,_|  \__,_| |_| |_|  \___| /_/\_\  \__|   ##
+##                                                         ##
+#############################################################
+## Notes: This file is a copy dogwood footer.html
+## 1. change files paths
+## 2. remove unnecessary links elements
+## 3. change class names for new branding
+## 4. !mising openEdx logo
+
+## Dash variables
+## mill_footer__logo_imageurl : This variable is used to be the logo in the footer
+
+<%!
+  from django.utils.translation import ugettext as _
+  from django.core.urlresolvers import reverse
+  from branding.api import get_footer
+  # App that handles subdomain specific branding
+  import branding
+%>
+<% footer = get_footer(is_secure=is_secure) %>
+<%namespace name='static' file='/static_content.html'/>
+
+<%
+  try:
+    pageName = request.view_name
+  except AttributeError:
+    pageName = ""
+  hideNavbar = False
+  noNavbar = theming.options('footer', 'mill_footer__nonavbar', default= ["login", "register", "login_and_registration_form","password_reset_confirm_wrapper","password_reset_complete", "activate_account"])
+  if pageName in noNavbar and not course:
+    hideNavbar = True
+%>
+
+<%
+  footer_override = theming.options('footer', 'footer_override', default= False)
+  footer__social_tw = theming.options('footer', 'mill_footer__social_tw', default= 'https://twitter.com/')
+  footer__social_tw_url = theming.options('footer', 'mill_footer__social_tw_url', default= 'images/mill_footer__tw.png')
+  footer__social_fb = theming.options('footer', 'mill_footer__social_fb', default= 'https://www.facebook.com/')
+  footer__social_fb_url = theming.options('footer', 'mill_footer__social_fb_url', default= 'images/mill_footer__fb.png')
+  footer__social_in = theming.options('footer', 'mill_footer__social_in', default= 'https://www.linkedin.com/')
+  footer__social_in_url = theming.options('footer', 'mill_footer__social_in_url', default= 'images/mill_footer__in.png')
+  footer__logo_url = theming.options('footer', 'mill_footer__logo_url', default= 'images/mill_footer__logo.png')
+%>
+
+%if footer_override:
+  ${footer_override}
+%else:
+<div class="footer-component ${"hide" if hideNavbar else ""}">
+  <footer class="footer-component__container"
+    ## When rendering the footer through the branding API,
+    ## the direction may not be set on the parent element,
+    ## so we set it here.
+    % if bidi:
+      dir=${bidi}
+    % endif
+  >
+    <ul class="footer-component__links">
+      <li>
+        <a href="${marketing_link('ABOUT')}">Acerca de nosotros</a>
+      </li>
+      <li>
+        <a href="${marketing_link('CONTACT')}">Contacto</a>
+      </li>
+      <li>
+        <a href="${marketing_link('PRIVACY')}">Politica de privacidad</a>
+      </li>
+      <li>
+        <a href="${marketing_link('TOS')}">Terminos de servicio</a>
+      </li>
+    </ul>
+
+    <ul class="footer-component__social">
+      <li>
+        <a href="${footer__social_tw}" target="_blank">
+          <img class="footer-component__social-image" src="${static.url(footer__social_tw_url)}">
+        </a>
+      </li>
+      <li>
+        <a href="${footer__social_fb}" target="_blank">
+          <img class="footer-component__social-image" src="${static.url(footer__social_fb_url)}">
+        </a>
+      </li>
+      <li>
+        <a href="${footer__social_in}" target="_blank">
+          <img class="footer-component__social-image" src="${static.url(footer__social_in_url)}">
+        </a>
+      </li>
+    </ul>
+
+    <div class="footer-component__copy">
+      <a href="${marketing_link('ROOT')}">
+        <img class="logo" src="${static.url(footer__logo_url)}">
+      </a>
+      <div class="footer-component__copy-left">
+        <a href="${marketing_link('ROOT')}">
+          <span>Dash</span> by Mill 2016
+        </a>
+        <div class="copyright">Todos los derechos reservados</div>
+      </div>
+    </div>
+
+    ## Please leave this link and use one of the logos provided
+    ## The OpenEdX link may be hidden when this view is served
+    ## through an API to partner sites (such as marketing sites or blogs),
+    ## which are not technically powered by OpenEdX.
+    ## % if not hide_openedx_link:
+    ## <a class="footer-logo--openedx" href="${footer['openedx_link']['url']}">
+    ##   <img src="${footer['openedx_link']['image']}" alt="${footer['openedx_link']['title']}" width="140" />
+    ## </a>
+    ## % endif
+  </footer>
+</div>
+% endif
+
+<script>
+  /* Mobile menu component */
+  function mobileMenu() {
+    $('.navbar-component__nav--mobile').click(function(){
+      $('.navbar-component__nav').toggleClass('expanded')
+    });
+  };
+
+  /* Home fixed component */
+  function fixedSection() {
+    var windowHeight = $(window).innerHeight();
+    var navbarHeight = $('.navbar-component').innerHeight();
+
+    $('.fullscreen-component').removeClass('fixed');
+
+    if ($('.fullscreen-component').hasClass('notice')) {
+      $('.fullscreen-component').innerHeight(windowHeight - navbarHeight);
+    } else {
+      $('.fullscreen-component').innerHeight(windowHeight);
+    }
+
+    $('.fullscreen-component__down-icon').click( function(){
+      $('html, body').animate({
+        scrollTop: $('.fullscreen-component').innerHeight()
+      }, 1000);
+    });
+  };
+
+  /* Information component */
+  function infomationMenu() {
+    $('html, .information__component-close').click(function() {
+      $('.information__component').removeClass( 'active' )
+    });
+
+    $('.information__component-icon').click(function(e){
+      $('.information__component').toggleClass('active')
+
+      e.stopPropagation();
+    });
+
+    $('.information__component-content').click(function(e){
+      e.stopPropagation();
+    });
+  };
+
+  /* StickyFooter component */
+  function StickyFooter() {
+    var windowHeight = $(window).innerHeight();
+    var navbarHeight = $('.navbar-component').innerHeight();
+    var footerHeight = $('.footer-component').outerHeight(true);
+
+    $('.content-wrapper').css({
+      'min-height': windowHeight - navbarHeight - footerHeight
+    });
+  };
+
+  $(window).on('load resize',function(e){
+    mobileMenu();
+
+    if ($('.fullscreen-component').length) {
+      fixedSection();
+    }
+
+    infomationMenu();
+
+    StickyFooter();
+  });
+</script>
+
+<%
+  mill_chat__script = theming.options('mill_chat__script', default= False)
+%>
+%if mill_chat__script:
+  ${mill_chat__script}
+%endif
+
+% if include_dependencies:
+  <%static:js group='base_vendor'/>
+  <%static:css group='style-vendor'/>
+  <%include file="/widgets/segment-io.html" />
+  <%include file="/widgets/segment-io-footer.html" />
+% endif
+
+% if theming.options('activity_tracker') and user.is_authenticated:
+  <script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/edunextpublic/resources/libs/enext/activity_tracker/main.min.js"></script>
+% endif
+
+% if footer_css_urls:
+  % for url in footer_css_urls:
+    <link rel="stylesheet" type="text/css" href="${url}"></link>
+  % endfor
+% endif

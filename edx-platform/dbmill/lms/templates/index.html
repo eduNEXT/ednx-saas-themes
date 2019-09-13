@@ -1,0 +1,259 @@
+#############################################################
+##                                                         ##
+##   | ____|   __| |  _   _   _ __     ___  __  __ | |     ##
+##   |  _|    / _` | | | | | | '_ \   / _ \ \ \/ / | __|   ##
+##   | |___  | (_| | | |_| | | | | | |  __/  >  <  | |     ##
+##   |_____|  \__,_|  \__,_| |_| |_|  \___| /_/\_\  \__|   ##
+##                                                         ##
+#############################################################
+## Notes: This file is a copy dogwood index.html
+## 1. change files paths
+## 2. remove unnecessary elements (almost clear all)
+## 3. added elements for new branding
+## 4. add images and js functions for slider and up button
+## 5. create specific variables for this project
+
+<%inherit file="/main.html" />
+<%namespace name='static' file='/static_content.html'/>
+<%!
+from django.utils.translation import ugettext as _
+from django.core.urlresolvers import reverse
+%>
+<%
+index__cover_url = theming.options('home', 'mill_index__cover_url', default= 'images/mill_index__cover.jpg')
+index__logo_url = theming.options('home', 'mill_index__logo_url', default= 'images/mill_index__login.png')
+index__logomini_url = theming.options('home', 'mill_index__logomini_url', default= 'images/mill_index__logomini.png')
+index__down_url = theming.options('home', 'mill_index__down_url', default= 'images/mill_index__down.png')
+index__icontop_url = theming.options('home', 'mill_index__icontop_url', default= 'images/mill_index__icontop.png')
+index__iconbottom_url = theming.options('home', 'mill_index__iconbottom_url', default = 'images/mill_index__iconbottom.png')
+index__elementbg_url = theming.options('home', 'mill_index__elementbg_url', default= 'images/mill_index__elementbg.jpg')
+index__contact_email_url = theming.options('home', 'mill_index__contact_email_url', default= 'images/mill_index__contact_email.png')
+index__contact_tel_url = theming.options('home', 'mill_index__contact_tel_url', default= 'images/mill_index__contact_tel.png')
+index__contact_wap_url = theming.options('home', 'mill_index__contact_wap_url', default= 'images/mill_index__contact_wap.png')
+index__contact_chat_url = theming.options('home', 'mill_index__contact_chat_url', default= 'images/mill_index__contact_chat.png')
+index__contact_sms_url = theming.options('home', 'mill_index__contact_sms_url', default= 'images/mill_index__contact_sms.png')
+index__faqbg_url = theming.options('home', 'mill_index__faqbg_url', default= 'images/mill_index__faqbg.jpg')
+%>
+
+#### Dash variables
+## mill_index__cover_url : This variable is used to be the background of fixed element of home
+## mill_index__login_url : This variable is used to be the logo mini in login/register element
+## mill_index__logomini_url : This variable is used to be the logo mini in down element
+## mill_index__icontop_url :
+## mill_index__iconbottom_url :
+## mill_index__elementbg_url
+## mill_index__contact_email_url
+## mill_index__contact_tel_url
+## mill_index__contact_wap_url
+## mill_index__contact_chat_url
+## mill_index__contact_sms_url
+#### need funcitonality
+## mill_index__reviews
+
+<div class="fullscreen-component fixed down">
+  <div class="fullscreen-component__bg">
+    <img src="${static.url(index__cover_url)}">
+  </div>
+  <div class="login-component">
+    <div class="login-component__container home">
+      <div class="login-component__header">
+        <img src="${static.url(index__logo_url)}" alt="">
+      </div>
+      <div class="login-component__content home">
+        <a class="login-component__link-login" href="/login">${_("Sign in")}</a>
+        <div class="login-component__content-divider">o</div>
+        <a class="login-component__link-register" href="/register">${_("Register Now")}</a>
+        <a class="login-component__link-forgot" href="/login#forgot-password-modal">¿Olvido su contraseña?</a>
+      </div>
+    </div>
+  </div>
+  <div class="fullscreen-component__down">
+    <div class="fullscreen-component__down-title">
+      Déjenos enseñarle
+      <img src="${static.url(index__logomini_url)}" alt="">
+    </div>
+    <img class="fullscreen-component__down-icon" src="${static.url(index__down_url)}">
+  </div>
+</div>
+
+<section class="home">
+  <div class="home-component">
+    <div class="home-component__container">
+      <div class="home-component__content">
+        <div class="home-component__text">
+          <img class="home-component__text-icon--top" src="${static.url(index__icontop_url)}">
+          <p>¿Tiene alguna duda de como ingresar? </br> <b>Aquí se lo mostramos.</b></p>
+        </div>
+      </div>
+      <div class="home-component__content">
+        <%
+          mill_index__video_html = theming.options('home', 'mill_index__video_html', default ='<video></video>')
+        %>
+        %if mill_index__video_html:
+          ${mill_index__video_html}
+        %endif
+      </div>
+    </div>
+  </div>
+  <div class="home-component bgimage">
+    <div class="home-component__container">
+      <div class="home-component__content">
+        <div class="home-component__text edge">
+          <h3>¡Queremos crecer con usted!</h3>
+          <p>Por eso desarrollamos contenidos </br> que le ayuden en su vida laboral</p>
+          <img class="home-component__text-icon--bottom" src="${static.url(index__iconbottom_url)}">
+        </div>
+      </div>
+      <img class="home-component__container--bg" src="${static.url(index__elementbg_url)}" alt="">
+    </div>
+  </div>
+  <div class="home-component">
+    <div class="home-component__container">
+      <div class="home-component__content full">
+        <div class="home-component__text">
+          <h3>¡Nos preocupamos por usted!</h3>
+          <p>Le brindamos asesoría personalizada</p>
+        </div>
+      </div>
+      <div class="home-component__content full">
+        <ul class="home-component__list">
+          <li class="home-component__list-element">
+            <img src="${static.url(index__contact_email_url)}">
+            <p>Correo</p>
+          </li>
+          <li class="home-component__list-element">
+            <img src="${static.url(index__contact_tel_url)}">
+            <p>Vía telefónica</p>
+          </li>
+          <li class="home-component__list-element">
+            <img src="${static.url(index__contact_wap_url)}">
+            <p>Whatsapp</p>
+          </li>
+          <li class="home-component__list-element">
+            <img src="${static.url(index__contact_chat_url)}">
+            <p>Chat en vivo</p>
+          </li>
+          <li class="home-component__list-element">
+            <img src="${static.url(index__contact_sms_url)}">
+            <p>Mensajes de texto</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="home-component faq">
+    <div class="home-component__container">
+      <div class="home-component__content">
+        <div class="home-component__text faq">
+          <h3 class="green">¿Tiene alguna duda o inquietud?</h3>
+          <p>Para ver las preguntas más frecuentes <br>
+          de nuestros estudiantes <a href="${marketing_link('FAQ')}">Clic aquí</a></p>
+        </div>
+      </div>
+      <img class="home-component__container--bg" src="${static.url(index__faqbg_url)}" alt="">
+    </div>
+  </div>
+
+  <%
+    mill_index__reviews = theming.options('home', 'mill_index__reviews', default= [])
+  %>
+  %if mill_index__reviews:
+  <div class="home-component slider">
+    <div class="home-component__container">
+      <div class="home-component__content full">
+        <div class="home-component__text">
+          <h3>¿Qué opinan nuestros estudiantes?</h3>
+        </div>
+      </div>
+    </div>
+    <div class="home-component__content full slider js_slider">
+      <div class="home-component__container">
+        <div class="home-component__slider-frame">
+          <ul class="home-component__slider">
+            %for review in mill_index__reviews:
+            <li class="home-component__slider-element">
+              <div class="home-component__slider-element_content">
+                <img src="${static.url(review.get("img", 'site-assets/dbmill/images/mill_index__review.png'))}">
+                <p>${ review.get("txt", '') }</p>
+              </div>
+            </li>
+            %endfor
+          </ul>
+          <span class="home-component__slider-arrow prev"><i class="fa fa-angle-left"></i></span>
+          <span class="home-component__slider-arrow next"><i class="fa fa-angle-right"></i></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  %endif
+  <div class="home-component">
+    <div class="home-component__container">
+      <div class="home-component__content full">
+        <div class="home-component__text">
+          <h3 class="grey">¿Quiere ver más?</h3>
+          <p>Lo invitamos a Iniciar sesión</p>
+          <a class="home-component__btn scrollTop" href="#">
+            <i class="fa fa-caret-up"></i>
+            <span>Volver arriba</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+## Add Slider & home fixed component funtionality
+<script src="https://d1uwn6yupg8lfo.cloudfront.net/edxsites/dash-by-mill/lory.min.js"></script>
+<script>
+  $(document).ready(function() {
+    var component_slider = $('.js_slider');
+
+    $(window).bind('load resize',function(e){
+
+      /* Slider */
+      if ( component_slider.length ) {
+        lory(component_slider, {
+          classNameFrame: 'home-component__slider-frame',
+          classNameSlideContainer: 'home-component__slider',
+          classNameNextCtrl: 'home-component__slider-arrow next',
+          classNamePrevCtrl: 'home-component__slider-arrow prev',
+          infinite: 1,
+          enableMouseEvents: true,
+          rewind: true,
+          ease: 'cubic-bezier(0.455, 0.03, 0.515, 0.955)',
+        });
+      }
+
+      /* ScrollTop component */
+      var component__scrollTop = $('.scrollTop');
+      if ( component__scrollTop.length ) {
+        component__scrollTop.click( function(){
+          $('html, body').animate({
+            scrollTop: 0
+          }, 1000);
+        });
+      };
+
+    });
+  });
+
+</script>
+
+<%block name="js_extra">
+   <script type="text/javascript">
+      $(window).load(function() {
+         if(getParameterByName('next')) {
+              $('#login').trigger("click");
+         }
+      })
+   </script>
+</%block>
+
+% if show_signup_immediately is not UNDEFINED:
+  ## NOTE: This won't work in production, because anonymous views are cached, so it will
+  ## show either with or without this extra js for 3 minutes at a time.
+  <script type="text/javascript">
+    $(window).load(function() {$('#signup_action').trigger("click");});
+  </script>
+% endif
