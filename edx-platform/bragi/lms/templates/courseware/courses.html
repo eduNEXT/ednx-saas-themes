@@ -51,13 +51,9 @@
 % if course_discovery_enabled:
 <%block name="header_extras">
   % for template_name in ["course_card", "filter_bar", "filter", "facet", "facet_option"]:
-  <%
-    path = ""
-    if template_name in ["course_card"]:
-      path = "templates/bragi/templates/"
-  %>
+
   <script type="text/template" id="${template_name}-tpl">
-      <%static:include path="${path}discovery/${template_name}.underscore" />
+      <%static:include path="discovery/${template_name}.underscore" />
   </script>
   % endfor
   <%static:require_module module_name="js/discovery/discovery_factory" class_name="DiscoveryFactory">
