@@ -1,0 +1,119 @@
+// ==================================================
+// Base Styles
+// all the common elements and styles
+// that apply to all parts of the microsite
+// ==================================================
+
+// Body
+body {
+  background: $color__white;
+}
+
+*, :after, :before {
+  box-sizing: border-box;
+}
+
+.content-wrapper {
+  padding-left: 0;
+  padding-right: 0;
+  margin-top: 0;
+}
+
+/* ======================
+Static Contents
+====================== */
+.container.tos,
+.container.faq,
+.container.about,
+.container.privacy {
+  padding: 20px 30px 120px;
+  font-family: 'Source Sans Pro', sans-serif;
+
+  p {
+    font-family: 'Source Sans Pro', sans-serif;
+    text-align: justify;
+  }
+
+  ul {
+    padding-left: 40px;
+
+    &.nonstyle {
+      list-style: none;
+    }
+  }
+
+  li {
+    margin-bottom: 16px;
+    font-family: 'Source Sans Pro', sans-serif;
+    line-height: 1.5;
+  }
+
+  h1,
+  h2,
+  h3,
+  b {
+    font-family: 'Source Sans Pro', sans-serif;
+    color: darken($color__spring-green, 15);
+    font-weight: bold;
+    text-transform: none;
+  }
+
+  h1,
+  h2,
+  h3 {
+    margin: 24px 0 10px;
+    font-style: italic;
+  }
+}
+
+// Dashboard styles
+.dashboard .my-courses {
+  width: 100%;
+}
+
+.dashboard-banner {
+  // scss-lint:disable ExtendDirective
+  @extend %row-block;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 100px;
+  text-align: center;
+  z-index: 10;
+
+  &__bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: -1;
+
+    &::after {
+      position: absolute;
+      content: '';
+      display: block;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background: rgba(0, 137, 49, 0.77);
+    }
+
+    img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      object-fit: cover;
+    }
+  }
+
+  &__text {
+    margin-bottom: 0;
+    color: $color__white;
+    font-style: italic;
+  }
+}

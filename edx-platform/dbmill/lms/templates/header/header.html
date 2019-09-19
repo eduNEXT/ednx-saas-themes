@@ -1,0 +1,277 @@
+## mako
+
+#############################################################
+##                                                         ##
+##   | ____|   __| |  _   _   _ __     ___  __  __ | |     ##
+##   |  _|    / _` | | | | | | '_ \   / _ \ \ \/ / | __|   ##
+##   | |___  | (_| | | |_| | | | | | |  __/  >  <  | |     ##
+##   |_____|  \__,_|  \__,_| |_| |_|  \___| /_/\_\  \__|   ##
+##                                                         ##
+#############################################################
+## Notes: This file is a copy dogwood - Aegir navigation.html
+## 1. change files paths
+## 2. remove unnecessary elements
+
+## Changes the position of register to the right(when not logged)
+## it goes inside right nav insted of left nav bar
+<%namespace name='static' file='/static_content.html'/>
+<%namespace file='/main.html' import="login_query"/>
+<%!
+from django.core.urlresolvers import reverse
+from django.utils.translation import ugettext as _
+from django.conf import settings
+from openedx.core.djangoapps.user_api.accounts.image_helpers import get_profile_image_urls_for_user
+from lms.djangoapps.ccx.overrides import get_current_ccx
+from openedx.core.djangolib.markup import HTML, Text
+
+# App that handles subdomain specific branding
+from branding import api as branding_api
+
+# app that handles site status messages
+from status.status import get_site_status_msg
+%>
+
+## Dash variables
+## mill_navigation__logo_url : This variable is used to be the logo in the header
+
+## Provide a hook for themes to inject branding on top.
+<%block name="navigation_top" />
+
+<%block>
+<%
+  try:
+      course_id = course.id
+  except:
+      # can't figure out a better way to get at a possibly-defined course var
+      course_id = None
+  site_status_msg = get_site_status_msg(course_id)
+%>
+% if site_status_msg:
+<div class="site-status">
+  <div class="inner-wrapper">
+    <span class="icon fa fa-warning"></span>
+    <p>${site_status_msg}</p>
+  </div>
+</div>
+% endif
+</%block>
+
+<%
+  # this is a special configuration that the client asked for, what it does is validate depending on a variable, in which pages the navbar is hidden.
+  try:
+    pageName = request.view_name
+  except AttributeError:
+    pageName  = ""
+  hideNavbar = False
+  noNavbar = theming.options('header', 'mill_navigation__nonavbar', default= ["index", "login", "register", "login_and_registration_form","password_reset_confirm_wrapper","password_reset_complete", "activate_account"])
+  if pageName in noNavbar and not course:
+    hideNavbar = True
+%>
+<%
+  header_top = theming.options('header', 'header_top', header= False)
+  info_icon_url = theming.options('header', 'mill_navigation__info_icon_url', default= 'images/mill_navigation__info_icon.png')
+  info_tel_url = theming.options('header', 'mill_navigation__info_tel_url', default= 'images/mill_navigation__info_tel.png')
+  info_tel = theming.options('header', 'mill_navigation__info_tel', default= '321 974 2253')
+  info_email_url = theming.options('header', 'mill_navigation__info_email_url', default= 'images/mill_navigation__info_email.png')
+  info_email = theming.options('header', 'mill_navigation__info_email', default= 'capacitacion@mill.com.co')
+  info_wap_url = theming.options('header', 'mill_navigation__info_wap_url', default= 'images/mill_navigation__info_wap.png')
+  info_wap = theming.options('header', 'mill_navigation__info_wap', default= '310 221 84 09')
+%>
+
+%if header_top:
+  ${header_top}
+%endif
+
+<header id="global-navigation" class="navbar-component ${'hide' if hideNavbar else ''} ">
+  <nav class="navbar-component__container nav-wrapper justify-content-center align-items-center" aria-label="${_('Global')}">
+
+    ## ========================
+    ## logo
+    ## ========================
+    <div class="navbar-component__logo  ${'course' if course else ''}">
+      <a href="${marketing_link('ROOT')}">
+        <%block name="navigation_logo">
+          <img src="${static.url(theming.options('header', 'logo_image_url', default= 'images/mill_navigation__logo.png'))}" alt="${static.get_platform_name()}"/>
+        </%block>
+      </a>
+    </div>
+
+    ## ========================
+    ## title elemmt
+    ## ========================
+    % if course:
+      <div class="navbar-component__course">
+        ## <span class="provider">${course.display_org_with_default | h}:</span>
+        ${course.display_number_with_default}
+        <%
+          display_name = course.display_name_with_default
+          if settings.FEATURES.get('CUSTOM_COURSES_EDX', False):
+            ccx = get_current_ccx(course.id)
+            if ccx:
+              display_name = ccx.display_name
+        %>
+        ${display_name}
+      </div>
+    % endif
+
+    <div class="navbar-component__separator"></div>
+
+    <ul class="navbar-component__nav justify-content-center align-items-center">
+
+      ## ========================
+      ## navigation static links
+      ## ========================
+      <%block name="navigation_global_links">
+        % if theming.options('ENABLE_MKTG_SITE', default= settings.FEATURES.get('ENABLE_MKTG_SITE', False)):
+          <li class="navbar-component__nav-link">
+            <a href="${marketing_link('HOW_IT_WORKS')}">${_("How it Works")}</a>
+          </li>
+          <li class="navbar-component__nav-link">
+            <a href="${marketing_link('SCHOOLS')}">${_("Schools")}</a>
+          </li>
+        % endif
+        % if settings.FEATURES.get('COURSES_ARE_BROWSABLE'):
+          <li class="navbar-component__nav-link search">
+            <a href="${marketing_link('COURSES')}">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </a>
+            ## <a href="${marketing_link('COURSES')}">${_("Courses")}</a>
+          </li>
+        % endif
+      </%block>
+
+      ## ========================
+      ## User dropdown
+      ## ========================
+      % if user.is_authenticated:
+        <div class="navbar-component__nav-link navbar-component__account justify-content-center align-items-center">
+          <a class="navbar-component__account-avatar" href="${reverse('dashboard')}">
+            <img src="${get_profile_image_urls_for_user(user)['medium']}">
+          </a>
+          <a class="navbar-component__account-username" href="${reverse('dashboard')}">
+            <span class="sr">${_("Dashboard for:")}</span>
+            ${user.username}
+          </a>
+          <div class="navbar-component__account-divider"></div>
+          <a href="#" class="navbar-component__account-dropdown dropdown dropdown user-dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="sr">${_("More options dropdown")}</span><i class="fa fa-caret-down" aria-hidden="true"></i>
+          </a>
+          
+          <ul class="navbar-component__account-nav user-dropdown-menu" aria-label="More Options" role="menu">
+            <%block name="navigation_dropdown_menu_links">
+              <li class="navbar-component__account-option">
+                <a href="${reverse('account_settings')}">${_("Account Settings")}</a>
+              </li>
+              <li class="navbar-component__account-option">
+                <a href="${reverse('learner_profile', kwargs={'username': user.username})}">${_("My Profile")}</a>
+              </li>
+            </%block>
+            <li class="navbar-component__account-option">
+              <a href="${reverse('logout')}" role="menuitem">${_("Sign Out")}</a>
+            </li>
+          </ul>
+        </div>
+        % if should_display_shopping_cart_func(): # see shoppingcart.context_processor.user_has_cart_context_processor
+          <li class="navbar-component__nav-link">
+            <a class="shopping-cart" href="${reverse('shoppingcart.views.show_cart')}">
+              <i class="icon fa fa-shopping-cart"></i> ${_("Shopping Cart")}
+            </a>
+          </li>
+        % endif
+
+      ## ========================
+      ## login and sing up links
+      ## ========================
+      % else:
+        % if not settings.FEATURES['DISABLE_LOGIN_BUTTON']:
+          <li class="navbar-component__nav-link">
+            % if course and settings.FEATURES.get('RESTRICT_ENROLL_BY_REG_METHOD') and course.enrollment_domain:
+              <a class="cta cta-login" href="${reverse('course-specific-login', args=[course.id.to_deprecated_string()])}${login_query()}">${_("Sign in")}</a>
+            % else:
+              <a class="cta cta-login" href="/login${login_query()}">${_("Sign in")}</a>
+            % endif
+          </li>
+        % endif
+        % if not settings.FEATURES['DISABLE_LOGIN_BUTTON']:
+          <li class="navbar-component__nav-link navbar-component__nav-link--register">
+            % if course and settings.FEATURES.get('RESTRICT_ENROLL_BY_REG_METHOD') and course.enrollment_domain:
+              <a class="cta cta-register" href="${reverse('course-specific-register', args=[course.id.to_deprecated_string()])}">${_("Register Now")}</a>
+            % else:
+              <a class="cta cta-register" href="/register${login_query()}">${_("Register Now")}</a>
+            % endif
+          </li>
+        % endif
+
+      % endif
+
+    </ul>
+
+    <div class="navbar-component__nav--mobile">
+      <i class="fa fa-bars"></i>
+    </div>
+
+  </nav>
+</header>
+
+<div class="information__component">
+  <img class="information__component-icon" src="${static.url(info_icon_url)}">
+  <div class="information__component-content">
+    <div class="information__component-text">
+      <i class="fa fa-times information__component-close" aria-hidden="true"></i>
+      Si necesita ayuda puede contactarnos por cualquiera
+      de estos medios y con gusto lo atenderemos.
+    </div>
+    <div class="information__component-text tel">
+      <img src="${static.url(info_tel_url)}">
+      ${info_tel}
+    </div>
+    <div class="information__component-text email">
+      <img src="${static.url(info_email_url)}">
+      ${info_email}
+    </div>
+    <div class="information__component-text cel">
+      <img src="${static.url(info_wap_url)}">
+      ${info_wap}
+    </div>
+  </div>
+</div>
+
+% if theming.options('activity_tracker', default= False) and user.is_authenticated:
+  <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/edunextpublic/resources/libs/enext/activity_tracker/main.css">
+  <div id="activity-tracker" class="activity-tracker" data-username="${user.username}" data-id="${theming.options('activity_tracker_token', default= ' ')}">
+    <div class="activity-tracker__overlay"></div>
+    <div class="activity-tracker__button">${_("My engagement score")}</div>
+    <div class="activity-tracker__modal">
+      <div class="activity-tracker__modal-close">
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </div>
+      <div class="activity-tracker__content">
+        <div class="activity-tracker__content-title">${_("You have earned:")}</div>
+
+        <div class="activity-tracker__points">
+          <div class="activity-tracker__content-loader"></div>
+          <div class="activity-tracker__points-number">
+            <div class="value"></div>
+            <div class="label">${_("points")}</div>
+          </div>
+          <div class="activity-tracker__points-description">
+            <img src="https://s3.amazonaws.com/uifaces/faces/twitter/sdw/128.jpg">
+            <p></p>
+          </div>
+        </div>
+
+        <div class="activity-tracker__ranking">
+          <div class="activity-tracker__ranking-button">${_("View ranking")}</div>
+          <div class="activity-tracker__ranking-alert"></div>
+          <div class="activity-tracker__ranking-box">
+            <div class="title">Ranking</div>
+            <ul class="activity-tracker__ranking-list">
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+% endif
+
+<%include file="/help_modal.html"/>

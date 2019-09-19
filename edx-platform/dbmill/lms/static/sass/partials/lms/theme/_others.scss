@@ -1,0 +1,461 @@
+// Fullscreen elements
+// --------------------------------------------------
+.fullscreen-component {
+  @extend %row-block;
+  position: relative;
+  padding: 40px 12px;
+  background: #005B81;
+  transition: all 450ms cubic-bezier(.19, 1, .22, 1);
+
+  &.fixed {
+    position: fixed;
+    height: 100%;
+    z-index: 10;
+  }
+
+  &.down {
+    padding-bottom: 132px;
+  }
+
+  &.notice .fullscreen-component__bg::after {
+    display: none;
+  }
+
+  &.modal-open {
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  &__down {
+    @extend %row-block;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 400px;
+    left: 50%;
+    bottom: 24px;
+    margin-left: -200px;
+    animation: bounce 2s infinite;
+
+    &-title {
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      width: 100%;
+      flex-flow: row wrap;
+      color: $color__white;
+      font-size: 28px;
+      line-height: 1.5;
+
+      img {
+        width: 64px;
+        margin-left: 12px;
+      }
+    }
+
+    &-icon {
+      width: 42px;
+      cursor: pointer;
+    }
+
+    @keyframes bounce {
+      0% {
+        transform: translateY(-10px);
+      }
+
+      25% {
+        transform: translateY(10px);
+      }
+
+      75% {
+        transform: translateY(0);
+      }
+
+      100% {
+        transform: translateY(-10px);
+      }
+    }
+  }
+
+  &__bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+
+    &::after {
+      position: absolute;
+      content: '';
+      display: block;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background-color: rgba(43, 162, 155, .44);
+      background-image: radial-gradient(rgba(43, 162, 155, .44), rgba(0, 0, 0, .38));
+    }
+
+    &.forgot {
+      .loginImg {
+        display: none;
+      }
+
+      .forgotImg {
+        display: block;
+      }
+    }
+
+    .forgotImg {
+      display: none;
+    }
+
+    img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      object-fit: cover;
+    }
+  }
+}
+
+// Information component
+// --------------------------------------------------
+.information__component {
+  position: fixed;
+  top: 194px;
+  right: 24px;
+  z-index: $zIndex__1;
+
+  &.active {
+    .information__component-icon {
+      display: none;
+    }
+
+    .information__component-content {
+      display: block;
+    }
+  }
+
+  &-icon {
+    width: 45px;
+    cursor: pointer;
+  }
+
+  &-content {
+    display: none;
+    width: 340px;
+  }
+
+  &-close {
+    position: absolute;
+    top: 4px;
+    right: 8px;
+    cursor: pointer;
+  }
+
+  &-text {
+    position: relative;
+    margin-bottom: 10px;
+    padding: 12px 28px 12px 8px;
+    color: $color__white;
+    font-size: 14px;
+    text-align: center;
+    font-weight: bold;
+    background: #00A84C;
+
+    &:first-child::after {
+      position: absolute;
+      content: '';
+      width: 0;
+      height: 0;
+      top: 22px;
+      right: -13px;
+      border-top: 13px solid transparent;
+      border-left: 13px solid #00A84C;
+      border-bottom: 13px solid transparent;
+    }
+
+    &.tel,
+    &.email,
+    &.cel {
+      font-size: 18px;
+      padding: 12px;
+    }
+
+    &.tel {
+      background: #00893B;
+    }
+
+    &.email {
+      background: #006837;
+    }
+
+    &.cel {
+      background: #004C26;
+    }
+
+    img {
+      margin-right: 8px;
+    }
+  }
+}
+
+// Typeahead element
+// --------------------------------------------------
+.group-form {
+  position: relative;
+  z-index: 100;
+}
+
+.twitter-typeahead {
+  width: 100%;
+
+  .tt-hint,
+  .tt-input {
+    text-align: center;
+    font-style: normal;
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+}
+
+.tt-dropdown-menu {
+  text-align: left;
+}
+
+.typeahead,
+.tt-query,
+.tt-hint {
+  padding: 8px 12px;
+  text-align: center;
+  border: 2px solid #CCC;
+  border-radius: 8px;
+  outline: none;
+}
+
+.typeahead {
+  background-color: $color__white;
+}
+
+.typeahead:focus {
+  border: 2px solid #0097CF;
+}
+
+.tt-query {
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.tt-hint {
+  color: #999;
+}
+
+.tt-dropdown-menu,
+.tt-menu {
+  width: 100%;
+  top: 35px !important;
+  padding: 0;
+  background-color: $color__white;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+}
+
+.tt-suggestion {
+  padding: 3px 20px;
+
+  &.tt-cursor,
+  &:hover {
+    color: $color__white;
+    background-color: #2694FE;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+
+
+/* ======================
+    Course Component
+====================== */
+.home-component__course {
+  &--bg {
+    width: 100%;
+    background-color: #ECECEE;
+    border-top: 2px solid #D9D9DC;
+    border-bottom: 2px solid #D9D9DC;
+  }
+
+  &-title {
+    margin: 0 auto 22px;
+    font-size: 34px;
+    color: #A0A0A8;
+  }
+
+  &-list {
+    display: flex;
+    align-items: flex-start;
+    flex-flow: row wrap;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 40px 0;
+  }
+
+  &-item {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: 266px;
+    margin: 12px;
+    padding-bottom: 0;
+    background: $white;
+    border: 1px solid #D9D9DC;
+    border-radius: 4px;
+    transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1);
+    overflow: hidden;
+
+    &:hover {
+      box-shadow: 0 0 44px 0 rgba(0, 0, 0, .1), 0 0 22px 0 rgba(0, 0, 0, .05);
+    }
+  }
+}
+
+.home-component__course-item .course-tile {
+  transition: all 0.3s ease-in-out;
+  margin-bottom: 0;
+  opacity: 1;
+
+  &__body {
+    width: 100%;
+    background-color: $white;
+    border: 1px solid #D9D9DC;
+  }
+
+  &__image {
+    position: relative;
+    height: 240px;
+    overflow: hidden;
+
+    &::after {
+      transition: all 0.3s ease-in-out;
+      position: absolute;
+      content: '';
+      width: 100%;
+      height: 4px;
+      left: 0;
+      bottom: 0;
+      background-color: #000;
+      opacity: 0.1;
+    }
+
+    img {
+      transition: all 0.3s ease-in-out;
+      width: 100%;
+      min-height: 100%;
+      height: auto;
+    }
+  }
+
+  &__info {
+    padding: 20px;
+  }
+
+  &__date {
+    display: block;
+    margin-bottom: 2px;
+    color: #8D8D97;
+    font-size: 14px;
+  }
+
+  &__name {
+    display: block;
+    min-height: 46px;
+    color: #414151;
+    font-size: 18px;
+    line-height: 130%;
+
+    a {
+      color: #414151 !important;
+      text-decoration: none;
+
+      &:hover,
+      &:focus {
+        color: #414151;
+      }
+    }
+  }
+
+  &__instructor {
+    display: block;
+    color: #7A7A85;
+    font-size: 12px;
+  }
+
+  &__separator {
+    width: 100px;
+    height: 4px;
+    margin: 15px 0;
+    background-color: #49ABF1;
+  }
+}
+
+.home-component__courses--bg {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.opendash {
+  &-courses {
+    width: 100%;
+    padding: 0;
+  }
+
+  &-course {
+    padding-bottom: 0;
+  }
+
+  &-goback {
+    background: #ECECEE;
+    border-top: 3px solid #D9D9DC;
+  }
+}
+
+i[class*="fa-"],
+span[class*="fa-"] {
+  color: inherit;
+  font-family: "FontAwesome" !important;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.dashboard .main-container .my-courses .course .details .course-actions .wrapper-action-more,
+.dashboard .main-container .my-courses .course .details .course-actions .entitlement-actions-wrapper {
+  display: none;
+}
+
+.dashboard .main-container .my-courses .course .details .wrapper-course-details .wrapper-course-actions {
+  margin-right: 0;
+}
+
+.dashboard .main-container .my-courses .course .details .wrapper-course-details {
+  margin-bottom: 0;
+}
+
+.content-wrapper .course-tabs,
+.wrapper-course-material .course-material {
+  overflow-x: auto;
+}
+
+.navbar-nav.mr-auto {
+  margin: 0 auto;
+}
+
+body.view-in-course .instructor-dashboard-wrapper-2 .instructor-dashboard-content-2 {
+  padding: 40px;
+}
