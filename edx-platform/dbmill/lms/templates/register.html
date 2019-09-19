@@ -163,18 +163,18 @@ register__logomini_url = theming.options('register', 'mill_register__logomini_ur
   <div class="fullscreen-component__bg">
     <img src="${static.url(register__cover_url)}">
   </div>
-  <div class="register-component">
-    <div class="register-component__container">
+  <div class="register-component justify-content-center align-items-center">
+    <div class="register-component__container justify-content-center align-items-start">
       <div class="register-component__cover">
         <img class="register-component__cover-image" src="${static.url(register__modal_cover_url)}">
       </div>
       <a class="register-component__close" href="${marketing_link('ROOT')}">
         <i class="fa fa-times" aria-hidden="true"></i>
       </a>
-      <div class="register-component__title">
+      <div class="register-component__title justify-content-center align-items-center">
         Regístrese para empezar a usar <img src="${static.url(register__logomini_url)}" alt="">
       </div>
-      <div class="register-component__content">
+      <div class="register-component__content col-10">
         <form role="form" id="register-form" class="register-form" method="post" data-remote="true" action="/create_account" novalidate>
           <input type="hidden" name="csrfmiddlewaretoken" value="${ csrf_token }">
 
@@ -197,13 +197,13 @@ register__logomini_url = theming.options('register', 'mill_register__logomini_ur
           <div class="group group-form group-form-requiredinformation">
             <h2 class="sr">${_('Required Information')}</h2>
             % if has_extauth_info is UNDEFINED:
-              <div class="register-form__input required text" id="field-name">
-                <label for="name">Nombre y apellido</label>
-                <div class="register-form__input-names">
-                  <div class="register-form__input-names--first">
+              <div class="register-form__input required text justify-content-center align-items-center" id="field-name">
+                <label class="col-5" for="name">Nombre y apellido</label>
+                <div class="register-form__input-names col-12 col-md-7">
+                  <div class="register-form__input-names--first col-12 col-md-6">
                     <input id="firstname-js" class="names" type="text" name="firstname_js" value="" placeholder="Nombre" required aria-required="true" aria-describedby="name-tip" />
                   </div>
-                  <div class="register-form__input-names--last">
+                  <div class="register-form__input-names--last col-12 col-md-6">
                     <input id="lastname-js" class="names" type="text" name="lastname_js" value="" placeholder="Apellido" required aria-required="true" aria-describedby="name-tip" />
                   </div>
                   <input id="name" type="hidden" name="name" value=""/>
@@ -211,15 +211,15 @@ register__logomini_url = theming.options('register', 'mill_register__logomini_ur
                 ## <span class="tip tip-input" id="name-tip">${_("Needed for any certificates you may earn")}</span>
               </div>
               % if settings.REGISTRATION_EXTRA_FIELDS.get('personal_id', 'required') != 'hidden':
-                <div class="register-form__input required full text" id="field-personal_id">
-                  <label for="personal-id">Documento de identidad</label>
-                  <input id="personal-id" type="text" name="personal_id" value="" placeholder="Número de documento" required aria-required="true" aria-describedby="personal-id-tip"/>
+                <div class="register-form__input required full text justify-content-center align-items-center" id="field-personal_id">
+                  <label class="col-5" for="personal-id">Documento de identidad</label>
+                  <input class="col-7" id="personal-id" type="text" name="personal_id" value="" placeholder="Número de documento" required aria-required="true" aria-describedby="personal-id-tip"/>
                 </div>
               % endif
               % if settings.REGISTRATION_EXTRA_FIELDS.get('date_of_birth', 'required') != 'hidden':
-              <div class="register-form__input select" id="field-birthday">
-                <label for="birthday">Fecha de nacimiento</label>
-                <div class="register-form__input-select">
+              <div class="register-form__input select justify-content-center align-items-center" id="field-birthday">
+                <label class="col-5" for="birthday">Fecha de nacimiento</label>
+                <div class="register-form__input-select col-12 col-md-7 d-md-flex">
                   <div class="register-form__input-select_wrapper">
                     <select id="year_of_birth" name="year_of_birth">
                       <option value="none" class="placeholder" selected disabled>Año</option>
@@ -249,9 +249,9 @@ register__logomini_url = theming.options('register', 'mill_register__logomini_ur
                 % endif
               </div>
               % if True:
-                <div class="register-form__input ${settings.REGISTRATION_EXTRA_FIELDS['gender']} select" id="field-gender">
-                  <label for="gender">Sexo</label>
-                  <div class="register-form__input-select">
+                <div class="register-form__input ${settings.REGISTRATION_EXTRA_FIELDS['gender']} select justify-content-center align-items-center" id="field-gender">
+                  <label class="col-5" for="gender">Sexo</label>
+                  <div class="register-form__input-select col-12 col-md-7">
                     <div class="register-form__input-select_wrapper">
                       <select id="gender" name="gender" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS['gender'] == 'required' else ''}>
                         <option value="none" class="placeholder" selected disabled>--</option>
@@ -263,24 +263,24 @@ register__logomini_url = theming.options('register', 'mill_register__logomini_ur
                   </div>
                 </div>
               % endif
-              <div class="register-form__input full required text" id="field-email">
-                <label for="email">Ingrese su correo</label>
-                <input class="" id="email" type="email" name="email" value="" placeholder="Correo" required aria-required="true" />
+              <div class="register-form__input full required text justify-content-center align-items-center" id="field-email">
+                <label class="col-5" for="email">Ingrese su correo</label>
+                <input class="col-7" id="email" type="email" name="email" value="" placeholder="Correo" required aria-required="true" />
               </div>
-              <div class="register-form__input full required password" id="field-password">
-                <label for="password">Escriba su contraseña</label>
-                <input id="password" type="password" name="password" value="" placeholder="Contraseña" required aria-required="true" />
+              <div class="register-form__input full required password justify-content-center align-items-center" id="field-password">
+                <label class="col-5" for="password">Escriba su contraseña</label>
+                <input class="col-7" id="password" type="password" name="password" value="" placeholder="Contraseña" required aria-required="true" />
               </div>
-              <div class="register-form__input full required new_password" id="field-new_password">
-                <label for="new_password">Confirme su contraseña</label>
-                <input id="new_password" type="password" name="new_password" value="" placeholder="Contraseña" required aria-required="true" />
+              <div class="register-form__input full required new_password justify-content-center align-items-center" id="field-new_password">
+                <label class="col-5" for="new_password">Confirme su contraseña</label>
+                <input class="col-7" id="new_password" type="password" name="new_password" value="" placeholder="Contraseña" required aria-required="true" />
               </div>
               % if True:
-                <div class="register-form__location">
-                  <label class="register-form__location-label">País y Ciudad</label>
-                  <div class="register-form__location-input">
-                    <div class="register-form__location-country field-group">
-                      <div class="field required register-form__input-select" id="field-country">
+                <div class="register-form__location justify-content-center align-items-start">
+                  <label class="register-form__location-label col-12 col-md-5">País y Ciudad</label>
+                  <div class="register-form__location-input col-12 col-md-7 justify-content-center align-items-center">
+                    <div class="register-form__location-country field-group col-4 shadow-none">
+                      <div class="field required register-form__input-select col-12" id="field-country">
                         ## <label for="country">${_("Country")}</label>
                         <div class="register-form__input-select_wrapper country">
                           <select id="country" name="country" required aria-required="true">
@@ -303,14 +303,14 @@ register__logomini_url = theming.options('register', 'mill_register__logomini_ur
                         </div>
                       </div>
                     </div>
-                    <div class="register-form__location-city field required text" id="field-city">
+                    <div class="register-form__location-city field required text col-8" id="field-city">
                       <input id="city" type="text" name="city" value="" placeholder="Ciudad" aria-describedby="city-tip" required aria-required="true" />
                     </div>
                   </div>
                 </div>
               % endif
-              <div class="hide register-form__input required text" id="field-username">
-                <input id="username" type="hidden" name="username" value=""/>
+              <div class="hide register-form__input required text justify-content-center align-items-center" id="field-username">
+                <input class="col-7" id="username" type="hidden" name="username" value=""/>
               </div>
             ## % else:
             ##   <div class="message">
@@ -344,7 +344,7 @@ register__logomini_url = theming.options('register', 'mill_register__logomini_ur
           % endif
 
           % if has_extauth_info is UNDEFINED or ask_for_tos :
-            <div class="register-form__checkbox required checkbox" id="field-tos">
+            <div class="register-form__checkbox required checkbox col-12 col-md-7 offset-lg-5" id="field-tos">
               <input id="tos-yes" type="checkbox" name="terms_of_service" value="true" required aria-required="true" />
               <label for="tos-yes">${_('I agree to the {link_start}Terms of Service{link_end}').format(
               link_start='<a href="{url}" class="new-vp">'.format(url=marketing_link('TOS')),
@@ -365,7 +365,7 @@ register__logomini_url = theming.options('register', 'mill_register__logomini_ur
             </div>
           % endif
 
-          <div class="register-form__submit form-actions">
+          <div class="register-form__submit form-actions col-17 offset-lg-5">
             <button name="submit" type="submit" id="submit" class="register-form__submit-button action action-primary action-update">¡Listo!</button>
           </div>
         </form>

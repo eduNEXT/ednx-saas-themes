@@ -54,14 +54,14 @@ index__faqbg_url = theming.options('home', 'mill_index__faqbg_url', default= 'im
   <div class="fullscreen-component__bg">
     <img src="${static.url(index__cover_url)}">
   </div>
-  <div class="login-component">
+  <div class="login-component justify-content-center align-items-center">
     <div class="login-component__container home">
       <div class="login-component__header">
         <img src="${static.url(index__logo_url)}" alt="">
       </div>
-      <div class="login-component__content home">
+      <div class="login-component__content justify-content-center align-items-center home flex-column">
         <a class="login-component__link-login" href="/login">${_("Sign in")}</a>
-        <div class="login-component__content-divider">o</div>
+        <div class="login-component__content-divider col-8">o</div>
         <a class="login-component__link-register" href="/register">${_("Register Now")}</a>
         <a class="login-component__link-forgot" href="/login#forgot-password-modal">¿Olvido su contraseña?</a>
       </div>

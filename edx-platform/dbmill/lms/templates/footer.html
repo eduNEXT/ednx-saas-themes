@@ -52,8 +52,8 @@
 %if footer_override:
   ${footer_override}
 %else:
-<div class="footer-component ${"hide" if hideNavbar else ""}">
-  <footer class="footer-component__container"
+<div class="footer-component justify-content-center align-items-center ${"hide" if hideNavbar else ""}">
+  <footer class="footer-component__container justify-content-center align-items-center"
     ## When rendering the footer through the branding API,
     ## the direction may not be set on the parent element,
     ## so we set it here.
@@ -94,7 +94,7 @@
       </li>
     </ul>
 
-    <div class="footer-component__copy">
+    <div class="footer-component__copy justify-content-center align-items-center">
       <a href="${marketing_link('ROOT')}">
         <img class="logo" src="${static.url(footer__logo_url)}">
       </a>

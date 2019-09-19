@@ -20,24 +20,19 @@
 from django.utils.translation import ugettext as _
 from django.core.urlresolvers import reverse
 %>
-<%
-activation__cover_url = theming.options('register', 'mill_activation__cover_url', default= 'images/mill_index__cover.jpg')
-activation__logo_url = theming.options('register', 'mill_activation__logo_url', default= 'images/mill_forgot__logo.png')
-mill_activation__cover_url = theming.options('register', 'mill_activation__cover_url', default= 'images/mill_activation__cover.jpg')
-%>
 
 <div class="fullscreen-component fixed">
   <div class="fullscreen-component__bg">
-    <img src="${static.url(activation__cover_url)}">
+    <img src="${static.url(theming.options('register', 'mill_activation__cover_url', default= 'images/mill_index__cover.jpg'))}">
   </div>
-  <div class="activation-component">
+  <div class="activation-component justify-content-center align-items-center">
     <div class="activation-component__container">
       <div class="activation-component__header">
-        <img src="${static.url(activation__logo_url)}" alt="">
+        <img src="${static.url(theming.options('register', 'mill_activation__logo_url', default= 'images/mill_forgot__logo.png'))}" alt="">
       </div>
-      <div class="activation-component__content">
+      <div class="activation-component__content justify-content-center align-items-center">
         <div class="activation-component__cover">
-          <img class="activation-component__cover-image" src="${static.url(mill_activation__cover_url)}">
+          <img class="activation-component__cover-image" src="${static.url(theming.options('register', 'mill_activation__cover_url', default= 'images/mill_activation__cover.jpg'))}">
         </div>
         <a class="activation-component__close" href="${marketing_link('ROOT')}">
           <i class="fa fa-times" aria-hidden="true"></i>

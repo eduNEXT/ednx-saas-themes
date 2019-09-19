@@ -82,8 +82,8 @@ from status.status import get_site_status_msg
   ${header_top}
 %endif
 
-<header id="global-navigation" class="navbar-component ${'hide' if hideNavbar else ''}">
-  <nav class="navbar-component__container nav-wrapper" aria-label="${_('Global')}">
+<header id="global-navigation" class="navbar-component ${'hide' if hideNavbar else ''} ">
+  <nav class="navbar-component__container nav-wrapper justify-content-center align-items-center" aria-label="${_('Global')}">
 
     ## ========================
     ## logo
@@ -116,7 +116,7 @@ from status.status import get_site_status_msg
 
     <div class="navbar-component__separator"></div>
 
-    <ul class="navbar-component__nav">
+    <ul class="navbar-component__nav justify-content-center align-items-center">
 
       ## ========================
       ## navigation static links
@@ -144,7 +144,7 @@ from status.status import get_site_status_msg
       ## User dropdown
       ## ========================
       % if user.is_authenticated:
-        <div class="navbar-component__nav-link navbar-component__account">
+        <div class="navbar-component__nav-link navbar-component__account justify-content-center align-items-center">
           <a class="navbar-component__account-avatar" href="${reverse('dashboard')}">
             <img src="${get_profile_image_urls_for_user(user)['medium']}">
           </a>
