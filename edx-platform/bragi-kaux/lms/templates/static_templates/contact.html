@@ -1,0 +1,53 @@
+<%! 
+  from django.core.urlresolvers import reverse
+  from django.utils.translation import ugettext as _
+
+  from openedx.core.djangoapps.site_configuration import helpers as configuration_helpers
+%>
+<%inherit file="/main.html" />
+
+<%namespace name='static' file='/static_content.html'/>
+
+<%
+  static_contact_html = theming.options('static', 'static_contact_html', default= '')
+%>
+
+<%block name="title"><title>${theming.options('static', 'static_contact_title', default= _('Contact'))}</title></%block>
+
+<%
+  formspree_contact_email = configuration_helpers.get_value('formspree_contact_email', None)
+  formspree_redirect = configuration_helpers.get_value('SITE_NAME')
+%>
+
+<div class="static-banner-contact">
+  <div class="container static-banner__content">
+    <h2 class="static-banner__title">${_("Contact")}</h2>
+  </div>
+</div>
+
+<section class="content-container p-5">
+  <section class="container contact">
+  ## % if formspree_contact_email:
+  <form class="contact-form" action="http://formspree.io/${formspree_contact_email}" method="POST">
+    <h4>إذا لديك أي استفسارات أو ملاحظات أو اقتراحات، نسعد بتواصلك معنا</h4>
+    <hr>
+    <fieldset class="contact-form__field">
+      <label class="contact-form__input-label" for="name">${_("Name")}</label>
+      <input type="text" name="name">
+    </fieldset>
+    <fieldset class="contact-form__field">
+      <label class="contact-form__input-label" for="email">${_("Email")}</label>
+      <input type="email" name="_replyto">
+    </fieldset>
+    <fieldset class="contact-form__field">
+      <label class="contact-form__input-label" for="mesage">${_("Message:")}</label>
+      <textarea type="text" name="message" rows="5"></textarea>
+    </fieldset>
+    <input type="hidden" name="_next" value="${formspree_redirect}" />
+    <input type="hidden" name="_subject" value="اسم جديد من KAUx الموقع" />
+    <input type="text" name="_gotcha" style="display:none" />
+    <input type="submit" value="${_("Send Email")}">
+  </form>
+  ## % endif
+</section>
+</section>

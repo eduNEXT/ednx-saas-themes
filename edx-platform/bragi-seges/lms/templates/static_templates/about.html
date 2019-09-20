@@ -1,0 +1,27 @@
+<%! 
+from django.core.urlresolvers import reverse
+from django.utils.translation import ugettext as _
+%>
+<%inherit file="/main.html" />
+
+<%namespace name='static' file='/static_content.html'/>
+
+<%
+static_about_html = theming.options('static', 'static_about_html', default= '')
+%>
+
+<%block name="title"><title>${theming.options('static', 'static_about_title', default= _('About'))}</title></%block>
+
+<section class="about">
+	<header>
+		<center>
+			<h1>Om SEGES e-læring</h1>
+		</center>
+	</header>
+	<div class="row static_page container p-4">
+		<p>SEGES e-lærings program er udarbejdet med ét simpelt mål: at gøre kurser/uddannelser tilgængelige når landmanden har tid.</p>
+		<p>Kurser og uddannelsesforløb hos SEGES e-læring spænder over en bred vifte af emner, lige fra rengøring til virksomhedsledelse og strategiplanlægning.</p>
+		<p>Gennem e-læring når du både muligheden for at certificere dig i udvalgte kurser eller bruge programmet til at dygtiggøre dine medarbejdere ved hjælp af en visuel læringsmetode, samt et tempo der passer til hver enkelt ansat.</p>
+		<p>Læs mere på <a href="https://www.seges.dk" target="_blank">seges.dk</a></p>
+	</div>
+</section>
