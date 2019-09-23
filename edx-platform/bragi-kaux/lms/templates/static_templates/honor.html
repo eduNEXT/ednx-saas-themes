@@ -1,0 +1,25 @@
+<%! 
+from django.core.urlresolvers import reverse
+from django.utils.translation import ugettext as _
+%>
+<%inherit file="/main.html" />
+
+<%namespace name='static' file='/static_content.html'/>
+
+<%
+static_honor_html = theming.options('static', 'static_honor_html', default= '')
+%>
+
+<%block name="title"><title>${theming.options('static', 'static_honor_title', default= _('Honor Code'))}</title></%block>
+
+<div class="static-banner-honor">
+	<div class="container static-banner__content">
+		<h2 class="static-banner__title">${_("Honor Code")}</h2>
+	</div>
+</div>
+
+<section class="content-container p-5">
+	<section class="static-container honor">
+
+	</section>
+</section>

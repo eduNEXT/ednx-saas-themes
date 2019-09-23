@@ -1,0 +1,142 @@
+## mako
+<%!
+  from django.core.urlresolvers import reverse
+  from django.utils.translation import ugettext as _
+  from branding import api as branding_api
+  from openedx.core.djangoapps.site_configuration import helpers as configuration_helpers
+
+  from openedx.core.djangoapps.lang_pref.api import released_languages
+%>
+<%namespace name='static' file='/static_content.html'/>
+
+<%
+  footer_override = theming.options('footer','footer_override', default=False)
+
+  footer_logo_src = theming.options('footer', 'footer_logo_src', default= branding_api.get_logo_url(is_secure))
+  footer_logo_url = theming.options('footer', 'footer_logo_url', default= marketing_link('ROOT'))
+  footer_logo_alt = theming.options('footer', 'footer_logo_alt', default= static.get_platform_name())
+  footer_logo_target = theming.options('foooter', 'footer_logo_target', default= '_self')
+
+  footer_description = theming.options('footer','footer_description', default=' ')
+  footer_links = theming.options('footer','footer_links', default=[])
+
+  header_langselector = theming.options('header', 'header_langselector', default= False)
+  footer_langselector = theming.options('footer','footer_langselector', default=False)
+ 
+  footer_social = theming.options('footer','footer_social', default=[])
+  
+  footer_openedx_src = theming.options('footer', 'footer_openedx_src', default= 'https://d1uwn6yupg8lfo.cloudfront.net/edxsites/aegir-images/openedx-color.png')
+  footer_openedx_url = theming.options('footer', 'footer_openedx_url', default= 'https://open.edx.org/')
+  footer_openedx_alt = theming.options('footer', 'footer_openedx_alt', default= _('Powered by OPENedX'))
+  footer_openedx_target = theming.options('footer', 'footer_openedx_target', default= '_self')
+
+  footer_edunext_src = theming.options('footer', 'footer_edunext_src', default= 'https://d1uwn6yupg8lfo.cloudfront.net/edxsites/aegir-images/edunext-color.png')
+  footer_edunext_url = theming.options('footer', 'footer_edunext_url', default= 'https://www.edunext.co')
+  footer_edunext_alt = theming.options('footer', 'footer_edunext_alt', default= ' ')
+  footer_edunext_target = theming.options('footer', 'footer_edunext_target', default= '_self')
+
+  footer_extralinks = theming.options('footer', 'footer_extralinks', default= [])
+  footer_copy = theming.options('footer', 'footer_copy', default= ' ')
+
+  extra_script = theming.options('footer', 'extra_javascript', default= False)
+  extra_script_inline = theming.options('footer', 'extra_javascript_inline', default= False)
+
+  downgrade_level = theming.options('footer', 'downgrade_level', default= False)
+%>
+
+%if footer_override:
+  ${footer_override}
+%else:
+<footer class="footer-component">
+  <div id="footer-openedx" class="footer-container">
+    <div class="footer-content">
+      <div class="footer-menu">
+        <ul>
+          % if theming.options('ENABLE_MKTG_SITE', default= settings.FEATURES.get('ENABLE_MKTG_SITE', False)):
+          <li>
+            <a href="${marketing_link('ABOUT')}">${_("How it Works")}</a>
+          </li>
+          % endif
+          <li>
+            <a href="http://sodexovive.com/">sodexo vive</a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <a href="mailto:vivesodexo.svc.co@sodexo.com">vivesodexo.svc.co@sodexo.com</a>
+      </div>
+      <div class="footer-partner"><a href="http://www.sodexo.com/" target="_blank"></a>www.sodexo.com</div>
+    </div>
+    <div class="footer-branding">
+      <div class="footer-sodexo">
+        <img src="${static.url('site-assets/sodexo/images/sodexo-logo.svg')}" alt="">
+      </div>
+    </div>
+  </div>
+</footer>
+%endif:
+
+%if footer_langselector or header_langselector:
+  <%
+    languages = configuration_helpers.get_value('released_languages').split(',') 
+  %>
+  % if len(languages) > 1:
+    <form action="/i18n/setlang/" method="post" id="language-settings-form">
+      <input type="hidden" id="csrf_token" name="csrfmiddlewaretoken" value="${csrf_token}">
+      % if user.is_authenticated:
+        <input title="preference api" type="hidden" class="url-endpoint" value="${reverse('preferences_api', kwargs={'username': user.username})}" data-user-is-authenticated="true">
+      % else:
+        <input title="session update url" type="hidden" class="url-endpoint" value="${reverse('session_language')}" data-user-is-authenticated="false">
+      % endif
+
+      <input id="settings-language-value" type="hidden" name="language" value="${LANGUAGE_CODE}">
+    </form>
+  % endif
+
+  <script type="text/javascript">
+    $('.settings-language-values').on('change', function() {
+      var language_code = this.value;
+      $('#settings-language-value').val(language_code).change();
+    });
+  </script>
+% endif
+
+% if settings.FEATURES.get('ENABLE_COOKIE_CONSENT', False):
+  <%include file="/widgets/cookie-consent.html" />
+% endif
+
+<!-- Scripts for bootstrap -->
+<script src="https://d1uwn6yupg8lfo.cloudfront.net/resources/libs/enext/bragi/tether.min.js"></script>
+<script src="https://d1uwn6yupg8lfo.cloudfront.net/resources/libs/enext/bragi/bootstrap.min.js"></script>
+
+% if extra_script:
+  <script type="text/javascript" src="${static.url(extra_script)}"></script>
+% endif
+
+% if extra_script_inline:
+  <script type="text/javascript">${extra_javascript_inline}</script>
+% endif
+
+<script type="text/javascript">
+  var setHeight = (function  setHeight(){
+    if ($(window).innerHeight() > $('.window-wrap').innerHeight()) {
+      $('.content-wrapper').css('min-height', $(window).innerHeight() - $('.navbar').innerHeight() - $('.footer').innerHeight());
+    }
+  }());
+</script>
+
+% if downgrade_level == 'level1':
+  <script type="text/javascript">
+    $(window).load(function windowLoad() {
+      if ($('.ednxtDowngrade-modal').length > 0) {
+        $('.ednxtDowngrade-overlay, .ednxtDowngrade-modal__close, .ednxtDowngrade-modal__button').click(function toggleDowngradeModal() {
+          $('.ednxtDowngrade-overlay, .ednxtDowngrade-modal').fadeOut();
+        });
+      }
+    });
+  </script>
+% endif
+
+% if configuration_helpers.get_value('activity_tracker') and user.is_authenticated:
+  <script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/edunextpublic/resources/libs/enext/activity_tracker/main.min.js"></script>
+% endif
