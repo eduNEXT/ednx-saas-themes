@@ -1,0 +1,32 @@
+/* ========================================================
+  XBLOCK 
+======================================================== */
+// Manual change to fix xblock styles
+
+/* ========================================================
+  Zoom image
+======================================================== */
+.zooming-image-place .larger.visible {
+	left: 0 !important;
+}
+
+/* ========================================================
+  Image explorer
+======================================================== */
+.image-explorer-hotspot-reveal .image-explorer-close-reveal {
+	font-family: fontawesome !important;
+}
+
+/* ========================================================
+  Surveys
+======================================================== */
+.survey-table .survey-answer {
+	white-space: nowrap;
+}
+
+/* ========================================================
+  Email editor
+======================================================== */
+.mce-container-body .mce-ico {
+	font-family: 'tinymce', Arial !important;
+}

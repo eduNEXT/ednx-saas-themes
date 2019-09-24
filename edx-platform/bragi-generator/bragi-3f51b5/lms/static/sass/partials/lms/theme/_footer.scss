@@ -1,0 +1,40 @@
+/* --------------------------------
+
+Footer Component
+
+-------------------------------- */
+// scss-lint:disable NestingDepth, SelectorDepth
+.footer {
+  width: 100%;
+  height: auto;
+  left: 0;
+  bottom:0;
+  background-color: $footer-bg;
+  z-index: $footer-zindex;
+
+  // // scss-lint:disable NestingDepth, SelectorDepth
+  &-logo {
+    &.openedx,
+    &.edunext {
+      text-align:right;
+    }
+
+    &.openedx img {
+      max-width: 124px;
+    }
+
+    &.edunext img {
+      max-width: 82px;
+    }
+
+    img {
+      @include animtation-pulse;
+      max-width: 100%;
+    }
+  }
+
+  // scss-lint:disable NestingDepth, SelectorDepth
+  &-extra {
+    background: rgba(0,0,0,.05);
+  }
+}

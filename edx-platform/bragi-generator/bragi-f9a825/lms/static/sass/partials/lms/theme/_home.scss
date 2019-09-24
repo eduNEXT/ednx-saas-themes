@@ -1,0 +1,95 @@
+/* --------------------------------
+
+Home Components
+
+-------------------------------- */
+main.home > div:last-child {
+  padding-bottom: 1.5rem;
+}
+
+.home-intro {
+  @extend %intro-banner;
+
+  input {
+    height: auto;
+  }
+}
+
+.home-courses {
+  .highlighted-courses {
+    margin-bottom: 0;
+  }
+}
+
+/* ========================================================
+   Downgrade path styles
+======================================================== */
+.ednxtDowngrade-overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(46, 52, 62, .9);
+  z-index: 9999;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity .3s 0s, visibility 0s 0s;
+}
+
+.ednxtDowngrade-modal {
+  position: fixed;
+  width: 784px;
+  left: 50%;
+  margin: 64px auto;
+  margin-left: -392px;
+  padding: 40px 0 12px;
+  text-align: center;
+  background: $white;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+  z-index: 9999;
+  transition-property: transform;
+  transition-duration: .3s;
+
+  &__close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+
+  &__content {
+    position: relative;
+    padding: 0 24px 24px 164px;
+    line-height: 1.5;
+
+    .content-icon {
+      position: absolute;
+      left: 32px;
+      top: 0;
+      color: inherit;
+      font-size: 100px;
+    }
+    .content-paragraph {
+      text-align: left;
+    }
+  }
+
+  &__button {
+    @extend %btn;
+    float: right;
+    margin-right: 18px;
+    margin-top: 22px;
+    width: 35%;
+    padding: 12px 8px;
+    font-size: 14px;
+    text-shadow: none;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    box-shadow: none;
+  }
+}
