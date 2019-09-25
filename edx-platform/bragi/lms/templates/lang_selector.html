@@ -10,7 +10,7 @@
 %>
 
 <%
-  languages = configuration_helpers.get_value('released_languages').split(',') 
+  languages = configuration_helpers.get_value('released_languages', 'en').split(',') 
 %>
 % if len(languages) > 1:
   <li class="nav-link lang mobile-nav-item">

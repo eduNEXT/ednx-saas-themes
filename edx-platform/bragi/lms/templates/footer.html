@@ -19,7 +19,7 @@
   footer_logo_alt = theming.options('footer', 'footer_logo_alt', default= static.get_platform_name())
   footer_logo_target = theming.options('foooter', 'footer_logo_target', default= '_self')
 
-  footer_description = theming.options('footer','footer_description', default=' ')
+  footer_description = theming.options('footer','footer_description', default='')
   footer_links = theming.options('footer','footer_links', default=[])
 
   header_langselector = theming.options('header', 'header_langselector', default= False)
@@ -34,11 +34,11 @@
 
   footer_edunext_src = theming.options('footer', 'footer_edunext_src', default= 'https://d1uwn6yupg8lfo.cloudfront.net/edxsites/aegir-images/edunext-color.png')
   footer_edunext_url = theming.options('footer', 'footer_edunext_url', default= 'https://www.edunext.co')
-  footer_edunext_alt = theming.options('footer', 'footer_edunext_alt', default= ' ')
+  footer_edunext_alt = theming.options('footer', 'footer_edunext_alt', default= '')
   footer_edunext_target = theming.options('footer', 'footer_edunext_target', default= '_self')
 
   footer_extralinks = theming.options('footer', 'footer_extralinks', default= [])
-  footer_copy = theming.options('footer', 'footer_copy', default= ' ')
+  footer_copy = theming.options('footer', 'footer_copy', default= '')
 
   extra_script = theming.options('footer', 'extra_javascript', default= False)
   extra_script_inline = theming.options('footer', 'extra_javascript_inline', default= False)
@@ -171,7 +171,7 @@
 
 %if footer_langselector or header_langselector:
   <%
-    languages = configuration_helpers.get_value('released_languages').split(',') 
+    languages = configuration_helpers.get_value('released_languages', 'en').split(',') 
   %>
   % if len(languages) > 1:
     <form action="/i18n/setlang/" method="post" id="language-settings-form">
