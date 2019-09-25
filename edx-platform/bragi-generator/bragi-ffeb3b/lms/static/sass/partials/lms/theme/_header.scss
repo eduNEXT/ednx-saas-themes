@@ -183,8 +183,8 @@ Navbar Component
   .nav-links .secondary.nav-account .dropdown-user-menu {
     border-color: $navbar__nav-account-color;
   }
+}
 
-  .header-logo a {
-    margin: 11px 0 0 40px;
-  }
+.window-wrap .global-header .header-logo a {
+  margin: 11px 0 0 40px;
 }

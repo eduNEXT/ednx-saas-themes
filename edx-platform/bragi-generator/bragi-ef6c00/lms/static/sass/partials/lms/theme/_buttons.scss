@@ -50,12 +50,14 @@
   @extend %btn;
   @include button-variant($btn-primary-color, $btn-primary-border);
   border: $input-btn-border-width solid $btn-primary-border;
+  color: $btn-primary-bg;
 
   // Share hover and focus styles
   &:focus,
   &:hover,
   &:hover:not(:disabled) {
     @include button-variant($btn-primary-bg, $btn-primary-border);
+    color: $btn-primary-color;
   }
 }
 
@@ -133,7 +135,6 @@ a.btn-flat {
   // go to login-register
   a.btn.login-register {
     @extend %btn-flat;
-    @include link-color($btn-primary-color, $btn-primary-color);
     display: block;
   }
 }
