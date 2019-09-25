@@ -95,3 +95,7 @@
     }
   }
 }
+
+select.form-control-sm:not([size]):not([multiple]) {
+  height: 1.8125rem;
+}
