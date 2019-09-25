@@ -6,6 +6,7 @@
   @include button-size-edx($btn-padding-y, $btn-padding-x, $font-size-base, $border-radius);
   @include button-variant($btn-primary-bg, $btn-primary-border);
   @include transition($btn-transition);
+  color: $btn-primary-color;
   display: inline-block;
   height: auto;
   font-weight: $btn-font-weight;
