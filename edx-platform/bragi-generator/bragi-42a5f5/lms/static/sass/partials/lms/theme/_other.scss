@@ -1,0 +1,119 @@
+/* --------------------------------
+
+Other Components
+
+-------------------------------- */
+.view-login,
+.view-register,
+.view-passwordreset {
+  .content-wrapper {
+    padding: 0 0 4rem 0;
+  }
+
+  .container {
+    @extend %container-wrapper;
+  }
+
+  .introduction {
+    width: 100%;
+    background-color: $white;
+
+    header {
+      @include content-wrapper;
+      height: auto;
+      background-image: none;
+    }
+
+    h1.title {
+      position: relative;
+      top: 0;
+      left: 0;
+      margin: 0;
+      padding: 0;
+
+      .title-super {
+        color: $main-color;
+      }
+
+      .title-sub {
+        margin: 0;
+      }
+    }
+
+  }
+}
+
+.login,
+.register,
+.passwordreset,
+#forgot-password-modal #password-reset {
+  .content {
+    @include content-wrapper;
+  }
+
+  aside {
+    display: none;
+  }
+
+  form .field.is-focused {
+    label,
+    .tip {
+      color: $main-color;
+    }
+  }
+
+  .form-third-party-auth {
+    margin-top: 20px;
+  }
+}
+
+.account-settings-container {
+  max-width: 100%;
+
+  .wrapper-header {
+    @extend %container-wrapper;
+    height: auto;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0;
+    border-bottom: none;
+
+    .header-title {
+      padding-top: 0;
+    }
+
+    .account-nav {
+      float: none;
+      display: inline-block;
+    }
+
+    button.account-nav-link {
+      padding: .5rem 1rem !important;
+
+      &:hover,
+      &.active {
+        border-bottom-color: $main-color !important;
+      }
+    }
+  }
+
+  .account-settings-sections {
+    @extend %container-wrapper;
+
+    .section:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+.view-profile .content-wrapper main {
+  padding-top: 0;
+}
+
+// static pages
+.static_page {
+  @extend %container-wrapper;
+}
+
+.forum-search {
+  margin-top: 0;
+}
