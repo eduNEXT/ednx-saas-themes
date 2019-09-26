@@ -1,49 +1,7 @@
-// variable definitions for this site
-$main-color: #0C511E;
 
+@import 'variables-extras';
 // Using the generic bragi
-@import '../../../../../../../../bragi/lms/static/sass/partials/lms/theme/extras.scss';
-
-$primary-bg: #FAFAFA;
-$secondary-bg: #F0F0E9;
-
-$button-color: #E95D0F;
-$button-color-d2: #E95D0F;
-$button-color-d1: #E95D0F;
-$button-color-t3: #E95D0F;
-$button-color-d3: rgba($button-color, 0.75);
-
-$navbar-component-bg: $secondary-bg;
-$home-header__title-shadow: none;
-$footer-component-bg: $secondary-bg;
-$footer-component-border: darken($footer-component-bg, 20%);
-
-// simple variables
-$homepage__bg--background: $main-color;
-$coursespage__bg--background: $homepage__bg--background;
-
-$logo__image: url('../images/SEGES_logo_RGB.svg') bottom;
-$homepage-bg-image: '../images/home-banner.jpg';
-$login-banner-image: '../images/Hjorrne2.svg';
-$register-banner-image: $login-banner-image;
-// $coursespage-bg-image: '../images/banner_3.png';
-$coursespage-bg-image: '';
-
-@font-face {
-  font-family: 'lf_press_sansbold';
-  src: url('../fonts/lf_press_sans_bold-webfont.eot');
-  src: url('../fonts/lf_press_sans_bold-webfont.eot?#iefix') format('embedded-opentype'),
-       url('../fonts/lf_press_sans_bold-webfont.woff2') format('woff2'),
-       url('../fonts/lf_press_sans_bold-webfont.woff') format('woff'),
-       url('../fonts/lf_press_sans_bold-webfont.ttf') format('truetype'),
-       url('../fonts/lf_press_sans_bold-webfont.svg#lf_press_sansregular') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-
-// FONTS
-$font_base: Arial, Helvetica Neue, Helvetica, sans-serif;
-
+@import '../../../../../../../../bragi/lms/static/sass/partials/lms/theme/bragi';
 @import 'branding';
 
 // Backgrounds

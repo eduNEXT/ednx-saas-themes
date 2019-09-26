@@ -1,18 +1,7 @@
-$main-color: #003D71;
 
-$logo__image: '';
-$homepage-bg-image: '';
-
+@import 'variables-extras';
 // Using the generic bragi
-@import '../../../../../../../../bragi/lms/static/sass/partials/lms/theme/extras.scss';
-
-$primary-bg: #FFF;
-$footer-bg: #003D71;
-
-@import url(https://fonts.googleapis.com/css?family=Lato);
-
-// FONTS
-$font_base: 'Lato';
+@import '../../../../../../../../bragi/lms/static/sass/partials/lms/theme/bragi';
 
 @import 'branding';
 @import 'responsive';
