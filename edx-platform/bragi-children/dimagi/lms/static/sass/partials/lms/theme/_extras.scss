@@ -1,0 +1,28 @@
+
+@import 'variables-extras';
+// Using the generic bragi
+@import '../../../../../../../../bragi/lms/static/sass/partials/lms/theme/bragi';
+
+@import 'branding';
+@import 'responsive';
+
+.view-login .content-wrapper,
+.view-passwordreset .content-wrapper,
+.view-register .content-wrapper,
+.window-wrap .content-wrapper {
+	padding-bottom: 0;
+}
+
+// Backgrounds
+html,
+body,
+.window-wrap,
+.content-wrapper,
+.view-profile .content-wrapper {
+	background: $primary-bg;
+}
+
+.course-index,
+.course-content {
+	background: $primary-bg;
+}

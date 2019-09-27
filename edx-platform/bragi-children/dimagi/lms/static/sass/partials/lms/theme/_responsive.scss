@@ -1,0 +1,101 @@
+/* --------------------------------
+
+Responsive Queries
+
+-------------------------------- */
+$desktop:           1200px !default;
+$laptop:            1180px !default;
+$tablet-landscape:  992px !default;
+$tablet:            768px !default;
+$smartphone:        550px !default;
+$mobile:            480px !default;
+
+@media ( max-width: $desktop ) {
+	.course-component__item {
+		width: calc( 33% - 24px );
+	}
+}
+
+@media ( max-width: $tablet-landscape ) {
+	.navbar-component__nav-link:first-child {
+		margin-right: 0;
+		border: none;
+	}
+	.navbar-component__nav {
+		display: none;
+		top: 95px;
+	}
+
+	.content-wrapper {
+		.course-header__container {
+			flex-wrap: wrap;
+			border-bottom: 4px solid $main-color;
+		}
+		.course-header__image {
+			width: 100%;
+			margin-bottom: 25px;
+			text-align: center;
+			img {
+				margin: 0 auto;
+			}
+		}
+		.course-header__info {
+			width: 100%;
+			margin: 0 25px;
+		}
+		.course-header__title {
+			font-size: 32px;
+		}
+		section.course-body {
+			padding-top: 40px;
+			display: flex;
+			flex-direction: column-reverse;
+		}
+		.course-meta,
+		.course-information {
+			width: 100%;
+			padding: 20px;
+		}
+	}
+
+	.dashboard .profile-sidebar {
+		border-top: none;
+	}
+
+	.view-login,
+	.view-passwordreset,
+	.view-register {
+		.content-wrapper {
+			padding: 0 20px;
+		}
+		.introduction,
+		.container {
+			header .title {
+				left: 0;
+			}
+			background: $white;
+		}
+	}
+
+	.footer-logo.openedx, .footer-logo.edunext{
+		border-left: none;
+	}
+}
+
+@media ( max-width: 940px ) {
+	.course-component__list {
+		justify-content: center;
+	}
+	.course-component__item {
+		width: 368px;
+	}
+}
+
+@media ( max-width: $tablet ) {
+}
+
+@media ( max-width: $smartphone ) {
+}
+
+@media ( max-width: $mobile ) {
+}
