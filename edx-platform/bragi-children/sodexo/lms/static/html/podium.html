@@ -1,0 +1,70 @@
+<style type="text/css">
+body.view-in-course .container {
+  padding: 0;
+}
+body.view-in-course .window-wrap .content-wrapper {
+  padding-bottom: 0;
+}
+body.view-in-course .static_tab_wrapper {
+  max-width: 100%;
+    padding: 0;
+}
+</style>
+
+<%
+  var categories = [
+    {cssClass: 'general', name: 'General'},
+    {cssClass: 'recognition', name: 'Recognition'},
+    {cssClass: 'personal_growth', name: 'Personal Growth'},
+    {cssClass: 'physical_environment', name: 'Physical Environment'},
+    {cssClass: 'health_and_wellbeing', name: 'Health & Well-Being'},
+    {cssClass: 'social_interaction', name: 'Social Interaction'},
+    {cssClass: 'ease_and_efficiency', name: 'Ease & Efficiency'}
+  ];
+
+  if (typeof backgroundImg == 'undefined') {
+    backgroundImgOverrride = '';
+  }
+  else {
+    backgroundImgOverrride = 'style="background-image: url(' + backgroundImg + ');"';
+  }
+%>
+
+<div class="podium pilar-<%= cat %>" <%= backgroundImgOverrride %>>
+  <div class="podium-container loading">
+    <div class="podium-header">
+      <div class="podium-header__logo left">
+        <img class="logo-vive" src="https://d1uwn6yupg8lfo.cloudfront.net/edxsites/sodexo/podium/bike.png" alt="">
+      </div>
+      <div class="podium-header__content center">
+        <div class="title"><%= i18n("RANKING") %></div>
+        <div class="subtitle"><%= i18n("del Tour de Calidad de Vida") %></div>
+      </div>
+      <div class="podium-header__logo right">
+        <img class="logo-sodexo" src="https://d1uwn6yupg8lfo.cloudfront.net/edxsites/sodexo/podium/sodexo.png" alt="">
+      </div>
+    </div>
+
+    <ul class="podium-navbar">
+      <% _.each(categories, function(category) { %>
+        <li class="podium-navbar__item <% if (category.cssClass === cat ) {%> selected <% } %>">
+          <a href="#<%= category.cssClass %>">
+            <div class="icon <%= category.cssClass %>"></div>
+            <div class="title"><%= i18n(category.name) %></div>
+          </a>
+        </li>
+      <% }); %>
+    </ul>
+
+
+    <ul class="podium-list">
+      <div class="podium-list__header">
+        <div class="username"><%= i18n("Nombre de Usuario") %></div>
+        <div class="points"><%= i18n("Puntos") %></div>
+      </div>
+      <div id="podium-table-js"></div>
+      <div class="loader"></div>
+    </ul>
+    <div id="podium-footer-js"></div>
+  </div>
+</div>

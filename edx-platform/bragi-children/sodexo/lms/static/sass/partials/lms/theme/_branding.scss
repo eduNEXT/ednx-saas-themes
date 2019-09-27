@@ -1,0 +1,329 @@
+/* ======================
+    Navbar Component
+====================== */
+.navbar.global-header {
+  min-height: 120px;
+  padding: 20px 0 22px;
+  border-bottom: 12px solid $red;
+  box-sizing: border-box;
+  background: $midnightBlue;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+}
+
+.navbar-logo {
+  position: relative;
+  margin-top: -4px;
+  padding: 0 20px 0 0;
+
+  &:after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 2px;
+    height: 60px;
+    top: -6px;
+    right: 0;
+    background-color: $white;
+    background-image: radial-gradient(ellipse at center, $white 0%, $white 30%, rgba(0, 0, 0, 0) 100%);
+  }
+
+  img {
+    max-height: 46px;
+  }
+}
+
+.container-navbar-links .navbar-nav .nav-link {
+  color: #FFF;
+  padding: 10px 15px;
+
+  &:hover {
+    color: #FFF;
+  }
+}
+
+.navbar .navbar-title {
+  margin-left: 22px;
+  color: $white !important;
+  font-size: 18px;
+
+  // .provider {
+  //   display: none;
+  // }
+}
+
+.global-header .hamburger-menu .line {
+  background: $white;
+}
+
+.navbar-collapse {
+  background: $midnightBlue;
+}
+
+.nav-account .menu-title span,
+.toggle-user-dropdown span{
+  color: $white;
+  background: $midnightBlue;
+}
+
+.global-header .course-header span {
+  color: $white;
+}
+
+/* ======================
+    Extra Content
+====================== */
+.container .info-wrapper {
+  background: $white;
+  border: 0;
+
+  .handouts {
+    display: none;
+  }
+
+  .updates {
+    padding: 2em 0;
+
+    .headline {
+      .headline-title {
+        position: relative;
+        padding: 10px;
+        color: $white;
+        text-align: center;
+        background: $blue;
+        border-bottom: 0;
+
+        &:before,
+        &:after {
+          content: '';
+          position: relative;
+          display: inline-block;
+          width: 6px;
+          height: 6px;
+          top: 50%;
+          margin: 5px 10px;
+          background: $white;
+          border-radius: 50%;
+        }
+      }
+
+      .headline-img {
+        width: 100%;
+      }
+    }
+
+    .info-content {
+      width: 100%;
+      max-width: 100%;
+      margin: 2em 0;
+
+      .three {
+        // @include grid-column(4);
+      }
+    }
+
+    h1:first-child {
+      display: none;
+    }
+  }
+}
+
+.dashboard .my-courses .course .details .enter-course {
+  color: $white !important;
+  background: $midnightBlue !important;
+
+  &:hover, 
+  &:active, 
+  &:focus {
+    color: $midnightBlue !important;
+    background: $white !important;
+  }
+}
+
+/* ======================
+    Footer Component
+====================== */
+html, 
+body {
+  height: 100%;
+}
+
+#global-footer {
+  position: relative;
+  margin-top: -80px;
+  height: 80px;
+  clear: both;
+}
+
+body:before {
+  content: "";
+  height: 100%;
+  float: left;
+  width: 0;
+  margin-top: -32767px;
+}
+
+.content-wrapper {
+  height: auto;
+  min-height: 800px;
+}
+
+.view-register,
+.view-login,
+.view-passwordreset {
+  footer .container {
+    width: 100%;
+    padding: 0 30px;
+    background: transparent;
+  }
+
+  .wrapper-footer footer {
+    width: 100%;
+  }
+}
+
+.footer-container {
+  display: table;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.footer-component {
+  clear: both;
+  position: relative;
+  height: auto;
+  margin-top: 0;
+  padding: 40px 0 12px;
+  border-top: 0;
+  background: $midnightBlue;
+  text-align: center;
+
+  &:before {
+    content: '';
+    display: block;
+    height: 22px;
+    width: 100%;
+    margin-bottom: 25px;
+    background: $red;
+    background-color: #E32A25;
+    background-image: linear-gradient(50deg, #E32A25, #E32A25, #EF876F, #CB3732, #BB1518, #B70B11, #B5080E, #B5080E, #B5080E);
+  }
+}
+
+.footer-component {
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: inline-block;
+    }
+  }
+
+  .footer-content,
+  .footer-branding {
+    width: auto;
+    color: $white;
+    border: 0;
+    box-shadow: none;
+    box-sizing: border-box;
+
+    div {
+      color: $white;
+    }
+  }
+
+  .footer-content {
+    float: left;
+    text-align: left;
+    background: transparent;
+
+    a {
+      color: $white;
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: $white;
+      }
+    }
+  }
+
+  .footer-branding {
+    position: relative;
+    float: right;
+    margin-top: -64px;
+    padding: 54px 18px 18px;
+    text-align: right;
+    background: $white;
+    border-radius: 0;
+
+    &:before {
+      content: '';
+      position: absolute;
+      display: block;
+      width: 90%;
+      height: 22px;
+      top: 17px;
+      left: 0;
+      background-color: #B5080E;
+    }
+  }
+}
+
+.footer-menu,
+.footer-contact,
+.footer-copyright,
+.footer-partner {
+  padding-bottom: 6px;
+  font-size: 13px;
+}
+
+.footer-social {
+  li {
+    width: 26px;
+    margin-right: 10px;
+
+    img {
+      max-width: 100%;
+    }
+  }
+}
+
+.footer-menu {
+  li {
+    padding: 0 12px;
+    border-right: 1px solid $white;
+
+    &:first-child {
+      padding-left: 0;
+    }
+
+    &:last-child {
+      border-right: 0;
+    }
+  }
+}
+
+.footer-social,
+.footer-logos,
+.footer-sodexo {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 30px;
+
+  img {
+    max-width: 100%;
+  }
+}
+
+.footer-logos {
+  width: 120px;
+  height: 45px;
+}
+
+.footer-logos .edunext {
+  width: 90px;
+  margin-top: 20px;
+  margin-left: 30px;
+}
