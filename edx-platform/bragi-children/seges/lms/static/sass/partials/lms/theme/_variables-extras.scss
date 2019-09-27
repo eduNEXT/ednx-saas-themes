@@ -43,7 +43,8 @@ $navbar__nav-link-color: $main-color;
 $link-color: $main-color;
 $link-hover-color: darken($link-color, 15%);
 
-$font_base: Arial, Helvetica Neue, Helvetica, sans-serif;
+$font-family-base: Arial, Helvetica Neue, Helvetica, sans-serif;
+$headings-font-family: $font-family-base;
 
 $h1-font-size: 2.5rem;
 $h2-font-size: 2rem;

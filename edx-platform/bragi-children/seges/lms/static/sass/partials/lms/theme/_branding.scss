@@ -305,7 +305,7 @@ Static Contents
   &-content {
     //display: flex;
     justify-content: space-between;
-    font-family: $font_base !important;
+    font-family: $font-family-base !important;
     letter-spacing: initial;
     line-height: 1.5;
 
@@ -328,7 +328,7 @@ Static Contents
 
   &-form__field input,
   &-form__field textarea {
-    font-family: $font_base !important;
+    font-family: $font-family-base !important;
     font-style: normal;
     letter-spacing: initial;
     line-height: 1.5;
