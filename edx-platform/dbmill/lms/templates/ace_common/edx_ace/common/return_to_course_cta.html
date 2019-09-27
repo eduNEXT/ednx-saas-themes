@@ -4,7 +4,7 @@
 
 <p style="text-align: center;">
     {# email client support for style sheets is pretty spotty, so we have to inline all of these styles #}
-    {% theming_options "EMAIL_COLORS" default=dict as EMAIL_COLORS %}
+    {% microsite_get_value "EMAIL_COLORS" default=dict as EMAIL_COLORS %}
     <a
     {% if course_cta_url %}
         href="{% with_link_tracking course_cta_url %}"
