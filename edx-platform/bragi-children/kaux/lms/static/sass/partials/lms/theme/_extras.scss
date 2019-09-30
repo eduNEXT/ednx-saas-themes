@@ -1,0 +1,22 @@
+
+@import 'variables-extras';
+// Using the generic bragi
+@import '../../../../../../../../bragi/lms/static/sass/partials/lms/theme/bragi';
+
+@import 'branding';
+@import 'responsive';
+
+.course-index,
+.course-content {
+  background: $secondary-bg;
+}
+
+.footer-right__logo {
+    margin-top: 14px;
+}
+
+@media ( max-width: $tablet ) {
+  .footer-right__logo.company {
+    margin-top: 0;
+  }
+}
