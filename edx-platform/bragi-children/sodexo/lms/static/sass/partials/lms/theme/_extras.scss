@@ -1,0 +1,55 @@
+
+@import 'variables-extras';
+// Using the generic bragi
+@import '../../../../../../../../bragi/lms/static/sass/partials/lms/theme/bragi';
+
+@import 'branding';
+@import 'courses';
+@import 'discussion';
+@import 'game';
+@import 'podium';
+@import 'responsive';
+
+// Backgrounds
+html,
+body,
+.window-wrap,
+.content-wrapper,
+.view-profile .content-wrapper {
+  background: $primary-bg;
+}
+
+.course-index,
+.course-content {
+  background: $secondary-bg;
+}
+
+
+/* ======================
+    Static Content
+====================== */
+.container.tos {
+  padding: 20px 30px 120px;
+
+  ul {
+    @include padding-left(40px);
+    &.nonstyle {
+      list-style: none;
+    }
+  }
+
+  li {
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+
+  h1,
+  h2,
+  b {
+    color: $main-color;
+    text-transform: none;
+  }
+}
+
+
+
