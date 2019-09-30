@@ -23,9 +23,9 @@ define = define || RequireJS.define;
     'jquery',
     'underscore',
     'backbone',
-    'text!/static/site-assets/sodexo/html/podium.html',
-    'text!/static/site-assets/sodexo/html/podium-list.html',
-    'text!/static/site-assets/sodexo/html/podium-footer.html',
+    'text!/static/sodexo/html/podium.html',
+    'text!/static/sodexo/html/podium-list.html',
+    'text!/static/sodexo/html/podium-footer.html',
     ], function ($, _, Backbone, podiumTpl, tableTpl, footerTpl) {
 
     var I18nCatalog = {

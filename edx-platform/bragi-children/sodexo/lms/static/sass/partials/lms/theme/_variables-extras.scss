@@ -152,7 +152,19 @@ $navbar__nav-link-color: $main-color;
 $link-color: $main-color;
 $link-hover-color: darken($link-color, 15%);
 
-$font-family-base: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+// FONTS
+@font-face {
+  font-family: 'SansaPro-Normal';
+  src: url('../fonts/sansapro-normal.eot');
+  src: url('../fonts/sansapro-normal.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/sansapro-normal.woff') format('woff'),
+       url('../fonts/sansapro-normal.ttf') format('truetype'),
+       url('../fonts/sansapro-normal.svg#SansaPro-Normal') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+$font-family-base: 'SansaPro-Normal';
 $headings-font-family: $font-family-base;
 
 $h1-font-size: 2.5rem;
@@ -196,15 +208,4 @@ $coursespage__bg--background: $homepage__bg--background;
 $homepage-bg-image: '';
 $coursespage-bg-image: '';
 
-// FONTS
-@font-face {
-  font-family: 'SansaPro-Normal';
-  src: url('../fonts/sansapro-normal.eot');
-  src: url('../fonts/sansapro-normal.eot?#iefix') format('embedded-opentype'),
-       url('../fonts/sansapro-normal.woff') format('woff'),
-       url('../fonts/sansapro-normal.ttf') format('truetype'),
-       url('../fonts/sansapro-normal.svg#SansaPro-Normal') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-$font_base: 'SansaPro-Normal';
+
