@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: support@edunext.co\n"
-"POT-Creation-Date: 2019-10-01 16:17-0400\n"
+"POT-Creation-Date: 2019-10-01 16:58-0400\n"
 "PO-Revision-Date: 2016-10-28 22:11+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_TW\n"
@@ -2191,6 +2191,90 @@ msgstr "於修習本門課程前，您必須先完成以下先修課程 {link_st
 #: edx-platform/bragi/lms/templates/discovery/course_card.underscore:16
 #, python-format
 msgid "Starts: %(start_date)s"
+msgstr ""
+
+#: edx-platform/bragi/lms/templates/eox-tenant/not_found.html:12
+#: edx-platform/bragi/lms/templates/eox-tenant/not_found.html:96
+msgid "Site not found"
+msgstr ""
+
+#: edx-platform/bragi/lms/templates/eox-tenant/not_found.html:48
+msgid "search"
+msgstr ""
+
+#: edx-platform/bragi/lms/templates/eox-tenant/not_found.html:54
+#: edx-platform/bragi/lms/templates/eox-tenant/not_found.html:85
+#: edx-platform/bragi/lms/templates/eox-tenant/not_found.html:125
+msgid "Open edX as a Service"
+msgstr ""
+
+#: edx-platform/bragi/lms/templates/eox-tenant/not_found.html:56
+msgid "Open edX in the cloud"
+msgstr ""
+
+#: edx-platform/bragi/lms/templates/eox-tenant/not_found.html:57
+msgid "Features & Pricing"
+msgstr ""
+
+#: edx-platform/bragi/lms/templates/eox-tenant/not_found.html:58
+msgid "Exclusive Features"
+msgstr ""
+
+#: edx-platform/bragi/lms/templates/eox-tenant/not_found.html:62
+#: edx-platform/bragi/lms/templates/eox-tenant/not_found.html:86
+#: edx-platform/bragi/lms/templates/eox-tenant/not_found.html:126
+msgid "Consulting Services"
+msgstr ""
+
+#: edx-platform/bragi/lms/templates/eox-tenant/not_found.html:65
+#: edx-platform/bragi/lms/templates/eox-tenant/not_found.html:87
+#: edx-platform/bragi/lms/templates/eox-tenant/not_found.html:127
+msgid "Resources"
+msgstr ""
+
+#: edx-platform/bragi/lms/templates/eox-tenant/not_found.html:67
+msgid "About Open edX"
+msgstr ""
+
+#: edx-platform/bragi/lms/templates/eox-tenant/not_found.html:68
+msgid "Knowledge base"
+msgstr ""
+
+#: edx-platform/bragi/lms/templates/eox-tenant/not_found.html:69
+msgid "Freebies"
+msgstr ""
+
+#: edx-platform/bragi/lms/templates/eox-tenant/not_found.html:70
+msgid "Sandbox"
+msgstr ""
+
+#: edx-platform/bragi/lms/templates/eox-tenant/not_found.html:71
+msgid "Demo Site"
+msgstr ""
+
+#: edx-platform/bragi/lms/templates/eox-tenant/not_found.html:72
+msgid "Customer Support"
+msgstr ""
+
+#: edx-platform/bragi/lms/templates/eox-tenant/not_found.html:76
+#: edx-platform/bragi/lms/templates/eox-tenant/not_found.html:88
+#: edx-platform/bragi/lms/templates/eox-tenant/not_found.html:128
+msgid "About Us"
+msgstr ""
+
+#: edx-platform/bragi/lms/templates/eox-tenant/not_found.html:95
+msgid "announcement"
+msgstr ""
+
+#: edx-platform/bragi/lms/templates/eox-tenant/not_found.html:103
+msgid "The subdomain {start_span} {domain} {end_span} is available."
+msgstr ""
+
+#: edx-platform/bragi/lms/templates/eox-tenant/not_found.html:108
+msgid ""
+"If you are interested in setting up this account to deploy online courses"
+" using the Open edX platform, drop us a line at {start_link} "
+"contact@edunext.co{end_link}."
 msgstr ""
 
 #: edx-platform/bragi-children/condor/lms/templates/header/header.html:63
