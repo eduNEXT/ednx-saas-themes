@@ -10,6 +10,10 @@ div.info-wrapper {
   background: $white;
 }
 
+body {
+  @include text-align(left);
+}
+
 .content-wrapper,
 .wrapper-account-settings {
   background-color: #F3F3F3;
