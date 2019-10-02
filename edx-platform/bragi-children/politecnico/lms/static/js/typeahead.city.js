@@ -18,7 +18,7 @@ ENEXT.cityValues = (function(){
         return Bloodhound.tokenizers.whitespace(datum['city']);
       },
       queryTokenizer: Bloodhound.tokenizers.whitespace,
-      prefetch: 'static/site-assets/politecnico/js/all-cities.js'
+      prefetch: 'static/politecnico/js/all-cities.js'
     });
 
     data.clearPrefetchCache();
