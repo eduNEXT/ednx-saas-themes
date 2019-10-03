@@ -278,6 +278,154 @@
         <h2 class="sr">${_("Additional Personal Information")}</h2>
 
         <ol class="list-input">
+
+          % if settings.REGISTRATION_EXTRA_FIELDS['curp'] != 'hidden':
+          <li class="field ${settings.REGISTRATION_EXTRA_FIELDS['curp']} text" id="field-curp">
+            <label for="curp">${_(u'CURP')}</label>
+            <input id="curp" type="text" name="curp" value="" placeholder="" aria-describedby="curp-tip" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS['curp'] == 'required' else ''} />
+          </li>  
+          % endif
+
+          % if settings.REGISTRATION_EXTRA_FIELDS['cct'] != 'hidden':
+          <li class="field-group">
+            <div class="field ${settings.REGISTRATION_EXTRA_FIELDS['cct']} select" id="field-cct">
+              <label for="cct">${_("Clave del Centro de Trabajo (CCT)")}</label>
+              <select id="cct" name="cct" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS['cct'] == 'required' else ''}>
+                <option value="">--</option>
+                <option value="19EJN0527F">19EJN0527F</option>
+                <option value="19EJN0157D">19EJN0157D</option>
+                <option value="19DJN0667G">19DJN0667G</option>
+                <option value="19DJN0922H">19DJN0922H</option>
+                <option value="19DJN0508S">19DJN0508S</option>
+                <option value="19DJN0364M">19DJN0364M</option>
+                <option value="19EJN0530T">19EJN0530T</option>
+                <option value="19EJN0469F">19EJN0469F</option>
+                <option value="19EJN0514B">19EJN0514B</option>
+                <option value="19DJN0555C">19DJN0555C</option>
+                <option value="19EJN0512D">19EJN0512D</option>
+                <option value="19EJN0269H">19EJN0269H</option>
+                <option value="19EJN0519X">19EJN0519X</option>
+                <option value="19DJN0553E">19DJN0553E</option>
+                <option value="19DJN0650G">19DJN0650G</option>
+                <option value="19DJN0114G">19DJN0114G</option>
+                <option value="19DJN0732Q">19DJN0732Q</option>
+                <option value="19DJN0129I">19DJN0129I</option>
+                <option value="19EJN0515A">19EJN0515A</option>
+                <option value="19DJN0699Z">19DJN0699Z</option>
+                <option value="19DJN0918V">19DJN0918V</option>
+                <option value="19DJN2218P">19DJN2218P</option>
+                <option value="18DJN2149J">18DJN2149J</option>
+                <option value="19DJN0928B">19DJN0928B</option>
+                <option value="19DJN629D">19DJN629D</option>
+                <option value="19EJN0490I">19EJN0490I</option>
+                <option value="19EJN0529D">19EJN0529D</option>
+                <option value="19DJN0139P">19DJN0139P</option>
+                <option value="19DJN2034I">19DJN2034I</option>
+                <option value="19DJN2167Z">19DJN2167Z</option>
+                <option value="19DJN2185O">19DJN2185O</option>
+                <option value="19DJN0687U">19DJN0687U</option>
+                <option value="19DJN0205Y">19DJN0205Y</option>
+                <option value="19DJN2235F">19DJN2235F</option>
+                <option value="19DJN2012X">19DJN2012X</option>
+                <option value="19DJN0954Z">19DJN0954Z</option>
+                <option value="19DJN2187M">19DJN2187M</option>
+                <option value="19DJN2186N">19DJN2186N</option>
+                <option value="19DJN0691G">19DJN0691G</option>
+                <option value="19DJN0914Z">19DJN0914Z</option>
+                <option value="19DJN0477P">19DJN0477P</option>
+                <option value="19EJN0489T">19EJN0489T</option>
+                <option value="19EJN0533Q">19EJN0533Q</option>
+                <option value="19DJN0802V">19DJN0802V</option>
+                <option value="19EJN0589S">19EJN0589S</option>
+                <option value="19EJN0309S">19EJN0309S</option>
+                <option value="19DJN2011Y">19DJN2011Y</option>
+                <option value="19DJN0583Z">19DJN0583Z</option>
+                <option value="19DJN0505V">19DJN0505V</option>
+                <option value="19DJN2000S">19DJN2000S</option>
+                <option value="19EJN0641Y">19EJN0641Y</option>
+                <option value="19EJN0651E">19EJN0651E</option>
+                <option value="19DJN0610F">19DJN0610F</option>
+                <option value="19DJN0637M">19DJN0637M</option>
+                <option value="19DJN0929A">19DJN0929A</option>
+                <option value="19DJN0206X">19DJN0206X</option>
+                <option value="19DJN0718Z">19DJN0718Z</option>
+                <option value="19DJN0926D">19DJN0926D</option>
+                <option value="19EJN0657Z">19EJN0657Z</option>
+                <option value="19EJN0667F">19EJN0667F</option>
+                <option value="19EJN0658Y">19EJN0658Y</option>
+                <option value="19EJN0668E">19EJN0668E</option>
+                <option value="19EJN0511E">19EJN0511E</option>
+                <option value="19DJN0976L">19DJN0976L</option>
+                <option value="19DJN2330J">19DJN2330J</option>
+                <option value="19DJN2339A">19DJN2339A</option>
+                <option value="19DJN0556B">19DJN0556B</option>
+                <option value="19EJN0495D">19EJN0495D</option>
+                <option value="19DJN0365L">19DJN0365L</option>
+                <option value="19DJN2285N">19DJN2285N</option>
+                <option value="19DJN0705T">19DJN0705T</option>
+                <option value="19DJN0979I">19DJN0979I</option>
+                <option value="19DJN0490J">19DJN0490J</option>
+                <option value="19DJN0150L">19DJN0150L</option>
+                <option value="19DJN0730S">19DJN0730S</option>
+                <option value="19DJN04731R">19DJN04731R</option>
+                <option value="19DJN0930Q">19DJN0930Q</option>
+                <option value="19DJN0140E">19DJN0140E</option>
+                <option value="19EJN0475Q">19EJN0475Q</option>
+                <option value="19EJN0156E">19EJN0156E</option>
+                <option value="19EJN0640O">19EJN0640O</option>
+                <option value="19DJN0166M">19DJN0166M</option>
+                <option value="19DJN0339N">19DJN0339N</option>
+                <option value="19EJN0488U">19EJN0488U</option>
+                <option value="19EJN0531S">19EJN0531S</option>
+                <option value="19DJN0675P">19DJN0675P</option>
+                <option value="19DJN0733P">19DJN0733P</option>
+                <option value="19EJN0232U">19EJN0232U</option>
+                <option value="19DJN0931P">19DJN0931P</option>
+                <option value="19DJN0820K">19DJN0820K</option>
+                <option value="19DJN2286M">19DJN2286M</option>
+                <option value="19DJN2293W">19DJN2293W</option>
+                <option value="19EJN0590H">19EJN0590H</option>
+                <option value="19DJN2271K">19DJN2271K</option>
+                <option value="19DJN2291Y">19DJN2291Y</option>
+                <option value="19DJN0925E">19DJN0925E</option>
+                <option value="19DJN0729C">19DJN0729C</option>
+                <option value="19EJN0646T">19EJN0646T</option>
+                <option value="19EJN0652D">19EJN0652D</option>
+                <option value="19DJN0402Z">19DJN0402Z</option>
+                <option value="19DJN2135G">19DJN2135G</option>
+                <option value="19DJN2262C">19DJN2262C</option>
+                <option value="19DJN2021E">19DJN2021E</option>
+                <option value="19DJN2131K">19DJN2131K</option>
+                <option value="19DJN0920J">19DJN0920J</option>
+                <option value="19DJN0130Y">19DJN0130Y</option>
+                <option value="19EJN0633P">19EJN0633P</option>
+                <option value="19EJN0648R">19EJN0648R</option>
+                <option value="19EJNO525H">19EJNO525H</option>
+                <option value="19DJN2091Z">19DJN2091Z</option>
+                <option value="19DJN2092Z">19DJN2092Z</option>
+                <option value="Otra">Otra</option>    
+              </select>
+            </div>
+            </li>
+          % endif
+
+          % if settings.REGISTRATION_EXTRA_FIELDS['other_cct'] != 'hidden':
+          <li class="field ${settings.REGISTRATION_EXTRA_FIELDS['other_cct']} text" id="field-other_cct">
+            <label for="other_cct">${_('Otra CCT')}</label>
+            <input id="other_cct" type="text" name="other_cct" value="" placeholder="" aria-describedby="other_cct-tip" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS['other_cct'] == 'required' else ''} />
+          </li>  
+          % endif
+
+          % if settings.REGISTRATION_EXTRA_FIELDS['phone_number'] != 'hidden':
+          <li class="field-group">
+            <div class="field ${settings.REGISTRATION_EXTRA_FIELDS['phone_number']} text" id="field-phone_number">
+              <label for="phone_number">${_(u'Número de celular')}</label>
+            <input id="phone_number" type="text" name="phone_number" value="" placeholder="${_(u'Número de celular:')}" aria-describedby="phone_number-tip" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS['phone_number'] == 'required' else ''} />
+            <span class="tip tip-input" id="phone_number-tip">Este será el número de celular que utilizaremos para comunicarnos con usted vía Whatsapp para los temas relacionados con su participación en el curso en línea.</span>
+            </div>
+          </li>
+          % endif
+
           % if settings.REGISTRATION_EXTRA_FIELDS['gender'] != 'hidden':
           <li class="field-group">
             <div class="field ${settings.REGISTRATION_EXTRA_FIELDS['gender']} select" id="field-gender">
@@ -411,16 +559,6 @@
                 <option value="${year}">${year}</option>
                 %endfor
               </select>
-            </div>
-          </li>
-          % endif
-
-          % if settings.REGISTRATION_EXTRA_FIELDS['phone_number'] != 'hidden':
-          <li class="field-group">
-            <div class="field ${settings.REGISTRATION_EXTRA_FIELDS['phone_number']} text" id="field-phone_number">
-              <label for="phone_number">${_(u'Número de celular')}</label>
-            <input id="phone_number" type="text" name="phone_number" value="" placeholder="${_(u'Número de celular:')}" aria-describedby="phone_number-tip" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS['phone_number'] == 'required' else ''} />
-            <span class="tip tip-input" id="phone_number-tip">Este será el número de celular que utilizaremos para comunicarnos con usted vía Whatsapp para los temas relacionados con su participación en el curso en línea.</span>
             </div>
           </li>
           % endif
