@@ -13,6 +13,8 @@ ENEXT.cityValues = (function(){
 
   //City typeahead creation
   var CreateCityTypeahead = function(selector) {
+    var selected, originalVal;
+
     var data = new Bloodhound({
       datumTokenizer: function(datum) {
         return Bloodhound.tokenizers.whitespace(datum['city']);
@@ -39,6 +41,21 @@ ENEXT.cityValues = (function(){
       }
     });
 
+    $(selector).on("typeahead:active", function(aEvent) {
+      selected = null;
+      originalVal = $(selector).typeahead("val");
+    })
+
+    $(selector).on("typeahead:select", function(aEvent, aSuggestion) {
+      selected = aSuggestion;
+    });
+
+    //Clear input if value isn't on the list
+    $(selector).on("typeahead:change", function(aEvent, aSuggestion) {
+      if (!selected) {
+       $(selector).typeahead("val", originalVal);
+      }
+    });  
   };
 
   //this function is intended to filter suggestions according selected country
