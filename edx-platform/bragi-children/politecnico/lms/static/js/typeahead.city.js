@@ -13,7 +13,7 @@ ENEXT.cityValues = (function(){
 
   //City typeahead creation
   var CreateCityTypeahead = function(selector) {
-    var selected, originalVal;
+    var selected, originalVal, configCss;
 
     var data = new Bloodhound({
       datumTokenizer: function(datum) {
@@ -47,13 +47,17 @@ ENEXT.cityValues = (function(){
     })
 
     $(selector).on("typeahead:select", function(aEvent, aSuggestion) {
+      configCss = {"background-color":"#fff"}
       selected = aSuggestion;
+      $(selector).css(configCss);
     });
 
     //Clear input if value isn't on the list
     $(selector).on("typeahead:change", function(aEvent, aSuggestion) {
       if (!selected) {
+        configCss = {"background-color":"#f49191"}
        $(selector).typeahead("val", originalVal);
+       $(selector).css(configCss);
       }
     });  
   };

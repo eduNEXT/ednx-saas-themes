@@ -329,7 +329,7 @@
           % if settings.REGISTRATION_EXTRA_FIELDS['city'] != 'hidden':
           <li class="field ${settings.REGISTRATION_EXTRA_FIELDS['city']} text" id="field-city">
             <label for="city">${_('City')}</label>
-            <input id="city" type="text" name="city" value="" placeholder="${_('example: New York')}" aria-describedby="city-tip" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS['city'] == 'required' else ''} />
+            <input id="city" type="text" name="city" value="" placeholder="Escoge una opción" aria-describedby="city-tip" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS['city'] == 'required' else ''} />
           </li>
           % endif
           % if settings.REGISTRATION_EXTRA_FIELDS['level_of_education'] != 'hidden':
