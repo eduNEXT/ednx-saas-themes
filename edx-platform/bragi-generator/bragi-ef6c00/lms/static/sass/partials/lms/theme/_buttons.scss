@@ -95,8 +95,13 @@ a:link.btn,
 // button\,
 button[type="submit"],
 input[type="submit"],
-input[type="button"] {
+input[type="button"],
+.btn-outline-primary {
   @extend %btn;
+}
+
+.wrapper-downloads a:link.btn {
+  color: $btn-primary-bg;
 }
 
 a.btn-flat {
@@ -224,7 +229,8 @@ a.btn-flat {
 }
 
 // Courseware
-.course-content div.problem .action button {
+
+.xmodule_display.xmodule_CapaModule div.problem .action button {
   @extend %btn;
 
   &.problem-action-btn {
@@ -251,7 +257,6 @@ a.btn-flat {
     border: $input-btn-border-width solid $btn-primary-border !important;
   }
 }
-
 
 // settings
 .account-settings-sections .section .account-settings-section-body .u-field .field button.u-field-link {

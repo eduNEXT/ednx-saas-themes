@@ -243,7 +243,7 @@
     overflow: auto;
   }
 
-  .xmodule_display.xmodule_SequenceModule .sequence-nav .sequence-list-wrapper {
+  .course-content .xmodule_display.xmodule_SequenceModule .sequence-nav .sequence-list-wrapper {
     overflow: inherit;
   }
 
@@ -466,7 +466,7 @@
   }
 
   // course content
-  .xmodule_display.xmodule_SequenceModule .sequence-nav {
+  .course-content .xmodule_display.xmodule_SequenceModule .sequence-nav {
     @include make-row();
     height: auto;
     margin: 0 auto;
