@@ -155,7 +155,26 @@ from pipeline_mako import render_require_js_path_overrides
 
 </head>
 
-<body class="${static.dir_rtl()} <%block name='bodyclass'/> lang_${LANGUAGE_CODE}">
+<%
+    ## This block calculates a unique identifier per user designed to target individual admin users.
+    ## Placed here at the request of the customer
+    import hashlib
+
+    unique_user_css_class = "unique-css-error"
+    try:
+        email = user.email
+    except Exception:
+        email = "anonymous@edunext.co"
+
+    try:
+        sha_obj = hashlib.sha256()
+        sha_obj.update(email)
+        unique_user_css_class = sha_obj.hexdigest()[:8].lower()
+    except Exception:
+        pass
+%>
+
+<body class="${static.dir_rtl()} ${ unique_user_css_class } <%block name='bodyclass'/> lang_${LANGUAGE_CODE}">
 
 <%static:optional_include_mako file="body-initial.html" is_theming_enabled="True" />
 
