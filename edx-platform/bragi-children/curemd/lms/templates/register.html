@@ -208,16 +208,9 @@
           </li>
 
           <li class="field required text" id="field-name">
-            <div class="field">
-              <label for="first-name">${_('Nombres')}</label>
-              <input id="firstname-js" class="names" type="text" name="firstname_js" value="" placeholder="Nombres" required aria-required="true" aria-describedby="name-tip" />
-            </div>
-            <div class="field">
-              <label for="last-name">${_('Apellidos')}</label>
-              <input id="lastname-js" class="names" type="text" name="lastname_js" value="" placeholder="Apellidos" required aria-required="true" aria-describedby="name-tip" />
-            </div>
-            <input id="name" type="hidden" name="name" value="" />
-            ## <span class="tip tip-input" id="name-tip">${_("Your legal name, used for any certificates you earn.")}</span>
+            <label for="name">${_('Full Name')}</label>
+            <input id="name" type="text" name="name" value="${name}" placeholder="${_('example: Jane Doe')}" required aria-required="true" aria-describedby="name-tip" />
+            <span class="tip tip-input" id="name-tip">${_("Your legal name, used for any certificates you earn.")}</span>
           </li>
           <li class="field required text" id="field-username">
             <label for="username">${_('Public Username')}</label>
@@ -285,131 +278,24 @@
         <h2 class="sr">${_("Additional Personal Information")}</h2>
 
         <ol class="list-input">
-          % if settings.REGISTRATION_EXTRA_FIELDS.get('mobile_number', 'optional') != 'hidden':
-          <li class="field ${settings.REGISTRATION_EXTRA_FIELDS.get('mobile_number', 'optional')} text" id="field-mobile_number">
-            <label for="mobile_number">${_('Celular')}</label>
-            <input id="mobile_number" type="text" name="mobile_number" value="" placeholder="" aria-describedby="mobile_number-tip" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS.get('mobile_number', 'optional') == 'required' else ''} />
-          </li>
-          % endif
-
-          % if settings.REGISTRATION_EXTRA_FIELDS.get('phone_number', 'optional') != 'hidden':
-          <li class="field ${settings.REGISTRATION_EXTRA_FIELDS.get('phone_number', 'optional')} text" id="field-phone_number">
-            <label for="phone_number">${_(u'Teléfono')}</label>
-            <input id="phone_number" type="text" name="phone_number" value="" placeholder="" aria-describedby="phone_number-tip" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS.get('phone_number', 'optional') == 'required' else ''} />
-          </li>
-          % endif
-
-          % if settings.REGISTRATION_EXTRA_FIELDS.get('type_id', 'optional') != 'hidden':
+          % if settings.REGISTRATION_EXTRA_FIELDS.get('role', 'optional') != 'hidden':
           <li class="field-group">
-            <div class="field ${settings.REGISTRATION_EXTRA_FIELDS.get('type_id', 'optional')} select" id="field-type_id">
-              <label for="type_id">${_('Tipo de Documento')}</label>
-              <select id="type_id" name="type_id">
+            <div class="field ${settings.REGISTRATION_EXTRA_FIELDS.get('role', 'optional')} select" id="field-role">
+              <label for="role">Role</label>
+              <select id="role" name="role">
                 <option value="">--</option>
-                <option value="CC">Cédula de Ciudadanía</option>
-                <option value="TI">Tarjeta de Identidad</option>
-                <option value="CE">Cédula de Extranjería</option>
-                <option value="PA">Pasaporte</option> 
+                <option value="Trainee">Trainee</option>
+                <option value="Probation">Probation</option>
+                <option value="Assistant-application-analyst">Assistant Application Analyst</option>
+                <option value="Application-analyst">Application Analyst</option>
+                <option value="Senior-application-analyst">Senior Application Analyst</option>
+                <option value="Product-lead">Product Lead</option>
+                <option value="Assistant-manager">Assistant Manager</option>
+                <option value="Manager">Manager</option>    
               </select>
             </div>
           </li>
           % endif
-
-          % if settings.REGISTRATION_EXTRA_FIELDS.get('id_number', 'optional') != 'hidden':
-          <li class="field ${settings.REGISTRATION_EXTRA_FIELDS.get('id_number', 'optional')} text" id="field-id_number">
-            <label for="id_number">${_(u'Número de Documento de Identidad')}</label>
-            <input id="id_number" type="text" name="id_number" value="" placeholder="" aria-describedby="id_number-tip" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS.get('id_number', 'optional') == 'required' else ''} />
-          </li>
-          % endif
-
-          % if settings.REGISTRATION_EXTRA_FIELDS.get('id_place', 'optional') != 'hidden':
-          <li class="field ${settings.REGISTRATION_EXTRA_FIELDS.get('id_place', 'optional')} text" id="field-id_place">
-            <label for="id_place">${_(u'Lugar de expedición documento')}</label>
-            <input id="id_place" type="text" name="id_place" value="" placeholder="" aria-describedby="id_place-tip" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS.get('id_place', 'optional') == 'required' else ''} />
-          </li>
-          % endif
-          
-          <div class="field">
-            <li>Fecha de nacimiento</li>
-          % if settings.REGISTRATION_EXTRA_FIELDS.get('month_birth', 'optional') != 'hidden':
-          <li class="field-group field-yob">
-            <div class="field ${settings.REGISTRATION_EXTRA_FIELDS.get('month_birth', 'optional')} select" id="field-month_birth">
-              <label for="month_birth">${_("Mes")}</label>
-              <select id="month_birth" name="month_birth" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS.get('month_birth', 'optional') == 'required' else ''}>
-                <option value="">--</option>
-                <option value="01">1</option>
-                <option value="02">2</option>
-                <option value="03">3</option>
-                <option value="04">4</option>
-                <option value="05">5</option>
-                <option value="06">6</option>
-                <option value="07">7</option>
-                <option value="08">8</option>
-                <option value="09">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-              </select>
-            </div>
-          </li>
-          % endif
-
-           % if settings.REGISTRATION_EXTRA_FIELDS.get('day_birth', 'optional') != 'hidden':
-          <li class="field-group field-yob">
-            <div class="field ${settings.REGISTRATION_EXTRA_FIELDS.get('day_birth', 'optional')} select" id="field-day_birth">
-              <label for="day_birth">${_("Dia")}</label>
-              <select id="day_birth" name="day_birth" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS.get('day_birth', 'optional') == 'required' else ''}>
-                <option value="">--</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-                <option value="13">13</option>
-                <option value="14">14</option>
-                <option value="15">15</option>
-                <option value="16">16</option>
-                <option value="17">17</option>
-                <option value="18">18</option>
-                <option value="19">19</option>
-                <option value="20">20</option>
-                <option value="21">21</option>
-                <option value="22">22</option>
-                <option value="23">23</option>
-                <option value="24">24</option>
-                <option value="25">25</option>
-                <option value="26">26</option>
-                <option value="27">27</option>
-                <option value="28">28</option>
-                <option value="29">29</option>
-                <option value="30">30</option>
-                <option value="31">31</option>         
-              </select>
-            </div>
-          </li>
-          % endif
-
-          % if settings.REGISTRATION_EXTRA_FIELDS['year_of_birth'] != 'hidden':
-          <li class="field-group field-yob">
-            <div class="field ${settings.REGISTRATION_EXTRA_FIELDS['year_of_birth']} select" id="field-yob">
-              <label for="yob">${_(u"Año")}</label>
-              <select id="yob" name="year_of_birth" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS['year_of_birth'] == 'required' else ''}>
-                <option value="">--</option>
-                %for year in UserProfile.VALID_YEARS:
-                <option value="${year}">${year}</option>
-                %endfor
-              </select>
-            </div>
-          </li>
-          % endif
-          </div>
-
           % if settings.REGISTRATION_EXTRA_FIELDS['country'] != 'hidden':
           <li class="field-group">
             <div class="field ${settings.REGISTRATION_EXTRA_FIELDS['country']} select" id="field-country">
@@ -450,6 +336,19 @@
                 <option value="">--</option>
                 %for code, gender in UserProfile.GENDER_CHOICES:
                 <option value="${code}">${_(gender)}</option>
+                %endfor
+              </select>
+            </div>
+          </li>
+          % endif
+          % if settings.REGISTRATION_EXTRA_FIELDS['year_of_birth'] != 'hidden':
+          <li class="field-group field-yob">
+            <div class="field ${settings.REGISTRATION_EXTRA_FIELDS['year_of_birth']} select" id="field-yob">
+              <label for="yob">${_("Year of Birth")}</label>
+              <select id="yob" name="year_of_birth" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS['year_of_birth'] == 'required' else ''}>
+                <option value="">--</option>
+                %for year in UserProfile.VALID_YEARS:
+                <option value="${year}">${year}</option>
                 %endfor
               </select>
             </div>
@@ -516,20 +415,6 @@
         </ol>
       </div>
 
-      <div class="group group-form group-form-dataconsent">
-        <ol class="list-input">
-          % if settings.REGISTRATION_EXTRA_FIELDS['data_consent'] != 'hidden':
-          <li class="field-group" id="field-data_consent">
-            <div class="field ${settings.REGISTRATION_EXTRA_FIELDS['data_consent']} checkbox">
-              <input id="dataconsent-yes" type="checkbox" name="data_consent" value="true" />
-              <label for="dataconsent-yes"> PROTECCIÓN DE DATOS PERSONALES: Con la suscripción y diligenciamiento del presente formulario, usted acepta el uso y tratamiento que da la universidad a esta información en consonancia con las políticas contenidas en el siguiente link: <a href="https://www.uninorte.edu.co/politica-de-privacidad-de-datos">https://www.uninorte.edu.co/politica-de-privacidad-de-datos</a>, las cuales declara conocer.
-              </label>
-            </div>
-          </li>
-          % endif
-       </ol>
-      </div>
-
       <div class="form-actions">
         <button name="submit" type="submit" id="submit" class="action action-primary action-update register-button">${_('Register')} <span class="orn-plus">+</span> ${_('Create My Account')}</button>
       </div>
@@ -558,23 +443,3 @@
 
   ## </aside>
 </section>
-
-<script type="text/javascript">
-var generateFullname = function() {
-  var first = $.trim($('#firstname-js').val());
-  var last = $.trim($('#lastname-js').val());
-  return $.trim(first + " " + last);
-};
-
-$(window).load(function(){
-  // Any change to the firstname alter the fullname
-  $("#firstname-js").change(function() {
-    $("#name").val(generateFullname());
-  });
-
-    // Any change to the lastname alter the fullname
-    $("#lastname-js").change(function() {
-      $("#name").val(generateFullname());
-    });
-  });
-</script>
