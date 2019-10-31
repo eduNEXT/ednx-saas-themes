@@ -216,7 +216,7 @@
               <label for="last-name">${_('Last Name')}</label>
               <input id="lastname-js" class="names" type="text" name="lastname_js" value="" placeholder="Last name" required aria-required="true" aria-describedby="name-tip" />
             </div>
-            <div class="field">
+            <div class="field middle-name">
               <label for="middle-name">${_('Middle Name')}</label>
               <input id="middlename-js" class="names" type="text" name="middleame_js" value="" placeholder="middle name" aria-required="true" aria-describedby="name-tip" />
             </div>
@@ -335,11 +335,11 @@
           % endif
 
           <div class="field">
-            <li>Fecha de nacimiento</li>
+            <li>Date of birth</li>
           % if settings.REGISTRATION_EXTRA_FIELDS.get('month_birth', 'optional') != 'hidden':
           <li class="field-group field-yob">
             <div class="field ${settings.REGISTRATION_EXTRA_FIELDS.get('month_birth', 'optional')} select" id="field-month_birth">
-              <label for="month_birth">${_("Mes")}</label>
+              <label for="month_birth">${_("Month")}</label>
               <select id="month_birth" name="month_birth" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS.get('month_birth', 'optional') == 'required' else ''}>
                 <option value="">--</option>
                 <option value="01">1</option>
@@ -362,7 +362,7 @@
            % if settings.REGISTRATION_EXTRA_FIELDS.get('day_birth', 'optional') != 'hidden':
           <li class="field-group field-yob">
             <div class="field ${settings.REGISTRATION_EXTRA_FIELDS.get('day_birth', 'optional')} select" id="field-day_birth">
-              <label for="day_birth">${_("Dia")}</label>
+              <label for="day_birth">${_("Day")}</label>
               <select id="day_birth" name="day_birth" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS.get('day_birth', 'optional') == 'required' else ''}>
                 <option value="">--</option>
                 <option value="1">1</option>
@@ -404,7 +404,7 @@
           % if settings.REGISTRATION_EXTRA_FIELDS['year_of_birth'] != 'hidden':
           <li class="field-group field-yob">
             <div class="field ${settings.REGISTRATION_EXTRA_FIELDS['year_of_birth']} select" id="field-yob">
-              <label for="yob">${_(u"Año")}</label>
+              <label for="yob">${_("Year")}</label>
               <select id="yob" name="year_of_birth" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS['year_of_birth'] == 'required' else ''}>
                 <option value="">--</option>
                 %for year in UserProfile.VALID_YEARS:
