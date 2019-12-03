@@ -473,11 +473,11 @@
             </li>
           % endif
 
-          % if settings.REGISTRATION_EXTRA_FIELDS['state_birth'] != 'hidden':
+          % if settings.REGISTRATION_EXTRA_FIELDS['state'] != 'hidden':
           <li class="field-group">
-            <div class="field ${settings.REGISTRATION_EXTRA_FIELDS['state_birth']} select" id="field-state-birth">
-              <label for="state_birth">${_("Estado de Nacimiento")}</label>
-              <select id="state_birth" name="state_birth" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS['state_birth'] == 'required' else ''}>
+            <div class="field ${settings.REGISTRATION_EXTRA_FIELDS['state']} select" id="field-state">
+              <label for="state">${_("Estado")}</label>
+              <select id="state" name="state" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS['state'] == 'required' else ''}>
                 <option value="">--</option>
                 <option value="aguascalientes">Aguascalientes</option>
                 <option value="baja_california">Baja California</option>
