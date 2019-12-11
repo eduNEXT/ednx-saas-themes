@@ -87,6 +87,11 @@ from branding import api as branding_api
       box-shadow: ${header_colors.get('shadow', '')};
     }
 
+    .container-navbar-links .mobile-nav-item a,
+    .navbar.global-header .navbar-logo {
+      background: ${header_colors.get('background', '#FFF')}; 
+    }
+
     .global-header .course-header {
       color: ${header_colors.get('color', '')};
     }
@@ -156,6 +161,10 @@ from branding import api as branding_api
     .global-header .nav-links .secondary.nav-account .dropdown-user-menu {
       background: ${header_colors.get('account_dropdown_background', '')};
       border-color: ${header_colors.get('account_dropdown_border', '')};
+    }
+
+    .container-navbar-links .dropdown-user-menu .mobile-nav-item a {
+      background: ${header_colors.get('account_dropdown_background', '')};
     }
 
     .global-header .nav-links .secondary.nav-account .dropdown-item a {
@@ -557,6 +566,10 @@ from branding import api as branding_api
       background: ${footer_colors.get('background', '')};
     }
 
+    .footer .content-container a {
+      background: ${footer_colors.get('background', '#FFF')};
+    }
+
     .footer-description {
       color: ${footer_colors.get('color', '')};
     }
@@ -576,6 +589,7 @@ from branding import api as branding_api
 
     .footer-extra .footer-links .nav-link {
       color: ${footer_colors.get('extra_color_link', '')};
+      background: ${footer_colors.get('extra_background', '')};
     }
     .footer-extra .footer-links .nav-link:hover,
     .footer-extra .footer-links .nav-link:focus,
