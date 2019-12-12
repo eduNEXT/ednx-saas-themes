@@ -537,7 +537,6 @@ a.ui-slider-handle {
   border: none;
 }
 
-.container-navbar-links .mobile-nav-item a,
 .navbar.global-header .navbar-logo {
   background: $white; 
   box-shadow: none;  
@@ -560,19 +559,18 @@ a.ui-slider-handle {
 .view-profile .profile-self .wrapper-profile-field-account-privacy {
   background-color: #e4e4e4;
 }
-
+ 
 .dashboard .my-courses,
 .dashboard .main-container,
-.dashboard .my-courses .listing-courses .course-item,
-.dashboard .my-courses .listing-courses .course-item .course-container,
-.dashboard .my-courses .course .details,
-.dashboard .my-courses .course,
+.dashboard .main-container .my-courses .listing-courses .course-item,
+.dashboard .main-container .my-courses .listing-courses .course-item .course-container,
+.dashboard .main-container .my-courses .course .details,
+.dashboard .main-container .my-courses .course,
 .account-settings-tabpanels .section,
 .account-settings-section-body,
-.account-settings-sections .account-settings-section-body .u-field,
+.account-settings-sections .section .account-settings-section-body .u-field,
 .course-tool-link,
 .course-outline ol.outline-item .subsection .vertical a,
-.global-header .nav-links .secondary.nav-account .nav-item a,
 .problems-wrapper,
 .xblock-student_view-problem.xmodule_display,
 .choicegroup.capa_inputtype,
