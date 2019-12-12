@@ -87,10 +87,6 @@ from branding import api as branding_api
       box-shadow: ${header_colors.get('shadow', '')};
     }
 
-    .navbar.global-header .navbar-logo {
-      background: ${header_colors.get('background', '#FFF')}; 
-    }
-
     .global-header .course-header {
       color: ${header_colors.get('color', '')};
     }
@@ -579,6 +575,10 @@ from branding import api as branding_api
     }
 
     .footer-extra {
+      background: ${footer_colors.get('extra_background', '')};
+    }
+
+    .footer .footer-extra .content-container a {
       background: ${footer_colors.get('extra_background', '')};
     }
 
