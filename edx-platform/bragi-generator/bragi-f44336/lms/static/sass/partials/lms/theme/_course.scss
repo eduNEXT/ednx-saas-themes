@@ -532,14 +532,13 @@ a.ui-slider-handle {
   }
 }
 
+.content-wrapper .home-courses .courses {
+  background-color: #f3f3f3;
+}
+
 .content-wrapper .courses {
   background-color: $white;
   border: none;
-}
-
-.navbar.global-header .navbar-logo {
-  background: $white; 
-  box-shadow: none;  
 }
 
 .course-info__content .details,
