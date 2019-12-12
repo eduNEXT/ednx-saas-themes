@@ -531,3 +531,56 @@ a.ui-slider-handle {
     margin-bottom: -1px;
   }
 }
+
+.content-wrapper .courses {
+  background-color: $white;
+  border: none;
+}
+
+.navbar.global-header .navbar-logo {
+  background: $white; 
+  box-shadow: none;  
+}
+
+.course-info__content .details,
+.course-info-about .course-info__content,
+.dashboard .my-courses {
+ color: $gray-dark;
+ background-color: $white;
+}
+
+.profile.profile-self,
+.wrapper-profile-sections.account-settings-container {
+  background-color: $gray-lightest;
+  color: $gray-dark;
+  box-shadow: none;
+}
+
+.view-profile .profile-self .wrapper-profile-field-account-privacy {
+  background-color: #e4e4e4;
+}
+ 
+.dashboard .my-courses,
+.dashboard .main-container,
+.dashboard .main-container .my-courses .listing-courses .course-item,
+.dashboard .main-container .my-courses .listing-courses .course-item .course-container,
+.dashboard .main-container .my-courses .course .details,
+.dashboard .main-container .my-courses .course,
+.account-settings-tabpanels .section,
+.account-settings-section-body,
+.account-settings-sections .section .account-settings-section-body .u-field,
+.course-tool-link,
+.course-outline ol.outline-item .subsection .vertical a,
+.problems-wrapper,
+.xblock-student_view-problem.xmodule_display,
+.choicegroup.capa_inputtype,
+.problem div {
+  background-color: $white;
+  box-shadow: none;
+}
+
+.wrapper-account-settings main:not(.home),
+.content-wrapper .course-tabs .navbar-nav .nav-item a {
+  background-color: #f3f3f3;
+  box-shadow: none; 
+}
