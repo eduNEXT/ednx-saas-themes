@@ -583,3 +583,11 @@ a.ui-slider-handle {
   background-color: #f3f3f3;
   box-shadow: none; 
 }
+
+.openassessment.problem .wrapper--ui-staff div {
+  background: #2c2f36;
+}
+
+.openassessment.problem .wrapper--ui-staff .staff-grading.ui-staff div {
+  background: $white;
+}
