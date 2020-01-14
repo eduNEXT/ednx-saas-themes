@@ -6,94 +6,37 @@
   from branding.api import get_footer
   from openedx.core.djangoapps.lang_pref.api import footer_language_selector_is_enabled
 %>
-<% footer = get_footer(is_secure=is_secure) %>
+
 <% 
-  footer = theming('footer')
-  footer_override = footer.get('override_template')
+  footer_id = theming.options('footer', 'id', default='')
+  footer_class = theming.options('footer', 'class', default='')
+  footer_particles = theming.options('footer', 'particles', default= [])
 %>
 
-%if footer_override:
-  ${footer_override}
-%else:
-  %for object in footer.get('objects'):
+<footer id="${footer_id}" class="${footer_class}">
+   %for particle in footer_particles:
+       %if particle['type'] == 'html_block':
+            <div id="${particle['id']}">${particle['variables'].get('content')}</div>
 
-    %if object['type'] == 'html_block':
-      ${object['vars'].render()}
+        %elif particle['type'] == 'text':
+            <p id="${particle['id']}">${particle['variables'].get('text')}</p>
 
-      ## cuando tiene variables definidas como extra_footer?
+        %elif particle['type'] == 'image_tag':
+            <a href="${particle['variables'].get('destination_url')}">
+            <img id="${particle['id']}" src="${particle['variables'].get('source')}" alt="${particle['variables'].get('alt')}" width="${particle['variables'].get('width')}" height="${particle['variables'].get('height')}" />
+            </a>
 
+        %elif particle['type'] == 'list':
+            <ul>
+                %for item_particle in particle['variables']:
+                    <li>
+                        <a href="${item_particle['destination_url']}" target="${item_particle['target']}" >${item_particle['text']}</a>
+                    </li>
+                %endfor
+              
+            </ul>
 
-    %elif object['type'] == 'text':
-      ${object['vars'].render().p_tag('b'/'i')}
+       %endif
 
-      ## deberia tener mas atributos que puedan definir los estilos del texto?
-      ## vars:{'content':'text', 'style':'italic/bold'}
-      ## no permitir links
-        %if object['vars'].get('style') == 'italic':
-          ${object['vars'].get('content').render().p_tag('i')}
-
-          <p><i>${attributes['content']}</i></p>
-        %elif object['vars'].get('style') == 'bold':
-          ${object['vars'].get('content').render().p_tag('b')}
-
-          <p><b>${object['vars'].get('content')}</b></p>
-        %else:
-          ${object['vars'].get('content').render().p_tag()}
-
-          <p>${object['vars'].get('content')}</p>
-        %endif
-
-    %elif object['type'] == 'image_tag':
-      ${object['vars'].render().image_tag()}
-
-      <a href="${object['vars'].get('href')}" target="${object['vars'].get('target')}">
-        <img src="${object['vars'].get('src')}" 
-        alt="${object['vars'].get('alt')}" 
-        width="${object['vars'].get('width')}" 
-        height="${object['vars'].get('height')}">
-      </a>
-
-    ## como saber de que tipo es la lista
-    %elif object['type'] == 'list_links':
-      <ul>
-        %for item in object['vars']:
-          <li>
-            ${item.render().a_tag()} ##tiene text, target, href
-
-            <a href="${item['href']}" target="${item['target']}">${item['text']}</a>
-          </li>
-        %endfor
-      </ul>
-
-    %elif object['type'] == 'list_images':
-      <ul>
-        %for item in object['vars']:
-          <li>
-            ${item.render().img_link()} ##tiene target, href, src, alt. class icon??
-
-            <a href="${item['href']}" target="${item['target']}"><img src="${item['scr']}" alt="${item['alt']}"></a>
-          </li>
-          
-        %endfor
-      </ul>
-    
-    %elif object['type'] == 'list_text':
-      <ul>
-        %for item in object['vars']:
-          <li>
-            ${item.render().p_tag()} ##tiene text 
-
-            <p>${item['text']}</p>
-          </li>
-        %endfor
-      </ul>
-      ## falta lista de social icons
-      ## language selector
-
-    %elif object['type'] == '3_column_content':
-      %for column in object['vars'].get('column-layout'):
-        <div class="col-${column}"></div>
-      %endfor
-
-  %endfor
-%endif
+   %endfor
+</footer>
