@@ -7,36 +7,14 @@
   from openedx.core.djangoapps.lang_pref.api import footer_language_selector_is_enabled
 %>
 
-<% 
+<%
   footer_id = theming.options('footer', 'id', default='')
   footer_class = theming.options('footer', 'class', default='')
-  footer_particles = theming.options('footer', 'particles', default= [])
+  footer_particle = theming.get_segment('footer')
 %>
 
 <footer id="${footer_id}" class="${footer_class}">
-   %for particle in footer_particles:
-       %if particle['type'] == 'html_block':
-            <div id="${particle['id']}">${particle['variables'].get('content')}</div>
 
-        %elif particle['type'] == 'text':
-            <p id="${particle['id']}">${particle['variables'].get('text')}</p>
+  ${footer_particle.render() | n}
 
-        %elif particle['type'] == 'image_tag':
-            <a href="${particle['variables'].get('destination_url')}">
-            <img id="${particle['id']}" src="${particle['variables'].get('source')}" alt="${particle['variables'].get('alt')}" width="${particle['variables'].get('width')}" height="${particle['variables'].get('height')}" />
-            </a>
-
-        %elif particle['type'] == 'list':
-            <ul>
-                %for item_particle in particle['variables']:
-                    <li>
-                        <a href="${item_particle['destination_url']}" target="${item_particle['target']}" >${item_particle['text']}</a>
-                    </li>
-                %endfor
-              
-            </ul>
-
-       %endif
-
-   %endfor
 </footer>
