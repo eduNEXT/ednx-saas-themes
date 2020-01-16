@@ -588,6 +588,9 @@ a.ui-slider-handle {
   background: #2c2f36;
 }
 
-.openassessment.problem .wrapper--ui-staff .staff-grading.ui-staff div {
+.openassessment.problem .wrapper--ui-staff .staff-grading.ui-staff div,
+.openassessment.problem .wrapper--ui-staff .staff-info__staff-override__content div,
+.openassessment.problem .wrapper--ui-staff .staff-info__cancel-submission__content div,
+.openassessment.problem .wrapper--ui-staff .staff-info__student__response .ui-slidable__content div {
   background: $white;
 }
