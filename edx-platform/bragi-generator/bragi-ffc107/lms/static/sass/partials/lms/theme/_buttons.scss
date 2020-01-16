@@ -263,6 +263,9 @@ a.btn-flat {
   @extend %btn-flat;
 }
 
+.account-settings-sections a.u-field-link span {
+  color: $btn-primary-color;
+}
 
 // For the thread initiator only. TODO: get a discussion going and test the other buttons
 .discussion .course-tabs .right,
@@ -316,4 +319,8 @@ a.btn-flat {
 
 #expand-collapse-outline-all-button {
   @extend %btn;
+}
+
+.login-register .login-provider {
+  width: 50%;
 }
