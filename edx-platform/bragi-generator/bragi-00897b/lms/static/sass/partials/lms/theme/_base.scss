@@ -86,7 +86,8 @@ input[type="tel"],
 
 // icons fix
 i[class*="fa-"],
-span[class*="fa-"] {
+span[class*="fa-"],
+div[class*="fa-"] {
   color: inherit;
   font-family: "FontAwesome" !important;
   font-size: inherit;
@@ -141,4 +142,8 @@ h5,
 h6, 
 .h6 { 
   font-size: $h6-font-size; 
+}
+
+.login-register .login-provider .icon {
+  background: inherit;
 }

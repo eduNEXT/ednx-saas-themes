@@ -261,6 +261,10 @@ a.btn-flat {
 // settings
 .account-settings-sections .section .account-settings-section-body .u-field .field button.u-field-link {
   @extend %btn-flat;
+
+  span {
+    color: $btn-primary-bg;
+  }
 }
 
 
@@ -316,4 +320,8 @@ a.btn-flat {
 
 #expand-collapse-outline-all-button {
   @extend %btn;
+}
+
+.login-register .login-provider {
+  width: 50%;
 }
