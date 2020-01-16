@@ -8,13 +8,29 @@
 %>
 
 <%
+  ## theming API object support classic options method
   footer_id = theming.options('footer', 'id', default='')
   footer_class = theming.options('footer', 'class', default='')
-  footer_particle = theming.get_segment('footer')
+  ## from theming API object, a segment can be instantiated
+  footer_segment = theming.get_segment('footer')
 %>
+## An instantiated segment/particle support the following
+
+## footer_segment.children: array containing the particles a segment/particle is composed of. They support the same methods described in this list
+## footer_segment.options('id'): get an option from the configuration of the segment/particle
+## footer_segment.render(): Render a segment/particle. The way a segment/particle gets rendered is described below
 
 <footer id="${footer_id}" class="${footer_class}">
+## The footer properties can be accesed by using the footer segment as well
+## <footer id="${footer_segment.options('id')}" class="${footer_segment.options('class')}">
 
-  ${footer_particle.render() | n}
+  ${footer_segment.render() | n}
+
+## How particles are rendered (by priority):
+
+## 1) The backend looks in the particle has a template in its configuration and use it
+## 2) The backend looks for a template with the name of the particle type (e.g. particles/html_block.html) and use it
+## 3) The backend checks if the particle has children. If so, they get rendered and concatenated as result of the parent particle render
+## 4) The backend uses the final fall back which is using the template particles/particle.html
 
 </footer>
