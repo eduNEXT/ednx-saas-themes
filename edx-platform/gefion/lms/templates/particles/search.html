@@ -1,0 +1,16 @@
+## mako
+<%page expression_filter="h"/>
+
+<%
+  el_type = particle.options('type', default='No type')
+  el_id = particle.options('id', default=0)
+  el_text = particle.options('variables', 'text', default='')
+  el_search_icon = particle.options('variables', 'search_icon', default='')
+%>
+
+<form method="get" action="/courses">
+	<input  name="search_query" type="text" placeholder="${el_text}">
+	<button class="my-2 my-sm-0" type="submit">
+		<i class="fa ${el_search_icon}"></i>
+	</button>
+</form>
