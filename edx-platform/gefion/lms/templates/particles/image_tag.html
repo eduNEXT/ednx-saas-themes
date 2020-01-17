@@ -1,0 +1,21 @@
+## mako
+<%page expression_filter="h"/>
+
+<%
+  el_type = particle.options('type', default='No type')
+  el_id = particle.options('id', default=0)
+  el_source = particle.options('variables', 'source',  default='')
+  el_alt = particle.options('variables', 'alt',  default='')
+  el_destination_url = particle.options('variables', 'destination_url',  default='#')
+  el_target = particle.options('variables', 'target',  default='')
+  el_width = particle.options('variables', 'width',  default='')
+  el_height = particle.options('variables', 'height',  default='')
+%>
+
+<div id="${el_id}">
+	<a href="${el_destination_url}" target="${el_target}">
+		<img src="${el_source}" alt="${el_alt}" width="${el_width}" height="${el_height}" >
+	</a>
+</div>
+
+
