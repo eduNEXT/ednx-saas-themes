@@ -234,7 +234,7 @@ dir=${bidi}
 <script type="text/javascript" src="${static.url(extra_script)}"></script>
 % endif
 % if extra_script_inline:
-<script type="text/javascript">${extra_script_inline}</script>
+<script type="text/javascript">${extra_script_inline | n}</script>
 % endif
 <script type="text/javascript">
    var setHeight = (function  setHeight(){
