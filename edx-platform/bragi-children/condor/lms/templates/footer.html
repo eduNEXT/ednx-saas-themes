@@ -20,9 +20,9 @@
 
   header_langselector = theming.options('header', 'header_langselector', default= False)
   footer_langselector = theming.options('footer','footer_langselector', default=False)
- 
+
   footer_social = theming.options('footer','footer_social', default=[])
-  
+
   footer_openedx_src = theming.options('footer', 'footer_openedx_src', default= 'https://d1uwn6yupg8lfo.cloudfront.net/edxsites/aegir-images/openedx-color.png')
   footer_openedx_url = theming.options('footer', 'footer_openedx_url', default= 'https://open.edx.org/')
   footer_openedx_alt = theming.options('footer', 'footer_openedx_alt', default= _('Powered by OPENedX'))
@@ -70,7 +70,7 @@ dir=${bidi}
         </div>
       </form>
       <p class="">Ingresá tu e-mail y nos pondremos en contacto a la brevedad.</p>
-   </div> 
+   </div>
    <div class="col-md-4 no-gutters">
       <div class="content-container row no-gutters  py-2 px-2 px-lg-0">
          <div class="col-md-12 no-gutters ">
@@ -234,7 +234,7 @@ dir=${bidi}
 <script type="text/javascript" src="${static.url(extra_script)}"></script>
 % endif
 % if extra_script_inline:
-<script type="text/javascript">${extra_javascript_inline}</script>
+<script type="text/javascript">${extra_script_inline}</script>
 % endif
 <script type="text/javascript">
    var setHeight = (function  setHeight(){

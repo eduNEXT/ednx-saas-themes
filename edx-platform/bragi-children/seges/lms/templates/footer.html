@@ -23,9 +23,9 @@
 
   header_langselector = theming.options('header', 'header_langselector', default= False)
   footer_langselector = theming.options('footer','footer_langselector', default=False)
- 
+
   footer_social = theming.options('footer','footer_social', default=[])
-  
+
   footer_openedx_src = theming.options('footer', 'footer_openedx_src', default= 'https://d1uwn6yupg8lfo.cloudfront.net/edxsites/aegir-images/openedx-color.png')
   footer_openedx_url = theming.options('footer', 'footer_openedx_url', default= 'https://open.edx.org/')
   footer_openedx_alt = theming.options('footer', 'footer_openedx_alt', default= _('Powered by OPENedX'))
@@ -77,8 +77,6 @@
           </p>
         %endif
 
-        
-
         %if footer_social:
           <nav class="footer-links nav col-12 justify-content-center">
             %for social in footer_social:
@@ -119,7 +117,7 @@
           <p class="footer-description col-12 mt-2 ">
             ${footer_description}
           </p>
-        %endif        
+        %endif
 
         %if footer_social:
           <nav class="footer-links nav col-12">
@@ -174,7 +172,7 @@
 
 %if footer_langselector or header_langselector:
   <%
-    languages = configuration_helpers.get_value('released_languages', 'en').split(',') 
+    languages = configuration_helpers.get_value('released_languages', 'en').split(',')
   %>
   % if len(languages) > 1:
     <form action="/i18n/setlang/" method="post" id="language-settings-form">
@@ -210,7 +208,7 @@
 % endif
 
 % if extra_script_inline:
-  <script type="text/javascript">${extra_javascript_inline}</script>
+  <script type="text/javascript">${extra_script_inline}</script>
 % endif
 
 <script type="text/javascript">

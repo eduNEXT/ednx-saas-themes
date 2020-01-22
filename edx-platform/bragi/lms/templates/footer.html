@@ -24,9 +24,9 @@
 
   header_langselector = theming.options('header', 'header_langselector', default= False)
   footer_langselector = theming.options('footer','footer_langselector', default=False)
- 
+
   footer_social = theming.options('footer','footer_social', default=[])
-  
+
   footer_openedx_src = theming.options('footer', 'footer_openedx_src', default= 'https://d1uwn6yupg8lfo.cloudfront.net/edxsites/aegir-images/openedx-color.png')
   footer_openedx_url = theming.options('footer', 'footer_openedx_url', default= 'https://open.edx.org/')
   footer_openedx_alt = theming.options('footer', 'footer_openedx_alt', default= _('Powered by OPENedX'))
@@ -192,7 +192,7 @@
         var language_code = this.value;
         $('#settings-language-value').val(language_code).change();
       });
-    })  
+    })
   </script>
 % endif
 
@@ -209,7 +209,7 @@
 % endif
 
 % if extra_script_inline:
-  <script type="text/javascript">${extra_javascript_inline}</script>
+  <script type="text/javascript">${extra_script_inline}</script>
 % endif
 
 <script type="text/javascript">
