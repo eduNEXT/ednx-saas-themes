@@ -59,7 +59,7 @@
     % endif
   >
     <div class="content-container row no-gutters align-items-center py-2 px-2 px-lg-0">
-      
+
       %if footer_logo_src:
         <div class="col-6 col-lg-2">
           <a class="footer-logo" href="${footer_logo_url | h}" target="${footer_logo_target}">
@@ -199,7 +199,7 @@
 % endif
 
 % if extra_script_inline:
-  <script type="text/javascript">${extra_javascript_inline}</script>
+  <script type="text/javascript">${extra_script_inline | n}</script>
 % endif
 
 <script type="text/javascript">
