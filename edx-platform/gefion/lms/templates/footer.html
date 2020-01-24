@@ -1,11 +1,5 @@
 ## mako
 <%page expression_filter="h"/>
-<%!
-  from django.urls import reverse
-  from django.utils.translation import ugettext as _
-  from branding.api import get_footer
-  from openedx.core.djangoapps.lang_pref.api import footer_language_selector_is_enabled
-%>
 
 <%
   ## theming API object support classic options method
@@ -13,6 +7,7 @@
   footer_class = theming.options('footer', 'class', default='')
   ## from theming API object, a segment can be instantiated
   footer_segment = theming.get_segment('footer')
+  footer_styles = footer_segment.options('css')
 %>
 ## An instantiated segment/particle support the following
 
@@ -32,5 +27,8 @@
 ## 2) The backend looks for a template with the name of the particle type (e.g. particles/html_block.html) and use it
 ## 3) The backend checks if the particle has children. If so, they get rendered and concatenated as result of the parent particle render
 ## 4) The backend uses the final fall back which is using the template particles/particle.html
-
 </footer>
+
+<style type="text/css">
+	${footer_styles |n}
+</style>

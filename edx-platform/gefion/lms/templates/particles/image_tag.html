@@ -4,6 +4,7 @@
 <%
   el_type = particle.options('type', default='No type')
   el_id = particle.options('id', default=0)
+  el_styles = particle.options('css', default='')
   el_source = particle.options('variables', 'source',  default='')
   el_alt = particle.options('variables', 'alt',  default='')
   el_destination_url = particle.options('variables', 'destination_url',  default='#')
@@ -18,4 +19,6 @@
 	</a>
 </div>
 
-
+<style type="text/css">
+	${el_styles |n}
+</style>

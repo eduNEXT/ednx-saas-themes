@@ -4,13 +4,19 @@
 <%
   el_type = particle.options('type', default='No type')
   el_id = particle.options('id', default=0)
+  el_styles = particle.options('css', default='')
   el_text = particle.options('variables', 'text',  default='')
   el_destination_url = particle.options('variables', 'destination_url',  default='#')
   el_target = particle.options('variables', 'target',  default='')
+  el_text_color = theming.options('variables', 'color-palette', 'button_text_color', default='')
 %>
 
 <button id="${el_id}">
-	<a href="${el_destination_url}" target="${el_target}" >
+	<a href="${el_destination_url}" target="${el_target}" style="color: ${el_text_color}">
 		${el_text}
-	</a>	
+	</a>
 </button>
+
+<style type="text/css">
+  ${el_styles |n}
+</style>

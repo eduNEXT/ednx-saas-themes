@@ -13,7 +13,6 @@
 
   %if particle.children:
   	<ul>
-      This is the render of the particle children
       %for s_particle in particle.children:
         <li>
           ${s_particle.render() | n}
