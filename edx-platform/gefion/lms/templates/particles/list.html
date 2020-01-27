@@ -8,7 +8,11 @@
   el_items = particle.options('variables', 'items', default=[])
 %>
 
-<div id="${el_id}">
+<div id="${el_id}" style= "
+%for key, value in el_styles.items():
+	${key}: ${value};
+%endfor
+">
 	<ul>
 		%for el_item in el_items:
 		<li>
@@ -17,7 +21,3 @@
 		%endfor
 	</ul>
 </div>
-
-<style type="text/css">
-	${el_styles |n}
-</style>

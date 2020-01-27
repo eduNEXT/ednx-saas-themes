@@ -9,13 +9,13 @@
   el_search_icon = particle.options('variables', 'search_icon', default='')
 %>
 
-<form method="get" action="/courses" id="${el_id}">
+<form method="get" action="/courses" id="${el_id}" style= "
+%for key, value in el_styles.items():
+	${key}: ${value};
+%endfor
+">
 	<input  name="search_query" type="text" placeholder="${el_text}">
 	<button type="submit">
 		<i class="fa ${el_search_icon}"></i>
 	</button>
 </form>
-
-<style type="text/css">
-	${el_styles |n}
-</style>

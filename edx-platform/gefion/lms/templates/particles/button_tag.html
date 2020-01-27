@@ -11,12 +11,12 @@
   el_text_color = theming.options('variables', 'color-palette', 'button_text_color', default='')
 %>
 
-<button id="${el_id}">
+<button id="${el_id}" style= "
+%for key, value in el_styles.items():
+  ${key}: ${value};
+%endfor
+">
 	<a href="${el_destination_url}" target="${el_target}" style="color: ${el_text_color}">
 		${el_text}
 	</a>
 </button>
-
-<style type="text/css">
-  ${el_styles |n}
-</style>

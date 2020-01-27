@@ -7,7 +7,11 @@
   el_styles = particle.options('css', default='')
 %>
 
-<div id="${el_id}">
+<div id="${el_id}" style= "
+%for key, value in el_styles.items():
+	${key}: ${value};
+%endfor
+">
 	%if particle.children:
 	<ul>
 		%for s_particle in particle.children:
@@ -18,7 +22,3 @@
 	</ul>
 	%endif
 </div>
-
-<style type="text/css">
-	${el_styles |n}
-</style>

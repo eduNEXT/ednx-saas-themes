@@ -7,7 +7,7 @@
   footer_class = theming.options('footer', 'class', default='')
   ## from theming API object, a segment can be instantiated
   footer_segment = theming.get_segment('footer')
-  footer_styles = footer_segment.options('css')
+  footer_styles = footer_segment.options('css', default={})
 %>
 ## An instantiated segment/particle support the following
 
@@ -15,7 +15,12 @@
 ## footer_segment.options('id'): get an option from the configuration of the segment/particle
 ## footer_segment.render(): Render a segment/particle. The way a segment/particle gets rendered is described below
 
-<footer id="${footer_id}" class="${footer_class}">
+<footer id="${footer_id}" class="${footer_class}"
+style= "
+%for key, value in footer_styles.items():
+	${key}: ${value};
+%endfor
+">
 ## The footer properties can be accesed by using the footer segment as well
 ## <footer id="${footer_segment.options('id')}" class="${footer_segment.options('class')}">
 
@@ -30,5 +35,12 @@
 </footer>
 
 <style type="text/css">
-	${footer_styles |n}
+	#footer_component ul{list-style: none; padding: 0;}
+	#footer_jumbotron h3{font-style: italic;}
+	#footer_jumbotron h1{font-weight: bold;}
+	#footer_component #my_3cc > ul{padding: 20px;display: flex;flex-wrap: wrap;justify-content: center;align-items: center;}
+	#footer_links a{color: #fff;margin: 0 5px;}
+	#edunext_button:hover{background: #2640ac;}
+	#edunext_button a:hover{text-decoration: none;}
+	#footer_search button{background: #001779;box-shadow: none;}
 </style>

@@ -9,10 +9,10 @@
 	el_text= particle.options('variables', 'text',  default='')
 %>
 
-<p id="${el_id}" class="${el_class}">
+<p id="${el_id}" class="${el_class}" style= "
+%for key, value in el_styles.items():
+	${key}: ${value};
+%endfor
+">
 	${el_text}
 </p>
-
-<style type="text/css">
-	${el_styles |n}
-</style>

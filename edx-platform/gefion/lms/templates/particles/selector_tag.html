@@ -8,12 +8,12 @@
   el_options= particle.options('variables', 'options',  default=[])
 %>
 
-<select name="language" id="${el_id}">
+<select name="language" id="${el_id}" style= "
+%for key, value in el_styles.items():
+	${key}: ${value};
+%endfor
+">
 	%for el_option in el_options:
 		<option value="" selected="selected">${el_option} </option>
 	%endfor
 </select>
-
-<style type="text/css">
-  ${el_styles |n}
-</style>

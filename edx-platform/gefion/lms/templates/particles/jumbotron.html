@@ -11,14 +11,14 @@
   el_extra_html = particle.options('variables', 'extra_html_content',  default='')
 %>
 
-<div id="${el_id}" style="background-image: url(${el_background});">
+<div id="${el_id}" style="background-image: url(${el_background});
+%for key, value in el_styles.items():
+  ${key}: ${value};
+%endfor
+">
 	<div>
 		<h1>${el_title}</h1>
 		<h3>${el_subtitle}</h3>
 		<div>${el_extra_html}</div>
 	</div>
 </div>
-
-<style type="text/css">
-	${el_styles |n}
-</style>

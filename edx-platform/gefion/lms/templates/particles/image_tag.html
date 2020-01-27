@@ -13,12 +13,12 @@
   el_height = particle.options('variables', 'height',  default='')
 %>
 
-<div id="${el_id}">
+<div id="${el_id}" style= "
+%for key, value in el_styles.items():
+  ${key}: ${value};
+%endfor
+">
 	<a href="${el_destination_url}" target="${el_target}">
 		<img src="${el_source}" alt="${el_alt}" width="${el_width}" height="${el_height}" >
 	</a>
 </div>
-
-<style type="text/css">
-	${el_styles |n}
-</style>

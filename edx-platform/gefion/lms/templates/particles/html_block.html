@@ -8,10 +8,10 @@
   el_content = particle.options('variables', 'content',  default={})
 %>
 
-<div id="${el_id}">
+<div id="${el_id}" style= "
+%for key, value in el_styles.items():
+	${key}: ${value};
+%endfor
+">
 	${el_content | n, decode.utf8}
 </div>
-
-<style type="text/css">
-	${el_styles |n}
-</style>
