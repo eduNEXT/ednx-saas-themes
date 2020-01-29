@@ -1,0 +1,20 @@
+## mako
+<%page expression_filter="h"/>
+
+<%
+	el_type = particle.options('type', default='No type')
+	el_id = particle.options('id', default=0)
+%>
+
+% if user.is_authenticated:
+<div id="${el_id}">
+	<%include file="./user_dropdown.html"/>
+</div>
+
+%else:
+	<div id="${el_id}">
+		%for s_particle in particle.children:
+			${s_particle.render() | n}
+		%endfor
+	</div>
+% endif

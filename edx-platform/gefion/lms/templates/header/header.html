@@ -1,0 +1,12 @@
+## mako
+<%page expression_filter="h"/>
+
+<%
+  navigation_segment = theming.get_segment('navigation')
+  navigation_id = navigation_segment.options('id', default ='')
+  navigation_class = navigation_segment.options('class', default='')
+%>
+
+<header id="${navigation_id}" class="global-header">
+	${navigation_segment.render() | n}
+</header>
