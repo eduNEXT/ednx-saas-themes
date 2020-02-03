@@ -283,6 +283,14 @@
         <h2 class="sr">${_("Additional Personal Information")}</h2>
 
         <ol class="list-input">
+
+           % if settings.REGISTRATION_EXTRA_FIELDS.get('dni','') != 'hidden':
+          <li class="field ${settings.REGISTRATION_EXTRA_FIELDS.get('dni','')} text" id="field-dni">
+            <label for="dni">${_(u'DNI')}</label>
+            <input id="dni" type="text" name="dni" value="" placeholder="" aria-describedby="dni-tip" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS.get('dni','') == 'required' else ''} />
+          </li>
+          % endif
+
           % if settings.REGISTRATION_EXTRA_FIELDS['country'] != 'hidden':
           <li class="field-group">
             <div class="field ${settings.REGISTRATION_EXTRA_FIELDS['country']} select" id="field-country">
