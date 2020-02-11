@@ -1,42 +1,44 @@
 ## mako
 <%page expression_filter="h"/>
-<%!
-  from django.urls import reverse
-  from django.utils.translation import ugettext as _
-  from branding.api import get_footer
-  from openedx.core.djangoapps.lang_pref.api import footer_language_selector_is_enabled
-%>
 
-<% 
+<%
+  ## theming API object support classic options method
   footer_id = theming.options('footer', 'id', default='')
   footer_class = theming.options('footer', 'class', default='')
-  footer_particles = theming.options('footer', 'particles', default= [])
+  ## from theming API object, a segment can be instantiated
+  footer_segment = theming.get_segment('footer')
+  footer_styles = footer_segment.get_css()
 %>
+## An instantiated segment/particle support the following
 
-<footer id="${footer_id}" class="${footer_class}">
-   %for particle in footer_particles:
-       %if particle['type'] == 'html_block':
-            <div id="${particle['id']}">${particle['variables'].get('content')}</div>
+## footer_segment.children: array containing the particles a segment/particle is composed of. They support the same methods described in this list
+## footer_segment.options('id'): get an option from the configuration of the segment/particle
+## footer_segment.render(): Render a segment/particle. The way a segment/particle gets rendered is described below
 
-        %elif particle['type'] == 'text':
-            <p id="${particle['id']}">${particle['variables'].get('text')}</p>
+<footer id="${footer_id}" class="${footer_class}"
+style= "${footer_styles}">
+## The footer properties can be accesed by using the footer segment as well
+## <footer id="${footer_segment.options('id')}" class="${footer_segment.options('class')}">
 
-        %elif particle['type'] == 'image_tag':
-            <a href="${particle['variables'].get('destination_url')}">
-            <img id="${particle['id']}" src="${particle['variables'].get('source')}" alt="${particle['variables'].get('alt')}" width="${particle['variables'].get('width')}" height="${particle['variables'].get('height')}" />
-            </a>
+  ${footer_segment.render() | n}
 
-        %elif particle['type'] == 'list':
-            <ul>
-                %for item_particle in particle['variables']:
-                    <li>
-                        <a href="${item_particle['destination_url']}" target="${item_particle['target']}" >${item_particle['text']}</a>
-                    </li>
-                %endfor
-              
-            </ul>
+## How particles are rendered (by priority):
 
-       %endif
-
-   %endfor
+## 1) The backend looks in the particle has a template in its configuration and use it
+## 2) The backend looks for a template with the name of the particle type (e.g. particles/html_block.html) and use it
+## 3) The backend checks if the particle has children. If so, they get rendered and concatenated as result of the parent particle render
+## 4) The backend uses the final fall back which is using the template particles/particle.html
 </footer>
+
+<style type="text/css">
+  #footer_component ul{list-style: none; padding: 0;}
+  #footer_jumbotron h3{font-style: italic;}
+  #footer_jumbotron h1{font-weight: bold;}
+  #footer_component #my_3cc > ul{padding: 20px;display: flex;flex-wrap: wrap;justify-content: center;align-items: center;}
+  #footer_links a{color: #fff;margin: 0 5px;}
+  #edunext_button:hover{background: #2640ac;}
+  #edunext_button a:hover{text-decoration: none;}
+  #footer_search button{background: #001779;box-shadow: none;}
+  .col-3{flex: 0 0 25%;max-width: 25%;}
+  .col-6{flex: 0 0 50%;max-width: 50%;}
+</style>

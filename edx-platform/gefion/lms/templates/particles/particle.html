@@ -1,0 +1,23 @@
+## mako
+<%page expression_filter="h"/>
+
+<%
+  el_type = particle.options('type', default='No type')
+  el_id = particle.options('id', default=0)
+%>
+
+<div>
+  <h3>
+    this is a particle of type ${el_type} and id ${el_id}
+  </h3>
+
+  %if particle.children:
+    <ul>
+      %for s_particle in particle.children:
+        <li>
+          ${s_particle.render() | n}
+        </li>
+      %endfor
+    </ul>
+    %endif
+</div>

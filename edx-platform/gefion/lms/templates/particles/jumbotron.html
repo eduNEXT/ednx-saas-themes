@@ -1,0 +1,20 @@
+## mako
+<%page expression_filter="h"/>
+
+<%
+  el_type = particle.options('type', default='No type')
+  el_id = particle.options('id', default=0)
+  el_styles = particle.get_css()
+  el_background = particle.options('variables', 'background_source',  default='')
+  el_title = particle.options('variables', 'title',  default='')
+  el_subtitle = particle.options('variables', 'subtitle',  default='')
+  el_extra_html = particle.options('variables', 'extra_html_content',  default='')
+%>
+
+<div id="${el_id}" style="background-image: url(${el_background}); ${el_styles}">
+  <div>
+    <h1>${el_title}</h1>
+    <h3>${el_subtitle}</h3>
+    <div>${el_extra_html}</div>
+  </div>
+</div>

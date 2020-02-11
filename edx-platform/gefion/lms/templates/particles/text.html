@@ -1,0 +1,14 @@
+## mako
+<%page expression_filter="h"/>
+
+<%
+  el_type = particle.options('type', default='No type')
+  el_id = particle.options('id', default=0)
+  el_class = particle.options('class', default='')
+  el_styles = particle.get_css()
+  el_text= particle.options('variables', 'text',  default='')
+%>
+
+<p id="${el_id}" class="${el_class}" style="${el_styles}">
+  ${el_text}
+</p>
