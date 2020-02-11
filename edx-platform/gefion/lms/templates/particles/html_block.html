@@ -4,9 +4,10 @@
 <%
   el_type = particle.options('type', default='No type')
   el_id = particle.options('id', default=0)
+  el_styles = particle.get_css()
   el_content = particle.options('variables', 'content',  default={})
 %>
 
-<div id="${el_id}">
-	${el_content | n, decode.utf8}
+<div id="${el_id}" style="${el_styles}">
+  ${el_content | n, decode.utf8}
 </div>

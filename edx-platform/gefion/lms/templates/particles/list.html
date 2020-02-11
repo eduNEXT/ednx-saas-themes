@@ -4,10 +4,11 @@
 <%
   el_type = particle.options('type', default='No type')
   el_id = particle.options('id', default=0)
+  el_styles = particle.get_css()
   el_items = particle.options('variables', 'items', default=[])
 %>
 
-<div id="${el_id}">
+<div id="${el_id}" style="${el_styles}">
   <ul>
     %for el_item in el_items:
     <li>

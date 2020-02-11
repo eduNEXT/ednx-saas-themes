@@ -4,11 +4,12 @@
 <%
   el_type = particle.options('type', default='No type')
   el_id = particle.options('id', default=0)
+  el_styles = particle.get_css()
   el_options= particle.options('variables', 'options',  default=[])
 %>
 
-<select class="form-control-sm settings-language-values" name="language">
-	%for el_option in el_options:
-		<option value="en" selected="selected">${el_option} </option>
-	%endfor
+<select name="language" id="${el_id}" style="${el_styles}">
+  %for el_option in el_options:
+    <option value="" selected="selected">${el_option} </option>
+  %endfor
 </select>
