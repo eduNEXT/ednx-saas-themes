@@ -4,20 +4,16 @@
 <%
   el_type = particle.options('type', default='No type')
   el_id = particle.options('id', default=0)
-  el_styles = particle.options('css', default='')
+  el_styles = particle.get_css()
   el_items = particle.options('variables', 'items', default=[])
 %>
 
-<div id="${el_id}" style= "
-%for key, value in el_styles.items():
-	${key}: ${value};
-%endfor
-">
-	<ul>
-		%for el_item in el_items:
-		<li>
-			<a href="${el_item.get('destination_url', '#')}" target="${el_item.get('target')}">${el_item.get('text','')}</a>
-		</li>
-		%endfor
-	</ul>
+<div id="${el_id}" style="${el_styles}">
+  <ul>
+    %for el_item in el_items:
+    <li>
+      <a href="${el_item.get('destination_url', '#')}" target="${el_item.get('target')}">${el_item.get('text','')}</a>
+    </li>
+    %endfor
+  </ul>
 </div>

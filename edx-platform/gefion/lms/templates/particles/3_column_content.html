@@ -4,21 +4,19 @@
 <%
   el_type = particle.options('type', default='No type')
   el_id = particle.options('id', default=0)
-  el_styles = particle.options('css', default='')
+  el_styles = particle.get_css()
+  number_columns = particle.columns_number
+  el_layout = particle.options('variables','column_layout')
 %>
 
-<div id="${el_id}" style= "
-%for key, value in el_styles.items():
-	${key}: ${value};
-%endfor
-">
-	%if particle.children:
-	<ul>
-		%for s_particle in particle.children:
-		<li>
-			${s_particle.render() | n}
-		</li>
-		%endfor
-	</ul>
-	%endif
+<div id="${el_id}" style="${el_styles}">
+  %if particle.children:
+    %for i in range(1, number_columns+1):
+      <div class="col-${el_layout[i-1]}">
+        %for s_particle in particle.children_by_column(i):
+          ${s_particle.render() | n}
+        %endfor
+      </div>
+    %endfor
+  %endif
 </div>

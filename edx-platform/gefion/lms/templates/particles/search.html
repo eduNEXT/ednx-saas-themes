@@ -4,16 +4,12 @@
 <%
   el_type = particle.options('type', default='No type')
   el_id = particle.options('id', default=0)
-  el_styles = particle.options('css', default='')
+  el_styles = particle.get_css()
   el_text = particle.options('variables', 'text', default='')
   el_search_icon = particle.options('variables', 'search_icon', default='')
 %>
 
-<form method="get" action="/courses" id="${el_id}" style= "
-%for key, value in el_styles.items():
-	${key}: ${value};
-%endfor
-">
+<form method="get" action="/courses" id="${el_id}" style="${el_styles}">
 	<input  name="search_query" type="text" placeholder="${el_text}">
 	<button type="submit">
 		<i class="fa ${el_search_icon}"></i>
