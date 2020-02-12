@@ -6,13 +6,14 @@
   el_id = particle.options('id', default=0)
   el_styles = particle.get_css()
   el_items = particle.options('variables', 'items', default=[])
+  el_text_color = theming.options('variables', 'color_text_from_default', default='')
 %>
 
 <div id="${el_id}" style="${el_styles}">
   <ul>
     %for el_item in el_items:
     <li>
-      <a href="${el_item.get('destination_url', '#')}" target="${el_item.get('target')}">${el_item.get('text','')}</a>
+      <a href="${el_item.get('destination_url', '#')}" target="${el_item.get('target')}" style="color: ${el_text_color}">${el_item.get('text','')}</a>
     </li>
     %endfor
   </ul>
