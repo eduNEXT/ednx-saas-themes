@@ -1,0 +1,10 @@
+{
+  "THEME_OPTIONS": {
+    "theme": {
+      "name": "gefion"
+    },
+    "variables": {
+      "color_text_from_default": "#ffb1b1"
+    }
+  }
+}
