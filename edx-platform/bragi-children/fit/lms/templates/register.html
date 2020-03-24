@@ -381,7 +381,7 @@
         <ol class="list-input">
 
           % if settings.REGISTRATION_EXTRA_FIELDS.get('privacy_policy','') != 'hidden':
-          <li class="field-group field settings.REGISTRATION_EXTRA_FIELDS.get('privacy_policy','')} checkbox" id="field-privacy_policy">
+          <li class="field-group field ${settings.REGISTRATION_EXTRA_FIELDS.get('privacy_policy','')} checkbox" id="field-privacy_policy">
             <input id="privacy_policy-yes" type="checkbox" name="privacy_policy" value="true" required aria-required="true" />
             <label for="privacy_policy-yes">${('Concordo com a {link_start}Política de Privacidade{link_end}').format(
               link_start='<a href="{url}" class="new-vp" tabindex="-1">'.format(url=marketing_link('PRIVACY')),
@@ -390,7 +390,7 @@
           % endif
 
           % if settings.REGISTRATION_EXTRA_FIELDS.get('treatment_data','') != 'hidden':
-          <li class="field-group field settings.REGISTRATION_EXTRA_FIELDS.get('treatment_data','')} checkbox" id="field-treatment_data">
+          <li class="field-group field ${settings.REGISTRATION_EXTRA_FIELDS.get('treatment_data','')} checkbox" id="field-treatment_data">
             <input id="treatment_data-yes" type="checkbox" name="treatment_data" value="true" required aria-required="true" />
             <label for="treatment_data-yes">${('Concordo com o tratamento de meus dados para os fins especificados na {link_start}Política de Privacidade{link_end}').format(
               link_start='<a href="{url}" class="new-vp" tabindex="-1">'.format(url=marketing_link('PRIVACY')),
@@ -399,7 +399,7 @@
           % endif
 
           % if settings.REGISTRATION_EXTRA_FIELDS.get('share_data','') != 'hidden':
-          <li class="field-group field settings.REGISTRATION_EXTRA_FIELDS.get('share_data','')} checkbox" id="field-share_data">
+          <li class="field-group field ${settings.REGISTRATION_EXTRA_FIELDS.get('share_data','')} checkbox" id="field-share_data">
             <input id="share_data-yes" type="checkbox" name="share_data" value="true" required aria-required="true" />
             <label for="share_data-yes">${('Concordo com o compartilhamento de meus dados nos limites informados na {link_start}Política de Privacidade{link_end}').format(
               link_start='<a href="{url}" class="new-vp" tabindex="-1">'.format(url=marketing_link('PRIVACY')),
@@ -408,7 +408,7 @@
           % endif
 
           % if settings.REGISTRATION_EXTRA_FIELDS.get('terms_of_service','') != 'hidden':
-          <li class="field-group field settings.REGISTRATION_EXTRA_FIELDS.get('terms_of_service','')} checkbox" id="field-terms_of_service">
+          <li class="field-group field ${settings.REGISTRATION_EXTRA_FIELDS.get('terms_of_service','')} checkbox" id="field-terms_of_service">
             <input id="tos-yes" type="checkbox" name="terms_of_service" value="true" required aria-required="true" />
               <label for="tos-yes">${('Concordo com os {link_start}Termos de Serviço{link_end}').format(
                 link_start='<a href="{url}" class="new-vp" tabindex="-1">'.format(url=marketing_link('TOS')),
@@ -417,7 +417,7 @@
           % endif
 
           % if settings.REGISTRATION_EXTRA_FIELDS.get('honor_code','') != 'hidden':
-          <li class="field-group field settings.REGISTRATION_EXTRA_FIELDS.get('honor_code','')} checkbox" id="field-honor_code">
+          <li class="field-group field ${settings.REGISTRATION_EXTRA_FIELDS.get('honor_code','')} checkbox" id="field-honor_code">
             <input id="tos-yes" type="checkbox" name="honor_code" value="true" required aria-required="true" />
               <label for="tos-yes">${('Concordo com o {link_start}Código de Honra{link_end}').format(
                 link_start='<a href="{url}" class="new-vp" tabindex="-1">'.format(url=marketing_link('HONOR')),
