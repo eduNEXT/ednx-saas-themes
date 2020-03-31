@@ -1833,7 +1833,7 @@ msgstr ""
 #: edx-platform/bragi/lms/templates/courseware/course_about.html:543
 #: edx-platform/bragi/lms/templates/courseware/course_about_sidebar.html:69
 msgid "Enroll"
-msgstr ""
+msgstr "Matricular"
 
 #: edx-platform/bragi-children/awwa-unilearn/lms/templates/courseware/course_about.html:335
 #: edx-platform/bragi-children/awwa-unilearn/lms/templates/courseware/course_about.html:564
