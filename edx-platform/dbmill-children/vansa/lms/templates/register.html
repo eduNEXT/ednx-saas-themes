@@ -367,8 +367,8 @@ register__logomini_url = theming.options('register', 'mill_register__logomini_ur
             </div>
           % endif
 
-          % if settings.REGISTRATION_EXTRA_FIELDS['honor_code'] != 'hidden':
-            <div class="field ${settings.REGISTRATION_EXTRA_FIELDS['honor_code']} checkbox" id="field-honorcode">
+          % if settings.REGISTRATION_EXTRA_FIELDS.get('honor_code') != 'hidden':
+            <div class="field ${settings.REGISTRATION_EXTRA_FIELDS.get('honor_code')} checkbox" id="field-honorcode">
               <input id="honorcode-yes" type="checkbox" name="honor_code" value="true" />
               <%
               ## TODO: provide a better way to override these links

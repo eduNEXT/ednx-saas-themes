@@ -572,6 +572,9 @@
     &-register {
       color: $color__white !important;
       border: 3px solid $color__spring-green;
+      display: block;
+      max-width: 40%;
+      margin: 10px auto 0;
 
       &:hover,
       &:focus,

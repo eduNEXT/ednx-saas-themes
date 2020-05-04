@@ -75,13 +75,21 @@
     }
   }
 
-  .login-component__link-login,
-  .login-component__link-register {
+  .login-component__link-login {
     flex: none;
     width: auto;
     display: block;
     max-width: 90%;
     padding: 8px;
+  }
+
+  .login-component__link-register {
+    flex: none;
+    width: auto;
+    display: block;
+    max-width: 40%;
+    padding: 8px;
+    margin: 0 auto;
   }
 
   .view-register .fullscreen-component {
