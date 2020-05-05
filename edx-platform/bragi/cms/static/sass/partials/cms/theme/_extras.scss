@@ -9,6 +9,7 @@
 .wrapper-header nav>ol>.nav-item.nav-not-signedin-signup,
 .view-signin .content header .action.action-signin,
 .wrapper-footer footer.primary #lms-link,
-.view-dashboard .wrapper-creationrights .ui-toggle-control.show-creationrights {
+.view-dashboard .wrapper-creationrights .ui-toggle-control.show-creationrights,
+.content #register_form {
   display: none;
 }
