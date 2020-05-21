@@ -11,6 +11,7 @@
 .wrapper-footer footer.primary #lms-link,
 .view-dashboard .wrapper-creationrights .ui-toggle-control.show-creationrights,
 .view-howitworks.not-signedin .content-cta .list-actions li:first-child,
-.content #register_form {
+.content #register_form,
+#login_form .action-forgotpassword {
   display: none;
 }
