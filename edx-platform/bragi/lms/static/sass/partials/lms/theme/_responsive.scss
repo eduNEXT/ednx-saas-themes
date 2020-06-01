@@ -537,6 +537,20 @@
     white-space: normal;
    }
 
+  // Time exam
+  .proctored_exam_status .exam-timer {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .content-wrapper .proctored_exam_status .exam-timer .exam-text {
+    width: 100%;
+  }
+
+  .content-wrapper .proctored_exam_status .exam-timer .turn_in_exam {
+    margin-top:0;
+  }
 }
 
 @include media-breakpoint-down(xs) {
