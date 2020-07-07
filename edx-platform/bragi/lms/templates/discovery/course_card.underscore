@@ -10,7 +10,7 @@
             <h2 class="course-name col col-12 px-0">
                 <span class="course-title my-1"><%- content.display_name %></span>
             </h2>
-            <p class="course-description col col-12 mb-1"><%- content.short_description %></p>
+            <p class="course-description col col-12 mb-1"><%= HtmlUtils.ensureHtml(content.short_description) %></p>
             <div class="course-date col col-12 py-2 align-self-end" aria-hidden="true">
                 <%- interpolate(
                 gettext("Starts: %(start_date)s"),
