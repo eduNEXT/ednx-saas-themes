@@ -212,6 +212,69 @@
             <input id="name" type="text" name="name" value="${name}" placeholder="${_('example: Jane Doe')}" required aria-required="true" aria-describedby="name-tip" />
             <span class="tip tip-input" id="name-tip">${_("The child's legal name, used for any certificates earned.")}</span>
           </li>
+
+          % if settings.REGISTRATION_EXTRA_FIELDS.get('date_of_birth', 'required') != 'hidden':
+          <li class="field-group">
+            <div class="field ${settings.REGISTRATION_EXTRA_FIELDS.get('date_of_birth', 'required')} select">
+              <label for="birthday">Child's Date of Birth</label>
+              <div class="field-group">
+                <div class="field select">
+                  <select id="month_of_birth" name="month_of_birth">
+                    <option value="none" class="placeholder" selected disabled>Month</option>
+                    %for month in ['January','February','March','April','May','June','July','August','September','October','November','December']:
+                    <option value="${month}">${month}</option>
+                    %endfor
+                  </select>
+                </div>
+                <div class="field select">
+                  <select id="day_of_birth" name="day_of_birth">
+                    <option value="none" class="placeholder" selected disabled>Day</option>
+                    %for day in range(1, 32):
+                    <option value="${day}">${day}</option>
+                    %endfor
+                  </select>
+                </div>
+                <div class="field select">
+                  <select id="year_of_birth" name="year_of_birth">
+                    <option value="none" class="placeholder" selected disabled>Year</option>
+                    %for year in UserProfile.VALID_YEARS:
+                    <option value="${year}">${year}</option>
+                    %endfor
+                  </select>
+                </div>
+                <input id="date-of-birth" type="hidden" name="date_of_birth" value=""/>
+              </div>
+            </li>
+          % endif
+
+          % if settings.REGISTRATION_EXTRA_FIELDS.get('grade_level', 'required') != 'hidden':
+          <li class="field-group field-grade_level">
+            <div class="field ${settings.REGISTRATION_EXTRA_FIELDS.get('grade_level', 'required')} select" id="field-grade_level">
+              <label for="grade_level">Grade Level</label>
+              <select id="grade_level" name="grade_level" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS.get('grade_level', 'required') == 'required' else ''}>
+                <option value="">--</option>
+                %for ed_level in ['0','1','2','3','4','5','6','7','8','9','10','11','12']:
+                <option value="${ed_level}">${_(ed_level)}</option>
+                %endfor
+              </select>
+            </div>
+          </li>
+          % endif
+
+          % if settings.REGISTRATION_EXTRA_FIELDS['gender'] != 'hidden':
+          <li class="field-group field-gender">
+            <div class="field ${settings.REGISTRATION_EXTRA_FIELDS['gender']} select" id="field-gender">
+              <label for="gender">${_("Gender")}</label>
+              <select id="gender" name="gender" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS['gender'] == 'required' else ''}>
+                <option value="">--</option>
+                %for code, gender in UserProfile.GENDER_CHOICES:
+                <option value="${code}">${_(gender)}</option>
+                %endfor
+              </select>
+            </div>
+          </li>
+          % endif
+
           <li class="field required text" id="field-username">
             <label for="username">Public Username (Child's Name)</label>
             <input id="username" type="text" name="username" value="${username}" placeholder="${_('example: JaneDoe')}" required aria-required="true" aria-describedby="username-tip"/>
@@ -320,54 +383,6 @@
         <h2 class="sr">${_("Additional Personal Information")}</h2>
 
         <ol class="list-input">
-          % if settings.REGISTRATION_EXTRA_FIELDS.get('date_of_birth', 'required') != 'hidden':
-          <li class="field-group">
-            <div class="field ${settings.REGISTRATION_EXTRA_FIELDS.get('date_of_birth', 'required')} select">
-              <label for="birthday">Child's Date of Birth</label>
-              <div class="field-group">
-                <div class="field select">
-                  <select id="month_of_birth" name="month_of_birth">
-                    <option value="none" class="placeholder" selected disabled>Month</option>
-                    %for month in ['January','February','March','April','May','June','July','August','September','October','November','December']:
-                    <option value="${month}">${month}</option>
-                    %endfor
-                  </select>
-                </div>
-                <div class="field select">
-                  <select id="day_of_birth" name="day_of_birth">
-                    <option value="none" class="placeholder" selected disabled>Day</option>
-                    %for day in range(1, 32):
-                    <option value="${day}">${day}</option>
-                    %endfor
-                  </select>
-                </div>
-                <div class="field select">
-                  <select id="year_of_birth" name="year_of_birth">
-                    <option value="none" class="placeholder" selected disabled>Year</option>
-                    %for year in UserProfile.VALID_YEARS:
-                    <option value="${year}">${year}</option>
-                    %endfor
-                  </select>
-                </div>
-                <input id="date-of-birth" type="hidden" name="date_of_birth" value=""/>
-              </div>
-            </li>
-          % endif
-
-          % if settings.REGISTRATION_EXTRA_FIELDS.get('grade_level', 'required') != 'hidden':
-          <li class="field-group field-grade_level">
-            <div class="field ${settings.REGISTRATION_EXTRA_FIELDS.get('grade_level', 'required')} select" id="field-grade_level">
-              <label for="grade_level">Grade Level</label>
-              <select id="grade_level" name="grade_level" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS.get('grade_level', 'required') == 'required' else ''}>
-                <option value="">--</option>
-                %for ed_level in ['0','1','2','3','4','5','6','7','8','9','10','11','12']:
-                <option value="${ed_level}">${_(ed_level)}</option>
-                %endfor
-              </select>
-            </div>
-          </li>
-          % endif
-
           % if settings.REGISTRATION_EXTRA_FIELDS['country'] != 'hidden':
           <li class="field-group">
             <div class="field ${settings.REGISTRATION_EXTRA_FIELDS['country']} select" id="field-country">
@@ -395,19 +410,6 @@
                 <option value="">--</option>
                 %for code, ed_level in UserProfile.LEVEL_OF_EDUCATION_CHOICES:
                 <option value="${code}">${_(ed_level)}</option>
-                %endfor
-              </select>
-            </div>
-          </li>
-          % endif
-          % if settings.REGISTRATION_EXTRA_FIELDS['gender'] != 'hidden':
-          <li class="field-group field-gender">
-            <div class="field ${settings.REGISTRATION_EXTRA_FIELDS['gender']} select" id="field-gender">
-              <label for="gender">${_("Gender")}</label>
-              <select id="gender" name="gender" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS['gender'] == 'required' else ''}>
-                <option value="">--</option>
-                %for code, gender in UserProfile.GENDER_CHOICES:
-                <option value="${code}">${_(gender)}</option>
                 %endfor
               </select>
             </div>
