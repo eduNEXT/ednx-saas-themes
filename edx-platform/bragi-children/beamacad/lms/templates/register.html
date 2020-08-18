@@ -132,7 +132,7 @@
       %if register_text:
         <div class="register-text mx-0 mb-4">
           <h2>${register_text.get('title', '') | h}</h2>
-          <p class="mb-0">Register below to create your BEAM Academy account</p>
+          <p class="mb-0">${register_text.get('paragraph', '') | h}</p>
         </div>
       % endif
     % endif
@@ -199,7 +199,9 @@
       <div class="group group-form group-form-requiredinformation">
         <h2 class="sr">${_('Required Information')}</h2>
 
-       <ol class="list-input">
+        % if has_extauth_info is UNDEFINED:
+
+        <ol class="list-input">
           <li class="field required text" id="field-email">
             <label for="email">${_('E-mail')}</label>
             <input class="" id="email" type="email" name="email" value="${email}" placeholder="${_('example: username@domain.com')}" required aria-required="true" />
@@ -210,112 +212,101 @@
             <input id="name" type="text" name="name" value="${name}" placeholder="${_('example: Jane Doe')}" required aria-required="true" aria-describedby="name-tip" />
             <span class="tip tip-input" id="name-tip">${_("The child's legal name, used for any certificates earned.")}</span>
           </li>
-          
-          <li class="field required text">  
-            <div class="group group-form group-form-secondary group-form-personalinformation">
-                <h2 class="se">Child's Date of Birth</h2>
-                <div class="register-form__input-select  d-md-flex">
-                  <div class="register-form__input-select_wrapper">
-                    <select id="year_of_birth" name="year_of_birth">
-                      <option value="none" class="placeholder" selected="selected" disabled="disabled">Year</option>
-                      %for year in UserProfile.VALID_YEARS:
-                      <option value="${year}">${year}</option>
-                      %endfor
-                    </select>
-                  </div>
-                  <div class="register-form__input-select_wrapper">
-                    <select id="month_of_birth" name="month_of_birth">
-                      <option value="none" class="placeholder" selected="selected" disabled="disabled">Month</option>
-                      %for month in 
-['January','February','March','April','May','June','July','August','September','October','November','December']:
-
-                      <option value="${month}">${month}</option>
-                      %endfor
-                    </select>
-                  </div>
-                  <div class="register-form__input-select_wrapper">
-                    <select id="day_of_birth" name="day_of_birth">
-                      <option value="none" class="placeholder" selected="selected" disabled="disabled">Day</option>
-                      %for day in range(1, 32):
-                      <option value="${day}">${day}</option>
-                      %endfor
-                    </select>
-                  </div>
-                  <input id="date-of-birth" type="hidden" name="date_of_birth" value="">
-                </div>
-              </div>
-            </li>
-          
-            <li class="field-group required field-education-level">
-              <div class="field ${settings.REGISTRATION_EXTRA_FIELDS['level_of_education']} select" id="field-education-level">
-                <label for="education-level">Grade Level</label>
-                <select id="education-level" name="level_of_education" ${'required="" aria-required="true" '="" if="" settings.registration_extra_fields['level_of_education']="=" 'required'="" else="" ''}="">
-                  <option value="" selected="selected">--</option>
-                  %for ed_level in ['0','1','2','3','4','5','6','7','8','9','10','11','12']:
-                  <option value="${ed_level}">${_(ed_level)}</option>
-                </select>
-              </div>
-            </li>
-          
-            <li class="field-group required field-gender">
-              <div class="field ${settings.REGISTRATION_EXTRA_FIELDS['gender']} select" id="field-gender">
-                <label for="gender">Gender</label>
-                <select id="gender" name="gender" ${'required="" aria-required="true" '="" if="" settings.registration_extra_fields['gender']="=" 'required'="" else="" ''}="">
-                  <option value="" selected="selected">--</option>
-                  <option value="${code}">${_(gender)}</option>
-                </select>
-              </div>
-            </li>
-
           <li class="field required text" id="field-username">
             <label for="username">Public Username (Child's Name)</label>
             <input id="username" type="text" name="username" value="${username}" placeholder="${_('example: JaneDoe')}" required aria-required="true" aria-describedby="username-tip"/>
             <span class="tip tip-input" id="username-tip">${_('Will be shown in any discussions or forums')} <strong>(${_('cannot be changed later')})</strong></span>
           </li>
 
+          % if third_party_auth.is_enabled() and running_pipeline:
+
           <li class="is-disabled field optional password" id="field-password" hidden>
             <label for="password">${_('Password')}</label>
             <input id="password" type="password" name="password" value="" disabled required aria-required="true" />
           </li>
 
-          <li class="field required text" id="field-mother-name">
-            <label for="mother-name">Mother's Name</label>
-            <input id="mother-name" type="text" name="mother-name" value="" placeholder="$_('example: Jane Doe')}" aria-describedby="name-tip" />
+          % else:
+
+          <li class="field required password" id="field-password">
+            <label for="password">${_('Password')}</label>
+            <input id="password" type="password" name="password" value="" required aria-required="true" />
           </li>
 
-          % if settings.REGISTRATION_EXTRA_FIELDS.get('phone','optional') != 'hidden':
-          <li class="field required ${settings.REGISTRATION_EXTRA_FIELDS.get('phone','optional')} text" id="field-phone">
-            <label for="field-mother-phone">Mother's Phone No.</label>
-            <input id="field-mother-phone" type="number" name="mother-phone" value="" placeholder="" aria-describedby="phone-tip" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS.get('phone','optional') == 'required' else ''} />
+          % endif
+
+          % if settings.REGISTRATION_EXTRA_FIELDS.get('name_mother', 'required') != 'hidden':
+          <li class="field ${settings.REGISTRATION_EXTRA_FIELDS.get('name_mother', 'required')} text" id="field-name_mother">
+            <label for="name_mother">Mother's Name</label>
+            <input id="name_mother" type="text" name="name_mother" value="" placeholder="${_('example: JaneDoe')}" aria-describedby="name_mother-tip" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS.get('name_mother', 'required') == 'required' else ''} />
           </li>
           % endif
+
+          % if settings.REGISTRATION_EXTRA_FIELDS.get('phone_mother', 'required') != 'hidden':
+          <li class="field ${settings.REGISTRATION_EXTRA_FIELDS.get('phone_mother', 'required')} text" id="field-phone_mother">
+            <label for="phone_mother">Mother's Phone No.</label>
+            <input id="phone_mother" type="text" name="phone_mother" value="" placeholder="" aria-describedby="phone_mother-tip" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS.get('phone_mother', 'required') == 'required' else ''} />
+          </li>
+          % endif
+
+          % if settings.REGISTRATION_EXTRA_FIELDS.get('email_mother', 'required') != 'hidden':
+          <li class="field ${settings.REGISTRATION_EXTRA_FIELDS.get('email_mother', 'required')} text" id="field-email_mother">
+            <label for="email_mother">Mother's Email</label>
+            <input id="email_mother" type="text" name="email_mother" value="" placeholder="" aria-describedby="email_mother-tip" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS.get('email_mother', 'required') == 'required' else ''} />
+          </li>
+          % endif
+
+          % if settings.REGISTRATION_EXTRA_FIELDS.get('name_father', 'required') != 'hidden':
+          <li class="field ${settings.REGISTRATION_EXTRA_FIELDS.get('name_father', 'required')} text" id="field-name_father">
+            <label for="name_father">Father's Name</label>
+            <input id="name_father" type="text" name="name_father" value="" placeholder="${_('example: JaneDoe')}" aria-describedby="name_father-tip" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS.get('name_father', 'required') == 'required' else ''} />
+          </li>
+          % endif
+
+          % if settings.REGISTRATION_EXTRA_FIELDS.get('phone_father', 'required') != 'hidden':
+          <li class="field ${settings.REGISTRATION_EXTRA_FIELDS.get('phone_father', 'required')} text" id="field-phone_father">
+            <label for="phone_father">Father's Phone No.</label>
+            <input id="phone_father" type="text" name="phone_father" value="" placeholder="" aria-describedby="phone_father-tip" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS.get('phone_father', 'required') == 'required' else ''} />
+          </li>
+          % endif
+
+          % if settings.REGISTRATION_EXTRA_FIELDS.get('email_father', 'required') != 'hidden':
+          <li class="field ${settings.REGISTRATION_EXTRA_FIELDS.get('email_father', 'required')} text" id="field-email_father">
+            <label for="email_father">Father's Email</label>
+            <input id="email_father" type="text" name="email_father" value="" placeholder="" aria-describedby="email_father-tip" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS.get('email_father', 'required') == 'required' else ''} />
+          </li>
+          % endif
+        </ol>
+
+        % else:
+
+        <div class="message">
+          <h3 class="message-title">${_("Welcome {username}").format(username=extauth_id)}</h3>
+          <p class="message-copy">${_("Enter a Public Display Name:")}</p>
+        </div>
+
+        <ol class="list-input">
 
           % if ask_for_email:
 
-          <li class="field required text" id="field-name">
-            <label for="field-mother-email">Mother's Email</label>
-            <input class="" id="field-mother-email" type="email" name="mother-email" value="" placeholder="${_('example: username@domain.com')}" />
+          <li class="field required text" id="field-email">
+            <label for="email">${_("E-mail")}</label>
+            <input class="" id="email" type="email" name="email" value="" placeholder="${_('example: username@domain.com')}" />
           </li>
 
           % endif
 
-          <li class="field required text" id="field-name">
-            <label for="field-father-name">Father's Name</label>
-            <input id="field-father-name" type="text" name="father-name" value="" placeholder="$_('example: John Doe')}" aria-describedby="name-tip" />
+          <li class="field required text" id="field-username">
+            <label for="username">${_('Public Display Name')}</label>
+            <input id="username" type="text" name="username" value="${extauth_username}" placeholder="${_('example: JaneDoe')}" required aria-required="true" aria-describedby="username-tip" />
+            <span class="tip tip-input" id="id="username-tip>${_('Will be shown in any discussions or forums you participate in')} <strong>(${_('cannot be changed later')})</strong></span>
           </li>
 
-          % if settings.REGISTRATION_EXTRA_FIELDS.get('phone','optional') != 'hidden':
-          <li class="field required ${settings.REGISTRATION_EXTRA_FIELDS.get('phone','optional')} text" id="field-phone">
-            <label for="field-father-phone">Father's Phone No.</label>
-            <input id="field-father-phone" type="number" name="father-phone" value="" placeholder="" aria-describedby="phone-tip" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS.get('phone','optional') == 'required' else ''} />
-          </li>
-          % endif
-
-          % if ask_for_email:
+          % if ask_for_fullname:
 
           <li class="field required text" id="field-name">
-            <label for="field-father-email">Father's Email</label>
-            <input class="" id="field-father-email" type="email" name="father-email" value="" placeholder="${_('example: username@domain.com')}" />
+            <label for="name">${_('Full Name')}</label>
+            <input id="name" type="text" name="name" value="" placeholder="$_('example: Jane Doe')}" aria-describedby="name-tip" />
+            <span class="tip tip-input" id="name-tip">${_("Your legal name, used for any certificates you earn.")}</span>
           </li>
 
           % endif
@@ -329,6 +320,54 @@
         <h2 class="sr">${_("Additional Personal Information")}</h2>
 
         <ol class="list-input">
+          % if settings.REGISTRATION_EXTRA_FIELDS.get('date_of_birth', 'required') != 'hidden':
+          <li class="field-group">
+            <div class="field ${settings.REGISTRATION_EXTRA_FIELDS.get('date_of_birth', 'required')} select">
+              <label for="birthday">Child's Date of Birth</label>
+              <div class="field-group">
+                <div class="field select">
+                  <select id="month_of_birth" name="month_of_birth">
+                    <option value="none" class="placeholder" selected disabled>Month</option>
+                    %for month in ['January','February','March','April','May','June','July','August','September','October','November','December']:
+                    <option value="${month}">${month}</option>
+                    %endfor
+                  </select>
+                </div>
+                <div class="field select">
+                  <select id="day_of_birth" name="day_of_birth">
+                    <option value="none" class="placeholder" selected disabled>Day</option>
+                    %for day in range(1, 32):
+                    <option value="${day}">${day}</option>
+                    %endfor
+                  </select>
+                </div>
+                <div class="field select">
+                  <select id="year_of_birth" name="year_of_birth">
+                    <option value="none" class="placeholder" selected disabled>Year</option>
+                    %for year in UserProfile.VALID_YEARS:
+                    <option value="${year}">${year}</option>
+                    %endfor
+                  </select>
+                </div>
+                <input id="date-of-birth" type="hidden" name="date_of_birth" value=""/>
+              </div>
+            </li>
+          % endif
+
+          % if settings.REGISTRATION_EXTRA_FIELDS.get('grade_level', 'required') != 'hidden':
+          <li class="field-group field-grade_level">
+            <div class="field ${settings.REGISTRATION_EXTRA_FIELDS.get('grade_level', 'required')} select" id="field-grade_level">
+              <label for="grade_level">Grade Level</label>
+              <select id="grade_level" name="grade_level" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS.get('grade_level', 'required') == 'required' else ''}>
+                <option value="">--</option>
+                %for ed_level in ['0','1','2','3','4','5','6','7','8','9','10','11','12']:
+                <option value="${ed_level}">${_(ed_level)}</option>
+                %endfor
+              </select>
+            </div>
+          </li>
+          % endif
+
           % if settings.REGISTRATION_EXTRA_FIELDS['country'] != 'hidden':
           <li class="field-group">
             <div class="field ${settings.REGISTRATION_EXTRA_FIELDS['country']} select" id="field-country">
@@ -343,9 +382,48 @@
           </li>
           % endif
           % if settings.REGISTRATION_EXTRA_FIELDS['city'] != 'hidden':
-          <li class="field required ${settings.REGISTRATION_EXTRA_FIELDS['city']} text" id="field-city">
+          <li class="field ${settings.REGISTRATION_EXTRA_FIELDS['city']} text" id="field-city">
             <label for="city">${_('City')}</label>
             <input id="city" type="text" name="city" value="" placeholder="${_('example: New York')}" aria-describedby="city-tip" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS['city'] == 'required' else ''} />
+          </li>
+          % endif
+          % if settings.REGISTRATION_EXTRA_FIELDS['level_of_education'] != 'hidden':
+          <li class="field-group field-education-level">
+            <div class="field ${settings.REGISTRATION_EXTRA_FIELDS['level_of_education']} select" id="field-education-level">
+              <label for="education-level">${_("Highest Level of Education Completed")}</label>
+              <select id="education-level" name="level_of_education" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS['level_of_education'] == 'required' else ''}>
+                <option value="">--</option>
+                %for code, ed_level in UserProfile.LEVEL_OF_EDUCATION_CHOICES:
+                <option value="${code}">${_(ed_level)}</option>
+                %endfor
+              </select>
+            </div>
+          </li>
+          % endif
+          % if settings.REGISTRATION_EXTRA_FIELDS['gender'] != 'hidden':
+          <li class="field-group field-gender">
+            <div class="field ${settings.REGISTRATION_EXTRA_FIELDS['gender']} select" id="field-gender">
+              <label for="gender">${_("Gender")}</label>
+              <select id="gender" name="gender" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS['gender'] == 'required' else ''}>
+                <option value="">--</option>
+                %for code, gender in UserProfile.GENDER_CHOICES:
+                <option value="${code}">${_(gender)}</option>
+                %endfor
+              </select>
+            </div>
+          </li>
+          % endif
+          % if settings.REGISTRATION_EXTRA_FIELDS['year_of_birth'] != 'hidden':
+          <li class="field-group field-yob">
+            <div class="field ${settings.REGISTRATION_EXTRA_FIELDS['year_of_birth']} select" id="field-yob">
+              <label for="yob">${_("Year of Birth")}</label>
+              <select id="yob" name="year_of_birth" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS['year_of_birth'] == 'required' else ''}>
+                <option value="">--</option>
+                %for year in UserProfile.VALID_YEARS:
+                <option value="${year}">${year}</option>
+                %endfor
+              </select>
+            </div>
           </li>
           % endif
         </ol>
@@ -354,14 +432,14 @@
       <div class="group group-form group-form-personalinformation2">
         <ol class="list-input">
           % if settings.REGISTRATION_EXTRA_FIELDS['mailing_address'] != 'hidden':
-          <li class="field required ${settings.REGISTRATION_EXTRA_FIELDS['mailing_address']} text" id="field-address-mailing">
+          <li class="field ${settings.REGISTRATION_EXTRA_FIELDS['mailing_address']} text" id="field-address-mailing">
             <label for="address-mailing">${_("Mailing Address")}</label>
             <textarea id="address-mailing" name="mailing_address" value="" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS['mailing_address'] == 'required' else ''}></textarea>
           </li>
           % endif
 
           % if settings.REGISTRATION_EXTRA_FIELDS['goals'] != 'hidden':
-          <li class="field required ${settings.REGISTRATION_EXTRA_FIELDS['goals']} text" id="field-goals">
+          <li class="field ${settings.REGISTRATION_EXTRA_FIELDS['goals']} text" id="field-goals">
             <label for="goals">${_("Please share with us your reasons for registering with {platform_name}").format(platform_name=platform_name)}</label>
             <textarea id="goals" name="goals" value="" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS['goals'] == 'required' else ''}></textarea>
           </li>
@@ -393,7 +471,7 @@
             % if settings.REGISTRATION_EXTRA_FIELDS['honor_code'] != 'hidden':
             ## If we have an Honor Code link in our marketing map
             % if marketing_link('HONOR') and marketing_link('HONOR') != '#':
-            <div class="field required ${settings.REGISTRATION_EXTRA_FIELDS['honor_code']} checkbox" id="field-honorcode">
+            <div class="field ${settings.REGISTRATION_EXTRA_FIELDS['honor_code']} checkbox" id="field-honorcode">
               <input id="honorcode-yes" type="checkbox" name="honor_code" value="true" />
               <%
                 ## TODO: provide a better way to override these links
@@ -443,7 +521,7 @@
     var year = $('#year_of_birth').val();
     var month = $('#month_of_birth').val();
     var day = $('#day_of_birth').val();
-    return day + "/" + month + "/" + year;
+    return month + "/" + day + "/" + year;
   };
 
   $(window).load(function(){
@@ -456,6 +534,5 @@
     $("#day_of_birth").change(function() {
       $("#date-of-birth").val(generateBirthdate());
     });
-  })
-  
+  });
 </script>
