@@ -323,6 +323,24 @@
             </div>
           </li>
           % endif
+
+          % if settings.REGISTRATION_EXTRA_FIELDS.get('gender_identity', 'optional') != 'hidden':
+          <li class="field-group">
+            <div class="field ${settings.REGISTRATION_EXTRA_FIELDS.get('gender_identity', 'optional')} select" id="field-gender_identity">
+              <label for="gender_identity">What is your preferred gender identity? </label>
+              <select id="gender_identity" name="gender_identity" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS.get('gender_identity', 'optional') == 'required' else ''}>
+                <option value="">--</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="transgender_male">Transgender male</option>
+                <option value="transgender_female">Transgender female</option>
+                <option value="gender_variant">Gender variant/non-conforming</option>
+                <option value="prefer_not_answer">Prefer not to answer</option>
+              </select>
+            </div>
+            </li>
+          % endif
+
           % if settings.REGISTRATION_EXTRA_FIELDS['year_of_birth'] != 'hidden':
           <li class="field-group field-yob">
             <div class="field ${settings.REGISTRATION_EXTRA_FIELDS['year_of_birth']} select" id="field-yob">
