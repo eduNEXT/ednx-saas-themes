@@ -278,6 +278,34 @@
         <h2 class="sr">${_("Additional Personal Information")}</h2>
 
         <ol class="list-input">
+          % if settings.REGISTRATION_EXTRA_FIELDS.get('exec_struct', 'required') != 'hidden':
+          <li class="field-group">
+            <div class="field ${settings.REGISTRATION_EXTRA_FIELDS.get('exec_struct', 'required')} select" id="field-exec_struct">
+              <label for="exec_struct">Executive Structure</label>
+              <select id="exec_struct" name="exec_struct" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS.get('exec_struct', 'required') == 'required' else ''}>
+                <option value="">--</option>
+                <option value="Secretariat">The Secretariat</option>
+                <option value="HighCommNatMin">High Commissioner on National Minorities</option>
+                <option value="OffDemInstHR">Office for Democratic Institutions and Human Rights</option>
+                <option value="Kosovo">Mission in Kosovo</option>
+                <option value="Bosnia">Mission to Bosnia and Herzegovina</option>
+                <option value="Serbia">Mission to Serbia</option>
+                <option value="Albania">Presence in Albania</option>
+                <option value="Skopje">Mission to Skopje</option>
+                <option value="Montenegro">Mission to Montenegro</option>
+                <option value="Moldova">Mission to Moldova</option>
+                <option value="ProjCoUkraine">Project Co-ordinator in Ukraine</option>
+                <option value="CIO">Personal Representative of the CIO</option>
+                <option value="Nur-Sultan">Programme Office in Nur-Sultan</option>
+                <option value="Ashgabat">Centre in Ashgabat</option>
+                <option value="Bishkek">Programme Office in Bishkek</option>
+                <option value="Dushanbe">Programme Office in Dushanbe</option>
+                <option value="Uzbekistan">Project Co-ordinator in Uzbekistan</option>
+                <option value="SpeMonMisUk">Special Monitoring Mission to Ukraine</option>
+              </select>
+            </div>
+          </li>
+          % endif
           % if settings.REGISTRATION_EXTRA_FIELDS['country'] != 'hidden':
           <li class="field-group">
             <div class="field ${settings.REGISTRATION_EXTRA_FIELDS['country']} select" id="field-country">
