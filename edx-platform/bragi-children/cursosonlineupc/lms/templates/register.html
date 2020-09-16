@@ -233,6 +233,21 @@
           </li>
 
           % endif
+
+          % if settings.REGISTRATION_EXTRA_FIELDS.get('personal_id', 'required') != 'hidden':
+          <li class="field ${settings.REGISTRATION_EXTRA_FIELDS.get('personal_id', 'required')} text" id="field-personal_id">
+            <label for="personal_id">DNI</label>
+            <input id="personal_id" type="text" name="personal_id" value="" placeholder="" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS.get('personal_id', 'required') == 'required' else ''} aria-describedby="personal_id"/>
+          </li>
+          % endif
+
+          % if settings.REGISTRATION_EXTRA_FIELDS.get('mobile_number', 'required') != 'hidden':
+          <li class="field ${settings.REGISTRATION_EXTRA_FIELDS.get('mobile_number', 'required')} text" id="field-mobile_number">
+            <label for="mobile-number">Número de celular</label>
+            <input id="mobile-number" type="tel" name="mobile_number" value="" placeholder="" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS.get('mobile_number', 'required') == 'required' else ''} aria-describedby="mobile-number"/>
+          </li>
+          % endif
+
         </ol>
 
         % else:
