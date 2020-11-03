@@ -1,13 +1,12 @@
-<%inherit file="/main.html" />
-<%namespace file="/static_content.html" name='static' />
+<%page expression_filter="h"/>
+<%inherit file="main.html" />
+<%namespace name='static' file='static_content.html'/>
 <%!
-  from django.utils.translation import ugettext as _
-  from django.core.urlresolvers import reverse
-  from openedx.core.djangolib.markup import HTML, Text
+from django.utils.translation import ugettext as _
+from django.urls import reverse
 
-  from branding import api as branding_api
+from openedx.core.djangolib.markup import HTML, Text
 %>
-
 <%
   downgrade_level = theming.options('home', 'downgrade_level', default= False)
 
@@ -101,7 +100,6 @@
   % endif
 
   <div class="home-courses">
-
     <section class="courses-container">
       <section class="highlighted-courses">
 
@@ -136,7 +134,6 @@
 
       </section>
     </section>
-
   </div>
 
   ## home_text
