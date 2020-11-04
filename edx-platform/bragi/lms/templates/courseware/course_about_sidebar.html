@@ -2,16 +2,17 @@
 
 <%!
 from django.utils.translation import ugettext as _
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.conf import settings
 from courseware.courses import get_course_about_section
+from six import text_type
 %>
 
 <div class="course-summary">
   <div class="main-cta text-center">
     %if user.is_authenticated and registered:
       %if show_courseware_link:
-        <a class="btn" href="${course_target}">
+      < a href="${course_target}">
       %endif
 
       <span class="register disabled">${_("You are enrolled in this course")}</span>
@@ -21,52 +22,36 @@ from courseware.courses import get_course_about_section
         </a>
       %endif
 
-    %elif in_cart:
-      <span class="add-to-cart">
-        ${_('This course is in your <a href="{cart_link}">cart</a>.').format(cart_link=cart_link)}
-      </span>
     % elif is_course_full:
       <span class="register disabled">
         ${_("Course is full")}
       </span>
     % elif invitation_only and not can_enroll:
       <span class="register disabled">${_("Enrollment in this course is by invitation only")}</span>
-    ## Shib courses need the enrollment button to be displayed even when can_enroll is False,
-    ## because AnonymousUsers cause can_enroll for shib courses to be False, but we need them to be able to click
-    ## so that they can register and become a real user that can enroll.
+      ## Shib courses need the enrollment button to be displayed even when can_enroll is False,
+      ## because AnonymousUsers cause can_enroll for shib courses to be False, but we need them to be able to click
+      ## so that they can register and become a real user that can enroll.
     % elif not is_shib_course and not can_enroll:
       <span class="register disabled">${_("Enrollment is Closed")}</span>
-    %elif can_add_course_to_cart:
-      <%
-      if user.is_authenticated:
-        reg_href = "#"
-        reg_element_id = "add_to_cart_post"
-      else:
-        reg_href = reg_then_add_to_cart_link
-        reg_element_id = "reg_then_add_to_cart"
-      %>
-      <% if ecommerce_checkout:
-          reg_href = ecommerce_checkout_link
-          reg_element_id = ""
-      %>
-      <a href="${reg_href}" class="btn add-to-cart" id="${reg_element_id}">
-        ${_("Add {course_name} to Cart <span>({price} USD)</span>")\
-          .format(course_name=course.display_number_with_default, price=course_price)}
-      </a>
-      <div id="register_error"></div>
+    %elif allow_anonymous:
+      %if show_courseware_link:
+        <a href="${course_target}">
+          <strong>${_("View Course")}</strong>
+        </a>
+      %endif
     %else:
       <%
         if ecommerce_checkout:
           reg_href = ecommerce_checkout_link
         else:
           reg_href="#"
-        if professional_mode:
+        if single_paid_mode:
           href_class = "add-to-cart"
         else:
           href_class = "register"
       %>
-      <a href="${reg_href}" class="btn ${href_class}">
-        ${_('Enroll')}
+      <a href="${reg_href}" class="${href_class}">
+        ${_("Enroll")}
       </a>
       <div id="register_error"></div>
     %endif
@@ -91,7 +76,7 @@ from courseware.courses import get_course_about_section
                 account=static.get_value('course_about_twitter_account', settings.PLATFORM_TWITTER_ACCOUNT),
                 url=u"http://{domain}{path}".format(
                     domain=site_domain,
-                    path=reverse('about_course', args=[course.id.to_deprecated_string()])
+                    path=reverse('about_course', args=[text_type(course.id)])
                 )
             ).replace(u" ", u"+")
             tweet_action = u"http://twitter.com/intent/tweet?text={tweet_text}".format(tweet_text=tweet_text)
@@ -106,7 +91,7 @@ from courseware.courses import get_course_about_section
                     platform=platform_name,
                     url=u"http://{domain}{path}".format(
                         domain=site_domain,
-                        path=reverse('about_course', args=[course.id.to_deprecated_string()]),
+                        path=reverse('about_course', args=[text_type(course.id)]),
                     )
                 )
             ).replace(u" ", u"%20")
