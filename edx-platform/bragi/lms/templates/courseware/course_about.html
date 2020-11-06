@@ -1,4 +1,3 @@
-<%page expression_filter="h"/>
 <%namespace name='static' file='../static_content.html'/>
 <%!
 from django.utils.translation import ugettext as _
@@ -212,7 +211,7 @@ from six import string_types
         % endif
 
         <div class="inner-wrapper">
-          ${HTML(get_course_about_section(request, course, "overview"))}
+          ${get_course_about_section(request, course, "overview")}
         </div>
 
         % if static.get_value('course_about_show_social_links', True):
@@ -425,7 +424,7 @@ from six import string_types
         % endif
 
         <div class="inner-wrapper">
-          ${HTML(get_course_about_section(request, course, "overview"))}
+          ${get_course_about_section(request, course, "overview")}
         </div>
 
         % if course_text_into_bottom_html:
@@ -471,10 +470,6 @@ from six import string_types
 
   </section>
 % endif
-
-
-
-
 
 <%include file="../video_modal.html" />
 
