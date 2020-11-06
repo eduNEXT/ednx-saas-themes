@@ -1,14 +1,18 @@
-<%namespace name='static' file='/static_content.html'/>
-
+<%namespace name='static' file='../static_content.html'/>
 <%!
-  from django.utils.translation import ugettext as _
-  from django.core.urlresolvers import reverse
-  from courseware.courses import get_course_about_section
-  from django.conf import settings
-  from edxmako.shortcuts import marketing_link
-  from openedx.core.lib.courses import course_image_url
-%>
+from django.utils.translation import ugettext as _
+from django.utils.translation import pgettext
+from django.urls import reverse
+from lms.djangoapps.courseware.courses import get_course_about_section
+from django.conf import settings
+from six import text_type
+from edxmako.shortcuts import marketing_link
+from openedx.core.djangolib.js_utils import js_escaped_string
+from openedx.core.djangolib.markup import clean_dangerous_html, HTML, Text
+from openedx.core.lib.courses import course_image_url
 
+from six import string_types
+%>
 <%
   course_intro_html = theming.options('course_about', 'course_intro_html', default= False)
   course_intro = theming.options('course_about', 'course_intro', default= {})
@@ -29,98 +33,42 @@
   course_about_new = theming.options('course_about', 'course_about_new', default= False)
 %>
 
-<%inherit file="/main.html" />
+<%inherit file="../main.html" />
 <%block name="headextra">
   ## OG (Open Graph) title and description added below to give social media info to display
   ## (https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content#tags)
-  <meta property="og:title" content="${course.display_name_with_default_escaped}" />
+  <meta property="og:title" content="${course.display_name_with_default}" />
   <meta property="og:description" content="${get_course_about_section(request, course, 'short_description')}" />
 </%block>
 
 <%block name="js_extra">
-  ## CourseTalk widget js script
-  % if show_coursetalk_widget:
-      <script src="//d3q6qq2zt8nhwv.cloudfront.net/s/js/widgets/coursetalk-read-reviews.js"></script>
-  % endif
   <script type="text/javascript">
-    (function() {
-      $(".register").click(function(event) {
-        $("#class_enroll_form").submit();
-        event.preventDefault();
-      });
+  (function() {
+    $(".register").click(function(event) {
+      $("#class_enroll_form").submit();
+      event.preventDefault();
+    });
 
-      % if can_add_course_to_cart:
-        add_course_complete_handler = function(jqXHR, textStatus) {
-          if (jqXHR.status == 200) {
-            location.href = "${cart_link}";
-          }
-          if (jqXHR.status == 400) {
-            $("#register_error")
-              .html(jqXHR.responseText ? jqXHR.responseText : "${_("An error occurred. Please try again later.")}")
-              .css("display", "block");
-          }
-          else if (jqXHR.status == 403) {
-              location.href = "${reg_then_add_to_cart_link}";
-          }
-        };
-
-        $("#add_to_cart_post").click(function(event){
-          $.ajax({
-            url: "${reverse('add_course_to_cart', args=[course.id.to_deprecated_string()])}",
-            type: "POST",
-            /* Rant: HAD TO USE COMPLETE B/C PROMISE.DONE FOR SOME REASON DOES NOT WORK ON THIS PAGE. */
-            complete: add_course_complete_handler
-          })
-          event.preventDefault();
-        });
-      % endif
-
-      ## making the conditional around this entire JS block for sanity
-      %if settings.FEATURES.get('RESTRICT_ENROLL_BY_REG_METHOD') and course.enrollment_domain:
-        <%
-          perms_error = _('The currently logged-in user account does not have permission to enroll in this course. '
-                          'You may need to {start_logout_tag}log out{end_tag} then try the enroll button again. '
-                          'Please visit the {start_help_tag}help page{end_tag} for a possible solution.').format(
-                            start_help_tag="<a href='{url}'>".format(url=marketing_link('FAQ')), end_tag='</a>',
-                            start_logout_tag="<a href='{url}'>".format(url=reverse('logout'))
-                            )
-        %>
-      $('#class_enroll_form').on('ajax:complete', function(event, xhr) {
-        if(xhr.status == 200) {
-          location.href = "${reverse('dashboard')}";
-        } else if (xhr.status == 403) {
-          location.href = "${reverse('course-specific-register', args=[course.id.to_deprecated_string()])}?course_id=${course.id | u}&enrollment_action=enroll";
-        } else if (xhr.status == 400) { //This means the user did not have permission
-          $('#register_error').html("${perms_error}").css("display", "block");
-        } else {
-          $('#register_error').html(
-              (xhr.responseText ? xhr.responseText : "${_("An error occurred. Please try again later.")}")
-          ).css("display", "block");
+    $('#class_enroll_form').on('ajax:complete', function(event, xhr) {
+      if (xhr.status == 200) {
+        if (xhr.responseText == "") {
+          location.href = "${reverse('dashboard') | n, js_escaped_string}";
         }
-      });
-
-      %else:
-
-      $('#class_enroll_form').on('ajax:complete', function(event, xhr) {
-        if(xhr.status == 200) {
-          if (xhr.responseText == "") {
-            location.href = "${reverse('dashboard')}";
-          }
-          else {
-            location.href = xhr.responseText;
-          }
-        } else if (xhr.status == 403) {
-            location.href = "${reverse('register_user')}?course_id=${course.id | u}&enrollment_action=enroll";
-        } else {
-          $('#register_error').html(
-              (xhr.responseText ? xhr.responseText : "${_("An error occurred. Please try again later.")}")
-          ).css("display", "block");
+        else {
+          location.href = xhr.responseText;
         }
-      });
+      } else if (xhr.status == 403) {
+        $('#register_error').text(
+            (xhr.responseText ? xhr.responseText : "${_("An error has occurred. Please ensure that you are logged in to enroll.") | n, js_escaped_string}")
+        ).css("display", "block");
+      } else {
+        $('#register_error').text(
+            (xhr.responseText ? xhr.responseText : "${_("An error occurred. Please try again later.") | n, js_escaped_string}")
+        ).css("display", "block");
+      }
+    });
 
-      %endif
-      
-    })(this)
+  })(this)
   </script>
 
   <script src="${static.url('js/course_info.js')}"></script>
@@ -166,19 +114,19 @@
     if(arrayPreviousUrl[0].indexOf("http") < 0) {
       arrayPreviousUrl.splice(0, 0, "https://");
     }
-    newUrl = arrayPreviousUrl.join('/');  
+    newUrl = arrayPreviousUrl.join('/');
     return newUrl;
   }
 
   return {
     init: init
-  } 
+  }
 })();
 
 $(document).ready(function(){
   var elementData;
   elementData = $('#new-domain-checkout');
-  replaceURL.init(elementData); 
+  replaceURL.init(elementData);
 });
 </script>
 % endif
@@ -196,8 +144,8 @@ $(document).ready(function(){
     container_social.addClass('col-lg-3');
     container_info_about.addClass('col-lg-9 course-details');
   }
-})  
-</script>  
+})
+</script>
 % endif
 
 <%block name="pagetitle">${course.display_name_with_default_escaped}</%block>
@@ -216,7 +164,7 @@ $(document).ready(function(){
         </header>
       % endif
     % endif
-    
+
     ## course_text
     % if course_text_html:
       ${course_text_html}
@@ -234,29 +182,26 @@ $(document).ready(function(){
     <header class="course-info__banner d-flex py-4">
       <div class="content-container d-md-flex align-items-center">
         % if get_course_about_section(request, course, "video"):
-          <a href="#video-modal" class="media col col-12 col-md-3 pl-0 justify-content-sm-center justify-content-start" rel="leanModal">
-            <div class="hero">
-              <img class="img-fluid" src="${course_image_urls['large']}" alt="" />
-              <div class="play-intro"></div>
-            </div>
-          </a>
-        %else:
-          <div class="media col col-12 col-md-3 pl-0 justify-content-sm-center justify-content-start">
+        <a href="#video-modal" class="media col col-12 col-md-2 pl-0 justify-content-sm-center justify-content-start" rel="leanModal">
+          <div class="hero">
             <img class="img-fluid" src="${course_image_urls['large']}" alt="" />
+            <div class="play-intro"></div>
           </div>
+        </a>
+        %else:
+        <div class="media col col-12 col-md-2 pl-0 justify-content-sm-center justify-content-start">
+            <img class="img-fluid" src="${course_image_urls['large']}" alt="" />
+        </div>
         % endif
 
-        <div class="col col-12 col-md-6 course-about-titles">
-          <h1 class="course-title mb-2">
+        <div class="col col-12 col-md-10">
+          <h1 class="course-title d-flex mb-2">
             ${course.display_name_with_default_escaped}
-          </h1>
-          <div>${get_course_about_section(request, course, 'short_description')}</div>
-        </div>
 
-        <div class="main-cta ml-2 col-md-3 text-center">
+            <div class="main-cta ml-2 text-center">
               %if user.is_authenticated and registered:
                 %if show_courseware_link:
-                  <a class="btn" href="${course_target}">
+                  <a href="${course_target}">
                 %endif
 
                 <span class="register disabled">${_("You are enrolled in this course")}</span>
@@ -266,10 +211,6 @@ $(document).ready(function(){
                   </a>
                 %endif
 
-              %elif in_cart:
-                <span class="add-to-cart">
-                  ${_('This course is in your <a href="{cart_link}">cart</a>.').format(cart_link=cart_link)}
-                </span>
               % elif is_course_full:
                 <span class="register disabled">
                   ${_("Course is full")}
@@ -281,47 +222,38 @@ $(document).ready(function(){
                 ## so that they can register and become a real user that can enroll.
               % elif not is_shib_course and not can_enroll:
                 <span class="register disabled">${_("Enrollment is Closed")}</span>
-              %elif can_add_course_to_cart:
-                <%
-                if user.is_authenticated:
-                  reg_href = "#"
-                  reg_element_id = "add_to_cart_post"
-                else:
-                  reg_href = reg_then_add_to_cart_link
-                  reg_element_id = "reg_then_add_to_cart"
-                %>
-                <% if ecommerce_checkout:
-                    reg_href = ecommerce_checkout_link
-                    reg_element_id = ""
-                %>
-                <a href="${reg_href}" class="btn add-to-cart" id="${reg_element_id}">
-                  ${_("Add {course_name} to Cart <span>({price} USD)</span>")\
-                    .format(course_name=course.display_number_with_default, price=course_price)}
+              %elif allow_anonymous:
+                %if show_courseware_link:
+                <a href="${course_target}">
+                  <strong>${_("View Course")}</strong>
                 </a>
-                <div id="register_error"></div>
+                %endif
               %else:
                 <%
                   if ecommerce_checkout:
                     reg_href = ecommerce_checkout_link
                   else:
                     reg_href="#"
-                  if professional_mode:
+                  if single_paid_mode:
                     href_class = "add-to-cart"
                   else:
                     href_class = "register"
                 %>
-                <a href="${reg_href}" class="btn ${href_class}">
-                  ${_('Enroll')}
-                </a>
-                <div id="register_error"></div>
+              <a href="${reg_href}" class="${href_class}">
+                ${_("Enroll")}
+              </a>
+              <div id="register_error"></div>
               %endif
             </div>
+          </h1>
+          <div>${get_course_about_section(request, course, 'short_description')}</div>
+        </div>
       </div>
     </header>
 
     % if course_text_below_html:
       ${course_text_below_html}
-    % endif  
+    % endif
 
     <div class="course-info__content row container mt-5 p-4">
 
@@ -338,63 +270,62 @@ $(document).ready(function(){
 
         <div class="inner-wrapper">
           ${get_course_about_section(request, course, "overview")}
-
         </div>
+
         % if static.get_value('course_about_show_social_links', True):
-        <div class="social-sharing">
-          <div class="sharing-message">${_("Share with friends and family!")}</div>
-          ## TODO: this should probably be an overrideable block,
-          ##       or something allowing themes to do whatever they
-          ##       want here (and on this whole page, really).
-            <%
-              site_domain = static.get_value('site_domain', settings.SITE_NAME)
-              platform_name = static.get_platform_name()
+          <div class="social-sharing">
+            <div class="sharing-message">${_("Share with friends and family!")}</div>
+            ## TODO: this should probably be an overrideable block,
+            ##       or something allowing themes to do whatever they
+            ##       want here (and on this whole page, really).
+              <%
+                site_domain = static.get_value('site_domain', settings.SITE_NAME)
+                platform_name = static.get_platform_name()
 
-              ## Translators: This text will be automatically posted to the student's
-              ## Twitter account. {url} should appear at the end of the text.
-              tweet_text = _("I just enrolled in {number} {title} through {account}: {url}").format(
-                  number=course.number,
-                  title=course.display_name_with_default_escaped,
-                  account=static.get_value('course_about_twitter_account', settings.PLATFORM_TWITTER_ACCOUNT),
-                  url=u"http://{domain}{path}".format(
-                      domain=site_domain,
-                      path=reverse('about_course', args=[course.id.to_deprecated_string()])
-                  )
-              ).replace(u" ", u"+")
-              tweet_action = u"http://twitter.com/intent/tweet?text={tweet_text}".format(tweet_text=tweet_text)
+                ## Translators: This text will be automatically posted to the student's
+                ## Twitter account. {url} should appear at the end of the text.
+                tweet_text = _("I just enrolled in {number} {title} through {account}: {url}").format(
+                    number=course.number,
+                    title=course.display_name_with_default_escaped,
+                    account=static.get_value('course_about_twitter_account', settings.PLATFORM_TWITTER_ACCOUNT),
+                    url=u"http://{domain}{path}".format(
+                        domain=site_domain,
+                        path=reverse('about_course', args=[text_type(course.id)])
+                    )
+                ).replace(u" ", u"+")
+                tweet_action = u"http://twitter.com/intent/tweet?text={tweet_text}".format(tweet_text=tweet_text)
 
-              facebook_link = static.get_value('course_about_facebook_link', settings.PLATFORM_FACEBOOK_ACCOUNT)
+                facebook_link = static.get_value('course_about_facebook_link', settings.PLATFORM_FACEBOOK_ACCOUNT)
 
-              email_subject = u"mailto:?subject={subject}&body={body}".format(
-                  subject=_("Take a course with {platform} online").format(platform=platform_name),
-                  body=_("I just enrolled in {number} {title} through {platform} {url}").format(
-                      number=course.number,
-                      title=course.display_name_with_default_escaped,
-                      platform=platform_name,
-                      url=u"http://{domain}{path}".format(
-                          domain=site_domain,
-                          path=reverse('about_course', args=[course.id.to_deprecated_string()]),
-                      )
-                  )
-              ).replace(u" ", u"%20")
-            %>
-            <a href="${tweet_action}" class="share">
-              <span class="icon fa fa-twitter" aria-hidden="true"></span><span class="sr">${_("Tweet that you've enrolled in this course")}</span>
-            </a>
-            <a href="${facebook_link}" class="share">
-              <span class="icon fa fa-thumbs-up" aria-hidden="true"></span><span class="sr">${_("Post a Facebook message to say you've enrolled in this course")}</span>
-            </a>
-            <a href="${email_subject}" class="share">
-              <span class="icon fa fa-envelope" aria-hidden="true"></span><span class="sr">${_("Email someone to say you've enrolled in this course")}</span>
-            </a>
-        </div>
-      % endif
+                email_subject = u"mailto:?subject={subject}&body={body}".format(
+                    subject=_("Take a course with {platform} online").format(platform=platform_name),
+                    body=_("I just enrolled in {number} {title} through {platform} {url}").format(
+                        number=course.number,
+                        title=course.display_name_with_default_escaped,
+                        platform=platform_name,
+                        url=u"http://{domain}{path}".format(
+                            domain=site_domain,
+                            path=reverse('about_course', args=[text_type(course.id)]),
+                        )
+                    )
+                ).replace(u" ", u"%20")
+              %>
+              <a href="${tweet_action}" class="share">
+                <span class="icon fa fa-twitter" aria-hidden="true"></span><span class="sr">${_("Tweet that you've enrolled in this course")}</span>
+              </a>
+              <a href="${facebook_link}" class="share">
+                <span class="icon fa fa-thumbs-up" aria-hidden="true"></span><span class="sr">${_("Post a Facebook message to say you've enrolled in this course")}</span>
+              </a>
+              <a href="${email_subject}" class="share">
+                <span class="icon fa fa-envelope" aria-hidden="true"></span><span class="sr">${_("Email someone to say you've enrolled in this course")}</span>
+              </a>
+          </div>
+        % endif
       </div>
 
-       % if course_text_into_bottom_html:
+        % if course_text_into_bottom_html:
           ${course_text_into_bottom_html | n, decode.utf8}
         % endif
-
     </div>
 
     % if course_text_bottom_html:
@@ -417,18 +348,18 @@ $(document).ready(function(){
       <div style="display: none;">
         <form id="class_enroll_form" method="post" data-remote="true" action="${reverse('change_enrollment')}">
           <fieldset class="enroll_fieldset">
-            <legend class="sr">${_("Enroll")}</legend>
-            <input name="course_id" type="hidden" value="${course.id | h}">
+            <legend class="sr">${pgettext("self","Enroll")}</legend>
+            <input name="course_id" type="hidden" value="${course.id}">
             <input name="enrollment_action" type="hidden" value="enroll">
           </fieldset>
           <div class="submit">
-            <input name="submit" type="submit" value="${_('enroll')}">
+            <input name="submit" type="submit" value="${pgettext('self','enroll')}">
           </div>
         </form>
       </div>
     %endif
-  </section>
 
+  </section>
 % else:
   <section class="course-info pb-5">
     % if course_intro_html:
@@ -443,7 +374,7 @@ $(document).ready(function(){
         </header>
       % endif
     % endif
-    
+
     ## course_text
     % if course_text_html:
       ${course_text_html}
@@ -461,25 +392,26 @@ $(document).ready(function(){
     <header class="course-info__banner d-flex py-4">
       <div class="content-container d-md-flex align-items-center">
         % if get_course_about_section(request, course, "video"):
-          <a href="#video-modal" class="media col col-12 col-md-2 pl-0 justify-content-sm-center justify-content-start" rel="leanModal">
-            <div class="hero">
-              <img class="img-fluid" src="${course_image_urls['large']}" alt="" />
-              <div class="play-intro"></div>
-            </div>
-          </a>
-        %else:
-          <div class="media col col-12 col-md-2 pl-0 justify-content-sm-center justify-content-start">
+        <a href="#video-modal" class="media col col-12 col-md-2 pl-0 justify-content-sm-center justify-content-start" rel="leanModal">
+          <div class="hero">
             <img class="img-fluid" src="${course_image_urls['large']}" alt="" />
+            <div class="play-intro"></div>
           </div>
+        </a>
+        %else:
+        <div class="media col col-12 col-md-2 pl-0 justify-content-sm-center justify-content-start">
+            <img class="img-fluid" src="${course_image_urls['large']}" alt="" />
+        </div>
         % endif
 
         <div class="col col-12 col-md-10">
           <h1 class="course-title d-flex mb-2">
             ${course.display_name_with_default_escaped}
+
             <div class="main-cta ml-2 text-center">
               %if user.is_authenticated and registered:
                 %if show_courseware_link:
-                  <a class="btn" href="${course_target}">
+                  <a href="${course_target}">
                 %endif
 
                 <span class="register disabled">${_("You are enrolled in this course")}</span>
@@ -489,10 +421,6 @@ $(document).ready(function(){
                   </a>
                 %endif
 
-              %elif in_cart:
-                <span class="add-to-cart">
-                  ${_('This course is in your <a href="{cart_link}">cart</a>.').format(cart_link=cart_link)}
-                </span>
               % elif is_course_full:
                 <span class="register disabled">
                   ${_("Course is full")}
@@ -504,39 +432,27 @@ $(document).ready(function(){
                 ## so that they can register and become a real user that can enroll.
               % elif not is_shib_course and not can_enroll:
                 <span class="register disabled">${_("Enrollment is Closed")}</span>
-              %elif can_add_course_to_cart:
-                <%
-                if user.is_authenticated:
-                  reg_href = "#"
-                  reg_element_id = "add_to_cart_post"
-                else:
-                  reg_href = reg_then_add_to_cart_link
-                  reg_element_id = "reg_then_add_to_cart"
-                %>
-                <% if ecommerce_checkout:
-                    reg_href = ecommerce_checkout_link
-                    reg_element_id = ""
-                %>
-                <a href="${reg_href}" class="btn add-to-cart" id="${reg_element_id}">
-                  ${_("Add {course_name} to Cart <span>({price} USD)</span>")\
-                    .format(course_name=course.display_number_with_default, price=course_price)}
+              %elif allow_anonymous:
+                %if show_courseware_link:
+                <a href="${course_target}">
+                  <strong>${_("View Course")}</strong>
                 </a>
-                <div id="register_error"></div>
+                %endif
               %else:
                 <%
                   if ecommerce_checkout:
                     reg_href = ecommerce_checkout_link
                   else:
                     reg_href="#"
-                  if professional_mode:
+                  if single_paid_mode:
                     href_class = "add-to-cart"
                   else:
                     href_class = "register"
                 %>
-                <a href="${reg_href}" class="btn ${href_class}">
-                  ${_('Enroll')}
-                </a>
-                <div id="register_error"></div>
+              <a href="${reg_href}" class="${href_class}">
+                ${_("Enroll")}
+              </a>
+              <div id="register_error"></div>
               %endif
             </div>
           </h1>
@@ -547,10 +463,10 @@ $(document).ready(function(){
 
     % if course_text_below_html:
       ${course_text_below_html}
-    % endif  
+    % endif
 
     <div class="course-info__content row container mt-5 p-4">
-      <div class="col col-12 hidden-lg-up course-sidebar mobile mb-5">
+      <div class="col col-12 d-lg-none course-sidebar mobile mb-5">
         <%include file="./course_about_sidebar.html" />
       </div>
 
@@ -574,8 +490,8 @@ $(document).ready(function(){
         % endif
       </div>
 
-      <div class="course-sidebar col col-12 col-lg-3 hidden-md-down">
-        <%include file="./course_about_sidebar.html" />
+      <div class="course-sidebar col col-12 col-lg-3 d-none d-lg-block">
+        ## <%include file="./course_about_sidebar.html" />
       </div>
     </div>
 
@@ -599,21 +515,21 @@ $(document).ready(function(){
       <div style="display: none;">
         <form id="class_enroll_form" method="post" data-remote="true" action="${reverse('change_enrollment')}">
           <fieldset class="enroll_fieldset">
-            <legend class="sr">${_("Enroll")}</legend>
-            <input name="course_id" type="hidden" value="${course.id | h}">
+            <legend class="sr">${pgettext("self","Enroll")}</legend>
+            <input name="course_id" type="hidden" value="${course.id}">
             <input name="enrollment_action" type="hidden" value="enroll">
           </fieldset>
           <div class="submit">
-            <input name="submit" type="submit" value="${_('enroll')}">
+            <input name="submit" type="submit" value="${pgettext('self','enroll')}">
           </div>
         </form>
       </div>
     %endif
-  </section>
 
+  </section>
 % endif
 
-<%include file="/video_modal.html" />
+<%include file="../video_modal.html" />
 
 <%static:require_module_async module_name="js/dateutil_factory" class_name="DateUtilFactory">
     DateUtilFactory.transform(iterationKey=".localized_datetime");
