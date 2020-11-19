@@ -12,7 +12,7 @@ from six import text_type
   <div class="main-cta text-center">
     %if user.is_authenticated and registered:
       %if show_courseware_link:
-      < a href="${course_target}">
+      <a class="btn" href="${course_target}">
       %endif
 
       <span class="register disabled">${_("You are enrolled in this course")}</span>
@@ -50,7 +50,7 @@ from six import text_type
         else:
           href_class = "register"
       %>
-      <a href="${reg_href}" class="${href_class}">
+      <a href="${reg_href}" class="btn ${href_class}">
         ${_("Enroll")}
       </a>
       <div id="register_error"></div>
