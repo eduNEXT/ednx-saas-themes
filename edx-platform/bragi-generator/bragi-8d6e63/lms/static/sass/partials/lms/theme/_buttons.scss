@@ -96,11 +96,14 @@ a:link.btn,
 button[type="submit"],
 input[type="submit"],
 input[type="button"],
-.btn-outline-primary {
+.btn-outline-primary,
+.view-teams .btn-secondary,
+.view-teams .action-primary.action {
   @extend %btn;
 }
 
-.wrapper-downloads a.btn:hover:hover:link {
+.wrapper-downloads a.btn:hover:hover:link,
+.view-teams .btn-secondary:hover:not(:disabled):hover {
   color: $btn-primary-bg;
 }
 
