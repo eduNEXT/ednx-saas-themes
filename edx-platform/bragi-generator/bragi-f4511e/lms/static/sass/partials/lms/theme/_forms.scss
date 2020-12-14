@@ -99,3 +99,17 @@
 .window-wrap select.form-control-sm:not([size]):not([multiple]) {
   height: 1.8125rem;
 }
+
+.login-register-content {
+  flex-direction: column;
+
+  .login-register,
+  .login-register .form-type {
+    max-width: 1180px;
+    width: 100%;
+  }
+}
+
+.login-register .toggle-form {
+  text-align: center;
+}
