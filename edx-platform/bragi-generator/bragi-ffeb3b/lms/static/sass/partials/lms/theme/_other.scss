@@ -3,43 +3,62 @@
 Other Components
 
 -------------------------------- */
-.view-login,
-.view-register,
-.view-passwordreset {
-  .content-wrapper {
-    padding: 0 0 4rem 0;
+.register-header.introduction,
+.login-header.introduction {
+  width: 100%;
+  background-color: $white;
+
+  header {
+    @include content-wrapper;
+    height: auto;
+    background-image: none;
   }
 
-  .container {
-    @extend %container-wrapper;
-  }
+  h1.title {
+    position: relative;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    @include text-align(left);
 
-  .introduction {
-    width: 100%;
-    background-color: $white;
-
-    header {
-      @include content-wrapper;
-      height: auto;
-      background-image: none;
+    .title-super {
+      color: $main-color;
+      display: block;
+      font-size: 1.6rem;
+      line-height: 1;
     }
 
-    h1.title {
-      position: relative;
-      top: 0;
-      left: 0;
+    .title-sub {
+      display: block;
+      font-size: 1.3rem;
       margin: 0;
-      padding: 0;
-
-      .title-super {
-        color: $main-color;
-      }
-
-      .title-sub {
-        margin: 0;
-      }
     }
+  }
+}
 
+.register-text-container,
+.login-text-container {
+  background: $white;
+}
+
+.content-wrapper .section-bkg-wrapper main {
+  padding: 0;
+}
+
+.register-text,
+.login-text {
+  max-width: 1180px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 10px 0;
+
+  h2,
+  p {
+    margin: 20px 10px;
+    color: #313131;
+    line-height: 1.41575em;
+    font-size: 1rem;
   }
 }
 
