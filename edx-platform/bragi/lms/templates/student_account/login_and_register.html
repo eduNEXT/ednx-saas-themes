@@ -56,6 +56,7 @@
     % endfor
 </%block>
 
+## Hide link form when login and register is disable
 % if settings.FEATURES.get('ednx_navigation__disable_register', False):
 	<style>
 		#login-form .toggle-form {
@@ -63,7 +64,7 @@
 		}
 	</style>
 %endif
-% if settings.FEATURES['DISABLE_LOGIN_BUTTON']:
+% if settings.FEATURES.get('DISABLE_LOGIN_BUTTON', false):
 	<style>
 		#register-form .toggle-form {
 			display: none;

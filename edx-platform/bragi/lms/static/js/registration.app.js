@@ -22,18 +22,10 @@ $(document).ready(function() {
 		}
 	}
 
-	function toggleContent(target, flag, hideContent, showContent){
-		if($(target).hasClass("hidden")){
-			if (flag) {
-				hideContent();
-			}
-		}else {
-			showContent();
-		}
+	function toggleContent(target, flag, showContent){
+		(!$(target).hasClass("hidden")) && showContent();
 
-		if (!flag) {
-			flag = true;
-		}
+		(!flag) && (flag = true);
 	}
 
 	function addObserver(){
@@ -47,9 +39,9 @@ $(document).ready(function() {
 		const observer = new MutationObserver(function(mutations){
 			mutations.forEach(function(mutation){
 				if(mutation.target.id === 'login-form'){
-					toggleContent(mutation.target, EDNX.login_render, showRegisterContent, showLoginContent);
+					toggleContent(mutation.target, EDNX.login_render, showLoginContent);
 				} else if(mutation.target.id === 'register-form'){
-					toggleContent(mutation.target, EDNX.register_render, showLoginContent, showRegisterContent);
+					toggleContent(mutation.target, EDNX.register_render, showRegisterContent);
 				}
 			});
 		});
