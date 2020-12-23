@@ -56,7 +56,22 @@
     % endfor
 </%block>
 
-% if request.path == '/register':
+% if settings.FEATURES.get('ednx_navigation__disable_register', False):
+	<style>
+		#login-form .toggle-form {
+			display: none;
+		}
+	</style>
+%endif
+% if settings.FEATURES['DISABLE_LOGIN_BUTTON']:
+	<style>
+		#register-form .toggle-form {
+			display: none;
+		}
+	</style>
+%endif
+
+<div class="register-custom-content">
 	% if register_header_html:
 		${register_header_html |n}
 	% else:
@@ -69,7 +84,8 @@
 			</header>
 		</section>
 	% endif
-% elif request.path == '/login':
+</div>
+<div class="login-custom-content">
 	% if login_header_html:
     ${login_header_html |n}
   % else:
@@ -82,12 +98,12 @@
       </header>
     </section>
   % endif
-% endif
+</div>
 
 <div class="section-bkg-wrapper">
     <main id="main" aria-label="Content" tabindex="-1">
         <div id="content-container" class="login-register-content">
-        	% if request.path == '/register':
+        	<div class="register-custom-content">
 	        	% if register_text_html:
 		        	${register_text_html |n}
 		        % else:
@@ -98,7 +114,8 @@
 			        	</div>
 		        	% endif
 	        	% endif
-        	% elif request.path == '/login':
+        	</div>
+        	<div class="login-custom-content">
 	        	% if login_text_html:
 	        		${login_text_html |n}
 	        	% else:
@@ -109,7 +126,7 @@
 		        	</header>
 		        	% endif
 	        	% endif
-        	% endif
+        	</div>
 
             % if enable_enterprise_sidebar:
                 <%include file="enterprise_sidebar.html" />
@@ -126,7 +143,7 @@
     </main>
 </div>
 
-% if request.path == '/register':
+<div class="register-custom-content">
 	% if register_text_bottom_html:
 		${register_text_bottom_html |n}
 	% else:
@@ -139,18 +156,20 @@
 				</div>
 		% endif
 	% endif
-%elif request.path == '/login':
+</div>
+<div class="login-custom-content">
 	% if login_text_bottom_html:
-      ${login_text_bottom_html |n}
-    % else:
-      %if login_text_bottom:
-	      <div class="login-text-container">
-	      	<div class="login-text">
-	          <h2>${login_text.get('title', '') | h}</h2>
-	          <p class="mb-0">${login_text.get('paragraph', '') | h}</p>
-	        </div>
+    ${login_text_bottom_html |n}
+  % else:
+    %if login_text_bottom:
+	    <div class="login-text-container">
+	    	<div class="login-text">
+	        <h2>${login_text.get('title', '') | h}</h2>
+	        <p class="mb-0">${login_text.get('paragraph', '') | h}</p>
 	      </div>
-    	% endif
-   % endif
-% endif
+	    </div>
+  	% endif
+  % endif
+</div>
 
+<script type="text/javascript" src="${static.url('js/registration.app.js')}"></script>
