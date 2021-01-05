@@ -118,3 +118,9 @@
 .login-custom-content {
   animation: none;
 }
+
+.login-register .form-field.select-year_of_birth,
+.login-register .form-field.select-gender {
+  width: 100%;
+  @include margin-left(0);
+}
