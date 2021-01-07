@@ -98,11 +98,11 @@ div[class*="fa-"],
 }
 
 // typography
-div,
+div:not(.problem *),
 section,
 p,
 i:not(.fa),
-span:not(.fa),
+span :not(.fa):not(.MathJax *),
 label {
   font-family: $font-family-base !important;
   font-weight: $font-weight-normal !important;
