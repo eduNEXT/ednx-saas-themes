@@ -46,7 +46,12 @@
         ['[mathjax]','[/mathjax]']
       ]
     },
-    "HTML-CSS": { fonts: ["Latin-Modern"] }
+    "HTML-CSS": {
+      imageFont: null,
+      webFont: "TeX",
+      availableFonts: ["TeX"],
+      preferredFont: "TeX"
+  }
   });
 </script>
 %endif
@@ -75,7 +80,6 @@
     });
   }
 </script>
-
 <script type="text/javascript">
     // Activating Mathjax accessibility files
     window.MathJax = {
