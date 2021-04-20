@@ -103,6 +103,7 @@ source = None
 for origin in loader.get_template_sources(path):
     try:
         source = loader.get_contents(origin)
+        break
     except TemplateDoesNotExist:
         pass
 
