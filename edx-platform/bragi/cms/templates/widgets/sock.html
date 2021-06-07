@@ -1,0 +1,70 @@
+<%!
+from django.conf import settings
+from django.utils.translation import ugettext as _
+%>
+
+
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700,900" rel="stylesheet">
+<!--Load the background, marker and logo images via css to avoid problems when displaying the widget-->
+<img style="display: none;" src="https://edunextpublic.s3-us-west-2.amazonaws.com/resources/images/help-widget-background.png" class=“hiddenPic”>
+<img style="display: none;" src="https://edunextpublic.s3-us-west-2.amazonaws.com/resources/images/help-widget-list-marker-small.png" class=“hiddenPic”>
+<img style="display: none;" src="https://d1uwn6yupg8lfo.cloudfront.net/logos/21/darkbg/logo-edunext-01.png" class=“hiddenPic”>
+
+
+<input onclick="toggleHelpWidget('display')" style="outline: none;position: absolute;top: 8%;right: 0px;width: 60px;height: 60px;" title="edunext" type="image" id="ednx-help-widget-tab" alt="edunext" src="https://edunextpublic.s3-us-west-2.amazonaws.com/resources/images/help-widget-tab.png">
+
+<div id="ednx-help-widget-wrapper" class="ednx-widget-wrapper" style="color: #EEEEEE;font-family: Poppins; aspect-ratio: 100 / 29; display: none; background-size: 100% 100%;background-image: url(https://edunextpublic.s3-us-west-2.amazonaws.com/resources/images/help-widget-background.png);height: auto; width: 265px;position: absolute;top: 8%;right: 0%;margin-right: -0px;">
+
+    <button class="btn info" onclick="toggleHelpWidget('hide')" style="outline: none;color: #EEEEEE;border-radius: 40px;background-color: transparent;font-weight: light; font-size: 14px;margin-left: 87%;margin-top: 2%;">X</button> 
+
+    <div style="height: 135px;width: 100px;margin-top: 45%;margin-left: 20%;">
+      <img id="ednx-help-widget-logo" src="https://d1uwn6yupg8lfo.cloudfront.net/logos/21/darkbg/logo-edunext-01.png"     
+        width="160" 
+        height="160"/>
+    </div>
+
+    <hr style="width:85%;margin-top: 5%;", size="3", color=white>  
+
+    <p style="font-weight: bolder;font-size: 20pt;text-align: center;margin-top: 5%;">Looking for help?</p>
+    
+    <ul style="font-weight: bolder; font-size: 10pt;list-style-image: url('https://edunextpublic.s3-us-west-2.amazonaws.com/resources/images/help-widget-list-marker-small.png');text-align: left;list-style-position: inside;margin-left: 10%;">
+      <li>Check out the <a href="https://docs.edunext.co/en/public/external/index.html" target="_blank"><p style="color: #1F9FFF;display: inline;">edunext documentation</p></a></li>
+      <li>Explore our <a href="https://www.edunext.co/manage/getting-started/" target="_blank"><p style="color: #1F9FFF;display: inline;">getting started video guide</p></a></li>
+      <li>Visit our <a href="https://support.edunext.co/" target="_blank"><p style="color: #1F9FFF;display: inline;">support center</p></a></li>
+    </ul> 
+
+    <hr style="width:85%;margin-top: 10px;", size="3", color=white>  
+
+    <p style="font-weight: bolder;font-size: 20pt;text-align: center;margin-left: 7%;margin-right: 7%;margin-top: 5%;">Want to manage your LMS site?</p>
+
+    <ul style="font-weight: bolder;font-size: 10pt; list-style-image: url('https://edunextpublic.s3-us-west-2.amazonaws.com/resources/images/help-widget-list-marker-small.png');text-align: left;list-style-position: inside;margin-left: 10%;">
+      <li>Go to the <a href="https://manage.edunext.co/" target="_blank"><p style="color: #1F9FFF;display: inline;">EMC console</p></a></li>
+    </ul> 
+
+    <a href="https://www.edunext.co/" target="_blank">
+      <div id="ednx-button-wrapper" style="text-align: center;">
+        <button class="button" type="button" style="outline: none;color: #EEEEEE;font-family: Poppins;margin-top: 3%;font-weight: bolder; padding: 10px 20px;border: none;border-radius: 20px;background-color: #1F9FFF;">edunext.co</button>
+      </div>
+    </a>
+
+    <hr style="width:85%;margin-top: 8%;", size="3", color=white> 
+
+    <p style="margin-right: 7%;margin-left: 7%;line-height: 9pt;font-size: 8pt;text-align: left;"><br><br>eduNEXT is a company that provides online learning technologies powered by the Open edX® platform.These technologies enable the authoring, publication,and operation of online courses to a wide audience,communication, and collaboration tools for learners andinstructors, and management tools for administrators.<br><br>edX and Open edX are registered trademarks of edX inc.The Open edX platform is available to the world asopen-source through the GNU Affero license. eduNEXT isnot endorsed, sponsored, or directly affiliated with edX inc,or Open edX.<br><br>Your use of this eduNEXT cloud subscription is bound byour terms of service, and privacy policy.<br><br>Copyright © 2021 eduNEXT, All rights reserved.<br>www.edunext.co<br><br><br></p>
+
+</div>
+
+
+<script>
+  function toggleHelpWidget(action) {
+      /*This function hides or shows the help widget */
+      var widget = document.getElementById("ednx-help-widget-wrapper");
+      var tab = document.getElementById("ednx-help-widget-tab");
+      if (action === "display") {
+        widget.style.display = "block";
+        tab.style.display = "none";
+      } else {
+        tab.style.display = "block";
+        widget.style.display = "none";
+      }
+  } 
+</script>
