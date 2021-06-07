@@ -195,6 +195,11 @@ from pipeline_mako import render_require_js_path_overrides
   <%block name="footer_extra"/>
   <%block name="js_extra"/>
 
+  % if any('instructor_dashboard_2_html' in name[0]  for name in context.namespaces):
+        <%include file="widgets/help-sidebar.html" />
+        <script type="text/javascript" src="${static.url('js/help-widget.js')}" charset="utf-8"></script>
+  % endif
+
   <%include file="widgets/segment-io-footer.html" />
   <script type="text/javascript" src="${static.url('js/vendor/noreferrer.js')}" charset="utf-8"></script>
   <script type="text/javascript" src="${static.url('js/utils/navigation.js')}" charset="utf-8"></script>

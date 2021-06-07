@@ -4,6 +4,7 @@ from django.utils.translation import ugettext as _
 %>
 
 
+<link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css?family=Poppins:400,700,900" rel="stylesheet">
 <!--Load the background, marker and logo images via css to avoid problems when displaying the widget-->
 <img style="display: none;" src="https://edunextpublic.s3-us-west-2.amazonaws.com/resources/images/help-widget-background.png" class=“hiddenPic”>
@@ -13,7 +14,7 @@ from django.utils.translation import ugettext as _
 
 <input onclick="toggleHelpWidget('display')" style="z-index:100;outline: none;position: absolute;top: 75px;right: 0px;width: 60px;height: 60px;" title="edunext" type="image" id="ednx-help-widget-tab" alt="edunext" src="https://edunextpublic.s3-us-west-2.amazonaws.com/resources/images/help-widget-tab.png">
 
-<div id="ednx-help-widget-wrapper" class="ednx-widget-wrapper" style="z-index:100;color: #EEEEEE;font-family: Poppins; aspect-ratio: 100 / 29; display: none; background-size: 100% 100%;background-image: url(https://edunextpublic.s3-us-west-2.amazonaws.com/resources/images/help-widget-background.png);height: auto; width: 265px;position: absolute;top: 75px;right: 0%;margin-right: -0px;">
+<div id="ednx-help-widget-wrapper" class="ednx-widget-wrapper" style="z-index:100;color: #EEEEEE;font-family: Poppins, sans-serif; aspect-ratio: 100 / 29; display: none; background-size: 100% 100%;background-image: url(https://edunextpublic.s3-us-west-2.amazonaws.com/resources/images/help-widget-background.png);height: auto; width: 265px;position: absolute;top: 75px;right: 0%;margin-right: -0px;">
 
     <button class="btn info" onclick="toggleHelpWidget('hide')" style="outline: none;color: #EEEEEE;border-radius: 40px;background-color: transparent;font-weight: light; font-size: 14px;margin-left: 87%;margin-top: 2%;">X</button> 
 
@@ -64,7 +65,7 @@ from django.utils.translation import ugettext as _
 
     <a href="https://www.edunext.co/" target="_blank">
       <div id="ednx-button-wrapper" style="text-align: center;">
-        <button class="button" type="button" style="outline: none;color: #EEEEEE;font-family: Poppins;margin-top: 3%;font-weight: bolder; padding: 10px 20px;border: none;border-radius: 20px;background-color: #1F9FFF;">edunext.co</button>
+        <button class="button" type="button" style="outline: none;color: #EEEEEE;font-family: Poppins, sans-serif;margin-top: 3%;font-weight: bolder; padding: 10px 20px;border: none;border-radius: 20px;background-color: #1F9FFF;">edunext.co</button>
       </div>
     </a>
 
