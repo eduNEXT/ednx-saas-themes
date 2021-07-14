@@ -6,7 +6,9 @@
     {# email client support for style sheets is pretty spotty, so we have to inline all of these styles #}
     {% tenant_get_value "EMAIL_COLORS" default=dict as EMAIL_COLORS %}
     <a
-    {% if course_cta_url %}
+    {% if reset_url %}
+        href={{reset_url}}
+    {% elif course_cta_url %}
         href="{% with_link_tracking course_cta_url %}"
     {% else %}
         {%if course_ids|length > 1 %}
