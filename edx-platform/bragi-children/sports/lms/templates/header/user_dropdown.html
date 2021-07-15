@@ -1,0 +1,62 @@
+## mako
+<%page expression_filter="h"/>
+<%namespace name='static' file='static_content.html'/>
+
+<%!
+from django.urls import reverse
+from django.utils.translation import ugettext as _
+
+from openedx.core.djangoapps.user_api.accounts.image_helpers import get_profile_image_urls_for_user
+from openedx.core.djangoapps.user_api.accounts.utils import retrieve_last_sitewide_block_completed
+from openedx.features.enterprise_support.utils import get_enterprise_learner_generic_name
+%>
+
+<%
+## This template should not use the target student's details when masquerading, see TNL-4895
+self.real_user = getattr(user, 'real_user', user)
+profile_image_url = get_profile_image_urls_for_user(self.real_user)['medium']
+username = self.real_user.username
+resume_block = retrieve_last_sitewide_block_completed(self.real_user)
+displayname = get_enterprise_learner_generic_name(request) or username
+user_profile_name = self.real_user.profile.name
+%>
+
+<div class="nav-item hidden-mobile">
+    <div class="toggle-user-dropdown" role="button" aria-label=${_("Options Menu")} aria-expanded="false" tabindex="0" aria-controls="user-menu">
+        <div class="toggle-user-menu" aria-hidden="true"><span class="username" >${user_profile_name}</span></div>
+    </div> 
+    <div class="dropdown-user-menu hidden" aria-label=${_("More Options")} role="menu" id="user-menu" tabindex="-1">
+        <div class="profile-item-menu">
+            <div class="container-username"><span class="username-menu">${user_profile_name}</span></div>
+            <div class="profile-info-menu">
+                <span class="profile-name-menu">${user_profile_name}</span>
+                <div class="profile-item-content"><a href="https://my.sportsengine.com/user" role="menuitem">My SportEngine</a></div>
+            </div>
+        </div>
+        <div class="mobile-nav-item dropdown-item dropdown-nav-item"><a href="${reverse('dashboard')}" role="menuitem">${_("Learner Dashboard")}</a></div>
+    </div>
+</div>
+<script>
+const profileName= "${user_profile_name}"
+let initialName;
+function getFirstletters() {
+  if (profileName) {
+    const arrayName = profileName.split(" ");
+    const firstLetters = arrayName.map((name) => name[0]);
+    if (firstLetters.length <= 3) {
+      initialName = firstLetters[0] + firstLetters[firstLetters.length - 1];
+      return initialName;
+    } else {
+      initialName = firstLetters[0] + firstLetters[2];
+      return initialName;
+    }
+  }
+  return initialName;
+}
+
+const nameUser=document.querySelector(".username");
+if(nameUser){nameUser.innerHTML=getFirstletters()}
+const nameUserMenu=document.querySelector(".username-menu");
+if(nameUserMenu){nameUserMenu.innerHTML=getFirstletters()}
+
+</script>
