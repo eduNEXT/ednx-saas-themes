@@ -434,4 +434,11 @@ from student.models import CourseEnrollment
 var parentElement =$(".action-certificate").parents(".course-item")
 $( parentElement ).find( ".wrapper-course-actions" ).css("display", "none")
 
+$(document).ready(function(){
+const itemsCourse= $(".view-dashboard .dashboard .main-container .my-courses .course .details .wrapper-course-details .course-title a")
+if (itemsCourse){
+ return itemsCourse.removeAttr("href")
+}
+});
+
 </script>
