@@ -34,7 +34,7 @@ dates_banner_displayed = False
     % if course_sections is not None:
         <button class="btn btn-primary"
                 id="expand-collapse-outline-all-button"
-                aria-expanded="false"
+                aria-expanded="true"
                 aria-controls="course-outline-block-tree"
                 >
           <span class="expand-collapse-outline-all-extra-padding" id="expand-collapse-outline-all-span">${_("Expand All")}</span>
@@ -49,7 +49,8 @@ dates_banner_displayed = False
             %>
                 <li class="outline-item section ${scored}">
                     <button class="section-name accordion-trigger outline-button"
-                            aria-expanded="${ 'true' if section_is_auto_opened else 'false' }"
+                    disabled
+                            aria-expanded="${ 'true' if section_is_auto_opened else 'true' }"
                             aria-controls="${ section['id'] }_contents"
                             id="${ section['id'] }">
                         <span class="fa fa-chevron-right ${ 'fa-rotate-90' if section_is_auto_opened else '' }" aria-hidden="true"></span>
@@ -101,7 +102,7 @@ dates_banner_displayed = False
                             % if needs_prereqs:
                                     <div class="details prerequisite">
                                         <span class="prerequisites-icon icon fa fa-lock" aria-hidden="true"></span>
-                                        ${ _("Prerequisite: ") }
+                                        ${ _("Requires completion of  ") }
                                             <%
                                                 prerequisite_id = gated_content[subsection['id']]['prerequisite']
                                                 prerequisite_name = xblock_display_names.get(prerequisite_id)
@@ -177,7 +178,16 @@ dates_banner_displayed = False
         </ol>
     % endif
 </main>
+<script>
 
+$(document).ready(function(){
+const btnExpand=document.querySelector("#expand-collapse-outline-all-span")
+if(btnExpand){
+btnExpand.click()
+btnExpand.click()
+}  
+});
+</script>
 <%static:require_module_async module_name="js/dateutil_factory" class_name="DateUtilFactory">
     DateUtilFactory.transform('.localized-datetime');
 </%static:require_module_async>

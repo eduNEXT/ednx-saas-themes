@@ -87,34 +87,5 @@ for (const a of tabs) {
   }
 }
 
-$(window).load(()=>{
-const w=document.querySelector("#expand-collapse-outline-all-button");w&&w.setAttribute("aria-expanded","true")
-var courseItems = $(".dashboard .main-container .my-courses .course .details .wrapper-course-details .course-title a" )
-
-if(courseItems){ 
-    courseItems.removeAttr("href");
-}
-
-var textCert =document.querySelector(".course-wrapper .course-content #content_locked p")
-if(textCert ){ 
-   textCert.textContent="You’re not yet allowed to view this content"
-   $( "<p class='img-req'><img src='https://edunextpublic.s3.us-west-2.amazonaws.com/sports-engine/lock.png'></img></p>" ).insertBefore( $( textCert ) );
-}
-
-var btnReq = $( "#content_locked .btn-brand" )
-
-if (btnReq){
-btnReq.text("GO TO REQUIRED SECTION")
-btnReq.css("visibility", "visible")
-}
-
-
-var req = document.querySelectorAll(".course-wrapper .course-content #content_locked p")[2]
-if(req ){
-    req.textContent="To access this content you must first complete the required training section."
-    $( req ).css("visibility", "visible");
-}
-
-});
 
 </script>
