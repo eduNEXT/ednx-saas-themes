@@ -102,7 +102,7 @@ dates_banner_displayed = False
                             % if needs_prereqs:
                                     <div class="details prerequisite">
                                         <span class="prerequisites-icon icon fa fa-lock" aria-hidden="true"></span>
-                                        ${ _("Requires completion of  ") }
+                                           Requires completion of
                                             <%
                                                 prerequisite_id = gated_content[subsection['id']]['prerequisite']
                                                 prerequisite_name = xblock_display_names.get(prerequisite_id)
@@ -178,16 +178,7 @@ dates_banner_displayed = False
         </ol>
     % endif
 </main>
-<script>
 
-$(document).ready(function(){
-const btnExpand=document.querySelector("#expand-collapse-outline-all-span")
-if(btnExpand){
-btnExpand.click()
-btnExpand.click()
-}  
-});
-</script>
 <%static:require_module_async module_name="js/dateutil_factory" class_name="DateUtilFactory">
     DateUtilFactory.transform('.localized-datetime');
 </%static:require_module_async>

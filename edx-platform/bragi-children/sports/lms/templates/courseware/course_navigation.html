@@ -77,7 +77,7 @@ if course is not None:
         </nav>
     % endif
 %endif
-<script>
+<script type="text/javascript">
 
 const courseId = "${course.id}";
 const tabs = document.querySelectorAll(".course-tabs li a");
@@ -86,6 +86,5 @@ for (const a of tabs) {
     a.textContent = "Certificate";
   }
 }
-
 
 </script>
