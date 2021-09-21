@@ -94,6 +94,11 @@ dates_banner_displayed = False
                             % endif
                                       <h4 class="subsection-title">
                                           ${ subsection['display_name'] }
+                            % if num_graded_problems:
+                                          <span class="question-number">${ngettext("({number} Question)",
+                                                     "({number} Questions)",
+                                                     num_graded_problems).format(number=num_graded_problems)}<span/>
+                            % endif
                                       </h4>
                             % if subsection.get('complete'):
                                 <span class="complete-checkmark fa fa-check" aria-hidden="true"></span>
@@ -102,12 +107,12 @@ dates_banner_displayed = False
                             % if needs_prereqs:
                                     <div class="details prerequisite">
                                         <span class="prerequisites-icon icon fa fa-lock" aria-hidden="true"></span>
-                                           Requires completion of
+                                        <span class="pre-text">${ _("Prerequisite: ") }
                                             <%
                                                 prerequisite_id = gated_content[subsection['id']]['prerequisite']
                                                 prerequisite_name = xblock_display_names.get(prerequisite_id)
                                             %>
-                                            ${ prerequisite_name }
+                                            ${ prerequisite_name }<span/>
                                     </div>
                             % endif
                                         <div class="details">
