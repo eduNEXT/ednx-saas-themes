@@ -82,8 +82,9 @@ username = get_enterprise_learner_generic_name(request) or student.username
                                 <% post_url = reverse('generate_user_cert', args=[text_type(course.id)]) %>
                                 <div class="msg-actions">
                                     %if certificate_data.cert_web_view_url:
+                                    <button id="print_btn" class="print-btn">Print</button>
                                     <div class="iframe-container">
-                                    <iframe src="${certificate_data.cert_web_view_url}" target="_parent"  target='_top' marginwidth="0" marginheight="0" frameborder="0" scrolling="no" allowfullscreen></iframe>
+                                    <iframe src="${certificate_data.cert_web_view_url}" id="iframe_cert" target="_parent"  target='_top' marginwidth="0" marginheight="0" frameborder="0" scrolling="no" allowfullscreen></iframe>
                                     </div>
                                     %elif certificate_data.cert_status == CertificateStatuses.downloadable and certificate_data.download_url:
                                     <a class="btn" href="${certificate_data.download_url}" rel="noopener" target="_blank">${_("Download Your Certificate")} <span class="sr">${_("Opens in a new browser window")}</span></a>
@@ -195,5 +196,16 @@ $(window).load(() => {
     if (courseElements) {
         courseElements.click()
     }
+    const iframe = document.getElementsByTagName("iframe");
+    if (iframe) {
+      const iframeElement = iframe[0];
+      const printBtn = document.querySelector("#print_btn");
+      const printCert = iframeElement.contentWindow.document.querySelector("#print_cert");
+      if (printBtn && printCert) {
+       printBtn.addEventListener("click", () => {
+        printCert.click();
+    });
+  }
+}
 });  
 </script>
