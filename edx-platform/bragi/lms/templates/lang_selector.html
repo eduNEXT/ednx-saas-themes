@@ -2,7 +2,6 @@
 <%!
   from django.urls import reverse
   from django.utils.translation import ugettext as _
-  from branding import api as branding_api
 
   from babel import Locale
   from openedx.core.djangoapps.lang_pref.api import released_languages
@@ -10,7 +9,7 @@
 %>
 
 <%
-  languages = configuration_helpers.get_value('released_languages', 'en').split(',') 
+  languages = configuration_helpers.get_value('released_languages', 'en').split(',')
 %>
 % if len(languages) > 1:
   <li class="nav-link lang mobile-nav-item">
