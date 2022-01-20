@@ -48,3 +48,8 @@ Actives sites:
 - Dimagi
 - Politecnico
 - Suss (awwa-unilearn, suss-ipa, suss-raise: different register page)
+
+Lilac Migration Notes
+--------------------------------
+
+Added: fix: login redirection https://bitbucket.org/edunext/ednx-saas-themes/pull-requests/102/
