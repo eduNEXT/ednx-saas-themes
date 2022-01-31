@@ -84,6 +84,17 @@ input[type="tel"],
   }
 }
 
+// typography
+div:not(.problem *),
+section,
+p,
+i:not(.fa),
+span :not(.fa):not(.MathJax *),
+label {
+  font-family: $font-family-base !important;
+  font-weight: $font-weight-normal !important;
+}
+
 // icons fix
 i[class*="fa-"],
 span[class*="fa-"],
@@ -96,18 +107,6 @@ div[class*="fa-"],
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-// typography
-div:not(.problem *),
-section,
-p,
-i:not(.fa),
-span :not(.fa):not(.MathJax *),
-label {
-  font-family: $font-family-base !important;
-  font-weight: $font-weight-normal !important;
-}
-
 
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
