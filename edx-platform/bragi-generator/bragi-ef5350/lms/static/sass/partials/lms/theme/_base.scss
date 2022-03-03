@@ -40,6 +40,7 @@ body {
 .container,
 .content-container {
   @include content-wrapper;
+  margin: 0 auto !important;
 }
 
 // links

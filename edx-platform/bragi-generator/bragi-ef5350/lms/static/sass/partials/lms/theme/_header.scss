@@ -108,7 +108,9 @@ Navbar Component
     display: flex;
   }
 }
-
+.navbar-links.navbar-nav {
+  margin: 0 !important;
+}
 // nav links
 .nav-links .nav,
 .navbar-links .nav {
