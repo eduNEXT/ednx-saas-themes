@@ -3,6 +3,7 @@ from django.conf import settings
 from django.utils.translation import ugettext as _
 %>
 
+% if getattr(settings,'EDUNEXT_HELP_SIDEBAR', False):
 
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css?family=Poppins:400,700,900" rel="stylesheet">
@@ -90,3 +91,4 @@ from django.utils.translation import ugettext as _
   }
   if($('.action-item a[href*="Studio"]')[0]) $('.action-item a[href*="Studio"]').css('display', 'none')
 </script>
+% endif
