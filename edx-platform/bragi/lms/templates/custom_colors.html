@@ -1,599 +1,597 @@
-## mako
-<%!
-from lms.djangoapps.branding import api as branding_api
-%>
-<%namespace name='static' file='/static_content.html'/>
-
-<%
-  general_colors = theming.options('general', 'general_colors', default= {})
-
-  header_colors = theming.options('header', 'header_colors', default= {})
-
-  home_intro_colors = theming.options('home', 'home_intro_colors', default= {})
-  home_items_colors = theming.options('home', 'home_items_colors', default= {})
-  home_text_colors = theming.options('home', 'home_text_colors', default= {})
-  home_text_bottom_colors = theming.options('home', 'home_text_bottom_colors', default= {})
-
-  dashboard_intro_colors = theming.options('dashboard', 'dashboard_intro_colors', default= {})
-  dashboard_items_colors = theming.options('dashboard', 'dashboard_items_colors', default= {})
-  dashboard_text_colors = theming.options('dashboard', 'dashboard_text_colors', default= {})
-  dashboard_text_bottom_colors = theming.options('dashboard', 'dashboard_text_bottom_colors', default= {})
-
-  courses_intro_colors = theming.options('courses', 'courses_intro_colors', default= {})
-  courses_items_colors = theming.options('courses', 'courses_items_colors', default= {})
-  courses_text_colors = theming.options('courses', 'courses_text_colors', default= {})
-  courses_text_bottom_colors = theming.options('courses', 'courses_text_bottom_colors', default= {})
-
-  course_intro_colors = theming.options('about', 'course_intro_colors', default= {})
-  course_header_colors = theming.options('about', 'course_header_colors', default= {})
-  course_text_colors = theming.options('about', 'course_text_colors', default= {})
-  course_text_bottom_colors = theming.options('about', 'course_text_bottom_colors', default= {})
-
-  login_colors = theming.options('login', 'login_colors', default= {})
-  register_colors = theming.options('register', 'register_colors', default= {})
-
-  footer_colors = theming.options('footer', 'footer_colors', default= {})
-%>
-
-% if general_colors:
-  <style>
-    .content-wrapper {
-      background: ${general_colors.get('content_wrapper_background', '')};
-    }
-
-    .view-login .introduction,
-    .view-passwordreset .introduction,
-    .view-register .introduction {
-      background: ${general_colors.get('headers_background', '')};
-    }
-
-    .view-login .introduction .title-sub,
-    .view-passwordreset .introduction .title-sub,
-    .view-register .introduction .title-sub {
-      color: ${general_colors.get('headers_title', '')};
-    }
-
-    .view-login .introduction .title-super,
-    .view-passwordreset .introduction .title-super,
-    .view-register .introduction .title-super {
-      color: ${general_colors.get('headers_subtitle', '')};
-    }
-
-    .account-settings-container .account-settings-sections,
-    .account-settings-container .wrapper-header,
-    .container.dashboard,
-    .course-info__content,
-    .courses-container .courses .course,
-    .find-courses .courses-container,
-    .home-courses .courses-container .courses .course,
-    .university-profile .courses-container,
-    .view-course-info .info-wrapper,
-    .view-courseware .course-wrapper,
-    .view-login .container,
-    .view-passwordreset .container,
-    .view-register .container {
-      background: ${general_colors.get('container_background', '')};
-    }
-  </style>
-% endif
-
-
-
-% if header_colors:
-  <style>
-    header.navbar {
-      background: ${header_colors.get('background', '#FFF')};
-      border: ${header_colors.get('border', '')};
-      box-shadow: ${header_colors.get('shadow', '')};
-    }
-
-    .global-header .course-header {
-      color: ${header_colors.get('color', '')};
-    }
-
-    .window-wrap .navbar-links .nav-link {
-      color: ${header_colors.get('color_link', '')};
-    }
-
-    .global-header .hamburger-menu.navbar-toggler .line {
-      background: ${header_colors.get('color_link', '')};
-    }
-
-    .navbar-links .nav-link select,
-    .mobile-menu .nav-link select {
-      color: ${header_colors.get('color_link', '')};
-      border-color: ${header_colors.get('color_link', '')};
-      background: ${header_colors.get('background', '#FFF')};
-    }
-
-
-    .window-wrap .navbar-links .nav-link:hover,
-    .window-wrap .navbar-links .nav-link:focus,
-    .window-wrap .navbar-links .nav-link:active {
-      color: ${header_colors.get('color_link_hover', '')};
-    }
-
-    .window-wrap .navbar-links .nav-login {
-      color: ${header_colors.get('login_color', '#FFF')};
-      background: ${header_colors.get('login_background', '')};
-      border: ${header_colors.get('login_border', '')};
-      border-radius: ${header_colors.get('login_radius', '')};
-    }
-
-    .window-wrap .navbar-links .nav-login:hover,
-    .window-wrap .navbar-links .nav-login:focus,
-    .window-wrap .navbar-links .nav-login:active {
-      color: ${header_colors.get('login_color_hover', '')};
-      background: ${header_colors.get('login_background_hover', '')};
-      border: ${header_colors.get('login_border_hover', '')};
-      border-radius: ${header_colors.get('login_radius_hover', '')};
-    }
-
-    .nav-links .nav-account {
-      color: ${header_colors.get('account_color', '')};
-      background: ${header_colors.get('account_background', '#FFF')};
-      border-color: ${header_colors.get('account_border', '')};
-    }
-
-    .global-header .nav-links .secondary.nav-account .nav-item a.menu-title,
-    .nav-account .toggle-user-dropdown {
-      color: ${header_colors.get('account_color', '')};
-    }
-
-    .global-header .nav-links .secondary.nav-account .nav-item a.menu-title:hover,
-    .global-header .nav-links .secondary.nav-account .nav-item a.menu-title:focus,
-    .nav-account .toggle-user-dropdown:hover,
-    .nav-account .toggle-user-dropdown:focus,
-    .global-header .nav-links .secondary.nav-account:hover,
-    .global-header .nav-links .secondary.nav-account:focus,
-    .global-header .nav-links .secondary.nav-account:hover .nav-item a.menu-title,
-    .global-header .nav-links .secondary.nav-account:hover .toggle-user-dropdown {
-      color: ${header_colors.get('account_color_hover', '')};
-      background: ${header_colors.get('account_background_hover', '#F2F2F2')};
-      border-color: ${header_colors.get('account_border_hover', '')};
-    }
-
-    .global-header .nav-links .secondary.nav-account .dropdown-user-menu {
-      background: ${header_colors.get('account_dropdown_background', '')};
-      border-color: ${header_colors.get('account_dropdown_border', '')};
-    }
-
-    .global-header .nav-links .secondary.nav-account .dropdown-item a {
-      color: ${header_colors.get('account_dropdown_account_color_link', '')};
-    }
-
-    .global-header .nav-links .secondary .dropdown-user-menu .dropdown-item a:hover,
-    .global-header .nav-links .secondary .dropdown-user-menu .dropdown-item a:focus,
-    .global-header .nav-links .secondary .dropdown-user-menu .dropdown-item a:active {
-      color: ${header_colors.get('account_dropdown_account_color_link_hover', '')};
-      background: ${header_colors.get('account_dropdown_background_link_hover', '')};
-    }
-
-    .global-header .nav-links .secondary .dropdown-user-menu .dropdown-item:not(:last-child) {
-      border-bottom-color: ${header_colors.get('account_dropdown_border', '')};
-    }
-
-    .mobile-menu .mobile-nav-link a,
-    .mobile-menu .mobile-nav-link form {
-      background: ${header_colors.get('collapse_background', '#FAFAFA')};
-      color: ${header_colors.get('collapse_color_link', '')};
-    }
-
-    .mobile-menu .mobile-nav-link a:hover,
-    .mobile-menu .mobile-nav-link a:focus,
-    .mobile-menu .mobile-nav-link a:active {
-      color: ${header_colors.get('collapse_color_link_hover', '#FFF')};
-      background-color: ${header_colors.get('collapse_background_link_hover', '#C2C2C2')}; 
-    }
-
-    .mobile-menu .mobile-nav-link .nav-login {
-      color: ${header_colors.get('collapse_login_color', '')};
-      background: ${header_colors.get('collapse_login_background', '')};
-      border: ${header_colors.get('collapse_login_border', '')};
-      border-radius: ${header_colors.get('collapse_login_radius', '')};
-    }
-
-    .mobile-menu .mobile-nav-link .nav-login:hover,
-    .mobile-menu .mobile-nav-link .nav-login:focus,
-    .mobile-menu .mobile-nav-link .nav-login:active {
-      color: ${header_colors.get('collapse_login_color_hover', '')};
-      background: ${header_colors.get('collapse_login_background_hover', '')};
-      border: ${header_colors.get('collapse_login_border_hover', '')};
-      border-radius: ${header_colors.get('collapse_login_radius_hover', '')};
-    }
-  </style>
-% endif
-
-
-
-% if home_intro_colors:
-  <style>
-    .home-intro {
-      height: ${home_intro_colors.get('height', '50vh')};
-      background: ${home_intro_colors.get('background', '')};
-      box-shadow: ${home_intro_colors.get('shadow', '')};
-    }
-    .home-intro::before {
-      background: ${home_intro_colors.get('overlay_background', '')};
-    }
-
-    .home-intro h1 {
-      color: ${home_intro_colors.get('title_color', '')};
-    }
-    .home-intro h3 {
-      color: ${home_intro_colors.get('subtitle_color', '')};
-    }
-    .home-intro p {
-      color: ${home_intro_colors.get('paragraph_color', '')};
-    }
-
-    .home-intro button {
-      color: ${home_intro_colors.get('search_button_color', '')};
-      background: ${home_intro_colors.get('search_button_background', '')};
-      border: ${home_intro_colors.get('search_button_border', '')};
-      border-radius: ${home_intro_colors.get('search_button_radius', '')};
-      box-shadow: ${home_intro_colors.get('search_button_shadow', '')};
-    }
-    .home-intro form button[type=submit]:hover:hover,
-    .home-intro form button[type=submit]:focus:focus {
-      color: ${home_intro_colors.get('search_button_hover_color', '')};
-      background: ${home_intro_colors.get('search_button_hover_background', '')};
-      border: ${home_intro_colors.get('search_button_hover_border', '')};
-      box-shadow: ${home_intro_colors.get('search_button_hover_shadow', '')};
-    }
-  </style>
-% endif
-
-% if home_items_colors:
-  <style>
-    .home-items {
-      background: ${home_items_colors.get('background', '')};
-      border: ${home_items_colors.get('border', '')};
-      box-shadow: ${home_items_colors.get('shadow', '')};
-    }
-  </style>
-% endif
-
-% if home_text_colors:
-  <style>
-    .home-text {
-      background: ${home_text_colors.get('background', '')};
-      border: ${home_text_colors.get('border', '')};
-      box-shadow: ${home_text_colors.get('shadow', '')};
-    }
-    .home-text h2 {
-      color: ${home_text_colors.get('title_color', '')};
-    }
-    .home-text p {
-      color: ${home_text_colors.get('paragraph_color', '')};
-    }
-  </style>
-% endif
-
-% if home_text_bottom_colors:
-  <style>
-    .home-text--bottom {
-      background: ${home_text_bottom_colors.get('background', '')};
-      border: ${home_text_bottom_colors.get('border', '')};
-      box-shadow: ${home_text_bottom_colors.get('background', '')};
-    }
-    .home-text--bottom h2 {
-      color: ${home_text_bottom_colors.get('title_color', '')};
-    }
-    .home-text--bottom p {
-      color: ${home_text_bottom_colors.get('paragraph_color', '')};
-    }
-  </style>
-% endif
-
-
-
-% if dashboard_intro_colors:
-  <style>
-    .dashboard-intro {
-      height: ${dashboard_intro_colors.get('height', '50vh')};
-      background: ${dashboard_intro_colors.get('background', '')};
-      box-shadow: ${dashboard_intro_colors.get('shadow', '')};
-    }
-    .dashboard-intro::before {
-      background: ${dashboard_intro_colors.get('overlay_background', '')};
-    }
-
-    .dashboard-intro h1 {
-      color: ${dashboard_intro_colors.get('title_color', '')};
-    }
-    .dashboard-intro h3 {
-      color: ${dashboard_intro_colors.get('subtitle_color', '')};
-    }
-    .dashboard-intro p {
-      color: ${dashboard_intro_colors.get('paragraph_color', '')};
-    }
-  </style>
-% endif
-
-% if dashboard_items_colors:
-  <style>
-    .dashboard-items {
-      background: ${dashboard_items_colors.get('background', '')};
-      border: ${dashboard_items_colors.get('border', '')};
-      box-shadow: ${dashboard_items_colors.get('shadow', '')};
-    }
-  </style>
-% endif
-
-% if dashboard_text_colors:
-  <style>
-    .dashboard-text {
-      background: ${dashboard_text_colors.get('background', '')};
-      border: ${dashboard_text_colors.get('border', '')};
-      box-shadow: ${dashboard_text_colors.get('shadow', '')};
-    }
-    .dashboard-text h2 {
-      color: ${dashboard_text_colors.get('title_color', '')};
-    }
-    .dashboard-text p {
-      color: ${dashboard_text_colors.get('paragraph_color', '')};
-    }
-  </style>
-% endif
-
-% if dashboard_text_bottom_colors:
-  <style>
-    .dashboard-text--bottom {
-      background: ${dashboard_text_bottom_colors.get('background', '')};
-      border: ${dashboard_text_bottom_colors.get('border', '')};
-      box-shadow: ${dashboard_text_bottom_colors.get('background', '')};
-    }
-    .dashboard-text--bottom h2 {
-      color: ${dashboard_text_bottom_colors.get('title_color', '')};
-    }
-    .dashboard-text--bottom p {
-      color: ${dashboard_text_bottom_colors.get('paragraph_color', '')};
-    }
-  </style>
-% endif
-
-
-
-% if courses_intro_colors:
-  <style>
-    .courses-intro {
-      height: ${courses_intro_colors.get('height', '50vh')};
-      background: ${courses_intro_colors.get('background', '')};
-      box-shadow: ${courses_intro_colors.get('shadow', '')};
-    }
-    .courses-intro::before {
-      background: ${courses_intro_colors.get('overlay_background', '')};
-    }
-
-    .courses-intro h1 {
-      color: ${courses_intro_colors.get('title_color', '')};
-    }
-    .courses-intro h3 {
-      color: ${courses_intro_colors.get('subtitle_color', '')};
-    }
-    .courses-intro p {
-      color: ${courses_intro_colors.get('paragraph_color', '')};
-    }
-  </style>
-% endif
-
-% if courses_items_colors:
-  <style>
-    .courses-items {
-      background: ${courses_items_colors.get('background', '')};
-      border: ${courses_items_colors.get('border', '')};
-      box-shadow: ${courses_items_colors.get('shadow', '')};
-    }
-  </style>
-% endif
-
-% if courses_text_bottom_colors:
-  <style>
-    .courses-text--bottom {
-      background: ${courses_text_bottom_colors.get('background', '')};
-      border: ${courses_text_bottom_colors.get('border', '')};
-      box-shadow: ${courses_text_bottom_colors.get('shadow', '')};
-    }
-    .courses-text--bottom h2 {
-      color: ${courses_text_bottom_colors.get('title_color', '')};
-    }
-    .courses-text--bottom p {
-      color: ${courses_text_bottom_colors.get('paragraph_color', '')};
-    }
-  </style>
-% endif
-
-
-
-% if course_intro_colors:
-  <style>
-    .course-intro {
-      height: ${course_intro_colors.get('height', '50vh')};
-      background: ${course_intro_colors.get('background', '')};
-      box-shadow: ${course_intro_colors.get('shadow', '')};
-    }
-    .course-intro::before {
-      background: ${course_intro_colors.get('overlay_background', '')};
-    }
-
-    .course-intro h1 {
-      color: ${course_intro_colors.get('title_color', '')};
-    }
-    .course-intro h3 {
-      color: ${course_intro_colors.get('subtitle_color', '')};
-    }
-    .course-intro p {
-      color: ${course_intro_colors.get('paragraph_color', '')};
-    }
-  </style>
-% endif
-
-% if course_header_colors:
-  <style>
-    .course-info__banner {
-      background: ${course_header_colors.get('background', '')};
-    }
-    .course-info__banner h1 {
-      color: ${course_header_colors.get('title_color', '')};
-    }
-    .course-info__banner p {
-      color: ${course_header_colors.get('paragraph_color', '')};
-    }
-  </style>
-% endif
-
-% if course_text_colors:
-  <style>
-    .course-text {
-      height: ${course_text_colors.get('height', '')};
-      background: ${course_text_colors.get('background', '')};
-      border: ${course_text_colors.get('border', '')};
-      box-shadow: ${course_text_colors.get('shadow', '')};
-    }
-    .course-text::before {
-      background: ${course_text_colors.get('overlay_background', '')};
-    }
-    .course-text h2 {
-      color: ${course_text_colors.get('title_color', '')};
-    }
-    .course-text p {
-      color: ${course_text_colors.get('paragraph_color', '')};
-    }
-  </style>
-% endif
-
-% if course_text_bottom_colors:
-  <style>
-    .course-text--bottom {
-      background: ${course_text_bottom_colors.get('background', '')};
-      border: ${course_text_bottom_colors.get('border', '')};
-      box-shadow: ${course_text_bottom_colors.get('shadow', '')};
-    }
-    .course-text--bottom h2 {
-      color: ${course_text_bottom_colors.get('title_color', '')};
-    }
-    .course-text--bottom p {
-      color: ${course_text_bottom_colors.get('paragraph_color', '')};
-    }
-  </style>
-% endif
-
-
-
-% if login_colors:
-  <style>
-    .login-header {
-      background: ${login_colors.get('header_background', '')};
-    }
-    .login-header .title-super {
-      color: ${login_colors.get('header_title_color', '')};
-    }
-    .login-header .title-sub {
-      color: ${login_colors.get('header_subtitle_color', '')};
-    }
-
-    .login .login-text {
-      background: ${login_colors.get('text_background', '')};
-    }
-    .login .login-text h2 {
-      color: ${login_colors.get('text_title_color', '')};
-    }
-    .login .login-text p {
-      color: ${login_colors.get('text_paragraph_color', '')};
-    }
-
-    .login .login-text_bottom {
-      background: ${login_colors.get('text_bottom_background', '')};
-    }
-    .login .login-text_bottom h2 {
-      color: ${login_colors.get('text_bottom_title_color', '')};
-    }
-    .login .login-text_bottom p {
-      color: ${login_colors.get('text_bottom_paragraph_color', '')};
-    }
-  </style>
-% endif
-
-% if register_colors:
-  <style>
-    .register-header {
-      background: ${register_colors.get('header_background', '')};
-    }
-    .register-header .title-super {
-      color: ${register_colors.get('header_title_color', '')};
-    }
-    .register-header .title-sub {
-      color: ${register_colors.get('header_subtitle_color', '')};
-    }
-
-    .register .register-text {
-      background: ${register_colors.get('text_background', '')};
-    }
-    .register .register-text h2 {
-      color: ${register_colors.get('text_title_color', '')};
-    }
-    .register .register-text p {
-      color: ${register_colors.get('text_paragraph_color', '')};
-    }
-
-    .register .register-text_bottom {
-      background: ${register_colors.get('text_bottom_background', '')};
-    }
-    .register .register-text_bottom h2 {
-      color: ${register_colors.get('text_bottom_title_color', '')};
-    }
-    .register .register-text_bottom p {
-      color: ${register_colors.get('text_bottom_paragraph_color', '')};
-    }
-  </style>
-% endif
-
-
-
-% if footer_colors:
-  <style>
-    footer.footer {
-      background: ${footer_colors.get('background', '')};
-    }
-
-    .footer .content-container a {
-      background: ${footer_colors.get('background', '#FFF')};
-    }
-
-    .footer-description {
-      color: ${footer_colors.get('color', '')};
-    }
-
-    .footer .footer-links .nav-link {
-      color: ${footer_colors.get('color_link', '')};
-    }
-    .footer .footer-links .nav-link:hover,
-    .footer .footer-links .nav-link:focus,
-    .footer .footer-links .nav-link:active {
-      color: ${footer_colors.get('color_link_hover', '')};
-    }
-
-    .footer-extra {
-      background: ${footer_colors.get('extra_background', '')};
-    }
-
-    .footer .footer-extra .content-container a {
-      background: ${footer_colors.get('extra_background', '')};
-    }
-
-    .footer-extra .footer-links .nav-link {
-      color: ${footer_colors.get('extra_color_link', '')};
-      background: ${footer_colors.get('extra_background', '')};
-    }
-    .footer-extra .footer-links .nav-link:hover,
-    .footer-extra .footer-links .nav-link:focus,
-    .footer-extra .nav-link:active {
-      color: ${footer_colors.get('extra_color_link_hover', '')};
-    }
-
-    .footer-extra .footer-copy {
-      color: ${footer_colors.get('copy_color', '')};
-    }
-  </style>
-% endif
+<%def name="all_colors(theming)">
+  <%
+    general_colors = theming.options('general', 'general_colors', default= {})
+
+    header_colors = theming.options('header', 'header_colors', default= {})
+
+    home_intro_colors = theming.options('home', 'home_intro_colors', default= {})
+    home_items_colors = theming.options('home', 'home_items_colors', default= {})
+    home_text_colors = theming.options('home', 'home_text_colors', default= {})
+    home_text_bottom_colors = theming.options('home', 'home_text_bottom_colors', default= {})
+
+    dashboard_intro_colors = theming.options('dashboard', 'dashboard_intro_colors', default= {})
+    dashboard_items_colors = theming.options('dashboard', 'dashboard_items_colors', default= {})
+    dashboard_text_colors = theming.options('dashboard', 'dashboard_text_colors', default= {})
+    dashboard_text_bottom_colors = theming.options('dashboard', 'dashboard_text_bottom_colors', default= {})
+
+    courses_intro_colors = theming.options('courses', 'courses_intro_colors', default= {})
+    courses_items_colors = theming.options('courses', 'courses_items_colors', default= {})
+    courses_text_colors = theming.options('courses', 'courses_text_colors', default= {})
+    courses_text_bottom_colors = theming.options('courses', 'courses_text_bottom_colors', default= {})
+
+    course_intro_colors = theming.options('about', 'course_intro_colors', default= {})
+    course_header_colors = theming.options('about', 'course_header_colors', default= {})
+    course_text_colors = theming.options('about', 'course_text_colors', default= {})
+    course_text_bottom_colors = theming.options('about', 'course_text_bottom_colors', default= {})
+
+    login_colors = theming.options('login', 'login_colors', default= {})
+    register_colors = theming.options('register', 'register_colors', default= {})
+
+    footer_colors = theming.options('footer', 'footer_colors', default= {})
+  %>
+
+  % if general_colors:
+    <style>
+      .content-wrapper {
+        background: ${general_colors.get('content_wrapper_background', '')};
+      }
+
+      .view-login .introduction,
+      .view-passwordreset .introduction,
+      .view-register .introduction {
+        background: ${general_colors.get('headers_background', '')};
+      }
+
+      .view-login .introduction .title-sub,
+      .view-passwordreset .introduction .title-sub,
+      .view-register .introduction .title-sub {
+        color: ${general_colors.get('headers_title', '')};
+      }
+
+      .view-login .introduction .title-super,
+      .view-passwordreset .introduction .title-super,
+      .view-register .introduction .title-super {
+        color: ${general_colors.get('headers_subtitle', '')};
+      }
+
+      .account-settings-container .account-settings-sections,
+      .account-settings-container .wrapper-header,
+      .container.dashboard,
+      .course-info__content,
+      .courses-container .courses .course,
+      .find-courses .courses-container,
+      .home-courses .courses-container .courses .course,
+      .university-profile .courses-container,
+      .view-course-info .info-wrapper,
+      .view-courseware .course-wrapper,
+      .view-login .container,
+      .view-passwordreset .container,
+      .view-register .container {
+        background: ${general_colors.get('container_background', '')};
+      }
+    </style>
+  % endif
+
+
+
+  % if header_colors:
+    <style>
+      header.navbar {
+        background: ${header_colors.get('background', '#FFF')};
+        border: ${header_colors.get('border', '')};
+        box-shadow: ${header_colors.get('shadow', '')};
+      }
+
+      .global-header .course-header {
+        color: ${header_colors.get('color', '')};
+      }
+
+      .window-wrap .navbar-links .nav-link {
+        color: ${header_colors.get('color_link', '')};
+      }
+
+      .global-header .hamburger-menu.navbar-toggler .line {
+        background: ${header_colors.get('color_link', '')};
+      }
+
+      .navbar-links .nav-link select,
+      .mobile-menu .nav-link select {
+        color: ${header_colors.get('color_link', '')};
+        border-color: ${header_colors.get('color_link', '')};
+        background: ${header_colors.get('background', '#FFF')};
+      }
+
+
+      .window-wrap .navbar-links .nav-link:hover,
+      .window-wrap .navbar-links .nav-link:focus,
+      .window-wrap .navbar-links .nav-link:active {
+        color: ${header_colors.get('color_link_hover', '')};
+      }
+
+      .window-wrap .navbar-links .nav-login {
+        color: ${header_colors.get('login_color', '#FFF')};
+        background: ${header_colors.get('login_background', '')};
+        border: ${header_colors.get('login_border', '')};
+        border-radius: ${header_colors.get('login_radius', '')};
+      }
+
+      .window-wrap .navbar-links .nav-login:hover,
+      .window-wrap .navbar-links .nav-login:focus,
+      .window-wrap .navbar-links .nav-login:active {
+        color: ${header_colors.get('login_color_hover', '')};
+        background: ${header_colors.get('login_background_hover', '')};
+        border: ${header_colors.get('login_border_hover', '')};
+        border-radius: ${header_colors.get('login_radius_hover', '')};
+      }
+
+      .nav-links .nav-account {
+        color: ${header_colors.get('account_color', '')};
+        background: ${header_colors.get('account_background', '#FFF')};
+        border-color: ${header_colors.get('account_border', '')};
+      }
+
+      .global-header .nav-links .secondary.nav-account .nav-item a.menu-title,
+      .nav-account .toggle-user-dropdown {
+        color: ${header_colors.get('account_color', '')};
+      }
+
+      .global-header .nav-links .secondary.nav-account .nav-item a.menu-title:hover,
+      .global-header .nav-links .secondary.nav-account .nav-item a.menu-title:focus,
+      .nav-account .toggle-user-dropdown:hover,
+      .nav-account .toggle-user-dropdown:focus,
+      .global-header .nav-links .secondary.nav-account:hover,
+      .global-header .nav-links .secondary.nav-account:focus,
+      .global-header .nav-links .secondary.nav-account:hover .nav-item a.menu-title,
+      .global-header .nav-links .secondary.nav-account:hover .toggle-user-dropdown {
+        color: ${header_colors.get('account_color_hover', '')};
+        background: ${header_colors.get('account_background_hover', '#F2F2F2')};
+        border-color: ${header_colors.get('account_border_hover', '')};
+      }
+
+      .global-header .nav-links .secondary.nav-account .dropdown-user-menu {
+        background: ${header_colors.get('account_dropdown_background', '')};
+        border-color: ${header_colors.get('account_dropdown_border', '')};
+      }
+
+      .global-header .nav-links .secondary.nav-account .dropdown-item a {
+        color: ${header_colors.get('account_dropdown_account_color_link', '')};
+      }
+
+      .global-header .nav-links .secondary .dropdown-user-menu .dropdown-item a:hover,
+      .global-header .nav-links .secondary .dropdown-user-menu .dropdown-item a:focus,
+      .global-header .nav-links .secondary .dropdown-user-menu .dropdown-item a:active {
+        color: ${header_colors.get('account_dropdown_account_color_link_hover', '')};
+        background: ${header_colors.get('account_dropdown_background_link_hover', '')};
+      }
+
+      .global-header .nav-links .secondary .dropdown-user-menu .dropdown-item:not(:last-child) {
+        border-bottom-color: ${header_colors.get('account_dropdown_border', '')};
+      }
+
+      .mobile-menu .mobile-nav-link a,
+      .mobile-menu .mobile-nav-link form {
+        background: ${header_colors.get('collapse_background', '#FAFAFA')};
+        color: ${header_colors.get('collapse_color_link', '')};
+      }
+
+      .mobile-menu .mobile-nav-link a:hover,
+      .mobile-menu .mobile-nav-link a:focus,
+      .mobile-menu .mobile-nav-link a:active {
+        color: ${header_colors.get('collapse_color_link_hover', '#FFF')};
+        background-color: ${header_colors.get('collapse_background_link_hover', '#C2C2C2')}; 
+      }
+
+      .mobile-menu .mobile-nav-link .nav-login {
+        color: ${header_colors.get('collapse_login_color', '')};
+        background: ${header_colors.get('collapse_login_background', '')};
+        border: ${header_colors.get('collapse_login_border', '')};
+        border-radius: ${header_colors.get('collapse_login_radius', '')};
+      }
+
+      .mobile-menu .mobile-nav-link .nav-login:hover,
+      .mobile-menu .mobile-nav-link .nav-login:focus,
+      .mobile-menu .mobile-nav-link .nav-login:active {
+        color: ${header_colors.get('collapse_login_color_hover', '')};
+        background: ${header_colors.get('collapse_login_background_hover', '')};
+        border: ${header_colors.get('collapse_login_border_hover', '')};
+        border-radius: ${header_colors.get('collapse_login_radius_hover', '')};
+      }
+    </style>
+  % endif
+
+
+
+  % if home_intro_colors:
+    <style>
+      .home-intro {
+        height: ${home_intro_colors.get('height', '50vh')};
+        background: ${home_intro_colors.get('background', '')};
+        box-shadow: ${home_intro_colors.get('shadow', '')};
+      }
+      .home-intro::before {
+        background: ${home_intro_colors.get('overlay_background', '')};
+      }
+
+      .home-intro h1 {
+        color: ${home_intro_colors.get('title_color', '')};
+      }
+      .home-intro h3 {
+        color: ${home_intro_colors.get('subtitle_color', '')};
+      }
+      .home-intro p {
+        color: ${home_intro_colors.get('paragraph_color', '')};
+      }
+
+      .home-intro button {
+        color: ${home_intro_colors.get('search_button_color', '')};
+        background: ${home_intro_colors.get('search_button_background', '')};
+        border: ${home_intro_colors.get('search_button_border', '')};
+        border-radius: ${home_intro_colors.get('search_button_radius', '')};
+        box-shadow: ${home_intro_colors.get('search_button_shadow', '')};
+      }
+      .home-intro form button[type=submit]:hover:hover,
+      .home-intro form button[type=submit]:focus:focus {
+        color: ${home_intro_colors.get('search_button_hover_color', '')};
+        background: ${home_intro_colors.get('search_button_hover_background', '')};
+        border: ${home_intro_colors.get('search_button_hover_border', '')};
+        box-shadow: ${home_intro_colors.get('search_button_hover_shadow', '')};
+      }
+    </style>
+  % endif
+
+  % if home_items_colors:
+    <style>
+      .home-items {
+        background: ${home_items_colors.get('background', '')};
+        border: ${home_items_colors.get('border', '')};
+        box-shadow: ${home_items_colors.get('shadow', '')};
+      }
+    </style>
+  % endif
+
+  % if home_text_colors:
+    <style>
+      .home-text {
+        background: ${home_text_colors.get('background', '')};
+        border: ${home_text_colors.get('border', '')};
+        box-shadow: ${home_text_colors.get('shadow', '')};
+      }
+      .home-text h2 {
+        color: ${home_text_colors.get('title_color', '')};
+      }
+      .home-text p {
+        color: ${home_text_colors.get('paragraph_color', '')};
+      }
+    </style>
+  % endif
+
+  % if home_text_bottom_colors:
+    <style>
+      .home-text--bottom {
+        background: ${home_text_bottom_colors.get('background', '')};
+        border: ${home_text_bottom_colors.get('border', '')};
+        box-shadow: ${home_text_bottom_colors.get('background', '')};
+      }
+      .home-text--bottom h2 {
+        color: ${home_text_bottom_colors.get('title_color', '')};
+      }
+      .home-text--bottom p {
+        color: ${home_text_bottom_colors.get('paragraph_color', '')};
+      }
+    </style>
+  % endif
+
+
+
+  % if dashboard_intro_colors:
+    <style>
+      .dashboard-intro {
+        height: ${dashboard_intro_colors.get('height', '50vh')};
+        background: ${dashboard_intro_colors.get('background', '')};
+        box-shadow: ${dashboard_intro_colors.get('shadow', '')};
+      }
+      .dashboard-intro::before {
+        background: ${dashboard_intro_colors.get('overlay_background', '')};
+      }
+
+      .dashboard-intro h1 {
+        color: ${dashboard_intro_colors.get('title_color', '')};
+      }
+      .dashboard-intro h3 {
+        color: ${dashboard_intro_colors.get('subtitle_color', '')};
+      }
+      .dashboard-intro p {
+        color: ${dashboard_intro_colors.get('paragraph_color', '')};
+      }
+    </style>
+  % endif
+
+  % if dashboard_items_colors:
+    <style>
+      .dashboard-items {
+        background: ${dashboard_items_colors.get('background', '')};
+        border: ${dashboard_items_colors.get('border', '')};
+        box-shadow: ${dashboard_items_colors.get('shadow', '')};
+      }
+    </style>
+  % endif
+
+  % if dashboard_text_colors:
+    <style>
+      .dashboard-text {
+        background: ${dashboard_text_colors.get('background', '')};
+        border: ${dashboard_text_colors.get('border', '')};
+        box-shadow: ${dashboard_text_colors.get('shadow', '')};
+      }
+      .dashboard-text h2 {
+        color: ${dashboard_text_colors.get('title_color', '')};
+      }
+      .dashboard-text p {
+        color: ${dashboard_text_colors.get('paragraph_color', '')};
+      }
+    </style>
+  % endif
+
+  % if dashboard_text_bottom_colors:
+    <style>
+      .dashboard-text--bottom {
+        background: ${dashboard_text_bottom_colors.get('background', '')};
+        border: ${dashboard_text_bottom_colors.get('border', '')};
+        box-shadow: ${dashboard_text_bottom_colors.get('background', '')};
+      }
+      .dashboard-text--bottom h2 {
+        color: ${dashboard_text_bottom_colors.get('title_color', '')};
+      }
+      .dashboard-text--bottom p {
+        color: ${dashboard_text_bottom_colors.get('paragraph_color', '')};
+      }
+    </style>
+  % endif
+
+
+
+  % if courses_intro_colors:
+    <style>
+      .courses-intro {
+        height: ${courses_intro_colors.get('height', '50vh')};
+        background: ${courses_intro_colors.get('background', '')};
+        box-shadow: ${courses_intro_colors.get('shadow', '')};
+      }
+      .courses-intro::before {
+        background: ${courses_intro_colors.get('overlay_background', '')};
+      }
+
+      .courses-intro h1 {
+        color: ${courses_intro_colors.get('title_color', '')};
+      }
+      .courses-intro h3 {
+        color: ${courses_intro_colors.get('subtitle_color', '')};
+      }
+      .courses-intro p {
+        color: ${courses_intro_colors.get('paragraph_color', '')};
+      }
+    </style>
+  % endif
+
+  % if courses_items_colors:
+    <style>
+      .courses-items {
+        background: ${courses_items_colors.get('background', '')};
+        border: ${courses_items_colors.get('border', '')};
+        box-shadow: ${courses_items_colors.get('shadow', '')};
+      }
+    </style>
+  % endif
+
+  % if courses_text_bottom_colors:
+    <style>
+      .courses-text--bottom {
+        background: ${courses_text_bottom_colors.get('background', '')};
+        border: ${courses_text_bottom_colors.get('border', '')};
+        box-shadow: ${courses_text_bottom_colors.get('shadow', '')};
+      }
+      .courses-text--bottom h2 {
+        color: ${courses_text_bottom_colors.get('title_color', '')};
+      }
+      .courses-text--bottom p {
+        color: ${courses_text_bottom_colors.get('paragraph_color', '')};
+      }
+    </style>
+  % endif
+
+
+
+  % if course_intro_colors:
+    <style>
+      .course-intro {
+        height: ${course_intro_colors.get('height', '50vh')};
+        background: ${course_intro_colors.get('background', '')};
+        box-shadow: ${course_intro_colors.get('shadow', '')};
+      }
+      .course-intro::before {
+        background: ${course_intro_colors.get('overlay_background', '')};
+      }
+
+      .course-intro h1 {
+        color: ${course_intro_colors.get('title_color', '')};
+      }
+      .course-intro h3 {
+        color: ${course_intro_colors.get('subtitle_color', '')};
+      }
+      .course-intro p {
+        color: ${course_intro_colors.get('paragraph_color', '')};
+      }
+    </style>
+  % endif
+
+  % if course_header_colors:
+    <style>
+      .course-info__banner {
+        background: ${course_header_colors.get('background', '')};
+      }
+      .course-info__banner h1 {
+        color: ${course_header_colors.get('title_color', '')};
+      }
+      .course-info__banner p {
+        color: ${course_header_colors.get('paragraph_color', '')};
+      }
+    </style>
+  % endif
+
+  % if course_text_colors:
+    <style>
+      .course-text {
+        height: ${course_text_colors.get('height', '')};
+        background: ${course_text_colors.get('background', '')};
+        border: ${course_text_colors.get('border', '')};
+        box-shadow: ${course_text_colors.get('shadow', '')};
+      }
+      .course-text::before {
+        background: ${course_text_colors.get('overlay_background', '')};
+      }
+      .course-text h2 {
+        color: ${course_text_colors.get('title_color', '')};
+      }
+      .course-text p {
+        color: ${course_text_colors.get('paragraph_color', '')};
+      }
+    </style>
+  % endif
+
+  % if course_text_bottom_colors:
+    <style>
+      .course-text--bottom {
+        background: ${course_text_bottom_colors.get('background', '')};
+        border: ${course_text_bottom_colors.get('border', '')};
+        box-shadow: ${course_text_bottom_colors.get('shadow', '')};
+      }
+      .course-text--bottom h2 {
+        color: ${course_text_bottom_colors.get('title_color', '')};
+      }
+      .course-text--bottom p {
+        color: ${course_text_bottom_colors.get('paragraph_color', '')};
+      }
+    </style>
+  % endif
+
+
+
+  % if login_colors:
+    <style>
+      .login-header {
+        background: ${login_colors.get('header_background', '')};
+      }
+      .login-header .title-super {
+        color: ${login_colors.get('header_title_color', '')};
+      }
+      .login-header .title-sub {
+        color: ${login_colors.get('header_subtitle_color', '')};
+      }
+
+      .login .login-text {
+        background: ${login_colors.get('text_background', '')};
+      }
+      .login .login-text h2 {
+        color: ${login_colors.get('text_title_color', '')};
+      }
+      .login .login-text p {
+        color: ${login_colors.get('text_paragraph_color', '')};
+      }
+
+      .login .login-text_bottom {
+        background: ${login_colors.get('text_bottom_background', '')};
+      }
+      .login .login-text_bottom h2 {
+        color: ${login_colors.get('text_bottom_title_color', '')};
+      }
+      .login .login-text_bottom p {
+        color: ${login_colors.get('text_bottom_paragraph_color', '')};
+      }
+    </style>
+  % endif
+
+  % if register_colors:
+    <style>
+      .register-header {
+        background: ${register_colors.get('header_background', '')};
+      }
+      .register-header .title-super {
+        color: ${register_colors.get('header_title_color', '')};
+      }
+      .register-header .title-sub {
+        color: ${register_colors.get('header_subtitle_color', '')};
+      }
+
+      .register .register-text {
+        background: ${register_colors.get('text_background', '')};
+      }
+      .register .register-text h2 {
+        color: ${register_colors.get('text_title_color', '')};
+      }
+      .register .register-text p {
+        color: ${register_colors.get('text_paragraph_color', '')};
+      }
+
+      .register .register-text_bottom {
+        background: ${register_colors.get('text_bottom_background', '')};
+      }
+      .register .register-text_bottom h2 {
+        color: ${register_colors.get('text_bottom_title_color', '')};
+      }
+      .register .register-text_bottom p {
+        color: ${register_colors.get('text_bottom_paragraph_color', '')};
+      }
+    </style>
+  % endif
+
+
+
+  % if footer_colors:
+    <style>
+      footer.footer {
+        background: ${footer_colors.get('background', '')};
+      }
+
+      .footer .content-container a {
+        background: ${footer_colors.get('background', '#FFF')};
+      }
+
+      .footer-description {
+        color: ${footer_colors.get('color', '')};
+      }
+
+      .footer .footer-links .nav-link {
+        color: ${footer_colors.get('color_link', '')};
+      }
+      .footer .footer-links .nav-link:hover,
+      .footer .footer-links .nav-link:focus,
+      .footer .footer-links .nav-link:active {
+        color: ${footer_colors.get('color_link_hover', '')};
+      }
+
+      .footer-extra {
+        background: ${footer_colors.get('extra_background', '')};
+      }
+
+      .footer .footer-extra .content-container a {
+        background: ${footer_colors.get('extra_background', '')};
+      }
+
+      .footer-extra .footer-links .nav-link {
+        color: ${footer_colors.get('extra_color_link', '')};
+        background: ${footer_colors.get('extra_background', '')};
+      }
+      .footer-extra .footer-links .nav-link:hover,
+      .footer-extra .footer-links .nav-link:focus,
+      .footer-extra .nav-link:active {
+        color: ${footer_colors.get('extra_color_link_hover', '')};
+      }
+
+      .footer-extra .footer-copy {
+        color: ${footer_colors.get('copy_color', '')};
+      }
+    </style>
+  % endif
+
+</%def>
+
