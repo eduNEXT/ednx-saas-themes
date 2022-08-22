@@ -1,0 +1,49 @@
+<%def name="google_scripts(theming)">
+  <%
+    base_google_analytics = theming.options('general', 'base_google_analytics', default='UA-42572285-6')
+    base_google_analytics_name = theming.options('general', 'base_google_analytics_name', default='edunext')
+    gtag_id = theming.options('general', 'google_analytics_gtag', default= False)
+    gtm_id = theming.options('general', 'tracking_scripts_gtm_id', default= False)
+    additional_google_analytics = theming.options('general', 'additional_google_analytics', default= False)
+  %>
+  % if settings.FEATURES.get('EDNX_ENABLE_GOOGLE_ANALYTICS', False):
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', '${ base_google_analytics }', 'auto', {'name': '${ base_google_analytics_name }', 'alwaysSendReferrer': true});
+      ga('edunext.require', 'displayfeatures');
+      ga('edunext.send', 'pageview');
+
+      ## setting allows edunext to set up a secondary tracking code for GA
+      % if additional_google_analytics:
+        ga('create', '${ additional_google_analytics}', 'auto');
+        ga('require', 'displayfeatures');
+        ga('send', 'pageview');
+      % endif
+    </script>
+
+    % if gtag_id:
+    ## <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=${ gtag_id|h }"></script>  
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '${ gtag_id|h }');
+    </script>
+    % endif
+
+    %if gtm_id:
+    ## <!-- Google Tag Manager -->
+    <script>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','${ gtm_id|h }');
+    </script>
+    %endif
+  % endif
+</%def>
