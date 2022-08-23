@@ -2,6 +2,7 @@
 
 <%page expression_filter="h" args="online_help_token"/>
 <%namespace name='static' file='/static_content.html'/>
+<%namespace name='colors' file='/custom_colors.html'/>
 <%namespace file='/main.html' import="login_query"/>
 <%!
 from django.urls import reverse
@@ -24,7 +25,7 @@ from openedx.core.djangoapps.lang_pref.api import header_language_selector_is_en
   header_langselector = theming.options('header', 'header_langselector', default=False)
 %>
 
-<%include file="../custom_colors.html"/>
+${colors.all_colors(theming)}
 
 %if header_top:
   ${header_top | n,  decode.utf}
