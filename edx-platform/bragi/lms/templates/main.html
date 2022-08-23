@@ -13,6 +13,7 @@
 
 <%namespace name='static' file='static_content.html'/>
 <%namespace name='analytics' file='analytics.html'/>
+<%namespace name='browser' file='browser-alert.html'/>
 <% online_help_token = self.online_help_token() if hasattr(self, 'online_help_token') else None %>
 <%!
 import six
@@ -167,7 +168,7 @@ ${analytics.google_scripts(theming)}
 
 <%static:optional_include_mako file="body-initial.html" is_theming_enabled="True" />
 
-<%include file="browser-alert.html" />
+${ browser.browser_alert() }
 
 <div id="page-prompt"></div>
 % if not disable_window_wrap:
