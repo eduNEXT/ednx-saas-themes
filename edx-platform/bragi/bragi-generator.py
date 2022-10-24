@@ -85,7 +85,7 @@ palette_definitions = [
 
 # bragi/lms/static/sass/
 for color in palette_definitions:
-    src = 'lms/static/sass'
+    src = './lms/static/sass'
     dst = '../bragi-generator/bragi-{color}/lms/static/sass'.format(color = color[1:])
     try:
         shutil.rmtree(dst)
