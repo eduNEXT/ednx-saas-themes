@@ -4,7 +4,7 @@
 
 %btn {
   @include button-size-edx($btn-padding-y, $btn-padding-x, $font-size-base, $border-radius);
-  @include button-variant($btn-primary-bg, $btn-primary-border);
+  @include button-variant(theme-color("primary"), theme-color("primary"));
   @include transition($btn-transition);
   color: $btn-primary-color;
   display: inline-block;
@@ -19,16 +19,21 @@
   border: $input-btn-border-width solid transparent;
   box-shadow: none;
   user-select: none;
+  background-color: $main-color;
+  border-color: $main-color;
 
   // Share hover and focus styles
   &:focus,
   &:hover,
   &:hover:not(:disabled) {
-    @include button-variant($btn-primary-bg, $btn-primary-border);
+    @include button-variant(theme-color("primary"), theme-color("primary"));
     text-decoration: none;
     outline: 0;
     background-image: none;
-    box-shadow: $btn-focus-box-shadow;
+    box-shadow: 0 0 0 $btn-focus-width interactive-color(main, 0, 5) !important;
+    color: $btn-primary-color !important;
+    background-color: interactive-color(dark, 7) !important;
+    border-color: interactive-color(dark, 10) !important;
   }
 
   // Disabled comes first so active can properly restyle
@@ -48,7 +53,7 @@
 
 %btn-flat {
   @extend %btn;
-  @include button-variant($btn-primary-color, $btn-primary-border);
+  @include button-variant($btn-primary-color, theme-color("primary"));
   border: $input-btn-border-width solid $btn-primary-border;
   color: $btn-primary-bg;
 
@@ -56,8 +61,11 @@
   &:focus,
   &:hover,
   &:hover:not(:disabled) {
-    @include button-variant($btn-primary-bg, $btn-primary-border);
-    color: $btn-primary-color;
+    @include button-variant(theme-color("primary"), theme-color("primary"));
+    box-shadow: 0 0 0 $btn-focus-width interactive-color(main, 0, 5) !important;
+    color: $btn-primary-color !important;
+    background-color: interactive-color(dark, 7) !important;
+    border-color: interactive-color(dark, 10) !important;
   }
 }
 

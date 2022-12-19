@@ -6,8 +6,20 @@
 // $register-banner-image: '' !default;
 // $passwordreset-banner-image: '' !default;
 
- $main-color: #2196f3;
- $white: #fff;
+@function interactive-color($color-name, $lightness: 0, $alpha: 10) {
+  @if $lightness == 0 and $alpha == 10 {
+    @return var(--#{$color-name}-color, $default-color);
+  } @else if $lightness == 0 {
+    @return var(--#{$color-name}-color-alpha-#{$alpha}, $default-color);
+  } @else if $alpha == 10 {
+    @return var(--#{$color-name}-color-lightness-#{$lightness}, $default-color);
+  }
+  @return var(--#{$color-name}-color-lightness-#{$lightness}-alpha-#{$alpha}, $default-color);
+}
+
+$default-color: #2196f3;
+$main-color: interactive-color(main);
+$white: #fff;
 
 $neat-grid: (
   columns: 12,
@@ -20,7 +32,7 @@ $navbar-zindex: 1100 !default;
 $navbar__nav-login-color: $white !default;
 $navbar__nav-login-hover-color: $white !default;
 $navbar__nav-login-bg: $main-color;
-$navbar__nav-login-hover-bg: lighten($main-color, 5%);
+$navbar__nav-login-hover-bg: interactive-color(light, 5);
 $navbar__nav-account-color: $main-color;
 $navbar__nav-account-border: 1px solid $main-color;
 $navbar__nav-toggler-color: $main-color;
@@ -29,7 +41,7 @@ $navbar__nav-link-color: $main-color;
 
 //Links color
 $link-color: $main-color;
-$link-hover-color: darken($link-color, 15%);
+$link-hover-color: interactive-color(dark, 15);
 
 $font-family-base: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 $headings-font-family: $font-family-base;
