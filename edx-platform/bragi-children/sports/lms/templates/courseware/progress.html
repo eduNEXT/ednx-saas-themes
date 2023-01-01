@@ -3,15 +3,16 @@
 <%namespace name='static' file='/static_content.html'/>
 <%def name="online_help_token()"><% return "progress" %></%def>
 <%!
-from common.djangoapps.course_modes.models import CourseMode
-from lms.djangoapps.certificates.models import CertificateStatuses
-from lms.djangoapps.grades.api import constants as grades_constants
-from django.utils.translation import ugettext as _
-from openedx.core.djangolib.markup import HTML, Text
-from django.urls import reverse
+from datetime import datetime
 from django.conf import settings
+from django.urls import reverse
 from django.utils.http import urlquote_plus
-from six import text_type
+from django.utils.translation import ugettext as _
+from pytz import UTC
+from common.djangoapps.course_modes.models import CourseMode
+from lms.djangoapps.certificates.data import CertificateStatuses
+from lms.djangoapps.grades.api import constants as grades_constants
+from openedx.core.djangolib.markup import HTML, Text
 
 from openedx.features.enterprise_support.utils import get_enterprise_learner_generic_name
 %>
@@ -79,7 +80,7 @@ username = get_enterprise_learner_generic_name(request) or student.username
                         %if certificate_data:
                         <div class="auto-cert-message" id="course-success">
                             <div class="has-actions">
-                                <% post_url = reverse('generate_user_cert', args=[text_type(course.id)]) %>
+                                <% post_url = reverse('generate_user_cert', args=[str(course.id)]) %>
                                 <div class="msg-actions">
                                     %if certificate_data.cert_web_view_url:
                                     <button id="print_btn" class="print-btn">Print</button>
