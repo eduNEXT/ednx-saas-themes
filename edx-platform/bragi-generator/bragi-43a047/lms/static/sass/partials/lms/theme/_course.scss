@@ -574,7 +574,7 @@ a.ui-slider-handle {
 .problems-wrapper,
 .xblock-student_view-problem.xmodule_display,
 .choicegroup.capa_inputtype,
-.problem div:not([id*="answer"]) {
+.problem div:not([id*="answer"], .drag-container, .drag-container *) {
   background-color: $white;
   box-shadow: none;
 }
