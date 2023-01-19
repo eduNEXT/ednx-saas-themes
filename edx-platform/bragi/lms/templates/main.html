@@ -145,7 +145,6 @@ from common.djangoapps.pipeline_mako import render_require_js_path_overrides
 
   <meta name="openedx-release-line" content="${RELEASE_LINE}" />
 
-<%include file="google_analytics.html" />
 
 <% branch_key = static.get_value("BRANCH_IO_KEY", settings.BRANCH_IO_KEY) %>
 % if branch_key and not is_from_mobile_app:
@@ -228,6 +227,7 @@ from common.djangoapps.pipeline_mako import render_require_js_path_overrides
       % endif
     % endfor
   % endif
+<%include file="google_analytics.html" />
 </body>
 </html>
 
