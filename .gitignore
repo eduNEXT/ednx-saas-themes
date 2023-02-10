@@ -1,2 +1,4 @@
 **/css
 venv/
+node_modules
+!edx-platform/bragi/lms/static/sass/partials/lms/theme/css
