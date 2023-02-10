@@ -1,20 +1,21 @@
 // BASE VARIABLES
 // =============================================
+$primary: var(--pgn-color-primary-base) !default;
 
 // // set defaoult bacgrounds in login, register and password restes pages
 // $login-banner-image: '' !default;
 // $register-banner-image: '' !default;
 // $passwordreset-banner-image: '' !default;
 
- $main-color: #2196f3;
+ $main-color: $primary;
  $white: #fff;
 
 $neat-grid: (
   columns: 12,
   gutter: 0,
 );
-
-// Navbar
+$pepito: var(--pgn-color-pepito-base) !default;
+$primary: var(--pgn-color-primary-base) !default;
 $navbar-bg: $white !default;
 $navbar-zindex: 1100 !default;
 $navbar__nav-login-color: $white !default;
@@ -28,18 +29,18 @@ $navbar__nav-toggler-hover-bg: rgba(0, 0, 0, .05);
 $navbar__nav-link-color: $main-color;
 
 //Links color
-$link-color: $main-color;
-$link-hover-color: darken($link-color, 15%);
+$link-color: var(--pgn-color-link-base) !default;
+$link-hover-color: var(--pgn-color-link-hover) !default;
 
-$font-family-base: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-$headings-font-family: $font-family-base;
+$font-family-base: var(--pgn-typography-font-family-base) !default;
+$headings-font-family: var(--pgn-typography-headings-font-family) !default;
 
-$h1-font-size: 2.5rem;
-$h2-font-size: 2rem;
-$h3-font-size: 1.75rem;
-$h4-font-size: 1.5rem;
-$h5-font-size: 1.25rem;
-$h6-font-size: 1rem;
+$h1-font-size: var(--pgn-typography-font-size-h1) !default;
+$h2-font-size: var(--pgn-typography-font-size-h2) !default;
+$h3-font-size: var(--pgn-typography-font-size-h3) !default;
+$h4-font-size: var(--pgn-typography-font-size-h4) !default;
+$h5-font-size: var(--pgn-typography-font-size-h5) !default;
+$h6-font-size: var(--pgn-typography-font-size-h6) !default;
 
 // Home
 $home-header__title-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12) !default;
