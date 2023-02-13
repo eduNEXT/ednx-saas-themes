@@ -436,8 +436,8 @@ $input-border-radius-lg:         $border-radius-lg !default;
 $input-border-radius-sm:         $border-radius-sm !default;
 
 $input-bg-focus:                 $input-bg !default;
-$input-border-focus:             interactive-color(light, 25) !default;
-$input-box-shadow-focus:         $input-box-shadow, interactive-color(light, 25, 6) !default;
+$input-border-focus:             lighten($primary, 25%) !default;
+$input-box-shadow-focus:         $input-box-shadow, rgba($input-border-focus, .6) !default;
 $input-color-focus:              $input-color !default;
 
 $input-color-placeholder:        $gray-light !default;
@@ -492,7 +492,7 @@ $custom-control-checked-indicator-box-shadow: none !default;
 $custom-control-focus-indicator-box-shadow: 0 0 0 1px $body-bg, 0 0 0 3px $primary !default;
 
 $custom-control-active-indicator-color:      $white !default;
-$custom-control-active-indicator-bg:         interactive-color(light, 35) !default;
+$custom-control-active-indicator-bg:         lighten($primary, 35%) !default;
 $custom-control-active-indicator-box-shadow: none !default;
 
 $custom-checkbox-radius: $border-radius !default;
