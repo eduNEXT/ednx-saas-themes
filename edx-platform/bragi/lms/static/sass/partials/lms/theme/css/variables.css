@@ -1,11 +1,11 @@
 /**
  * IMPORTANT: This file is the result of assembling design tokens
  * Do not edit directly
- * Generated on Tue, 14 Feb 2023 19:33:04 GMT
+ * Generated on Tue, 14 Feb 2023 19:54:30 GMT
  */
 
 :root {
-  --pgn-primary-bragi: #0A3055FF;
+  --pgn-bragi-main-color: #0A3055FF;
   --pgn-theme-interval: 8%;
   --pgn-other-tooltip-opacity: 1;
   --pgn-other-search-field-disabled-opacity: .3;
