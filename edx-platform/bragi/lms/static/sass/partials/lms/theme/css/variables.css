@@ -1,7 +1,7 @@
 /**
  * IMPORTANT: This file is the result of assembling design tokens
  * Do not edit directly
- * Generated on Tue, 14 Feb 2023 20:21:42 GMT
+ * Generated on Tue, 14 Feb 2023 20:22:55 GMT
  */
 
 :root {
@@ -491,6 +491,7 @@
   --pgn-color-btn-border-tertiary: #00000000;
   --pgn-color-btn-bg-inverse-tertiary: #00000000;
   --pgn-color-btn-bg-tertiary: #00000000;
+  --pgn-bragi-input-border-focus: #000000FF;
   --pgn-bragi-navbar-nav-login-hover-bg: #000000FF;
   --pgn-transition-carousel-base: transform var(--pgn-transition-carousel-duration) ease-in-out;
   --pgn-elevation-scrollable-body-box-shadow: #0000008C;
