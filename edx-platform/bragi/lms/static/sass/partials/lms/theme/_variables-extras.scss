@@ -19,7 +19,7 @@ $navbar-zindex: 1100 !default;
 $navbar__nav-login-color: $white !default;
 $navbar__nav-login-hover-color: $white !default;
 $navbar__nav-login-bg: $main-color;
-$navbar__nav-login-hover-bg: lighten($main-color, 5%);
+$navbar__nav-login-hover-bg: var(--pgn-bragi-navbar-nav-login-hover-bg) !default;
 $navbar__nav-account-color: $main-color;
 $navbar__nav-account-border: 1px solid $main-color;
 $navbar__nav-toggler-color: $main-color;
