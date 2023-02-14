@@ -437,7 +437,8 @@ $input-border-radius-sm: var(--pgn-size-form-input-radius-border-sm) !default;
 
 $input-bg-focus:                 $input-bg !default;
 $input-border-focus: var(--pgn-bragi-input-border-focus) !default;
-$input-box-shadow-focus:         $input-box-shadow, rgba($input-border-focus, .6) !default;
+$input-box-shadow-focus-alpha: var(--pgn-bragi-input-box-shadow-focus-alpha) !default;
+$input-box-shadow-focus: var(--pgn-bragi-input-box-shadow-focus) !default;
 $input-color-focus:              $input-color !default;
 
 $input-color-placeholder:        $gray-light !default;
