@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-tokens": "build-design-tokens --build-dir  ./lms/static/sass/partials/lms/theme/css/ --source ./lms/tokens/*.json",
-    "replace-variables": "replace-scss-with-css -p  ./lms/static/sass/partials/lms/theme/_variables-extras.scss -p ./lms/static/sass/partials/lms/theme/_variables-bootstrap.scss  --source ./lms/tokens/"
+    "replace-variables": "replace-scss-with-css -p  ./lms/static/sass/partials/lms/theme/  --source ./lms/tokens/"
   },
   "keywords": [
     "paragon"
