@@ -1,7 +1,7 @@
 /**
  * IMPORTANT: This file is the result of assembling design tokens
  * Do not edit directly
- * Generated on Wed, 15 Feb 2023 16:21:08 GMT
+ * Generated on Wed, 15 Feb 2023 16:30:02 GMT
  */
 
 :root {
@@ -491,6 +491,7 @@
   --pgn-color-btn-border-tertiary: #00000000;
   --pgn-color-btn-bg-inverse-tertiary: #00000000;
   --pgn-color-btn-bg-tertiary: #00000000;
+  --pgn-bragi-extend-intro-banner-background-color: #0A305566;
   --pgn-bragi-input-box-shadow-focus: var(--pgn-elevation-form-input-base), var(--pgn-bragi-input-box-shadow-focus-alpha);
   --pgn-bragi-input-box-shadow-focus-alpha: #0A305599;
   --pgn-bragi-input-border-focus: #1770C7FF;
