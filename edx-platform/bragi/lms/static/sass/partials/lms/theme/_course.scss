@@ -125,7 +125,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba($main-color, .4);
+      background-color: $course-info-course-context-bg;
     }
 
     > div {
@@ -186,7 +186,7 @@ main .home {
 .dashboard .my-courses .listing-courses .course-item {
   padding-bottom: 0 !important;
   margin-bottom: 1.5rem !important;
-  
+
   .course-container {
     transition: box-shadow 0.25s ease;
     padding: 10px;
@@ -273,7 +273,7 @@ main .home {
 
   .search-facets,
   .courses-container .courses:not(.no-course-discovery) {
-    width: 100% !important;   
+    width: 100% !important;
   }
 
   .search-status-label {
@@ -427,7 +427,7 @@ main .home {
 .course-outline .block-tree.accordion .section {
   .section-name .section-title {
     font-size: 1.3rem;
-  } 
+  }
 
   .subsection-title {
     font-size: 1.1rem;
@@ -559,7 +559,7 @@ a.ui-slider-handle {
 .view-profile .profile-self .wrapper-profile-field-account-privacy {
   background-color: #e4e4e4;
 }
- 
+
 .dashboard .my-courses,
 .dashboard .main-container,
 .dashboard .main-container .my-courses .listing-courses .course-item,
@@ -582,7 +582,7 @@ a.ui-slider-handle {
 .wrapper-account-settings main:not(.home),
 .content-wrapper .course-tabs .navbar-nav .nav-item a {
   background-color: #f3f3f3;
-  box-shadow: none; 
+  box-shadow: none;
 }
 
 .openassessment.problem .wrapper--ui-staff div {
