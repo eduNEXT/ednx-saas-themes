@@ -1,0 +1,109 @@
+@mixin var-gradient-bg($var-color) {
+    $var-color: str-replace($var-color, 'var(');
+    $var-color: str-replace($var-color, ')');
+    $mix-body-bg: var(#{$var-color+'-mix-body-background'});
+    //Define this var with mix($body-bg, $var-color, 15%)
+
+    @if $enable-gradients {
+        background: $var-color linear-gradient(180deg, $mix-body-bg, $var-color) repeat-x;
+    }
+
+    @else {
+        background-color: $var-color;
+    }
+}
+
+@function var-color-yiq($var-color) {
+    $var-color: str-replace($var-color, 'var(');
+    $var-color: str-replace($var-color, ')');
+    $color-yiq: var(#{$var-color+'-color-yiq'});
+    //Define this var with yiq($var-color)
+    @return $color-yiq
+}
+
+@function var-darken($var-color, $amount) {
+    $var-color: str-replace($var-color, 'var(');
+    $var-color: str-replace($var-color, ')');
+    $color-darken: var(#{'pgnbragi+'$var-color+'-color-darken'+$amount});
+    //Define this var with darken($var-color, $amount)
+    @return $color-darken
+}
+
+@function var-mix($var-color, $var-color2, $amount) {
+    $var-color: get-str-var($var-color);
+    $var-color2: get-str-var($var-color2);;
+    $color-mix: var(#{$var-color+'-color-mix-'+$var-color2+$amount});
+    //Define this var with mix($var-color,$var-color2, $amount)
+    @return $color-mix
+}
+@function var-rgba($var-color, $amount) {
+    $var-color: str-replace($var-color, 'var(');
+    $var-color: str-replace($var-color, ')');
+    $color-rgba: var(#{$var-color+'-color-rgba'+$amount});
+    //Define this var with var-rgba($var-color,$var-color2 $amount)
+    @return $color-rgba
+}
+
+@function get-str-var($var) {
+    $var: str-replace($var, 'var(');
+    $var: str-replace($var, ')');
+    @return $var
+}
+
+@mixin var-button-variant($background, $border, $hover-background: var-darken($background, 7.5%), $hover-border: var-darken($border, 10%), $active-background: var-darken($background, 10%), $active-border: var-darken($border, 12.5%)) {
+    color: var-color-yiq($background);
+    @include var-gradient-bg($background);
+    border-color: $border;
+    @include box-shadow($btn-box-shadow);
+
+    @include hover() {
+      color: var-color-yiq($hover-background);
+      @include var-gradient-bg($hover-background);
+      border-color: $hover-border;
+    }
+
+    &:focus,
+    &.focus {
+      color: var-color-yiq($hover-background);
+      @include var-gradient-bg($hover-background);
+      border-color: $hover-border;
+      @if $enable-shadows {
+        @include box-shadow($btn-box-shadow, 0 0 0 $btn-focus-width var-rgba(var-mix(var-color-yiq($background), $border, 15%), .5));
+      } @else {
+        // Avoid using mixin so we can pass custom focus shadow properly
+        box-shadow: 0 0 0 $btn-focus-width var-rgba(var-mix(var-color-yiq($background), $border, 15%), .5);
+      }
+    }
+
+    // Disabled comes first so active can properly restyle
+    &.disabled,
+    &:disabled {
+      color: var-color-yiq($background);
+      background-color: $background;
+      border-color: $border;
+      // Remove CSS gradients if they're enabled
+      @if $enable-gradients {
+        background-image: none;
+      }
+    }
+
+    &:not(:disabled):not(.disabled):active,
+    &:not(:disabled):not(.disabled).active,
+    .show > &.dropdown-toggle {
+      color: var-color-yiq($active-background);
+      background-color: $active-background;
+      @if $enable-gradients {
+        background-image: none; // Remove the gradient for the pressed/active state
+      }
+      border-color: $active-border;
+
+      &:focus {
+        @if $enable-shadows and $btn-active-box-shadow != none {
+          @include box-shadow($btn-active-box-shadow, 0 0 0 $btn-focus-width var-rgba(var-mix(var-color-yiq($background), $border, 15%), .5));
+        } @else {
+          // Avoid using mixin so we can pass custom focus shadow properly
+          box-shadow: 0 0 0 $btn-focus-width var-rgba(var-mix(var-color-yiq($background), $border, 15%), .5);
+        }
+      }
+    }
+  }

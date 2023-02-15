@@ -4,7 +4,7 @@
 
 %btn {
   @include button-size-edx($btn-padding-y, $btn-padding-x, $font-size-base, $border-radius);
-  @include button-variant($btn-primary-bg, $btn-primary-border);
+  @include var-button-variant($btn-primary-bg, $btn-primary-border);
   @include transition($btn-transition);
   color: $btn-primary-color;
   display: inline-block;
@@ -24,7 +24,7 @@
   &:focus,
   &:hover,
   &:hover:not(:disabled) {
-    @include button-variant($btn-primary-bg, $btn-primary-border);
+    @include var-button-variant($btn-primary-bg, $btn-primary-border);
     text-decoration: none;
     outline: 0;
     background-image: none;
@@ -48,7 +48,7 @@
 
 %btn-flat {
   @extend %btn;
-  @include button-variant($btn-primary-color, $btn-primary-border);
+  @include var-button-variant($btn-primary-color, $btn-primary-border);
   border: $input-btn-border-width solid $btn-primary-border;
   color: $btn-primary-bg;
 
@@ -56,7 +56,7 @@
   &:focus,
   &:hover,
   &:hover:not(:disabled) {
-    @include button-variant($btn-primary-bg, $btn-primary-border);
+    @include var-button-variant($btn-primary-bg, $btn-primary-border);
     color: $btn-primary-color;
   }
 }
