@@ -24,7 +24,7 @@
 @function var-darken($var-color, $amount) {
     $var-color: str-replace($var-color, 'var(');
     $var-color: str-replace($var-color, ')');
-    $color-darken: var(#{'pgnbragi+'$var-color+'-color-darken'+$amount});
+    $color-darken: var(#{$var-color+'-color-darken'+$amount});
     //Define this var with darken($var-color, $amount)
     @return $color-darken
 }
