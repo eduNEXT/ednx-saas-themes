@@ -1,0 +1,139 @@
+{
+  "color": {
+    "bragi": {
+      "main-color": {
+        "value": "#0A3055",
+        "source": "$bragi-main-color"
+      },
+      "navbar": {
+        "nav-login-hover-bg": {
+          "value": "{color.bragi.main-color}",
+          "source": "$navbar__nav-login-hover-bg",
+          "modify": [
+            {
+              "type": "lighten",
+              "amount": 0.05
+            }
+          ]
+        }
+      },
+      "input-border-focus": {
+        "value": "{color.bragi.main-color}",
+        "source": "$input-border-focus",
+        "modify": [
+          {
+            "type": "lighten",
+            "amount": 0.25
+          }
+        ]
+      },
+      "input-box-shadow-focus-alpha": {
+        "value": "{color.bragi.main-color}",
+        "source": "$input-box-shadow-focus-alpha",
+        "modify": [
+          {
+            "type": "alpha",
+            "amount": 0.6
+          }
+        ]
+      },
+      "input-box-shadow-focus": {
+        "value": "{elevation.form.input.base}, {color.bragi.input-box-shadow-focus-alpha}",
+        "source": "$input-box-shadow-focus"
+      },
+      "extend-intro-banner-background-color": {
+        "value": "{color.bragi.main-color}",
+        "source": "$extend-intro-banner-background-color",
+        "modify": [
+          {
+            "type": "alpha",
+            "amount": 0.4
+          }
+        ]
+      },
+      "course-info-course-context-bg": {
+        "value": "{color.bragi.main-color}",
+        "source": "$course-info-course-context-bg",
+        "modify": [
+          {
+            "type": "alpha",
+            "amount": 0.4
+          }
+        ]
+      },
+      "btn-bg-primary-hover-bg": {
+        "value": "{color.btn.bg.primary}",
+        "modify": [
+          {
+            "type": "darken",
+            "amount": 0.075
+          }
+        ]
+      },
+      "btn-bg-primary-hover-border": {
+        "value": "{color.btn.bg.primary}",
+        "modify": [
+          {
+            "type": "darken",
+            "amount": 0.1
+          }
+        ]
+      },
+      "btn-bg-primary-active-bg": {
+        "value": "{color.btn.bg.primary}",
+        "modify": [
+          {
+            "type": "darken",
+            "amount": 0.1
+          }
+        ]
+      },
+      "btn-bg-primary-active-border": {
+        "value": "{color.btn.bg.primary}",
+        "modify": [
+          {
+            "type": "darken",
+            "amount": 0.125
+          }
+        ]
+      },
+      "btn-bg-primary-yiq": {
+        "value": "{color.btn.bg.primary}",
+        "modify": [
+          {
+            "type": "color-yiq"
+          }
+        ]
+      },
+      "btn-bg-primary-mix-150": {
+        "value": "{color.bragi.btn-bg-primary-yiq}",
+        "modify": [
+          {
+            "type": "mix",
+            "otherColor": "{color.btn.bg.primary}",
+            "amount": 0.15
+          }
+        ]
+      },
+      "btn-bg-primary-custom-background-gradient": {
+        "value": "{color.btn.bg.primary}",
+        "modify": [
+          {
+            "type": "alpha",
+            "amount": 0.05
+          }
+        ]
+      },
+      "btn-bg-primary-background-gradient": {
+        "value": "{color.btn.bg.primary}",
+        "modify": [
+          {
+            "type": "mix",
+            "otherColor": "{color.body.bg}",
+            "amount": 0.15
+          }
+        ]
+      }
+    }
+  }
+}
