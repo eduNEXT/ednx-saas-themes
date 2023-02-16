@@ -22,7 +22,8 @@
 
 @function var-darken($var-color, $amount) {
   $var-color: get-str-var($var-color);
-  $color-darken: var(#{$var-color+'-darken'+$amount});
+  $amount: process-amount($amount);
+  $color-darken: var(#{$var-color+'-darken'+'-'+$amount});
     //Define this var with darken($var-color, $amount)
     @return $color-darken
 }
@@ -31,13 +32,15 @@
     $var-color: get-str-var($var-color);
     $var-color2: get-str-var($var-color2);
     $var-color2: str-replace($var-color2, '--');
-    $color-mix: var(#{$var-color+'-mix-'+$var-color2+$amount});
+    $amount: process-amount($amount);
+    $color-mix: var(#{$var-color+'-mix-'+$var-color2+'-'+$amount});
     //Define this var with mix($var-color,$var-color2, $amount)
     @return $color-mix
 }
 @function var-rgba($var-color, $amount) {
     $var-color: get-str-var($var-color);
-    $color-rgba: var(#{$var-color+'-rgba'+$amount});
+    $amount: process-amount($amount);
+    $color-rgba: var(#{$var-color+'-rgba'+'-'+$amount});
     //Define this var with var-rgba($var-color,$var-color2 $amount)
     @return $color-rgba
 }
@@ -47,7 +50,25 @@
     $var: str-replace($var, ')');
     @return $var
 }
-
+@function process-amount($amount) {
+  //percentage are represented with int 100% -> 1000
+  //with this we can have a definition of one significative figure.
+  $amount: $amount*10;
+  $amount: transform-number-to-string($amount);
+  $amount: str-replace($amount, '%');
+  @return $amount
+}
+@function transform-number-to-string($value) {
+  @if type-of($value)=='number' {
+    @return #{$value};
+  }
+  @else if type-of($value)=='string' {
+    @return $value;
+  }
+  @else {
+    @error 'Input #{$value} is no number or string';
+  }
+}
 @mixin var-button-variant($background, $border, $hover-background: var-darken($background, 7.5%), $hover-border: var-darken($border, 10%), $active-background: var-darken($background, 10%), $active-border: var-darken($border, 12.5%)) {
     color: var-color-yiq($background);
     @include var-gradient-bg($background);
