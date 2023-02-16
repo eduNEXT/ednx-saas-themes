@@ -1,7 +1,7 @@
 /**
  * IMPORTANT: This file is the result of assembling design tokens
  * Do not edit directly
- * Generated on Thu, 16 Feb 2023 16:09:48 GMT
+ * Generated on Thu, 16 Feb 2023 16:17:58 GMT
  */
 
 :root {
@@ -1127,6 +1127,8 @@
   --pgn-color-input-focus: var(--pgn-color-primary-500);
   --pgn-color-disabled: var(--pgn-color-gray-500);
   --pgn-color-bg-active: var(--pgn-color-primary-500);
+  --pgn-color-btn-bg-primary-darken-100-yiq: #FFFFFFFF;
+  --pgn-color-btn-bg-primary-darken-75-yiq: #FFFFFFFF;
   --pgn-color-btn-bg-primary-yiq-mix-pgn-color-btn-bg-primary-150: #DAE0E6FF;
   --pgn-border-color-nav-tabs-link-border-hover: transparent transparent var(--pgn-color-nav-tabs-border);
   --pgn-other-content-form-control-select-indicator-icon: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16.59 8.58984L12 13.1698L7.41 8.58984L6 9.99984L12 15.9998L18 9.99984L16.59 8.58984Z" fill="%23454545FF"/></svg>');
