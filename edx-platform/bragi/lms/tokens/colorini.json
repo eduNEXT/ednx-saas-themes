@@ -1,12 +1,13 @@
 {
-    "bragi": {
-      "main-color": {
+  "bragi": {
+    "color": {
+      "main": {
         "value": "#0A3055",
-        "source": "$bragi-main-color"
+        "source": "$bragi-color-main"
       },
       "navbar": {
         "nav-login-hover-bg": {
-          "value": "{bragi.main-color}",
+          "value": "{bragi.color.main}",
           "source": "$navbar__nav-login-hover-bg",
           "modify": [
             {
@@ -17,7 +18,7 @@
         }
       },
       "input-border-focus": {
-        "value": "{bragi.main-color}",
+        "value": "{bragi.color.main}",
         "source": "$input-border-focus",
         "modify": [
           {
@@ -27,7 +28,7 @@
         ]
       },
       "input-box-shadow-focus-alpha": {
-        "value": "{bragi.main-color}",
+        "value": "{bragi.color.main}",
         "source": "$input-box-shadow-focus-alpha",
         "modify": [
           {
@@ -37,11 +38,11 @@
         ]
       },
       "input-box-shadow-focus": {
-        "value": "{elevation.form.input.base}, {bragi.input-box-shadow-focus-alpha}",
+        "value": "{elevation.form.input.base}, {bragi.color.input-box-shadow-focus-alpha}",
         "source": "$input-box-shadow-focus"
       },
       "extend-intro-banner-background-color": {
-        "value": "{bragi.main-color}",
+        "value": "{bragi.color.main}",
         "source": "$extend-intro-banner-background-color",
         "modify": [
           {
@@ -51,7 +52,7 @@
         ]
       },
       "course-info-course-context-bg": {
-        "value": "{bragi.main-color}",
+        "value": "{bragi.color.main}",
         "source": "$course-info-course-context-bg",
         "modify": [
           {
@@ -105,7 +106,7 @@
         ]
       },
       "btn-bg-primary-mix-150": {
-        "value": "{bragi.btn-bg-primary-yiq}",
+        "value": "{bragi.color.btn-bg-primary-yiq}",
         "modify": [
           {
             "type": "mix",
@@ -134,4 +135,5 @@
         ]
       }
     }
+  }
 }

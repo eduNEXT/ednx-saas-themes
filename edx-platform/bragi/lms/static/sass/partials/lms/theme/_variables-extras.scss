@@ -1,13 +1,13 @@
 // BASE VARIABLES
 // =============================================
-$bragi-main-color: var(--pgn-bragi-main-color) !default;
+$bragi-color-main: var(--pgn-bragi-color-main) !default;
 
 // // set defaoult bacgrounds in login, register and password restes pages
 // $login-banner-image: '' !default;
 // $register-banner-image: '' !default;
 // $passwordreset-banner-image: '' !default;
 
-$main-color: $bragi-main-color;
+$main-color: $bragi-color-main;
 $white: var(--pgn-color-white) !default;
 
 $neat-grid: (
@@ -19,7 +19,7 @@ $navbar-zindex: 1100 !default;
 $navbar__nav-login-color: $white !default;
 $navbar__nav-login-hover-color: $white !default;
 $navbar__nav-login-bg: $main-color;
-$navbar__nav-login-hover-bg: var(--pgn-bragi-navbar-nav-login-hover-bg) !default;
+$navbar__nav-login-hover-bg: var(--pgn-bragi-color-navbar-nav-login-hover-bg) !default;
 $navbar__nav-account-color: $main-color;
 $navbar__nav-account-border: 1px solid $main-color;
 $navbar__nav-toggler-color: $main-color;
@@ -59,9 +59,9 @@ $footer-bg: $white !default;
 $footer-zindex: 1100 !default;
 
 // variables bootstrap
-$input-box-shadow-focus-alpha: var(--pgn-bragi-input-box-shadow-focus-alpha) !default;
+$input-box-shadow-focus-alpha: var(--pgn-bragi-color-input-box-shadow-focus-alpha) !default;
 
 // extension vars
-$extend-intro-banner-background-color: var(--pgn-bragi-extend-intro-banner-background-color) !default;
+$extend-intro-banner-background-color: var(--pgn-bragi-color-extend-intro-banner-background-color) !default;
 
-$course-info-course-context-bg: var(--pgn-bragi-course-info-course-context-bg) !default;
+$course-info-course-context-bg: var(--pgn-bragi-color-course-info-course-context-bg) !default;
