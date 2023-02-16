@@ -1,7 +1,7 @@
 /**
  * IMPORTANT: This file is the result of assembling design tokens
  * Do not edit directly
- * Generated on Thu, 16 Feb 2023 16:17:58 GMT
+ * Generated on Thu, 16 Feb 2023 17:05:01 GMT
  */
 
 :root {
@@ -1127,6 +1127,7 @@
   --pgn-color-input-focus: var(--pgn-color-primary-500);
   --pgn-color-disabled: var(--pgn-color-gray-500);
   --pgn-color-bg-active: var(--pgn-color-primary-500);
+  --pgn-color-btn-text-primary-darken-75: #ECECECFF;
   --pgn-color-btn-bg-primary-darken-100-yiq: #FFFFFFFF;
   --pgn-color-btn-bg-primary-darken-75-yiq: #FFFFFFFF;
   --pgn-color-btn-bg-primary-yiq-mix-pgn-color-btn-bg-primary-150: #DAE0E6FF;
@@ -1344,6 +1345,7 @@
   --pgn-color-theme-bg-success: var(--pgn-color-success-100);
   --pgn-color-theme-bg-secondary: var(--pgn-color-secondary-100);
   --pgn-color-input-btn-focus: var(--pgn-color-input-focus);
+  --pgn-color-btn-text-primary-darken-75-mix-pgn-color-body-bg-150: #EFEFEFFF;
   --pgn-color-btn-bg-primary-yiq-mix-pgn-color-btn-bg-primary-150-rgba-5: #DAE0E60D;
   --pgn-other-content-form-feedback-icon-invalid: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23C32D3AFF' viewBox='-2 -2 7 7'%3e%3cpath stroke='%23C32D3AFF' d='M0 0l3 3m0-3L0 3'/%3e%3ccircle r='.5'/%3e%3ccircle cx='3' r='.5'/%3e%3ccircle cy='3' r='.5'/%3e%3ccircle cx='3' cy='3' r='.5'/%3e%3c/svg%3E");
   --pgn-other-content-form-feedback-icon-valid: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23178253FF' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");

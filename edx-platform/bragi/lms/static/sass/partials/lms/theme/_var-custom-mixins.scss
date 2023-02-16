@@ -1,7 +1,6 @@
 @mixin var-gradient-bg($var-color) {
-    $var-color: str-replace($var-color, 'var(');
-    $var-color: str-replace($var-color, ')');
-    $mix-body-bg: var(#{$var-color+'-mix-body-background'});
+    $body-bg-base: var(--pgn-color-body-bg) !default;
+    $mix-body-bg: var-mix($var-color, $body-bg-base, 15%);
     //Define this var with mix($body-bg, $var-color, 15%)
 
     @if $enable-gradients {
