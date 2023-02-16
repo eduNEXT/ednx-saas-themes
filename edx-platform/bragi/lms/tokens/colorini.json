@@ -1,5 +1,4 @@
 {
-  "color": {
     "bragi": {
       "main-color": {
         "value": "#0A3055",
@@ -7,7 +6,7 @@
       },
       "navbar": {
         "nav-login-hover-bg": {
-          "value": "{color.bragi.main-color}",
+          "value": "{bragi.main-color}",
           "source": "$navbar__nav-login-hover-bg",
           "modify": [
             {
@@ -18,7 +17,7 @@
         }
       },
       "input-border-focus": {
-        "value": "{color.bragi.main-color}",
+        "value": "{bragi.main-color}",
         "source": "$input-border-focus",
         "modify": [
           {
@@ -28,7 +27,7 @@
         ]
       },
       "input-box-shadow-focus-alpha": {
-        "value": "{color.bragi.main-color}",
+        "value": "{bragi.main-color}",
         "source": "$input-box-shadow-focus-alpha",
         "modify": [
           {
@@ -38,11 +37,11 @@
         ]
       },
       "input-box-shadow-focus": {
-        "value": "{elevation.form.input.base}, {color.bragi.input-box-shadow-focus-alpha}",
+        "value": "{elevation.form.input.base}, {bragi.input-box-shadow-focus-alpha}",
         "source": "$input-box-shadow-focus"
       },
       "extend-intro-banner-background-color": {
-        "value": "{color.bragi.main-color}",
+        "value": "{bragi.main-color}",
         "source": "$extend-intro-banner-background-color",
         "modify": [
           {
@@ -52,7 +51,7 @@
         ]
       },
       "course-info-course-context-bg": {
-        "value": "{color.bragi.main-color}",
+        "value": "{bragi.main-color}",
         "source": "$course-info-course-context-bg",
         "modify": [
           {
@@ -106,7 +105,7 @@
         ]
       },
       "btn-bg-primary-mix-150": {
-        "value": "{color.bragi.btn-bg-primary-yiq}",
+        "value": "{bragi.btn-bg-primary-yiq}",
         "modify": [
           {
             "type": "mix",
@@ -125,15 +124,14 @@
         ]
       },
       "btn-bg-primary-background-gradient": {
-        "value": "{color.btn.bg.primary}",
+        "value": "{color.body.bg}",
         "modify": [
           {
             "type": "mix",
-            "otherColor": "{color.body.bg}",
+            "otherColor": "{color.btn.bg.primary}",
             "amount": 0.15
           }
         ]
       }
     }
-  }
 }
