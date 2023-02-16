@@ -48,7 +48,7 @@
     @return $var
 }
 
-@mixin var-button-variant($background, $border, $hover-background: var-darken($background, 0.075), $hover-border: var-darken($border, 0.01), $active-background: var-darken($background, 0.01), $active-border: var-darken($border, 0.125)) {
+@mixin var-button-variant($background, $border, $hover-background: var-darken($background, 7.5%), $hover-border: var-darken($border, 10%), $active-background: var-darken($background, 10%), $active-border: var-darken($border, 12.5%)) {
     color: var-color-yiq($background);
     @include var-gradient-bg($background);
     border-color: $border;
@@ -66,10 +66,10 @@
       @include var-gradient-bg($hover-background);
       border-color: $hover-border;
       @if $enable-shadows {
-        @include box-shadow($btn-box-shadow, 0 0 0 $btn-focus-width var-rgba(var-mix(var-color-yiq($background), $border, 0.15), .5));
+        @include box-shadow($btn-box-shadow, 0 0 0 $btn-focus-width var-rgba(var-mix(var-color-yiq($background), $border, 15%), .5));
       } @else {
         // Avoid using mixin so we can pass custom focus shadow properly
-        box-shadow: 0 0 0 $btn-focus-width var-rgba(var-mix(var-color-yiq($background), $border, 0.15), .5);
+        box-shadow: 0 0 0 $btn-focus-width var-rgba(var-mix(var-color-yiq($background), $border, 15%), .5);
       }
     }
 
@@ -97,10 +97,10 @@
 
       &:focus {
         @if $enable-shadows and $btn-active-box-shadow != none {
-          @include box-shadow($btn-active-box-shadow, 0 0 0 $btn-focus-width var-rgba(var-mix(var-color-yiq($background), $border, 0.15), .5));
+          @include box-shadow($btn-active-box-shadow, 0 0 0 $btn-focus-width var-rgba(var-mix(var-color-yiq($background), $border, 15%), .5));
         } @else {
           // Avoid using mixin so we can pass custom focus shadow properly
-          box-shadow: 0 0 0 $btn-focus-width var-rgba(var-mix(var-color-yiq($background), $border, 0.15), .5);
+          box-shadow: 0 0 0 $btn-focus-width var-rgba(var-mix(var-color-yiq($background), $border, 15%), .5);
         }
       }
     }
