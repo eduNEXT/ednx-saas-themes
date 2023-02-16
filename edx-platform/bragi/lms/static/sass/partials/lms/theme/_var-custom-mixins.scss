@@ -16,7 +16,7 @@
 @function var-color-yiq($var-color) {
     $var-color: str-replace($var-color, 'var(');
     $var-color: str-replace($var-color, ')');
-    $color-yiq: var(#{$var-color+'-color-yiq'});
+    $color-yiq: var(#{$var-color+'-yiq'});
     //Define this var with yiq($var-color)
     @return $color-yiq
 }
@@ -24,7 +24,7 @@
 @function var-darken($var-color, $amount) {
     $var-color: str-replace($var-color, 'var(');
     $var-color: str-replace($var-color, ')');
-    $color-darken: var(#{$var-color+'-color-darken'+$amount});
+    $color-darken: var(#{$var-color+'-darken'+$amount});
     //Define this var with darken($var-color, $amount)
     @return $color-darken
 }
@@ -32,14 +32,14 @@
 @function var-mix($var-color, $var-color2, $amount) {
     $var-color: get-str-var($var-color);
     $var-color2: get-str-var($var-color2);;
-    $color-mix: var(#{$var-color+'-color-mix-'+$var-color2+$amount});
+    $color-mix: var(#{$var-color+'-mix-'+$var-color2+$amount});
     //Define this var with mix($var-color,$var-color2, $amount)
     @return $color-mix
 }
 @function var-rgba($var-color, $amount) {
     $var-color: str-replace($var-color, 'var(');
     $var-color: str-replace($var-color, ')');
-    $color-rgba: var(#{$var-color+'-color-rgba'+$amount});
+    $color-rgba: var(#{$var-color+'-rgba'+$amount});
     //Define this var with var-rgba($var-color,$var-color2 $amount)
     @return $color-rgba
 }
