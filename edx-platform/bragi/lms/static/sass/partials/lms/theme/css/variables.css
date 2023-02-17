@@ -1,7 +1,7 @@
 /**
  * IMPORTANT: This file is the result of assembling design tokens
  * Do not edit directly
- * Generated on Fri, 17 Feb 2023 14:32:34 GMT
+ * Generated on Fri, 17 Feb 2023 17:54:44 GMT
  */
 
 :root {
@@ -491,6 +491,7 @@
   --pgn-color-btn-border-tertiary: #00000000;
   --pgn-color-btn-bg-inverse-tertiary: #00000000;
   --pgn-color-btn-bg-tertiary: #00000000;
+  --pgn-bragi-color-btn-bg-primary: var(--pgn-bragi-color-main);
   --pgn-bragi-color-course-info-course-context-bg: #0A305566;
   --pgn-bragi-color-extend-intro-banner-background-color: #0A305566;
   --pgn-bragi-color-input-box-shadow-focus: var(--pgn-elevation-form-input-base), var(--pgn-bragi-color-input-box-shadow-focus-alpha);
@@ -862,7 +863,6 @@
   --pgn-bragi-color-btn-bg-primary-active-bg: #051627FF;
   --pgn-bragi-color-btn-bg-primary-hover-border: #051627FF;
   --pgn-bragi-color-btn-bg-primary-hover-bg: #061D33FF;
-  --pgn-bragi-color-btn-bg-primary: var(--pgn-color-btn-bg-primary);
   --pgn-border-color-nav-tabs-link-border-active: transparent transparent var(--pgn-color-primary-500);
   --pgn-content-navbar-toggler-light-icon-bg: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='%2300000080' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
   --pgn-content-navbar-toggler-dark-icon-bg: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='%23FFFFFF80' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");

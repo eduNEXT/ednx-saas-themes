@@ -1,6 +1,6 @@
 @mixin var-button-variant($background, $border,  $hover-background,
-$hover-border,$active-background, $active-border, $background-yiq,
-$custom-background-gradient, $background-gradient){
+$hover-border,$active-background, $active-border, $background-yiq,:
+$custom-background-gradient, $background-gradient){:
   color: $background-yiq;
   @include var-gradient-bg($background, $background-gradient);
   border-color: $border;

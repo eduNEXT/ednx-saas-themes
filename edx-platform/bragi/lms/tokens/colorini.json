@@ -62,11 +62,11 @@
         ]
       },
       "btn-bg-primary": {
-        "value": "{color.btn.bg.primary}",
+        "value": "{bragi.color.main}",
         "source": "$btn-bg-primary"
       },
       "btn-bg-primary-hover-bg": {
-        "value": "{color.btn.bg.primary}",
+        "value": "{bragi.color.btn-bg-primary}",
         "source": "$btn-bg-primary-hover-bg",
         "modify": [
           {
@@ -76,7 +76,7 @@
         ]
       },
       "btn-bg-primary-hover-border": {
-        "value": "{color.btn.bg.primary}",
+        "value": "{bragi.color.btn-bg-primary}",
         "source": "$btn-bg-primary-hover-border",
         "modify": [
           {
@@ -86,7 +86,7 @@
         ]
       },
       "btn-bg-primary-active-bg": {
-        "value": "{color.btn.bg.primary}",
+        "value": "{bragi.color.btn-bg-primary}",
         "source": "$btn-bg-primary-active-bg",
         "modify": [
           {
@@ -96,7 +96,7 @@
         ]
       },
       "btn-bg-primary-active-border": {
-        "value": "{color.btn.bg.primary}",
+        "value": "{bragi.color.btn-bg-primary}",
         "source": "$btn-bg-primary-active-border",
         "modify": [
           {
@@ -106,7 +106,7 @@
         ]
       },
       "btn-bg-primary-yiq": {
-        "value": "{color.btn.bg.primary}",
+        "value": "{bragi.color.btn-bg-primary}",
         "source": "$btn-bg-primary-yiq",
         "modify": [
           {
@@ -125,7 +125,7 @@
         ]
       },
       "btn-bg-primary-custom-bg-gradient": {
-        "value": "{color.btn.bg.primary}",
+        "value": "{bragi.color.btn-bg-primary}",
         "source": "$btn-bg-primary-custom-bg-gradient",
         "modify": [
           {
