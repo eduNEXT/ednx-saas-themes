@@ -61,8 +61,13 @@
           }
         ]
       },
+      "btn-bg-primary": {
+        "value": "{color.btn.bg.primary}",
+        "source": "$btn-bg-primary"
+      },
       "btn-bg-primary-hover-bg": {
         "value": "{color.btn.bg.primary}",
+        "source": "$btn-bg-primary-hover-bg",
         "modify": [
           {
             "type": "darken",
@@ -72,6 +77,7 @@
       },
       "btn-bg-primary-hover-border": {
         "value": "{color.btn.bg.primary}",
+        "source": "$btn-bg-primary-hover-border",
         "modify": [
           {
             "type": "darken",
@@ -81,6 +87,7 @@
       },
       "btn-bg-primary-active-bg": {
         "value": "{color.btn.bg.primary}",
+        "source": "$btn-bg-primary-active-bg",
         "modify": [
           {
             "type": "darken",
@@ -90,6 +97,7 @@
       },
       "btn-bg-primary-active-border": {
         "value": "{color.btn.bg.primary}",
+        "source": "$btn-bg-primary-active-border",
         "modify": [
           {
             "type": "darken",
@@ -99,6 +107,7 @@
       },
       "btn-bg-primary-yiq": {
         "value": "{color.btn.bg.primary}",
+        "source": "$btn-bg-primary-yiq",
         "modify": [
           {
             "type": "color-yiq"
@@ -115,8 +124,9 @@
           }
         ]
       },
-      "btn-bg-primary-custom-background-gradient": {
+      "btn-bg-primary-custom-bg-gradient": {
         "value": "{color.btn.bg.primary}",
+        "source": "$btn-bg-primary-custom-bg-gradient",
         "modify": [
           {
             "type": "alpha",
@@ -124,8 +134,9 @@
           }
         ]
       },
-      "btn-bg-primary-background-gradient": {
+      "btn-bg-primary-bg-gradient": {
         "value": "{color.body.bg}",
+        "source": "$btn-bg-primary-bg-gradient",
         "modify": [
           {
             "type": "mix",

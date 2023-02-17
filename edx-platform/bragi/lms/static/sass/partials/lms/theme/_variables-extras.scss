@@ -65,3 +65,15 @@ $input-box-shadow-focus-alpha: var(--pgn-bragi-color-input-box-shadow-focus-alph
 $extend-intro-banner-background-color: var(--pgn-bragi-color-extend-intro-banner-background-color) !default;
 
 $course-info-course-context-bg: var(--pgn-bragi-color-course-info-course-context-bg) !default;
+
+
+//button vars
+// base button bg is $btn-primary-bg
+$btn-bg-primary: var(--pgn-bragi-color-btn-bg-primary) !default;
+$btn-bg-primary-hover-bg: var(--pgn-bragi-color-btn-bg-primary-hover-bg) !default;
+$btn-bg-primary-hover-border: var(--pgn-bragi-color-btn-bg-primary-hover-border) !default;
+$btn-bg-primary-active-bg: var(--pgn-bragi-color-btn-bg-primary-active-bg) !default;
+$btn-bg-primary-active-border: var(--pgn-bragi-color-btn-bg-primary-active-border) !default;
+$btn-bg-primary-yiq: var(--pgn-bragi-color-btn-bg-primary-yiq) !default;
+$btn-bg-primary-custom-bg-gradient: var(--pgn-bragi-color-btn-bg-primary-custom-bg-gradient) !default;
+$btn-bg-primary-bg-gradient: var(--pgn-bragi-color-btn-bg-primary-bg-gradient) !default;
