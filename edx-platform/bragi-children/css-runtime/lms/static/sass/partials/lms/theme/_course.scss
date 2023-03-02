@@ -125,7 +125,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba($main-color, .4);
+      background-color: $course-info-course-context-bg;
     }
 
     > div {
@@ -365,6 +365,11 @@ main .home {
     }
 
     &:hover {
+      color: $link-color;
+      border-bottom-color: $link-hover-color;
+    }
+    &:focus {
+      color: $link-color;
       border-bottom-color: $link-hover-color;
     }
   }
@@ -449,7 +454,6 @@ div.info-wrapper {
   }
 }
 
-
 /* ========================================================
   Fixes in course content
 ======================================================== */
@@ -488,7 +492,10 @@ a.ui-slider-handle {
     margin-bottom: $headings-margin-bottom;
   }
 
-  dl, ol, p, ul {
+  dl,
+  ol,
+  p,
+  ul {
     margin-bottom: 1rem;
 
     &:last-child {
@@ -532,7 +539,11 @@ a.ui-slider-handle {
     margin-bottom: -1px;
   }
 }
-
+.content-wrapper .course-tabs .nav-item.active .nav-link,
+.content-wrapper .course-tabs .nav-item:hover .nav-link {
+  border-bottom-color: $main-color !important;
+  color: var(--pgn-color-link-brand-hover);
+}
 .content-wrapper .home-courses .courses {
   background-color: #f3f3f3;
 }

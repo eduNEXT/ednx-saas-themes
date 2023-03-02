@@ -4,7 +4,9 @@
 
 %btn {
   @include button-size-edx($btn-padding-y, $btn-padding-x, $font-size-base, $border-radius);
-  @include button-variant($btn-primary-bg, $btn-primary-border);
+  @include var-button-variant($btn-bg-primary, $btn-bg-primary,  $btn-bg-primary-hover-bg,
+  $btn-bg-primary-hover-border,$btn-bg-primary-active-bg, $btn-bg-primary-active-border,
+  $btn-bg-primary-yiq, $btn-bg-primary-custom-bg-gradient, $btn-bg-primary-bg-gradient);
   @include transition($btn-transition);
   color: $btn-primary-color;
   display: inline-block;
@@ -24,7 +26,9 @@
   &:focus,
   &:hover,
   &:hover:not(:disabled) {
-    @include button-variant($btn-primary-bg, $btn-primary-border);
+    @include var-button-variant($btn-bg-primary, $btn-bg-primary,  $btn-bg-primary-hover-bg,
+    $btn-bg-primary-hover-border,$btn-bg-primary-active-bg, $btn-bg-primary-active-border,
+    $btn-bg-primary-yiq, $btn-bg-primary-custom-bg-gradient, $btn-bg-primary-bg-gradient);
     text-decoration: none;
     outline: 0;
     background-image: none;
@@ -48,7 +52,9 @@
 
 %btn-flat {
   @extend %btn;
-  @include button-variant($btn-primary-color, $btn-primary-border);
+  @include var-button-variant($btn-bg-primary, $btn-bg-primary,  $btn-bg-primary-hover-bg,
+  $btn-bg-primary-hover-border,$btn-bg-primary-active-bg, $btn-bg-primary-active-border,
+  $btn-bg-primary-yiq, $btn-bg-primary-custom-bg-gradient, $btn-bg-primary-bg-gradient);
   border: $input-btn-border-width solid $btn-primary-border;
   color: $btn-primary-bg;
 
@@ -56,7 +62,11 @@
   &:focus,
   &:hover,
   &:hover:not(:disabled) {
-    @include button-variant($btn-primary-bg, $btn-primary-border);
+    @include var-button-variant($btn-bg-primary, $btn-bg-primary,  $btn-bg-primary-hover-bg,
+    $btn-bg-primary-hover-border,$btn-bg-primary-active-bg, $btn-bg-primary-active-border,
+    $btn-bg-primary-yiq, $btn-bg-primary-custom-bg-gradient, $btn-bg-primary-bg-gradient);
+    border: $input-btn-border-width solid $btn-primary-border;
+    color: $btn-primary-bg;
     color: $btn-primary-color;
   }
 }

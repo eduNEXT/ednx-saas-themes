@@ -54,6 +54,9 @@ span[role*="link"],
 #forgot-password-modal #password-reset a,
 .account-settings-sections a span,
 .wrapper-course-material .course-tabs li a,
+.wrapper-course-material .course-tabs .tab a,
+.content-wrapper .course-tabs .nav-item.active .nav-link,
+.content-wrapper .course-tabs .nav-item .nav-link,
 .course-index .accordion .course-navigation .button-chapter {
   @include link-color($link-color, $link-hover-color);
 }
