@@ -1,0 +1,597 @@
+/* ========================================================
+  Course about
+======================================================== */
+.course-info {
+  .course-intro {
+    @extend %intro-banner;
+  }
+
+  &__banner {
+    background-color: $white;
+
+    .media img {
+      height: 98px;
+      width: 100%;
+      max-width: 264px;
+      text-indent: -9999px; // trick for hide alt text
+      background: url(../images/default_course_image.jpg);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      object-fit: cover;
+    }
+
+    .hero {
+      position: relative;
+      margin: 0 auto;
+      max-width: 264px;
+
+      img {
+        display: block;
+        margin: 0 auto;
+        max-width: 264px;
+      }
+
+      .play-intro {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        background-image: linear-gradient(-90deg, rgba(0,0,0, 0.65), rgba(0,0,0, 0.75));
+        border-radius: 4px;
+        box-shadow: 0 1px 12px 0 rgba(255,255,255, 0.8);
+        border: 2px solid rgba(255,255,255, 0.8);
+
+        &::after {
+          content: "\25B6";
+          position: absolute;
+          display: block;
+          width: 24px;
+          height: 24px;
+          top: 50%;
+          left: 50%;
+          margin-top: -12px;
+          margin-left: -12px;
+          color: rgba(255,255,255, 0.8);
+          text-align: center;
+          text-shadow: 0 -1px rgba(0,0,0, 0.8);
+        }
+      }
+    }
+
+    h1 {
+      color: $main-color;
+      font-size: 26px;
+
+      .btn {
+        font-size: 14px;
+        white-space: normal;
+      }
+    }
+
+    h1,
+    p {
+      @include text-align(left);
+      margin-bottom: 0;
+      line-height: 1.5;
+      font-weight: 300;
+    }
+  }
+
+  &__content {
+    @extend %container-wrapper;
+  }
+
+  .container {
+    @include content-wrapper;
+  }
+
+  .details {
+    h2:first-child {
+      margin-top: 0;
+    }
+
+    .teacher-image {
+      @include float(left);
+      @include margin(0, 15px, 0, 0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+  }
+
+  .course-summary .btn {
+    white-space: normal;
+
+    .btn {
+      background: none;
+    }
+  }
+
+  .course-text {
+    position: relative;
+    color: $white;
+    background: $main-color;
+    box-shadow: inset 0 0 5rem rgba(0,0,0,.5);
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      display: block!important;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba($main-color, .4);
+    }
+
+    > div {
+      z-index: 10;
+    }
+
+    h2,
+    p {
+      color: $white;
+    }
+  }
+}
+
+.view-course-info .home {
+  display: none;
+}
+
+
+/* ========================================================
+  Dashboard Styles
+======================================================== */
+.dashboard-intro {
+  @extend %intro-banner;
+}
+
+.container.dashboard {
+  @extend %container-wrapper;
+}
+
+.wrapper-course-material {
+  background-color: $white;
+}
+
+main .home {
+  @include content-wrapper;
+}
+
+.dashboard-search-bar  {
+  float: none;
+}
+
+.search-bar {
+  .search-button,
+  .cancel-button {
+    &,
+    &:hover {
+      line-height: 1.2;
+      border: none;
+      outline: none;
+    }
+  }
+}
+
+.dashboard .profile-sidebar {
+  width: 100%;
+}
+
+.dashboard .my-courses .listing-courses .course-item {
+  padding-bottom: 0 !important;
+  margin-bottom: 1.5rem !important;
+  
+  .course-container {
+    transition: box-shadow 0.25s ease;
+    padding: 10px;
+
+    &:hover {
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.06);
+    }
+
+    .course .details {
+      .course-info .info-university {
+        display: none;
+      }
+
+      .wrapper-course-image .cover,
+      .wrapper-course-image a.fade-cover {
+          width: 100%;
+
+        .course-image {
+          height: 120px;
+          text-indent: -9999px; // trick for hide alt text
+          background: url(../images/default_course_image.jpg);
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          object-fit: cover;
+          padding: 0;
+        }
+      }
+
+      .wrapper-course-actions {
+        margin: 5px 0 0;
+      }
+    }
+  }
+}
+
+//Display components right order in dashboard
+.dashboard-display{
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.dashboard .my-courses {
+  margin-bottom: 40px;
+  width: 100%;
+}
+
+.dashboard .main-container {
+  order: 0;
+}
+
+/* ========================================================
+  Find Courses
+======================================================== */
+.courses-intro {
+  @extend %intro-banner;
+}
+
+.courses-container {
+  max-width: 1200px;
+}
+
+.find-courses,
+.university-profile {
+  .courses-container {
+    @extend %container-wrapper;
+  }
+
+  .discovery-input {
+    height: 38px;
+
+  }
+
+  .loading-spinner {
+    top: 8px;
+    background: $main-color;
+  }
+}
+
+.find-courses {
+  .filters .clear-filters {
+    @include link-color($link-color, $link-hover-color);
+  }
+
+  .search-facets,
+  .courses-container .courses:not(.no-course-discovery) {
+    width: 100% !important;   
+  }
+
+  .search-status-label {
+    min-height: 55px;
+    font-size: 24px;
+    line-height: 55px;
+  }
+}
+
+.courses-container .courses .course {
+  @extend %container-wrapper;
+  padding: 0;
+  border-bottom-color: $main-color;
+  overflow: hidden;
+
+  .course-info {
+    .course-organization,
+    .course-code {
+      display: none;
+    }
+  }
+}
+
+// course card
+.courses-container .courses {
+  min-height: 390px;
+
+  .course {
+    @extend %container-wrapper;
+    padding: 0;
+    border-bottom-color: $main-color;
+    overflow: hidden;
+
+    .course-image .cover-image img {
+      display: block;
+      height: 160px;
+      text-indent: -9999px; // trick for hide alt text
+      background: url(../images/default_course_image.jpg);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  }
+
+  .course-info {
+    display: flex;
+    flex-wrap: wrap;
+
+    .course-name {
+      height: 52px;
+      overflow: hidden;
+
+      .course-title {
+        @include link-color($link-color, $link-hover-color);
+      }
+    }
+
+    .course-title {
+      height: 52px !important;
+      overflow: hidden;
+    }
+
+    .course-description {
+      height: 100px;
+      color: $body-color;
+      overflow: hidden;
+    }
+
+    .course-date {
+      width: 100%;
+      height: 30px;
+      align-self: flex-end;
+    }
+  }
+}
+
+.search-facets .facet-list.collapse {
+  display: block;
+}
+
+/* ========================================================
+  Course content
+======================================================== */
+.view-in-course {
+  .wrapper-course-material .course-tabs li a {
+    &.active {
+      color: $link-color;
+      border-bottom-color: $link-color;
+    }
+
+    &:hover {
+      border-bottom-color: $link-hover-color;
+    }
+  }
+}
+
+.window-wrap .content-wrapper .course-tabs {
+  overflow-x: auto;
+  min-height: auto;
+}
+
+.view-course-info {
+  .home {
+    margin-bottom: 1.5rem;
+  }
+
+  .info-wrapper {
+    @extend %container-wrapper;
+  }
+}
+
+.view-courseware {
+  .course-wrapper {
+    @extend %container-wrapper;
+  }
+
+  .accordion-nav span.menu-icon {
+    color: $main-color !important;
+  }
+
+  div.sequence .sequence-nav,
+  div.sequence .sequence-bottom {
+    button.nav-item,
+    .sequence-nav-button {
+      &:hover,
+      &:active,
+      &.active {
+        border-bottom-color: $main-color;
+      }
+    }
+  }
+}
+
+.course-content {
+  margin-top: 0;
+}
+
+.xmodule_display.xmodule_SequenceModule .sequence-nav ol li {
+  min-width: 20px;
+}
+
+.wrapper-course-material {
+  background-color: #f3f3f3;
+}
+
+.xmodule_display.xmodule_SequenceModule .sequence-nav .sequence-list-wrapper {
+  z-index: 2000;
+}
+
+//Accordion
+.course-outline .block-tree.accordion .section {
+  .section-name .section-title {
+    font-size: 1.3rem;
+  } 
+
+  .subsection-title {
+    font-size: 1.1rem;
+    font-weight: 400 !important;
+  }
+}
+
+// Course About
+// show handouts fix eucalyptus
+div.info-wrapper {
+  display: flex;
+
+  section.updates {
+    width: 70%;
+  }
+
+  section.handouts {
+    width: 30%;
+  }
+}
+
+
+/* ========================================================
+  Fixes in course content
+======================================================== */
+// fix video start
+a.ui-slider-handle {
+  left: .3em;
+}
+
+// fix calc icon
+.calc-main .calc {
+  padding-bottom: 16px;
+  padding-top: 11px;
+}
+
+// fix drag color
+.drag-container .option .item-content {
+  color: inherit;
+}
+
+// Fix image in welcome message
+.page-content .welcome-message img,
+.page-content .welcome-message iframe,
+.section-handouts img,
+.section-handouts iframe {
+  max-width: 100%;
+}
+
+//
+// Baldur
+//
+// Sets styles on course for custom design
+// --------------------------------------------------
+.course-wrapper .course-content {
+  h1, h2, h3, h4, h5, h6,
+  .h1, .h2, .h3, .h4, .h5, .h6 {
+    margin-bottom: $headings-margin-bottom;
+  }
+
+  dl, ol, p, ul {
+    margin-bottom: 1rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .highligthed {
+    position: relative;
+    padding: 0.5rem 1rem;
+    background-color: #f5f2f0;
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+  }
+
+  .infobox {
+    position: relative;
+    border: 1px solid #e7e7e7;
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(36,37,38,0.08);
+
+    &-media {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 14%;
+      height: 100%;
+      padding: 0.5rem;
+      background: $main-color;
+
+      i {
+        color: $white;
+        font-size: 56px;
+      }
+    }
+  }
+
+  .nav-tabs .nav-item {
+    margin-bottom: -1px;
+  }
+}
+
+.content-wrapper .home-courses .courses {
+  background-color: #f3f3f3;
+}
+
+.content-wrapper .courses {
+  background-color: $white;
+  border: none;
+}
+
+.course-info__content .details,
+.course-info-about .course-info__content,
+.dashboard .my-courses {
+ color: $gray-dark;
+ background-color: $white;
+}
+
+.profile.profile-self,
+.wrapper-profile-sections.account-settings-container {
+  background-color: $gray-lightest;
+  color: $gray-dark;
+  box-shadow: none;
+}
+
+.view-profile .profile-self .wrapper-profile-field-account-privacy {
+  background-color: #e4e4e4;
+}
+ 
+.dashboard .my-courses,
+.dashboard .main-container,
+.dashboard .main-container .my-courses .listing-courses .course-item,
+.dashboard .main-container .my-courses .listing-courses .course-item .course-container,
+.dashboard .main-container .my-courses .course .details,
+.dashboard .main-container .my-courses .course,
+.account-settings-tabpanels .section,
+.account-settings-section-body,
+.account-settings-sections .section .account-settings-section-body .u-field,
+.course-tool-link,
+.course-outline ol.outline-item .subsection .vertical a,
+.problems-wrapper,
+.xblock-student_view-problem.xmodule_display,
+.choicegroup.capa_inputtype,
+.problem div:not([id*="answer"], .drag-container, .drag-container *) {
+  background-color: $white;
+  box-shadow: none;
+}
+
+.wrapper-account-settings main:not(.home),
+.content-wrapper .course-tabs .navbar-nav .nav-item a {
+  background-color: #f3f3f3;
+  box-shadow: none; 
+}
+
+.openassessment.problem .wrapper--ui-staff div {
+  background: #2c2f36;
+}
+
+.openassessment.problem .wrapper--ui-staff .staff-grading.ui-staff div,
+.openassessment.problem .wrapper--ui-staff .staff-info__staff-override__content div,
+.openassessment.problem .wrapper--ui-staff .staff-info__cancel-submission__content div,
+.openassessment.problem .wrapper--ui-staff .staff-info__student__response .ui-slidable__content div {
+  background: $white;
+}
