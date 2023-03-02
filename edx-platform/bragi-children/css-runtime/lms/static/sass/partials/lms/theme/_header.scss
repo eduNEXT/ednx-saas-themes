@@ -1,0 +1,192 @@
+/* --------------------------------
+
+Navbar Component
+
+-------------------------------- */
+.navbar.global-header {
+  align-items: flex-start;
+  border-bottom-color: transparent;
+  bottom: 0;
+  flex-flow: row wrap;
+  height: auto;
+  left: 0;
+  min-height: 82px;
+  overflow: inherit;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  z-index: $navbar-zindex;
+
+  .navbar-logo {
+    @include animtation-pulse;
+    text-align: center;
+
+    img {
+      max-height: 54px;
+      max-width: 100%;
+      transform: translateZ(0);
+    }
+  }
+
+  .course-header {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10px;
+
+    .course-header-provider {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .course-name {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.2;
+    }
+  }
+
+  // mobile menu
+  .navbar-toggler {
+    box-shadow: none;
+    color: $navbar__nav-toggler-color;
+    text-shadow: none;
+
+    &:hover:not(:disabled),
+    &:focus:not(:disabled) {
+      background: $navbar__nav-toggler-hover-bg;
+      box-shadow: none;
+    }
+  }
+
+  .mobile-menu {
+    margin: 45px 0 -1px;
+    width: 100%;
+  }
+
+  .mobile-nav-item.mobile-nav-link {
+    list-style: none;
+
+    a,
+    form {
+      text-align: center;
+    }
+
+    form {
+      border-bottom: 1px solid #e7e7e7;
+      padding: 12px .5rem;
+    }
+  }
+
+  &-collapse {
+    background: #FAFAFA;
+    position: absolute;
+    width: 100%;
+    z-index: 100;
+
+    .nav-separator {
+      margin: .5rem 0 0;
+    }
+
+    .nav-account {
+      width: 100%;
+    }
+
+    .dropdown-toggle {
+      display: block;
+      max-width: 100%;
+      width: 100%;
+    }
+  }
+
+  .header-logo {
+    width: auto;
+    display: flex;
+  }
+}
+.navbar-links.navbar-nav {
+  margin: 0 !important;
+}
+// nav links
+.nav-links .nav,
+.navbar-links .nav {
+  &-separator {
+    flex-grow: 1;
+  }
+
+  // user componetne (login/register) and account menu
+  &-login,
+  &-login.a:not(.btn)  {
+    @include link-color($navbar__nav-login-color, $navbar__nav-login-hover-color);
+    @include margin-left(1rem);
+    background: $navbar__nav-login-bg;
+    border-radius: 32px;
+    text-align: center;
+    white-space: nowrap;
+
+    &:hover {
+      background: $navbar__nav-login-hover-bg;
+    }
+  }
+
+  &-account {
+    @include margin-left(1rem);
+    border: $navbar__nav-account-border;
+    color: $navbar__nav-account-color;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background: #FFF;
+  }
+
+  &-link select{
+    background-color: #FFF;
+    border: 1px solid $navbar__nav-link-color;
+    color: $navbar__nav-link-color;
+    outline-color: $navbar__nav-link-color;
+  }
+}
+
+.main-header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.container-navbar-links {
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  width: auto;
+  text-align: center;
+}
+
+.global-header .nav-links .secondary.nav-account .user-image-frame {
+  @include margin-right(.3rem);
+  border-radius: 50%;
+  height: 21px;
+  width: 21px;
+}
+
+.main-header.content-container {
+  position: relative;
+}
+
+.global-header {
+  .nav-links .secondary.nav-account .nav-item a {
+    color: $navbar__nav-account-color;
+  }
+
+  .nav-links .secondary.nav-account .dropdown-user-menu {
+    border-color: $navbar__nav-account-color;
+  }
+}
+
+.window-wrap .global-header .header-logo a {
+  margin: 11px 0 0 40px;
+}

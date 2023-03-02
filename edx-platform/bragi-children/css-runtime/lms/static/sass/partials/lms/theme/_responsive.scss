@@ -1,0 +1,594 @@
+/* ========================================================
+
+  Name = responsive mixin
+
+  Author = @Bound3R - Daniel Naranjo
+======================================================== */
+
+%full-width {
+  @include make-col(12);
+  width: 100%;
+}
+
+/* Large devices (large desktops, 1200px) */
+@include media-breakpoint-up(lg) {
+  .view-login,
+  .view-register,
+  .view-passwordreset {
+    .introduction {
+      min-height: 146px;
+    }
+  }
+
+   .global-header.navbar {
+    align-items: center;
+  }
+
+  .global-header.navbar .header-logo {
+    align-items: center;
+
+    .navbar-logo {
+      width: max-content;
+    }
+  }
+}
+
+// /* Medium devices (desktops, 992px) */
+@include media-breakpoint-down(lg) {
+  body,
+  body.view-in-course .window-wrap,
+  body.view-in-course .container-footer,
+  body.view-in-course .course-license,
+  .outer-wrapper,
+  .outside-app,
+  .forum-new-post-form,
+  .discussion .wmd-panel,
+  .view-profile,
+  .view-profile * {
+    min-width: auto !important;
+  }
+
+
+  // course content
+  body.view-in-course {
+    .course-wrapper,
+    .profile-wrapper,
+    .instructor-dashboard-wrapper-2,
+    .wiki-wrapper,
+    .teams-wrapper,
+    .static_tab_wrapper {
+      @include make-row();
+      margin: 0 auto !important;
+
+      .course-index {
+        @include make-col(4);
+      }
+
+      .courseware-results-wrapper {
+        @include make-col(8);
+      }
+
+      .course-content{
+        @include make-col(12);
+      }
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .home-courses .courses-listing--ghost {
+    height: 364px;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+
+    li {
+      border-radius: 4px;
+      height: 364px;
+
+      &:nth-child(1) {
+        background: rgba(0, 0, 0, .4);
+      }
+
+      &:nth-child(2) {
+        background: rgba(0, 0, 0, .3);
+      }
+
+      &:nth-child(3) {
+        background: rgba(0, 0, 0, .2);
+      }
+
+      &:nth-child(4) {
+        background: rgba(0, 0, 0, .1);
+      }
+    }
+  }
+
+  .course-wrapper .course-content .path,
+  .course-wrapper .courseware-results-wrapper .path {
+    margin: 20px;
+  }
+
+  .course-info__banner {
+    min-height: 146px;
+  }
+
+  .footer {
+    .nav-link:first-child {
+      padding-left: 0;
+    }
+
+    .nav-link:last-child {
+      padding-right: 0;
+    }
+  }
+
+  .global-header .nav-links .secondary.nav-account {
+    border-radius: 5px;
+    margin: 0;
+
+    .nav-item {
+      margin: 0;
+      padding: 0;
+      padding-left: .4rem;
+    }
+
+    .dropdown-user-menu {
+      @include right(0);
+      @include left(auto);
+      min-width: 10rem;
+      top: 81%;
+      z-index: 1000;
+
+      .dropdown-item a {
+        padding: 5px 1.5rem
+      }
+    }
+  }
+}
+
+// /* Small devices (tablets, 768px) */
+
+@include media-breakpoint-down(md) {
+
+  .navbar-collapse {
+    .nav-separator {
+      margin: .5rem 0 0;
+    }
+
+    .nav-account {
+      width: 100%;
+    }
+
+    .dropdown-toggle {
+      display: block;
+      max-width: 100% !important;
+      width: 100%;
+    }
+  }
+
+  .global-header.navbar .header-logo {
+    width: 100%;
+
+    a {
+      width: 100%;
+    }
+  }
+
+  .global-header.navbar .hamburger-menu {
+    top: 28px;
+  }
+
+  .global-header.navbar .course-header {
+    display: none;
+  }
+
+  .mobile-menu .nav-login {
+    margin: 0;
+  }
+
+  .mobile-menu .mobile-nav-link a:hover,
+  .mobile-menu .mobile-nav-link a:focus,
+  .mobile-menu .mobile-nav-link a:active {
+    background-color: #C2C2C2;
+    color: #FFF;
+  }
+
+  // banners and features
+  div.home,
+  div.course,
+  div.courses,
+  div.dashboard {
+    &-intro *,
+    &-items * {
+      flex: 1 1 auto;
+    }
+
+    &-intro {
+      box-sizing: border-box;
+      padding: .5rem;
+    }
+  }
+
+
+  // course about
+  div.info-wrapper {
+    @include make-row();
+
+    section.updates,
+    section.handouts, {
+      @include make-col(12);
+      padding: 0;
+    }
+  }
+
+  // course content
+  body.view-in-course {
+    .course-wrapper,
+    .profile-wrapper,
+    .instructor-dashboard-wrapper-2,
+    .wiki-wrapper,
+    .teams-wrapper,
+    .static_tab_wrapper {
+      .course-info,
+      .course-index,
+      .course-content,
+      .courseware-results-wrapper {
+        @include make-col(12);
+      }
+    }
+  }
+
+  .wrapper-course-material .course-material {
+    overflow: auto;
+  }
+
+  .course-content .xmodule_display.xmodule_SequenceModule .sequence-nav .sequence-list-wrapper {
+    overflow: inherit;
+  }
+
+  // forum
+  // TODO: optimize this selectors
+  #wrap .container,
+  #wrap .container .sixteen.columns {
+    @include make-col(12);
+  }
+
+  ul.forum-nav-thread-list {
+    height: 350px !important;
+
+    li:last-child {
+      margin-bottom: 55px;
+    }
+  }
+
+  .forum-nav {
+    @include make-col(12);
+    height: 438px !important;
+  }
+
+  .forum-nav-browse-menu {
+    height: 400px !important;
+  }
+
+  .forum-new-post-form {
+    padding: 5%;
+
+    .post-type-label {
+      width: 49%;
+    }
+
+    .post-field {
+      .field-label,
+      .field-help {
+        @include make-col(12);
+      }
+
+      .field-label {
+        .field-input,
+        .field-label-text,
+        .field-label-text + .field-input {
+          box-sizing: border-box;
+          width: 100%;
+        }
+      }
+    }
+
+    .post-options,
+    .post-options + div,
+    .post-field .field-help,
+    .post-field .field-label .field-label-text {
+      text-align: center;
+    }
+
+    .post-options {
+      margin-bottom: 45px;
+    }
+  }
+
+  body.discussion {
+    section.user-profile {
+      display: block;
+    }
+
+    .discussion-post {
+      .post-header-content,
+      .post-header-actions {
+        @include make-col(12);
+      }
+    }
+
+    .discussion-response {
+      .response-header-actions,
+      .response-header-content {
+        @include make-col(12);
+      }
+    }
+  }
+
+  .container {
+    .discussion-body,
+    .discussion-module,
+    .discussion-user-threads {
+      .discussion-column {
+        @include make-col(12);
+      }
+
+      .wmd-input {
+        box-sizing: border-box;
+        width: 100%;
+      }
+
+      .wmd-preview-container {
+        border: 0;
+        box-shadow: 0 0 0 3px rgba(0, 0, 0, .15);
+        margin-top: 25px;
+      }
+    }
+  }
+
+  .discussion-module,
+  .discussion-user-threads {
+    .discussion-post {
+      .post-header-content,
+      .post-header-actions {
+        @include make-col(12);
+      }
+    }
+
+    .discussion-response {
+      .response-header-actions,
+      .response-header-content {
+        @include make-col(12);
+      }
+    }
+  }
+
+  .discussion .wmd-panel {
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .discussion.container,
+  .discussion-module,
+  .discussion-user-threads {
+    .action-button .action-label {
+      opacity: 1;
+    }
+
+    .post-actions-list,
+    .response-actions-list,
+    .comment-actions-list {
+      text-align: center;
+
+      .actions-item {
+        display: inline-block;
+        vertical-align: top;
+      }
+    }
+  }
+
+  // profile
+  .account-settings-sections .section .account-settings-section-body .u-field {
+    .u-field-message,
+    .u-field-value {
+      @include make-col(12);
+      padding: .75rem 0;
+      width: 100%;
+    }
+  }
+
+  //dashboard search 
+  .search-responsive {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  // Home search
+  .home-intro div.content-container ul.main_banner {
+    h1,
+    form {
+      padding-left: 50% !important;
+    }
+  }
+
+  // Dashboard courses
+  .dashboard .my-courses {
+    width: 100%;
+  }
+
+  //input elements
+  .wrapper-problem-response textarea {
+    width: 100%;
+  }
+
+  .xmodule_display.xmodule_CapaModule div.problem .unanswered input[type="text"] {
+    width: 100%;
+  }
+
+  .xmodule_display.xmodule_CapaModule div.problem .unanswered.inline input[type="text"] {
+    width: auto;
+  }
+
+}
+
+// /* Small devices */
+
+@include media-breakpoint-up(sm) {
+  .window-wrap .content-wrapper {
+    padding: 0 0 10px;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  // Dashboard
+  .container.dashboard .my-courses .course .details {
+    @include make-row();
+    margin: 0 !important;
+    padding: 0;
+
+    .wrapper-course-image .cover{
+      max-width: 184px;
+    }
+
+    .wrapper-course-image,
+    .wrapper-course-details {
+      @include make-col(12);
+    }
+
+    .wrapper-course-image {
+      display: block;
+    }
+
+    .wrapper-course-details {
+      flex-direction: row;
+    }
+  }
+
+  // course content
+  .course-content .xmodule_display.xmodule_SequenceModule .sequence-nav {
+    @include make-row();
+    height: auto;
+    margin: 0 auto;
+
+    .sequence-list-wrapper,
+    &-button.button-previous,
+    &-button.button-next {
+      @include make-col(12);
+      min-height: 44px;
+    }
+
+    .sequence-list-wrapper ol {
+      flex-wrap: wrap;
+      position: relative;
+
+      li {
+        border-right-style: solid;
+        flex-grow: 1;
+        min-width: 52px;
+
+        &:first-child {
+          border-left-style: solid;
+        }
+
+        /* tooltip */
+        a,
+        p {
+          box-sizing: border-box;
+          min-width: 52px;
+          text-align: center;
+
+          &::after {
+            left: 22px;
+          }
+        }
+      }
+    }
+
+
+    &-button.button-previous,
+    &-button.button-next {
+      border-radius: 3px;
+      margin: .75rem 0;
+    }
+  }
+
+  .xmodule_display.xmodule_SequenceModule nav.sequence-bottom {
+    @include make-row();
+    height: auto;
+    margin: 0 auto;
+
+    .sequence-nav-button {
+      @include make-col(6);
+      height: 44px;
+    }
+  }
+
+  // Third party auth buttons
+
+  .login .content .form-actions.form-third-party-auth button,
+  .register .content .form-actions.form-third-party-auth button {
+    width: 100%;
+   }
+
+  .login .login-register,
+  .register .login-register {
+    max-width: 100%;
+    white-space: normal;
+   }
+
+  // Time exam
+  .proctored_exam_status .exam-timer {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .content-wrapper .proctored_exam_status .exam-timer .exam-text {
+    width: 100%;
+  }
+
+  .content-wrapper .proctored_exam_status .exam-timer .turn_in_exam {
+    margin-top: 5px;
+  }
+}
+
+@include media-breakpoint-down(xs) {
+  %container-wrapper {
+    padding: .75rem;
+  }
+
+  .footer-links {
+    flex-direction: column;
+  }
+}
+
+
+@include media-breakpoint-down(xs) {
+
+  // Home search
+  .home-intro div.content-container ul.main_banner {
+    padding: 0;
+
+    h1,
+    form {
+      padding-left: 0 !important;
+    }
+  }
+
+  // Discussion
+  .discussion-body .home-helpgrid .helpgrid-row {
+    display: flex;
+    flex-flow: column;
+
+    .row-item,
+    .row-item-full {
+      padding: 10px;
+      width: 100%;
+   }
+ }
+
+ .view-discussion-home .helpgrid-row .row-item-full .row-description {
+    width: 65%;
+ }
+}
