@@ -1,0 +1,143 @@
+/* --------------------------------
+
+Other Components
+
+-------------------------------- */
+.register-header.introduction,
+.login-header.introduction {
+  width: 100%;
+  background-color: $white;
+
+  header {
+    @include content-wrapper;
+    height: auto;
+    background-image: none;
+  }
+
+  h1.title {
+    position: relative;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    @include text-align(left);
+
+    .title-super {
+      color: $main-color;
+      display: block;
+      font-size: 1.6rem;
+      line-height: 1;
+    }
+
+    .title-sub {
+      display: block;
+      font-size: 1.3rem;
+      margin: 0;
+    }
+  }
+}
+
+.register-text-container,
+.login-text-container {
+  background: $white;
+}
+
+.content-wrapper .section-bkg-wrapper main {
+  padding: 0;
+}
+
+.register-text,
+.login-text {
+  max-width: 1180px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 10px 0;
+
+  h2,
+  p {
+    margin: 20px 10px;
+    color: #313131;
+    line-height: 1.41575em;
+    font-size: 1rem;
+  }
+}
+
+.login,
+.register,
+.passwordreset,
+#forgot-password-modal #password-reset {
+  .content {
+    @include content-wrapper;
+  }
+
+  aside {
+    display: none;
+  }
+
+  form .field.is-focused {
+    label,
+    .tip {
+      color: $main-color;
+    }
+  }
+
+  .form-third-party-auth {
+    margin-top: 20px;
+  }
+}
+
+.account-settings-container {
+  max-width: 100%;
+
+  .wrapper-header {
+    @extend %container-wrapper;
+    height: auto;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0;
+    border-bottom: none;
+
+    .header-title {
+      padding-top: 0;
+    }
+
+    .account-nav {
+      float: none;
+      display: inline-block;
+    }
+
+    button.account-nav-link {
+      padding: .5rem 1rem !important;
+
+      &:hover,
+      &.active {
+        border-bottom-color: $main-color !important;
+      }
+    }
+  }
+
+  .account-settings-sections {
+    @extend %container-wrapper;
+
+    .section:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+.view-profile .content-wrapper main {
+  padding-top: 0;
+}
+
+// static pages
+.static_page {
+  @extend %container-wrapper;
+}
+
+.forum-search {
+  margin-top: 0;
+}
+
+.view-profile .wrapper-profile .wrapper-profile-sections {
+  width: 100%;
+  max-width: 100%;
+}

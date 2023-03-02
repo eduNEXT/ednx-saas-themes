@@ -1,0 +1,151 @@
+/* --------------------------------
+
+Other Components
+
+-------------------------------- */
+// content
+body,
+body.view-in-course,
+div.info-wrapper {
+  background: $white;
+}
+
+body {
+  @include text-align(left);
+}
+
+.content-wrapper,
+.wrapper-account-settings {
+  background-color: #F3F3F3;
+
+  // simple animation effect
+  > * {
+    animation: opacity 2s backwards;
+  }
+
+  main:not(.home) {
+    padding-top: 1.5rem;
+    padding-bottom: 2rem;
+  }
+}
+
+.window-wrap .content-wrapper {
+  margin: 0 auto;
+}
+
+.window-wrap {
+  min-height: 100%;
+}
+
+.container,
+.content-container {
+  @include content-wrapper;
+  margin: 0 auto !important;
+}
+
+// links
+a,
+a:not(.btn),
+p a,
+span[role*="link"],
+.login a,
+.register a,
+.passwordreset a,
+#forgot-password-modal #password-reset a,
+.account-settings-sections a span,
+.wrapper-course-material .course-tabs li a,
+.course-index .accordion .course-navigation .button-chapter {
+  @include link-color($link-color, $link-hover-color);
+}
+
+li.current span[role*="link"]{
+  font-weight:700 !important;
+}
+
+.window-wrap a {
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+// inputs focus fix
+textarea,
+input[type="text"],
+input[type="url"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+.find-courses .discovery-input {
+  font-style: normal;
+
+  &:focus {
+    border-color: $main-color;
+    outline: 2px auto $main-color;
+    box-shadow: none;
+  }
+}
+
+// typography
+div:not(.problem *),
+section,
+p,
+i:not(.fa):not(b > i),
+span :not(.fa):not(.MathJax *):not(b):not(strong,b, i),
+b:not(span > b),
+label {
+  font-family: $font-family-base !important;
+  font-weight: $font-weight-normal !important;
+}
+
+// icons fix
+i[class*="fa-"],
+span[class*="fa-"],
+div[class*="fa-"],
+.view-teams .icon {
+  color: inherit;
+  font-family: "FontAwesome" !important;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: $headings-font-family !important;
+  font-weight: $headings-font-weight !important;
+}
+
+h1,
+.h1 { 
+  font-size: $h1-font-size; 
+}
+
+h2,
+.h2 { 
+  font-size: $h2-font-size; 
+}
+
+h3,
+.h3 { 
+  font-size: $h3-font-size; 
+}
+
+h4, 
+.h4 { 
+  font-size: $h4-font-size; 
+}
+
+h5, 
+.h5 { 
+  font-size: $h5-font-size; 
+}
+
+h6, 
+.h6 { 
+  font-size: $h6-font-size; 
+}
+
+.login-register .login-provider .icon {
+  background: inherit;
+}
