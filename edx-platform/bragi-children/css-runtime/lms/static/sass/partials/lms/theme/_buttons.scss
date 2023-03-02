@@ -1,0 +1,301 @@
+// Simple Button
+//************************************************************************//
+// A bunch of extendable mixins to get the weird login buttons to work
+
+%btn {
+  @include button-size-edx($btn-padding-y, $btn-padding-x, $font-size-base, $border-radius);
+  @include button-variant($btn-primary-bg, $btn-primary-border);
+  @include transition($btn-transition);
+  color: $btn-primary-color;
+  display: inline-block;
+  height: auto;
+  font-weight: $btn-font-weight;
+  line-height: $btn-line-height;
+  text-align: center;
+  text-shadow: none;
+  text-decoration: none;
+  vertical-align: middle;
+  background-image: none;
+  border: $input-btn-border-width solid transparent;
+  box-shadow: none;
+  user-select: none;
+
+  // Share hover and focus styles
+  &:focus,
+  &:hover,
+  &:hover:not(:disabled) {
+    @include button-variant($btn-primary-bg, $btn-primary-border);
+    text-decoration: none;
+    outline: 0;
+    background-image: none;
+    box-shadow: $btn-focus-box-shadow;
+  }
+
+  // Disabled comes first so active can properly restyle
+  &.disabled,
+  &:disabled {
+    @include box-shadow(none);
+    cursor: $cursor-disabled;
+    opacity: .65;
+  }
+
+  &:active,
+  &.active {
+    @include box-shadow($btn-focus-box-shadow, $btn-active-box-shadow);
+    background-image: none;
+  }
+}
+
+%btn-flat {
+  @extend %btn;
+  @include button-variant($btn-primary-color, $btn-primary-border);
+  border: $input-btn-border-width solid $btn-primary-border;
+  color: $btn-primary-bg;
+
+  // Share hover and focus styles
+  &:focus,
+  &:hover,
+  &:hover:not(:disabled) {
+    @include button-variant($btn-primary-bg, $btn-primary-border);
+    color: $btn-primary-color;
+  }
+}
+
+// selector damned for new post and reply buttons in discussion forum
+%btn-forum {
+  @extend %btn;
+  border: none;
+  height: auto;
+  line-height: 1.5;
+
+  .button-text {
+    color: $white;
+  }
+
+  &:link,
+  &:hover,
+  &:active,
+  &:focus {
+    @extend %btn;
+    border: none;
+    height: auto;
+    line-height: 1.5;
+    color: $white;
+  }
+
+  &.btn-link:focus,
+  &.btn-link:hover {
+    background-color: $main-color !important;
+  }
+}
+
+
+a.btn,
+a:link.btn,
+// button\,
+button[type="submit"],
+input[type="submit"],
+input[type="button"],
+.btn-outline-primary,
+.view-teams .btn-secondary,
+.view-teams .action-primary.action {
+  @extend %btn;
+}
+
+.wrapper-downloads a.btn:hover:hover:link,
+.view-teams .btn-secondary:hover:not(:disabled):hover {
+  color: $btn-primary-bg;
+}
+
+a.btn-flat {
+  @extend %btn-flat;
+}
+
+// # Login and register buttons
+.header-global .nav-courseware li .btn,
+.header-global .nav-courseware div .btn,
+.view-survey .action-primary {
+  @extend %btn;
+}
+
+.view-login,
+.view-register,
+.view-passwordreset,
+.view-survey {
+  .form-actions button[type="submit"] {
+    @extend %btn;
+  }
+}
+
+.login,
+.register,
+.passwordreset,
+#forgot-password-modal #password-reset {
+  .form-actions button[type="submit"] {
+    @extend %btn;
+  }
+
+  // third party auth
+  .form-actions.form-third-party-auth button[type="submit"] {
+    @extend %btn-flat;
+  }
+
+  // go to login-register
+  a.btn.login-register {
+    @extend %btn-flat;
+    display: block;
+  }
+}
+
+// Dashboard
+.search-bar {
+  .search-button,
+  .cancel-button {
+    @extend %btn;
+
+    &:hover {
+      line-height: $btn-line-height;
+      padding: $btn-padding-y $btn-padding-x;
+    }
+  }
+
+  .cancel-button {
+    display: none;
+  }
+}
+
+.dashboard {
+
+  .my-courses .course {
+    .details .enter-course {
+      @extend %btn;
+    }
+
+    .wrapper-messages-primary .message {
+      &.message-upsell .action-upgrade {
+        @extend %btn;
+      }
+
+      &.message-status.course-status-certavailable .actions-primary .action-certificate .btn {
+        @extend %btn-flat;
+      }
+    }
+  }
+
+  .empty-dashboard-message a {
+    @extend %btn;
+  }
+
+}
+
+.search-results .search-load-next {
+  @extend %btn;
+  display: block;
+}
+
+
+// Courses
+.find-courses .discovery-submit {
+  @extend %btn;
+}
+
+.courses-container .courses .course .course-image .cover-image .learn-more {
+  @extend %btn;
+}
+
+// Courseware
+
+.xmodule_display.xmodule_CapaModule div.problem .action button {
+  @extend %btn;
+
+  &.problem-action-btn {
+    max-width: 180px !important; // trick for spanish text
+    background-color: $btn-primary-bg;
+  }
+}
+
+.courseware-bookmarks-button .bookmarks-list-button {
+  @extend %btn-flat;
+  padding: 5px 10px;
+  font-size: 13px;
+  line-height: 22px;
+}
+
+.discussion-module .discussion-show {
+  @extend %btn-flat;
+
+  &:focus,
+  &:hover,
+  &:hover:not(:disabled) {
+    color: $btn-primary-color !important;
+    background-color: $btn-primary-bg !important;
+    border: $input-btn-border-width solid $btn-primary-border !important;
+  }
+}
+
+// settings
+.account-settings-sections .section .account-settings-section-body .u-field .field button.u-field-link {
+  @extend %btn-flat;
+}
+
+.account-settings-sections a.u-field-link span {
+  color: $btn-primary-color;
+}
+
+// For the thread initiator only. TODO: get a discussion going and test the other buttons
+.discussion .course-tabs .right,
+.discussion-module,
+.forum-new-post-form,
+.discussion-submit-post {
+  .new-post-btn,
+  .control-button,
+  .submit,
+  .new-post-btn {
+    @extend %btn-forum;
+  }
+}
+.container,
+.outside-app,
+.wrapper-account-settings {
+  .discussion-body,
+  .discussion-module,
+  .discussion-user-threads {
+    .discussion-submit-post {
+      @extend %btn-forum;
+    }
+  }
+}
+.discussion,
+.discussion-module,
+.discussion-user-threads {
+  .comments .comment-form .discussion-submit-comment {
+    @extend %btn-forum;
+  }
+}
+.view-profile {
+  .wrapper-profile-sections,
+  .profile-self .wrapper-profile-field-account-privacy .u-field-account_privacy {
+    .discussion-body,
+    .discussion-module,
+    .discussion-user-threads {
+      .discussion-submit-post {
+        @extend %btn-forum;
+      }
+    }
+  }
+}
+
+// Search button in discussion tab
+
+.discussion .forum-search .search-input {
+  margin: 2px;
+  padding: 0.4rem;
+}
+
+#expand-collapse-outline-all-button {
+  @extend %btn;
+}
+
+.login-register .login-provider {
+  width: 50%;
+}

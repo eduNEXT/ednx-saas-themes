@@ -1,0 +1,60 @@
+// BASE VARIABLES
+// =============================================
+
+// // set defaoult bacgrounds in login, register and password restes pages
+// $login-banner-image: '' !default;
+// $register-banner-image: '' !default;
+// $passwordreset-banner-image: '' !default;
+
+ $main-color: #2196f3;
+ $white: #fff;
+
+$neat-grid: (
+  columns: 12,
+  gutter: 0,
+);
+
+// Navbar
+$navbar-bg: $white !default;
+$navbar-zindex: 1100 !default;
+$navbar__nav-login-color: $white !default;
+$navbar__nav-login-hover-color: $white !default;
+$navbar__nav-login-bg: $main-color;
+$navbar__nav-login-hover-bg: lighten($main-color, 5%);
+$navbar__nav-account-color: $main-color;
+$navbar__nav-account-border: 1px solid $main-color;
+$navbar__nav-toggler-color: $main-color;
+$navbar__nav-toggler-hover-bg: rgba(0, 0, 0, .05);
+$navbar__nav-link-color: $main-color;
+
+//Links color
+$link-color: $main-color;
+$link-hover-color: darken($link-color, 15%);
+
+$font-family-base: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$headings-font-family: $font-family-base;
+
+$h1-font-size: 2.5rem;
+$h2-font-size: 2rem;
+$h3-font-size: 1.75rem;
+$h4-font-size: 1.5rem;
+$h5-font-size: 1.25rem;
+$h6-font-size: 1rem;
+
+// Home
+$home-header__title-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12) !default;
+
+// Course
+$course-header__title-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12) !default;
+
+$course-component__item-more-color: $white !default;
+$course-component__item-more-bg: $main-color !default;
+$course-component__item-shadow: 0 3px 4px 0 rgba(0,0,0,.14),0 3px 3px -2px rgba(0,0,0,.2),0 1px 8px 0 rgba(0,0,0,.12) !default;
+$course-component__item-shadow--hover: 0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12),0 5px 5px -3px rgba(0,0,0,.2) !default;
+
+$course-component__item-more__span-color: $white !default;
+$course-component__item-more__span-border: $white !default;
+
+// Footer
+$footer-bg: $white !default;
+$footer-zindex: 1100 !default;
