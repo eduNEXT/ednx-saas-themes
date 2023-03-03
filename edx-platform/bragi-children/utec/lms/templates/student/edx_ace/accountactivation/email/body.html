@@ -1,0 +1,71 @@
+{% extends 'ace_common/edx_ace/common/base_body.html' %}
+{% load i18n %}
+{% load static %}
+{% block content %}
+<table width="100%" align="left" border="0" cellpadding="0" cellspacing="0" role="presentation">
+{% if route_enabled %}
+    <tr>
+        <td>
+            <p style="color: rgba(0,0,0,.75);">
+                {% blocktrans %}This is a routed Account Activation email for {{ routed_user }} ({{ routed_user_email }}): {{ routed_profile_name }}{% endblocktrans %}
+                <br />
+            </p>
+        </td>
+    </tr>
+{% endif %}
+    <tr>
+        <td>
+            <h1>
+                {% trans "Account Activation" %}
+            </h1>
+            <p style="color: rgba(0,0,0,.75);">
+                ¡Gracias por registrarte!
+                <br />
+            </p>
+            <p style="color: rgba(0,0,0,.75);">
+                Bienvenido/a al entorno de Educación Digital Universitaria de UTEC .
+                <br />
+                Para finalizar con el proceso de registro deberás
+            </p>
+              {% trans "ingresar aquí" as course_cta_text %}
+            {% include "ace_common/edx_ace/common/return_to_course_cta.html" with course_cta_text=course_cta_text course_cta_url=confirm_activation_link %}
+            <p style="color: rgba(0,0,0,.75);">
+                Una vez registrado/a, podrás acceder a los distintos cursos disponibles.
+                <br />
+            </p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p style="color: rgba(0,0,0,.75);">
+                ¿Cómo funciona EDU?. <a href="https://red.utec.edu.uy/estudiantes/edu-estudiantes/primeros-pasos-en-edu-estudiantes/">Accede aquí</a> a videotutoriales que te ayudarán con tus primeros pasos en la plataforma.
+                <br />
+            </p>
+        </td>
+    </tr>
+        <td>
+            <p style="color: rgba(0,0,0,.75);">
+                Recuerda que puedes comunicarte a través de <a href="mailto:consultas.edu@utec.edu.uy">consultas.edu@utec.edu.uy</a> por cualquier duda o consulta.
+                <br />
+            </p>
+        </td>
+    <tr>
+        <td>
+            <p style="color: rgba(0,0,0,.75);">
+                ¡Saludos!.
+                <br />
+                Equipo UTEC.
+                <br />
+            </p>
+        </td>
+     </tr>
+    <tr>
+        <td>
+            <p style="color: rgba(0,0,0,.75);">
+                Este mensaje fue enviado automáticamente por <a href="https://edu2.utec.edu.uy">EDU</a> porque alguien trató de crear una cuenta en EDU usando esta dirección de correo electrónico.
+                <br />
+            </p>
+        </td>
+    </tr>
+</table>
+{% endblock %}

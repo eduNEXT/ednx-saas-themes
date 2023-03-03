@@ -1,0 +1,26 @@
+
+$static-path: '/static';
+
+@font-face {
+  font-family: 'Avenir LT 55 Roman';
+  src:
+    url('#{$static-path}/utec/fonts/AvenirLTStd-Roman.woff') format('woff'),
+    url('#{$static-path}/utec/fonts/AvenirLTStd-Roman.eot') format('eot'),
+    url('#{$static-path}/utec/fonts/AvenirLTStd-Roman.ttf') format('ttf'),
+    url('#{$static-path}/utec/fonts/AvenirLTStd-Roman.svg') format('svg');
+  font-weight: 300;
+  font-style: normal;
+}
+
+$theme-sans-font: 'Avenir LT 55 Roman';
+$header-bg: #fff;
+$black: #2e2e2e;
+$black-80: #808080;
+$font-family-sans-serif: $theme-sans-font;
+
+$homepage-bg-image: url('#{$static-path}/utec/images/silo.jpg');
+$video-thumb-url: '#{$static-path}/utec/images/edx.png';
+
+$footer-bg: #333;
+$grey: #808080;
+

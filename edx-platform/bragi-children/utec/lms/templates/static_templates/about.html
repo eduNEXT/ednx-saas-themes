@@ -1,0 +1,144 @@
+## mako
+<%!
+  from django.urls import reverse
+  ##from django.core.urlresolvers import reverse
+  from django.utils.translation import ugettext as _
+%>
+<%namespace name='static' file='/static_content.html'/>
+
+<%inherit file="/main.html" />
+
+<%block name="title"><title>${_('About')}</title></%block>
+
+<%block name="js_extra">
+  <script type="text/javascript">
+    $(function() {
+      $('section.message').hide();
+      $('#about-menu a').removeClass('active');
+      window.scrollTo(0,0);
+      var hash = window.location.hash
+
+      if (hash) {
+        $('section' + hash).show();
+        $('#about-menu a.' + hash.substring(1)).addClass('active');
+      } else {
+        $('section#about').show();
+        $('#about-menu a.about').addClass('active');
+      }
+
+      $('#about-menu a').click(function(event) {
+        event.preventDefault();
+        $('#about-menu a').removeClass('active');
+        $(this).addClass('active');
+        var clickId = "section" + $(this).attr('href');
+        $('section.message').hide();
+        $(clickId).show();
+      });
+    });
+  </script>
+</%block>
+
+<section class="container about" style="width: auto;">
+  <nav id="about-menu">
+    <a href="#about" class="about active">Acerca de EDU</a>
+    <a href="#contact" class="contact">Contacto</a>
+    <a href="#help" class="help">Ayuda</a>
+  </nav>
+
+  <section class="vision">
+
+    ## About Section ##
+    <section class="message left" id="about">
+      <div class="photo">
+        <!--
+            Photo License: CC0 Public Domain (Free for commercial use / No attribution required)
+            https://pixabay.com/en/book-books-circle-curly-education-2869/
+        -->
+        <img src="${static.url('utec/images/about.jpg')}" alt="" />
+      </div>
+      <article>
+
+        <h2>¿Qué es EDU?</h2>
+
+        <p>Es el entorno de <strong>E</strong>ducación <strong>D</strong>igital <strong>U</strong>niversitaria de cursos masivos abiertos en línea desarrollado por la Universidad Tecnológica del Uruguay (UTEC). </p>
+
+        <p>En EDU ofrecemos cursos de UTEC, en conjunto con otras Universidades y organizaciones que son líderes a nivel regional e internacional,  trabajamos para crear y proporcionar experiencias de aprendizaje digitales a estudiantes de distintas partes del mundo. </p>
+
+        <p>Hay cursos gratis y con un certificado verificado que demuestra que has finalizado con el curso y que has adquirido conocimientos y habilidades que te permiten avanzar en tu carrera profesional. </p>
+
+        <p>&nbsp;</p>
+      </article>
+      <hr class="fade-right-hr-divider">
+    </section>
+
+    ## Contact Section ##
+    <section class="message left" id="contact">
+      <div class="photo">
+        <!--
+            Photo License: CC0 Public Domain (Free for commercial use / No attribution required)
+            https://pixabay.com/en/network-cobweb-dewdrop-586177/
+        -->
+        <img src="${static.url('themes/utec-theme/images/contact.jpg')}" alt="" />
+      </div>
+      <article id="stanford-OpenEdX-contact">
+
+        <p>Por inconvenientes al momento de ingresar, con tu contraseña, validación de email Ingresa a nuestra sección de Preguntas Frecuentes. Si no encuentras la solución envía un correo electrónico a <a href="mailto:consultas.edu@utec.edu.uy"> consultas.edu@utec.edu.uy </a>. </p>
+
+        <p>&nbsp;</p>
+      </article>
+      <hr class="fade-right-hr-divider">
+    </section>
+
+    ## Careers Section ##
+    <section class="message left" id="help">
+      <div class="photo">
+        <!--
+            Photo License: CC0 Public Domain (Free for commercial use / No attribution required)
+            https://pixabay.com/en/man-corporate-businessman-suit-tie-871960/
+        -->
+        <img src="${static.url('themes/utec-theme/images/help.jpg')}" alt="" />
+      </div>
+      <article>
+
+        <h2>Preguntas Frecuentes</h2>
+
+        <h3>¿Cómo ingreso a EDU?</h3>
+        <p>Los estudiantes de UTEC deberán hacer click en <a href="https://edu.utec.edu.uy/login"> Iniciar Sesión </a>, luego seleccionar la opción Iniciar Sesión utilizando tu cuenta de UTEC, y posteriormente ingresar tu nombre de usuario (usuario.apellido) y tu contraseña. En tu PC y notebook debes activar y mantener actualizado Javas, en este <a href="https://www.java.com/es/download/help/update_runtime_settings.xml">link</a> podrás aprender cómo realiza esta acción.</p>
+        <p>Si no tenes cuenta de UTEC, podes crear una cuenta con tus datos personales, tenes que seleccionar el botón Iniciar Sesión, completar los datos del formulario y validar tu cuenta una vez que recibas el correo electrónico en la dirección de correo electrónico que ingresaste. </p>
+        <br>
+
+        <h3>No he recibido el correo electrónico para verificar mi cuenta, ¿qué puedo hacer?</h3>
+        <p>Si te has registrado y no recibiste el correo electrónico para validar tu cuenta, verifica que: </p>
+        <p>Has ingresado correctamente la dirección de tu correo electrónico. </p>
+        <p>Buscar el correo en la SPAM o Basura, nuestra dirección de correo electrónico es <a href="mailto:registro@utec.edu.uy "> registro@utec.edu.uy </a>, si lo encuentras realiza <a href="https://support.google.com/mail/answer/1366858?co=GENIE.Platform%3DiOS&hl=es"> este procedimiento </a> eliminar de spam. </p>
+        <p>Si aún no recibes el correo, agrega la cuenta <a href="mailto:registro@utec.edu.uy"> registro@utec.edu.uy </a> a tus contactos y luego registrarte de nuevo, si el problema persiste, ponte en <a href="https://edu.utec.edu.uy/about#contact"> contacto </a> con nosotros. </p>
+        <br>
+
+        <h3>¿Olvidaste tu contraseña?</h3>
+        <p>Si sos estudiante de UTEC, ingresa la dirección de correo electrónico de UTEC en <a href="https://pwm.utec.edu.uy/pwm/public/forgottenpassword"> este sitio </a> y sigue las instrucciones que te llegan el correo.</p>
+        <p>Si has ingresado a EDU con una cuenta personal, puedes ingresar a <a href="https://edu.utec.edu.uy/login"> Iniciar Sesión </a> y allí dar click al botón "¿Olvidaste tu contraseña?". Debes ingresar la misma dirección de correo electrónico que utilizaste cuando te registraste para recibir las instrucciones de recuperación de la contraseña. </p>
+        <br>
+
+        <h3>¿Qué navegador permite el uso de cursos de EDU?</h3>
+        <p>Los navegadores Mozilla FireFox v.35, Google Chrome, Internet Explorer 8 o superior son compatibles con el entorno educativo, además puedes acceder desde dispositivos con sistema operativo Windows, Android y Mac OS X e iOS.</p>
+        <br>
+
+        <h3>¿Cuánto tiempo dura un curso?</h3>
+        <p>Depende de cada curso, podrás encontrar esta información en la sección Buscar Cursos y seleccionar la opción Aprender Más, cuando pasas el mouse por la imagen de cada curso.</p>
+        <br>
+
+        <h3>¿Cómo me inscribo a un curso?</h3>
+        <p>Debes ir a tu centro de control y busca el curso al que deseas inscribirte. Luego hacer click en Aprender Más y seleccionar el botón Registrarse para.</p>
+        <br>
+
+        <h3>¿Puedo inscribirme a más de un curso?</h3>
+        <p>Sí, es posible. De todas formas, es recomendables que analices los tiempos que dura cada curso y las fechas de las actividades presenciales.</p>
+        <br>
+
+      </article>
+      <hr class="fade-right-hr-divider">
+    </section>
+
+  </section>
+
+</section>
