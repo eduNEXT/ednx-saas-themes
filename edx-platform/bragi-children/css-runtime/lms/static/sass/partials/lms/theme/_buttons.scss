@@ -52,7 +52,7 @@
 
 %btn-flat {
   @extend %btn;
-  @include var-button-variant($btn-bg-primary, $btn-bg-primary,  $btn-bg-primary-hover-bg,
+  @include var-button-variant($btn-bg-primary-outline, $btn-bg-primary,  $btn-bg-primary-hover-bg,
   $btn-bg-primary-hover-border,$btn-bg-primary-active-bg, $btn-bg-primary-active-border,
   $btn-bg-primary-yiq, $btn-bg-primary-custom-bg-gradient, $btn-bg-primary-bg-gradient);
   border: $input-btn-border-width solid $btn-primary-border;

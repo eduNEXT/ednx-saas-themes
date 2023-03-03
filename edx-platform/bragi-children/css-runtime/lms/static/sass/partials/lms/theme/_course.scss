@@ -542,7 +542,7 @@ a.ui-slider-handle {
 .content-wrapper .course-tabs .nav-item.active .nav-link,
 .content-wrapper .course-tabs .nav-item:hover .nav-link {
   border-bottom-color: $main-color !important;
-  color: var(--pgn-color-link-brand-hover);
+  color: var(--pgn-color-link-brand-hover) !important;
 }
 .content-wrapper .home-courses .courses {
   background-color: #f3f3f3;
