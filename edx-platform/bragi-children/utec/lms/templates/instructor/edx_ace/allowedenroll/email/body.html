@@ -1,0 +1,67 @@
+{% extends 'ace_common/edx_ace/common/base_body.html' %}
+
+{% load i18n %}
+{% load static %}
+{% block content %}
+<table width="100%" align="left" border="0" cellpadding="0" cellspacing="0" role="presentation">
+    <tr>
+        <td>
+            <h1>
+                {% blocktrans %}You have been invited to {{ course_name }}{% endblocktrans %}
+            </h1>
+
+            <p style="color: rgba(0,0,0,.75);">
+                ¡Hola!
+                <br />
+            </p>
+            
+            <p style="color: rgba(0,0,0,.75);">
+                Has sido invitado a inscribirte en el curso {{ course_name }}.
+                <br />
+            </p>
+
+            <p style="color: rgba(0,0,0,.75);">
+                Para participar primero debes registrarte en la plataforma EDU completando un formulario, la casilla “email” recuerda completarla con esta misma cuenta de correo.
+                <br /> 
+            </p>
+
+            <p style="color: rgba(0,0,0,.75);">
+                Haz click en el botón para registrarte y comenzar el curso.
+                <br />
+            </p>
+
+        {% if is_shib_course %}
+            {% if auto_enroll %}
+
+                {% include "ace_common/edx_ace/common/return_to_course_cta.html" with course_cta_text=course_name course_cta_url=course_url %}
+            {% elif course_about_url is not None %}
+
+                {% include "ace_common/edx_ace/common/return_to_course_cta.html" with course_cta_text=course_name course_cta_url=course_about_url %}
+            {% endif %}
+        {% else %}
+
+            {% trans "click aquí" as button_cta_text %}
+            {% include "ace_common/edx_ace/common/return_to_course_cta.html" with course_cta_text=button_cta_text course_cta_url=registration_url %}
+
+        {% endif %}
+
+            <p style="color: rgba(0,0,0,.75);">
+                Recuerda que puedes comunicarte a través de <a href="mailto:consultas.edu@utec.edu.uy">consultas.edu@utec.edu.uy</a> por cualquier duda o consulta.
+                <br />
+            </p>
+
+            <p style="color: rgba(0,0,0,.75);">
+                ¡Saludos!.
+                <br />
+                Equipo UTEC.
+                <br />
+            </p>
+
+            <p style="color: rgba(0,0,0,.75);">
+                Este mensaje fue enviado automáticamente por <a href="https://edu2.utec.edu.uy">EDU</a> porque alguien trató de crear una cuenta en EDU usando esta dirección de correo electrónico.
+                <br />
+            </p>
+        </td>
+    </tr>
+</table>
+{% endblock %}

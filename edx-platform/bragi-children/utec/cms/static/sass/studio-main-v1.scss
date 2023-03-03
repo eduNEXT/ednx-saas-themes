@@ -1,0 +1,11 @@
+/* ========================================================
+
+  CMS style for UTEC
+
+======================================================== */
+
+// import CMS base
+@import 'cms/static/sass/studio-main-v1';
+
+// import the custom changes
+@import 'utec_overrides';

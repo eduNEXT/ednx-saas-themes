@@ -1,0 +1,161 @@
+## mako
+<%!
+  from django.urls import reverse
+  from django.conf import settings
+  ##from django.core.urlresolvers import reverse
+  from django.utils.translation import ugettext as _
+%>
+<%inherit file="/main.html" />
+
+<%namespace name='static' file='/static_content.html'/>
+
+<%block name="  title"><title>Términos y condiciones</title></%block>
+
+<section class="static-container tos">
+
+    <h2>Términos y condiciones generales</h2>
+
+    <p>Los términos y condiciones de uso que se exponen a continuación
+    (“Términos y Condiciones”), regulan el uso de la plataforma educativa de
+    apoyo a la docencia (la “Plataforma”) que ofrece la Universidad Tecnológica
+    (la “UTEC”) a través del Portal Académico disponible en su sitio web
+    <a href="http://www.utec.edu.uy/" target="_blank">www.utec.edu.uy</a>
+    (“el Portal”). </p>
+    <p>Cualquier persona ("Usuario" o en plural "Usuarios") que desee acceder y/o
+    usar el Portal o la Plataforma podrá hacerlo sujetándose a estos Términos y
+    Condiciones de Uso y a su Política de Privacidad, que se considera parte
+    integrante del presente documento.</p>
+
+    <h2 id="aceptation">Aceptación</h2>
+
+    <p>Estos Términos y Condiciones se consideran aceptados por los Usuarios por
+     el mero hecho de registrarse y utilizar el Portal y/o la Plataforma. En el
+     caso de no aceptarlos, deberán dejarse de utilizar de forma inmediata. </p>
+     <p>La UTEC se reserva el derecho de realizar cambios en estos Términos y
+     Condiciones sin necesidad de preaviso, los que tendrán efecto a partir de
+     la fecha de su publicación. El uso del Portal y/o de la Plataforma
+     constituirá la aceptación de estos cambios.</p>
+
+    <h2 id="object-and-finality">Objeto y finalidad</h2>
+
+    <p>El Portal y la Plataforma tienen por objeto y finalidad informar,
+    almacenar, preservar, asistir y difundir la información y servicios de la
+    comunidad universitaria de la UTEC, además de buscar incrementar la
+    formación de calidad contribuyendo a mejorar el sistema de comunicación en
+    la educación universitaria y el acceso al conocimiento en general.</p>
+
+    <h2 id="obligation">Obligaciones del usuario </h2>
+
+    <p>El Usuario se compromete y obliga a utilizar el Portal y/o la Plataforma
+    de forma diligente, absteniéndose de su utilización con fines o efectos
+    contrarios a las leyes, reglamentos, a la moral y a las buenas costumbres
+    generalmente aceptadas, obligándose especialmente, pero no taxativamente a:
+    </p>
+
+    <ol type="a">
+        <li>Utilizar el Portal y/o la Plataforma únicamente para los fines permitidos por estos Términos y Condiciones;</li>
+        <li>No atentar contra ningún derecho de una tercera persona, patente, marca, nombre de dominio, modelo u otro derecho de propiedad de cualquier naturaleza, ni atentar contra normas de ética publicitaria o de privacidad o intimidad de las personas;</li>
+        <li>No utilizar, brindar o transmitir información falsa, engañosa, difamatoria, amenazante u obscena;</li>
+        <li>No hacer uso de ningún tipo de mecanismo, software o rutina computacional para interferir o intentar interferir en el propio trabajo del Portal y/o de la Plataforma;</li>
+        <li>No transmitir ningún tipo de virus, caballos de Troya, “gusanos” (worms), bombas de tiempo, cancelbots u otro tipo de programas de computación que tienen por función dañar, perjudicar, interferir, interceptar información o datos clandestinamente, expropiar o afectar por cualquier medio cualquier sistema, archivo o información contenida en el Portal y/o la Plataforma;</li>
+        <li>No reproducir, vender, enajenar, almacenar ni ceder total o parcialmente a ningún tercero la información contenida en el Portal y/o la Plataforma;</li>
+        <li>Actuar de acuerdo a estos Términos y Condiciones y a utilizar bajo su única y exclusiva responsabilidad los contenidos del Portal y/o de la Plataforma;</li>
+        <li>No modificar, alquilar, ceder, prestar, distribuir o crear trabajos derivados basados en el servicio o en el software soporte del Portal y/o de la Plataforma.</li>
+    </ol>
+
+    <h2 id="responsability">Responsabilidad del usuario </h2>
+
+    <p>El Usuario reconoce y acepta ser el único responsable de cualquier
+    incumplimiento de sus obligaciones previstas en estos Términos y
+    Condiciones de Uso, así como de las consecuencias de dicho incumplimiento.
+    </p>
+    <p> En particular, el Usuario responderá de los daños y perjuicios de
+    cualquier naturaleza que pudiera ocasionar a UTEC como consecuencia del
+    incumplimiento de cualquiera de las obligaciones a las que queda sometido
+    por estos Términos y Condiciones así como por su actuación a través del
+    Portal y/o de la Plataforma.</p>
+
+    <h2>Derechos de la UTEC</h2>
+
+    <p>La UTEC se reserva el derecho a:</p>
+
+    <ol type="a">
+        <li>modificar en cualquier momento estos Términos y Condiciones, sin necesidad de preaviso a los Usuarios;</li>
+        <li>modificar, agregar o suprimir cualquier parte o la totalidad de los servicios brindados por el Portal y/o la Plataforma, sin previo aviso;</li>
+        <li>denegar o retirar el acceso al Portal y/o a la Plataforma, en cualquier momento y sin necesidad de preaviso, por iniciativa propia o a instancia de un tercero, a aquellos Usuarios que incumplan estos Términos y Condiciones;</li>
+        <li>monitorear todas las transferencias que se realizan en el Portal, incluidos, a título de ejemplo, archivos, mensajes, informes, etc.; y</li>
+        <li>retirar intervenciones y/o documentación que vulneren las obligaciones y principios establecidos en estos Términos y Condiciones.</li>
+    </ol>
+
+    <h2 type="exlusion">Exlusión de responsabilidad</h2>
+
+    <p>La UTEC no se responsabiliza de las opiniones expresadas por los
+    Usuarios ni de los contenidos o documentos que los mismos compartan a
+    través del Portal y/o de la Plataforma. Tampoco será responsable de ninguna
+    conducta amenazadora, difamatoria, obscena, ofensiva o ilegal de cualquier
+    otra parte ni de cualquier infracción de los derechos de otros, incluidos
+    los derechos de propiedad intelectual. </p>
+    <p>En ningún caso la UTEC se hace responsable de cualquier daño directo o
+    indirecto causado por el uso del Portal y/o de la Plataforma, ya sea por
+    acción u omisión. </p>
+    <p>La UTEC realizará sus mejores esfuerzos para asegurar la disponibilidad
+    del Portal y de la Plataforma, sin interrupciones, así como la ausencia de
+    errores en cualquier transmisión de información que pudiera tener lugar. No
+    obstante, y debido a la naturaleza misma de Internet, no es posible
+    garantizar tales extremos. Asimismo, si el acceso por parte del Usuario
+    pudiera ocasionalmente verse suspendido o restringido a efectos de la
+    realización de trabajos de reparación, mantenimiento o innovación, la UTEC
+    procurará limitar la frecuencia y duración de tales suspensiones o
+    restricciones. </p>
+    <p>La UTEC tampoco será responsable por cualquier virus que pudiera
+    infectar el equipo del Usuario como consecuencia de su acceso al Portal y/o
+    a la Plataforma o a raíz de cualquier transferencia de datos, archivos,
+    imágenes o textos contenidos en los mismos. </p>
+
+    <h2 id="security">Seguridad</h2>
+
+    <p>Los únicos responsables de mantener a salvo y evitar el uso por terceros
+    de las contraseñas de acceso al Portal y/o la Plataforma, son los propios
+    Usuarios, no siendo en ningún caso responsabilidad de la UTEC. Por lo
+    tanto, el Usuario reconoce y acepta ser el único responsable frente a la
+    UTEC con respecto a todas las actividades realizadas en relación con su
+    cuenta. Si el Usuario advirtiera cualquier uso no autorizado de su
+    contraseña o de su cuenta, deberá notificarlo inmediatamente a la UTEC.</p>
+
+
+    <h2 id="license">Licencias de la UTEC</h2>
+
+    <p>Tanto el software de base del Portal como de la Plataforma se engloban
+    bajo licencias de software de dominio público. Por tanto, El Usuario
+    reconoce y acepta que la UTEC será la responsable sólo de aquellas
+    adaptaciones que descansan sobre el software base y que realiza para
+    maximizar el uso de la Plataforma.</p>
+
+
+    <h2 id="copyright">Derechos de autor</h2>
+
+    <p>Todos los derechos de propiedad intelectual de la información del Portal
+    y/o de la Plataforma pertenecen a la persona que los generó. La información
+    y documentos pueden ser copiados para su uso personal, únicamente a
+    condición de que se respeten los derechos de autor, se identifique la
+    fuente y no se hagan modificaciones. El uso comercial o publicación de la
+    totalidad o cualquier elemento que aparezca en el Portal y/o en la
+    Plataforma está estrictamente prohibido sin autorización previa del autor
+    material del documento o recurso. </p>
+
+
+    <h2 id="general">Disposiciones generales</h2>
+
+    <p>Toda cuestión o controversia que se suscite en relación con el uso del
+    Portal y/o de la Plataforma estará regida por las leyes de la República
+    Oriental del Uruguay y quedará sometido a los Tribunales de la ciudad de
+    Montevideo. </p>
+    <p>Se consideran válidas todas las notificaciones al Usuario dirigidas vía
+    e-mail a la dirección que tenga registrada ante el Portal y/o en la
+    Plataforma, por correo al domicilio indicado en el registro del Portal, así
+    como por cualquier otro medio fehaciente.</p>
+</section>
+
+<script>
+
+</script>

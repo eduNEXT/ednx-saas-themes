@@ -1,0 +1,136 @@
+## mako
+<%page expression_filter="h"/>
+<%!
+  from django.urls import reverse
+  from django.utils.translation import ugettext as _
+  from branding.api import get_footer
+  from openedx.core.djangoapps.lang_pref.api import footer_language_selector_is_enabled
+  from openedx.core.djangoapps.user_api.preferences.api import get_user_preference
+  from openedx.core.djangoapps.site_configuration import helpers as configuration_helpers
+%>
+<% footer = get_footer(is_secure=is_secure) %>
+<% icp_license_info = getattr(settings, 'ICP_LICENSE_INFO', {})%>
+<%namespace name='static' file='static_content.html'/>
+
+<%
+options_modal = configuration_helpers.get_value("MODAL_COOKIES", {})
+modal_force_display = options_modal.get("modal_force_display", False)
+name_preference_cookies = options_modal.get("modal_cookies_name_preference", "")
+modal_cookies_text = options_modal.get('modal_cookies_text', "")
+modal_cookies_btn_label = options_modal.get('modal_cookies_btn_label', "")
+%>
+
+<footer class="footer">
+  <div class="wrapper-footer">
+    <div class="footer-content">
+      <div class="footer-column">
+        <div class="footer-title">Institucional</div>
+        <ul>
+          <li><a href="https://utec.edu.uy/" target="_blank" class="link footer">Acerca de UTEC</a></li>
+          <li><a href="https://taa.utec.edu.uy/" target="_blank" class="link footer">TAA</a></li>
+          <li><a href="https://edu.utec.edu.uy/#form-row" class="link footer">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <div class="footer-title">Formación</div>
+        <ul>
+          <li><a href="https://utec.edu.uy/formacion/" target="_blank" class="link footer">Carreras</a></li>
+          <li><a href="https://utec.edu.uy/formacion/#programas-especiales" target="_blank" class="link footer">Programas Especiales</a></li>
+          <li><a href="https://edu.utec.edu.uy/" class="link footer">EDU</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <div class="footer-title">Estudiantes</div>
+        <ul>
+          <li><a href="https://portal.utec.edu.uy/portal/page/portal/uxxiportal/inicio" target="_blank" class="link footer">Portal Académico</a></li>
+          <li><a href="https://ev1.utec.edu.uy/moodle/login/index.php" target="_blank" class="link footer">Entorno Virtual de Aprendizaje</a></li>
+          <li><a href="https://utec.edu.uy/estudiantes/" target="_blank" class="link footer">Novedades</a></li>
+          <li><a href="https://utec.edu.uy/estudiantes/#descargas-row" target="_blank" class="link footer">Descargas</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <img src="${static.url('images/utec-logo-footer.png')}" width="160">
+        <div class="footer-info">(+598) 2603 8832</div>
+        <div class="footer-info">consultas@utec.edu.uy</div>
+        <img src="${static.url('images/taa-logo.png')}" width="160">
+      </div>
+    </div>
+    <div class="copyright">
+      <p>© 2021 - Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+% if include_dependencies:
+  <%static:js group='base_vendor'/>
+  <%static:css group='style-vendor'/>
+  <%include file="widgets/segment-io.html" />
+  <%include file="widgets/segment-io-footer.html" />
+% endif
+% if footer_css_urls:
+  % for url in footer_css_urls:
+    <link rel="stylesheet" type="text/css" href="${url}"></link>
+  % endfor
+% endif
+
+%if modal_force_display:
+## Pop-up cookies
+<div class="modal-container">
+  <div class="modal-content">
+     % if modal_tos_text:
+    ${modal_tos_text | n}
+    % endif
+    <button class="button-modal btn-primary">${modal_cookies_btn_label}</button>
+  </div>
+
+</div>
+
+  %if user.is_authenticated:
+  <% value_preference = get_user_preference(user, name_preference_cookies) %>
+
+  <script type="text/javascript">
+  
+  const newCookiesModal = (function () {
+      const valuePreference = '${value_preference}';
+      const urlPreferenceCookies = '/api/user/v1/preferences/${user}/${name_preference_cookies}';
+
+      function displayModal() {
+        $('.modal-container').css('display', 'block');
+      }
+
+      function hideModal() {
+        $('.modal-container').css('display', 'none');
+      }
+
+      function updatePreference() {
+        $.ajax({
+          url: urlPreferenceCookies,
+          type: 'PUT',
+          dataType: 'json',
+          contentType: "application/json",
+          data: "true"
+        });
+      }
+
+      function getPreference() {  
+        (valuePreference == 'True') ? hideModal() : displayModal();     
+        events();
+      }
+
+      function events() {
+        $('.button-modal').on('click', function(){
+          hideModal();
+          updatePreference();
+        });
+      }
+      return {
+        getPreference: getPreference
+      }
+    })();
+
+    $(window).load (function (){
+      newCookiesModal.getPreference();
+    });
+
+  </script>
+  %endif
+%endif
