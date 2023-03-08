@@ -23,9 +23,11 @@ from django.utils.translation import get_language_bidi
     style_overrides_file = ''
 %>
 
+% if '/courseware/' in request.path:
 <script type="text/javascript" src="${static.url(fileupload_js_path)}"></script>
-
 <script type="text/javascript" src="${static.url(ifreme_js_path)}"></script>
+% endif
+
 
 % if style_overrides_file:
   <link rel="stylesheet" type="text/css" href="${static.url(style_overrides_file)}" />
