@@ -54,7 +54,7 @@
   @extend %btn;
   @include var-button-variant($btn-bg-primary-outline, $btn-bg-primary,  $btn-bg-primary-hover-bg,
   $btn-bg-primary-hover-border,$btn-bg-primary-active-bg, $btn-bg-primary-active-border,
-  $btn-bg-primary-yiq, $btn-bg-primary-custom-bg-gradient, $btn-bg-primary-bg-gradient);
+  $btn-bg-primary, $btn-bg-primary-custom-bg-gradient, $btn-bg-primary-bg-gradient);
   border: $input-btn-border-width solid $btn-primary-border;
   color: $btn-primary-bg;
 
@@ -67,7 +67,11 @@
     $btn-bg-primary-yiq, $btn-bg-primary-custom-bg-gradient, $btn-bg-primary-bg-gradient);
     border: $input-btn-border-width solid $btn-primary-border;
     color: $btn-primary-bg;
-    color: $btn-primary-color;
+  }
+  
+  &:disabled {
+    border: $input-btn-border-width solid $btn-primary-border;
+    color: $btn-primary-bg;
   }
 }
 
@@ -108,7 +112,7 @@ input[type="submit"],
 input[type="button"],
 .btn-outline-primary,
 .view-teams .btn-secondary,
-.view-teams .action-primary.action {
+.view-teams .action-primary.action{
   @extend %btn;
 }
 
@@ -215,12 +219,46 @@ a.btn-flat {
 
 // Courseware
 
-.xmodule_display.xmodule_CapaModule div.problem .action button {
-  @extend %btn;
+.xmodule_display.xmodule_CapaModule div.problem {
 
-  &.problem-action-btn {
-    max-width: 180px !important; // trick for spanish text
-    background-color: $btn-primary-bg;
+  .action button {
+    @extend %btn;
+
+    &.problem-action-btn {
+      max-width: 180px !important; // trick for spanish text
+      background-color: $btn-primary-bg;
+    }
+  }
+}
+
+.xblock {
+  .btn-brand:not(:disabled), .xblock .btn-primary:not(:disabled) {
+    color: $btn-bg-primary-yiq !important;
+    background-color: $btn-bg-primary !important;
+    border-color:$btn-bg-primary !important;
+    &:focus,
+    &:hover,
+    &:hover:not(:disabled) {
+      @include var-button-variant($btn-bg-primary, $btn-bg-primary,  $btn-bg-primary-hover-bg,
+      $btn-bg-primary-hover-border,$btn-bg-primary-active-bg, $btn-bg-primary-active-border,
+      $btn-bg-primary-yiq, $btn-bg-primary-custom-bg-gradient, $btn-bg-primary-bg-gradient);
+      color: $btn-bg-primary-yiq !important;
+      background-color:$btn-bg-primary-hover-bg !important;
+      border-color:$btn-bg-primary-hover-border !important;
+    }
+  }
+
+  .problem-action-btn, .bookmark-button {
+    color: $btn-primary-bg !important;
+    &:hover, &:focus {
+      color: $btn-bg-primary-hover-bg !important;
+    }
+  }
+  .choicegroup input[type="checkbox"], .choicegroup input[type="radio"] {
+    accent-color: $main-color;
+  }  
+  .choicegroup input:hover+label,  .choicegroup input:hover+focus, .choicegroup input:focus+label{
+    border: 2px solid $main-color !important;
   }
 }
 
@@ -231,7 +269,7 @@ a.btn-flat {
   line-height: 22px;
 }
 
-.discussion-module .discussion-show {
+.discussion-module .discussion-show, .discussion-module .btn, .discussion-show.shown {
   @extend %btn-flat;
 
   &:focus,
@@ -309,3 +347,5 @@ a.btn-flat {
 .login-register .login-provider {
   width: 50%;
 }
+
+

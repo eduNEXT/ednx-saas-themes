@@ -137,6 +137,10 @@
       color: $white;
     }
   }
+  
+  &#course-info-progress .chapters a:not(.btn):hover {
+    color: $link-hover-color;
+  }
 }
 
 .view-course-info .home {
@@ -359,19 +363,28 @@ main .home {
 ======================================================== */
 .view-in-course {
   .wrapper-course-material .course-tabs li a {
-    &.active {
-      color: $link-color;
-      border-bottom-color: $link-color;
+    &.active, &:hover, &:focus {
+      color: $link-color !important;
+      border-bottom-color: $link-color !important;
     }
+  }
+}
+.content-wrapper .course-tabs .nav-item{
+  &.active .nav-link, &:hover .nav-link {
+    color: $link-color !important;
+    border-bottom-color: $link-color !important;
+  }
+}
 
-    &:hover {
-      color: $link-color;
-      border-bottom-color: $link-hover-color;
-    }
-    &:focus {
-      color: $link-color;
-      border-bottom-color: $link-hover-color;
-    }
+.instructor-dashboard-content-2 .instructor-nav .nav-item .btn-link, 
+.instructor-dashboard-content-2 .data-download-nav .nav-item .btn-link {
+  color: $link-color;
+  &.active, &:hover, &:focus   {
+    border-bottom-color: $link-color !important;
+  }
+  &.active-section, &.active-section {
+    color: $black ;
+    border-bottom-color: $link-color !important;
   }
 }
 
@@ -437,6 +450,10 @@ main .home {
   .subsection-title {
     font-size: 1.1rem;
     font-weight: 400 !important;
+  }
+  
+  .outline-button .fa {
+    color: $main-color !important;
   }
 }
 
@@ -538,12 +555,12 @@ a.ui-slider-handle {
   .nav-tabs .nav-item {
     margin-bottom: -1px;
   }
+  .breadcrumbs .nav-item a, .breadcrumbs .nav-item a:visited {
+    color: $main-color;
+  }
 }
-.content-wrapper .course-tabs .nav-item.active .nav-link,
-.content-wrapper .course-tabs .nav-item:hover .nav-link {
-  border-bottom-color: $main-color !important;
-  color: var(--pgn-color-link-brand-hover) !important;
-}
+
+
 .content-wrapper .home-courses .courses {
   background-color: #f3f3f3;
 }
@@ -559,7 +576,9 @@ a.ui-slider-handle {
  color: $gray-dark;
  background-color: $white;
 }
-
+.wrapper-preview-menu {
+  background-color:$main-color !important;
+}
 .profile.profile-self,
 .wrapper-profile-sections.account-settings-container {
   background-color: $gray-lightest;
