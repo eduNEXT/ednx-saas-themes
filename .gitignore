@@ -1,2 +1,6 @@
-**/css
+**/css/*.css
+**/css/**/*.css
 venv/
+
+**/node_modules
+!**/css/variables.css

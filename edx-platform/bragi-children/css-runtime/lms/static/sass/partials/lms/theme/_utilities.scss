@@ -34,7 +34,6 @@ Other Components
   @include make-grid-columns();
 }
 
-
 // Mixins
 @mixin content-wrapper {
   width: 100%;
@@ -68,7 +67,6 @@ Other Components
   }
 }
 
-
 // ghost items for extends
 %container-wrapper {
   @include content-wrapper;
@@ -94,7 +92,7 @@ Other Components
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba($main-color, .4);
+    background-color: $extend-intro-banner-background-color;
   }
 
   > div {
@@ -116,4 +114,91 @@ Other Components
   padding: $padding-y $padding-x;
   font-size: $font-size;
   @include border-radius($border-radius);
+}
+
+// Buttons
+@mixin var-button-variant(
+  $background,
+  $border,
+  $hover-background,
+  $hover-border,
+  $active-background,
+  $active-border,
+  $background-yiq,
+  $custom-background-gradient,
+  $background-gradient
+) {
+  color: $background-yiq;
+  @include var-gradient-bg($background, $background-gradient);
+  border-color: $border;
+  @include box-shadow($btn-box-shadow);
+
+  @include hover() {
+    color: $background-yiq;
+    @include var-gradient-bg($hover-background, $background-gradient);
+    border-color: $hover-border;
+  }
+
+  &:focus,
+  &.focus {
+    color: $background-yiq;
+    @include var-gradient-bg($hover-background, $background-gradient);
+    border-color: $hover-border;
+    @if $enable-shadows {
+      @include box-shadow(
+        $btn-box-shadow,
+        0 0 0 $btn-focus-width $custom-background-gradient
+      );
+    } @else {
+      // Avoid using mixin so we can pass custom focus shadow properly
+      box-shadow: 0 0 0 $btn-focus-width $custom-background-gradient;
+    }
+  }
+
+  // Disabled comes first so active can properly restyle
+  &.disabled,
+  &:disabled {
+    color: $background-yiq;
+    background-color: $background;
+    border-color: $border;
+    // Remove CSS gradients if they're enabled
+    @if $enable-gradients {
+      background-image: none;
+    }
+  }
+
+  &:not(:disabled):not(.disabled):active,
+  &:not(:disabled):not(.disabled).active,
+  .show > &.dropdown-toggle {
+    color: $background-yiq;
+    background-color: $active-background;
+    @if $enable-gradients {
+      background-image: none; // Remove the gradient for the pressed/active state
+    }
+    border-color: $active-border;
+
+    &:focus {
+      @if $enable-shadows and $btn-active-box-shadow != none {
+        @include box-shadow(
+          $btn-active-box-shadow,
+          0 0 0 $btn-focus-width $custom-background-gradient
+        );
+      } @else {
+        // Avoid using mixin so we can pass custom focus shadow properly
+        box-shadow: 0 0 0 $btn-focus-width $custom-background-gradient;
+      }
+    }
+  }
+}
+
+@mixin var-gradient-bg($var-color, $var-gradient-color) {
+  //Define this var with mix($body-bg, $var-color, 15%)
+
+  @if $enable-gradients {
+    background: $var-color
+      linear-gradient(180deg, $var-gradient-color, $var-color)
+      repeat-x;
+  } @else {
+    background-color: $var-color;
+  }
 }
