@@ -7,6 +7,8 @@ from django.utils.translation import get_language_bidi
 <%namespace name='static' file='static_content.html'/>
 
 <%
+  fileupload_js_path = "js/vendor/jQuery-File-Upload/js/jquery.fileupload.js"
+  ifreme_js_path = "js/jquery.iframe-transport.js"
   style_overrides_file = None
   try:
     if get_language_bidi():
@@ -20,6 +22,12 @@ from django.utils.translation import get_language_bidi
   except Exception:
     style_overrides_file = ''
 %>
+
+% if '/courseware/' in request.path:
+<script type="text/javascript" src="${static.url(fileupload_js_path)}"></script>
+<script type="text/javascript" src="${static.url(ifreme_js_path)}"></script>
+% endif
+
 
 % if style_overrides_file:
   <link rel="stylesheet" type="text/css" href="${static.url(style_overrides_file)}" />
@@ -36,3 +44,4 @@ from django.utils.translation import get_language_bidi
 % if style_overrides_inline_extra:
   <style type="text/css">${style_overrides_inline_extra | n}</style>
 % endif
+
