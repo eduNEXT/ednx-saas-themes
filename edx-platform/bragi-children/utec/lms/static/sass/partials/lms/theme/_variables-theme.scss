@@ -4,10 +4,10 @@ $static-path: '/static';
 @font-face {
   font-family: 'Avenir LT 55 Roman';
   src:
-    url('#{$static-path}/utec/fonts/AvenirLTStd-Roman.woff') format('woff'),
-    url('#{$static-path}/utec/fonts/AvenirLTStd-Roman.eot') format('eot'),
-    url('#{$static-path}/utec/fonts/AvenirLTStd-Roman.ttf') format('ttf'),
-    url('#{$static-path}/utec/fonts/AvenirLTStd-Roman.svg') format('svg');
+    url('https://edunextpublic.s3.us-west-2.amazonaws.com/edxsites/utec/fonts/AvenirLTStd-Roman.woff') format('woff'),
+    url('https://edunextpublic.s3.us-west-2.amazonaws.com/edxsites/utec/fonts/AvenirLTStd-Roman.eot') format('eot'),
+    url('https://edunextpublic.s3.us-west-2.amazonaws.com/edxsites/utec/fonts/AvenirLTStd-Roman.ttf') format('ttf'),
+    url('https://edunextpublic.s3.us-west-2.amazonaws.com/edxsites/utec/fonts/AvenirLTStd-Roman.svg') format('svg');
   font-weight: 300;
   font-style: normal;
 }
