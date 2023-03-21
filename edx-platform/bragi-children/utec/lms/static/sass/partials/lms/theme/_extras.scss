@@ -52,7 +52,7 @@ header.global-header  {
 
       &:before {
         content: "";
-        background-image: url('#{$static-path}/utec/images/utec-logo.png');
+        background-image: url('https://edunextpublic.s3.us-west-2.amazonaws.com/edxsites/utec/utec-logo.png');
         position:absolute;
         margin-left: -53px;
         top: -8px;
@@ -62,7 +62,7 @@ header.global-header  {
       }
 
       &:hover:before {
-        background-image: url('#{$static-path}/utec/images/utec-logo-dark.png');
+        background-image: url('https://edunextpublic.s3.us-west-2.amazonaws.com/edxsites/utec/utec-logo-dark.png');
       }
     }
 

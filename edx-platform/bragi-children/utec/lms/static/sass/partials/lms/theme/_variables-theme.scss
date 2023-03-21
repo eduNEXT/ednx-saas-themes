@@ -18,8 +18,8 @@ $black: #2e2e2e;
 $black-80: #808080;
 $font-family-sans-serif: $theme-sans-font;
 
-$homepage-bg-image: url('#{$static-path}/utec/images/silo.jpg');
-$video-thumb-url: '#{$static-path}/utec/images/edx.png';
+$homepage-bg-image: url('https://edunextpublic.s3.us-west-2.amazonaws.com/edxsites/utec/silo.jpg');
+$video-thumb-url: 'https://edunextpublic.s3.us-west-2.amazonaws.com/edxsites/utec/edx.png';
 
 $footer-bg: #333;
 $grey: #808080;
