@@ -53,7 +53,6 @@ span[role*="link"],
 .passwordreset a,
 #forgot-password-modal #password-reset a,
 .account-settings-sections a span,
-.wrapper-course-material .course-tabs li a,
 .course-index .accordion .course-navigation .button-chapter {
   @include link-color($link-color, $link-hover-color);
 }
@@ -89,8 +88,9 @@ input[type="tel"],
 div:not(.problem *),
 section,
 p,
-i:not(.fa),
-span :not(.fa):not(.MathJax *),
+i:not(.fa):not(b > i),
+span :not(.fa):not(.MathJax *):not(b):not(strong,b, i),
+b:not(span > b),
 label {
   font-family: $font-family-base !important;
   font-weight: $font-weight-normal !important;
