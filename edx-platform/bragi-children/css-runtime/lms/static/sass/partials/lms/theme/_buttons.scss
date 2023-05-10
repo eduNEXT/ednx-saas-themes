@@ -256,7 +256,7 @@ a.btn-flat {
   }
   .choicegroup input[type="checkbox"], .choicegroup input[type="radio"] {
     accent-color: $main-color;
-  }  
+  }
   .choicegroup input:hover+label,  .choicegroup input:hover+focus, .choicegroup input:focus+label{
     border: 2px solid $main-color !important;
   }
@@ -347,5 +347,3 @@ a.btn-flat {
 .login-register .login-provider {
   width: 50%;
 }
-
-
