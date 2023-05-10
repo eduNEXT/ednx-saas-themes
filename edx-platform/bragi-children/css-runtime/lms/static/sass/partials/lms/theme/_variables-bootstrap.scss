@@ -46,14 +46,21 @@
 @mixin _assert-ascending($map, $map-name) {
   $prev-key: null;
   $prev-num: null;
-  @each $key, $num in $map {
-    @if $prev-num == null {
+
+  @each $key,
+  $num in $map {
+    @if $prev-num ==null {
       // Do nothing
-    } @else if not comparable($prev-num, $num) {
+    }
+
+    @else if not comparable($prev-num, $num) {
       @warn "Potentially invalid value for #{$map-name}: This map must be in ascending order, but key '#{$key}' has value #{$num} whose unit makes it incomparable to #{$prev-num}, the value of the previous key '#{$prev-key}' !";
-    } @else if $prev-num >= $num {
+    }
+
+    @else if $prev-num >=$num {
       @warn "Invalid value for #{$map-name}: This map must be in ascending order, but key '#{$key}' has value #{$num} which isn't greater than #{$prev-num}, the value of the previous key '#{$prev-key}' !";
     }
+
     $prev-key: $key;
     $prev-num: $num;
   }
@@ -69,7 +76,7 @@
   $index: str-index($string, $search);
 
   @if $index {
-    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+    @return str-slice($string, 1, $index - 1)+$replace +str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
   }
 
   @return $string;
@@ -78,7 +85,8 @@
 @mixin _assert-starts-at-zero($map) {
   $values: map-values($map);
   $first-value: nth($values, 1);
-  @if $first-value != 0 {
+
+  @if $first-value !=0 {
     @warn "First breakpoint in `$grid-breakpoints` must start at 0, but starts at #{$first-value}.";
   }
 }
@@ -122,13 +130,13 @@ $inverse: $gray-dark !default;
 //
 // Quickly modify global styling by enabling or disabling optional features.
 
-$enable-rounded:            true !default;
-$enable-shadows:            false !default;
-$enable-gradients:          false !default;
-$enable-transitions:        true !default;
-$enable-hover-media-query:  false !default;
-$enable-grid-classes:       true !default;
-$enable-print-styles:       true !default;
+$enable-rounded: true !default;
+$enable-shadows: false !default;
+$enable-gradients: false !default;
+$enable-transitions: true !default;
+$enable-hover-media-query: false !default;
+$enable-grid-classes: true !default;
+$enable-print-styles: true !default;
 
 
 // Spacing
@@ -141,31 +149,18 @@ $spacer: var(--pgn-spacing-spacer-base) !default;
 $spacer-x: $spacer !default;
 $spacer-y: $spacer !default;
 $spacers: (
-  0: (
-    x: 0,
-    y: 0
-  ),
-  1: (
-    x: ($spacer-x * .25),
-    y: ($spacer-y * .25)
-  ),
-  2: (
-    x: ($spacer-x * .5),
-    y: ($spacer-y * .5)
-  ),
-  3: (
-    x: $spacer-x,
-    y: $spacer-y
-  ),
-  4: (
-    x: ($spacer-x * 1.5),
-    y: ($spacer-y * 1.5)
-  ),
-  5: (
-    x: ($spacer-x * 3),
-    y: ($spacer-y * 3)
-  )
-) !default;
+  0: (x: 0,
+    y: 0),
+  1: (x: ($spacer-x * .25),
+    y: ($spacer-y * .25)),
+  2: (x: ($spacer-x * .5),
+    y: ($spacer-y * .5)),
+  3: (x: $spacer-x,
+    y: $spacer-y ),
+  4: (x: ($spacer-x * 1.5),
+    y: ($spacer-y * 1.5)),
+  5: (x: ($spacer-x * 3),
+    y: ($spacer-y * 3))) !default;
 $border-width: var(--pgn-size-border-width) !default;
 
 // This variable affects the `.h-*` and `.w-*` classes.
@@ -173,8 +168,7 @@ $sizes: (
   25: 25%,
   50: 50%,
   75: 75%,
-  100: 100%
-) !default;
+  100: 100%) !default;
 
 // Body
 //
@@ -189,10 +183,10 @@ $inverse-color: $gray-lighter !default;
 //
 // Style anchor elements.
 
-$link-color: var(--pgn-color-link-base) !default;
-$link-decoration: var(--pgn-typography-link-decoration-base) !default;
-$link-hover-color: var(--pgn-color-link-hover) !default;
-$link-hover-decoration: var(--pgn-typography-link-decoration-hover) !default;
+$link-color: var(--pgn-color-link-base);
+$link-decoration: var(--pgn-typography-link-decoration-base);
+$link-hover-color: var(--pgn-color-link-hover);
+$link-hover-decoration: var(--pgn-typography-link-decoration-hover);
 
 // Grid breakpoints
 //
@@ -313,9 +307,9 @@ $list-inline-padding: var(--pgn-spacing-list-inline-padding) !default;
 $line-height-lg: var(--pgn-typography-line-height-lg) !default;
 $line-height-sm: var(--pgn-typography-line-height-sm) !default;
 
-$border-radius: var(--pgn-size-border-radius-base) !default;
-$border-radius-lg: var(--pgn-size-border-radius-lg) !default;
-$border-radius-sm: var(--pgn-size-border-radius-sm) !default;
+$border-radius: var(--pgn-size-border-radius-base);
+$border-radius-lg: var(--pgn-size-border-radius-lg);
+$border-radius-sm: var(--pgn-size-border-radius-sm);
 
 $component-active-color: var(--pgn-color-active) !default;
 $component-active-bg: var(--pgn-color-bg-active) !default;
@@ -363,15 +357,15 @@ $btn-active-box-shadow: var(--pgn-elevation-btn-box-shadow-active) !default;
 
 $btn-primary-color: var(--pgn-color-btn-text-primary) !default;
 $btn-primary-bg: var(--pgn-color-btn-bg-primary) !default;
-$btn-primary-border: $btn-primary-bg !default;
+$btn-primary-border: var(--pgn-color-btn-border-primary) !default;
 
 $btn-secondary-color: var(--pgn-color-btn-text-secondary) !default;
 $btn-secondary-bg: var(--pgn-color-btn-bg-secondary) !default;
-$btn-secondary-border: #ccc !default;
+$btn-secondary-border: var(--pgn-color-btn-bg-secondary) !default;
 
 $btn-info-color: var(--pgn-color-btn-text-info) !default;
 $btn-info-bg: var(--pgn-color-btn-bg-info) !default;
-$btn-info-border: $btn-info-bg !default;
+$btn-info-border: var(--pgn-color-btn-border-info) !default;
 
 $btn-success-color: var(--pgn-color-btn-text-success) !default;
 $btn-success-bg: var(--pgn-color-btn-bg-success) !default;
@@ -379,11 +373,11 @@ $btn-success-border: $btn-success-bg !default;
 
 $btn-warning-color: var(--pgn-color-btn-text-warning) !default;
 $btn-warning-bg: var(--pgn-color-btn-bg-warning) !default;
-$btn-warning-border: $btn-warning-bg !default;
+$btn-warning-border: var(--pgn-color-btn-border-warning) !default;
 
 $btn-danger-color: var(--pgn-color-btn-text-danger) !default;
 $btn-danger-bg: var(--pgn-color-btn-bg-danger) !default;
-$btn-danger-border: $btn-danger-bg !default;
+$btn-danger-border: var(--pgn-color-btn-border-danger) !default;
 
 $btn-link-disabled-color: var(--pgn-color-btn-disabled-link) !default;
 
@@ -414,7 +408,7 @@ $input-padding-y: var(--pgn-spacing-form-input-padding-y-base) !default;
 $input-line-height: var(--pgn-typography-form-input-line-height-base) !default;
 
 $input-bg: var(--pgn-color-form-input-bg-base) !default;
-$input-bg-disabled: $gray-lighter !default;
+$input-bg-disabled: var(--pgn-color-form-input-bg-disable) !default;
 
 $input-color: var(--pgn-color-form-input-base) !default;
 $input-border-color: var(--pgn-color-form-input-border) !default;
@@ -467,8 +461,7 @@ $custom-control-spacer-y: 0.25rem !default;
 
 $custom-control-indicator-size: var(--pgn-size-form-control-indicator-base) !default;
 $custom-control-indicator-margin-y: (
-    ($line-height-base * 1rem) - $custom-control-indicator-size
-  ) / -2 !default;
+  ($line-height-base * 1rem) - $custom-control-indicator-size ) / -2 !default;
 $custom-control-indicator-bg: var(--pgn-color-form-control-indicator-bg-base) !default;
 $custom-control-indicator-bg-size: var(--pgn-size-form-control-indicator-bg) !default;
 $custom-control-indicator-box-shadow: var(--pgn-elevation-form-control-indicator-base) !default;
@@ -489,27 +482,24 @@ $custom-control-active-indicator-bg: var(--pgn-color-primary-400) !default;
 $custom-control-active-indicator-box-shadow: none !default;
 
 $custom-checkbox-radius: $border-radius !default;
-$custom-checkbox-checked-icon: str-replace(
-  url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='#{$custom-control-checked-indicator-color}' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E"),
-  "#",
-  "%23"
-) !default;
+$custom-checkbox-checked-icon: str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='#{$custom-control-checked-indicator-color}' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E"),
+    "#",
+    "%23"
+  ) !default;
 
 $custom-checkbox-indeterminate-bg: $primary !default;
 $custom-checkbox-indeterminate-indicator-color: $custom-control-checked-indicator-color !default;
-$custom-checkbox-indeterminate-icon: str-replace(
-  url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 4'%3E%3Cpath stroke='#{$custom-checkbox-indeterminate-indicator-color}' d='M0 2h4'/%3E%3C/svg%3E"),
-  "#",
-  "%23"
-) !default;
+$custom-checkbox-indeterminate-icon: str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 4'%3E%3Cpath stroke='#{$custom-checkbox-indeterminate-indicator-color}' d='M0 2h4'/%3E%3C/svg%3E"),
+    "#",
+    "%23"
+  ) !default;
 $custom-checkbox-indeterminate-box-shadow: none !default;
 
 $custom-radio-radius: 50% !default;
-$custom-radio-checked-icon: str-replace(
-  url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3E%3Ccircle r='3' fill='#{$custom-control-checked-indicator-color}'/%3E%3C/svg%3E"),
-  "#",
-  "%23"
-) !default;
+$custom-radio-checked-icon: str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3E%3Ccircle r='3' fill='#{$custom-control-checked-indicator-color}'/%3E%3C/svg%3E"),
+    "#",
+    "%23"
+  ) !default;
 
 $custom-select-padding-x: var(--pgn-spacing-form-control-select-padding-x-base) !default;
 $custom-select-padding-y: var(--pgn-spacing-form-control-select-padding-y-base) !default;
@@ -548,35 +538,26 @@ $custom-file-box-shadow: var(--pgn-elevation-form-control-file-base) !default;
 $custom-file-button-color: var(--pgn-color-form-control-file-button-base) !default;
 $custom-file-button-bg: var(--pgn-color-form-control-file-button-bg) !default;
 $custom-file-text: (
-  placeholder: (
-    en: "Choose file...",
+  placeholder: (en: "Choose file...",
   ),
-  button-label: (
-    en: "Browse",
+  button-label: (en: "Browse",
   ),
-) !default;
+  ) !default;
 
 // Form validation icons
 $form-icon-success-color: $success !default;
-$form-icon-success: str-replace(
-  url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='#{$form-icon-success-color}' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3E%3C/svg%3E"),
-  "#",
-  "%23"
-) !default;
-
+$form-icon-success: var(--pgn-other-content-form-feedback-icon-valid);
 $form-icon-warning-color: $warning !default;
-$form-icon-warning: str-replace(
-  url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='#{$form-icon-warning-color}' d='M4.4 5.324h-.8v-2.46h.8zm0 1.42h-.8V5.89h.8zM3.76.63L.04 7.075c-.115.2.016.425.26.426h7.397c.242 0 .372-.226.258-.426C6.726 4.924 5.47 2.79 4.253.63c-.113-.174-.39-.174-.494 0z'/%3E%3C/svg%3E"),
-  "#",
-  "%23"
-) !default;
+$form-icon-warning: str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='#{$form-icon-warning-color}' d='M4.4 5.324h-.8v-2.46h.8zm0 1.42h-.8V5.89h.8zM3.76.63L.04 7.075c-.115.2.016.425.26.426h7.397c.242 0 .372-.226.258-.426C6.726 4.924 5.47 2.79 4.253.63c-.113-.174-.39-.174-.494 0z'/%3E%3C/svg%3E"),
+    "#",
+    "%23"
+  ) !default;
 
 $form-icon-danger-color: $danger !default;
-$form-icon-danger: str-replace(
-  url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='#{$form-icon-danger-color}' viewBox='-2 -2 7 7'%3E%3Cpath stroke='%23d9534f' d='M0 0l3 3m0-3L0 3'/%3E%3Ccircle r='.5'/%3E%3Ccircle cx='3' r='.5'/%3E%3Ccircle cy='3' r='.5'/%3E%3Ccircle cx='3' cy='3' r='.5'/%3E%3C/svg%3E"),
-  "#",
-  "%23"
-) !default;
+$form-icon-danger: str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='#{$form-icon-danger-color}' viewBox='-2 -2 7 7'%3E%3Cpath stroke='%23d9534f' d='M0 0l3 3m0-3L0 3'/%3E%3Ccircle r='.5'/%3E%3Ccircle cx='3' r='.5'/%3E%3Ccircle cy='3' r='.5'/%3E%3Ccircle cx='3' cy='3' r='.5'/%3E%3C/svg%3E"),
+    "#",
+    "%23"
+  ) !default;
 
 // Dropdowns
 //
@@ -636,22 +617,20 @@ $navbar-inverse-color: $white !default;
 $navbar-inverse-hover-color: $white !default;
 $navbar-inverse-active-color: $white !default;
 $navbar-inverse-disabled-color: $white !default;
-$navbar-inverse-toggler-bg: str-replace(
-  url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#{$navbar-inverse-color}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E"),
-  "#",
-  "%23"
-) !default;
+$navbar-inverse-toggler-bg: str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#{$navbar-inverse-color}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E"),
+    "#",
+    "%23"
+  ) !default;
 $navbar-inverse-toggler-border: $white !default;
 
 $navbar-light-color: var(--pgn-color-navbar-light-text) !default;
 $navbar-light-hover-color: var(--pgn-color-navbar-light-hover) !default;
 $navbar-light-active-color: var(--pgn-color-navbar-light-active) !default;
 $navbar-light-disabled-color: var(--pgn-color-navbar-light-disabled) !default;
-$navbar-light-toggler-bg: str-replace(
-  url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#{$navbar-light-color}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E"),
-  "#",
-  "%23"
-) !default;
+$navbar-light-toggler-bg: str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#{$navbar-light-color}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E"),
+    "#",
+    "%23"
+  ) !default;
 $navbar-light-toggler-border: rgba($black, 0.1) !default;
 
 // Navs
@@ -693,7 +672,7 @@ $pagination-border-color: var(--pgn-color-pagination-border-base) !default;
 
 $pagination-hover-color: var(--pgn-color-pagination-text-hover) !default;
 $pagination-hover-bg: var(--pgn-color-pagination-bg-hover) !default;
-$pagination-hover-border: #ddd !default;
+$pagination-hover-border: var(--pgn-color-pagination-border-hover) !default;
 
 $pagination-active-color: var(--pgn-color-pagination-text-active) !default;
 $pagination-active-bg: var(--pgn-color-pagination-bg-active) !default;
@@ -701,7 +680,7 @@ $pagination-active-border: $primary !default;
 
 $pagination-disabled-color: var(--pgn-color-pagination-text-disabled) !default;
 $pagination-disabled-bg: var(--pgn-color-pagination-bg-disabled) !default;
-$pagination-disabled-border: #ddd !default;
+$pagination-disabled-border: var(--pgn-color-pagination-border-disabled) !default;
 
 // Jumbotron
 
@@ -712,22 +691,22 @@ $jumbotron-bg: $gray-lighter !default;
 //
 // Define colors for form feedback states and, by default, alerts.
 
-$state-success-text: #3c763d !default;
-$state-success-bg: #dff0d8 !default;
-$state-success-border: darken($state-success-bg, 5%) !default;
+$state-success-text: var(--pgn-color-btn-text-outline-success) !default;
+$state-success-bg: var(--pgn-color-btn-hover-bg-inverse-outline-success) !default;
+$state-success-border: var(--pgn-color-btn-border-outline-succsess);
 
-$state-info-text: #31708f !default;
-$state-info-bg: #d9edf7 !default;
-$state-info-border: darken($state-info-bg, 7%) !default;
+$state-info-text: var(--pgn-color-btn-text-outline-info) !default;
+$state-info-bg: var(--pgn-color-btn-hover-bg-inverse-outline-info) !default;
+$state-info-border: var(--pgn-color-btn-border-outline-info);
 
-$state-warning-text: #8a6d3b !default;
-$state-warning-bg: #fcf8e3 !default;
+$state-warning-text: var(--pgn-color-btn-text-outline-warning) !default;
+$state-warning-bg: var(--pgn-color-btn-hover-bg-inverse-outline-warning) !default;
 $mark-bg: var(--pgn-color-mark-bg) !default;
-$state-warning-border: darken($state-warning-bg, 5%) !default;
+$state-warning-border: var(--pgn-color-btn-border-outline-warning);
 
-$state-danger-text: #a94442 !default;
-$state-danger-bg: #f2dede !default;
-$state-danger-border: darken($state-danger-bg, 5%) !default;
+$state-danger-text: var(--pgn-color-btn-text-outline-danger) !default;
+$state-danger-bg: var(--pgn-color-btn-hover-bg-inverse-outline-danger) !default;
+$state-danger-border: var(--pgn-color-btn-border-outline-danger) !default;
 
 // Cards
 
@@ -736,9 +715,7 @@ $card-spacer-y: var(--pgn-spacing-card-spacer-y) !default;
 $card-border-width: var(--pgn-size-card-border-width) !default;
 $card-border-radius: var(--pgn-size-card-border-radius-base) !default;
 $card-border-color: var(--pgn-color-card-border-base) !default;
-$card-border-radius-inner: calc(
-  #{$card-border-radius} - #{$card-border-width}
-) !default;
+$card-border-radius-inner: calc(#{$card-border-radius} - #{$card-border-width}) !default;
 $card-cap-bg: $gray-lightest !default;
 $card-bg: var(--pgn-color-card-bg) !default;
 
@@ -947,7 +924,7 @@ $carousel-control-icon-width: var(--pgn-size-carousel-control-width-icon) !defau
 $carousel-control-prev-icon-bg: var(--pgn-content-carousel-control-bg-prev-icon) !default;
 $carousel-control-next-icon-bg: var(--pgn-content-carousel-control-bg-next-icon) !default;
 
-$carousel-transition: transform 0.6s ease-in-out !default;
+$carousel-transition: var(--pgn-transition-carousel-base) !default;
 
 // Close
 
