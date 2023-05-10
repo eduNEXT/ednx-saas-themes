@@ -16,7 +16,7 @@ body {
 
 .content-wrapper,
 .wrapper-account-settings {
-  background-color: #F3F3F3;
+  background-color: $body-bg;
 
   // simple animation effect
   > * {

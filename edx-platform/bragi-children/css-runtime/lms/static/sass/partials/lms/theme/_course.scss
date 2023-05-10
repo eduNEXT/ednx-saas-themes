@@ -434,7 +434,7 @@ main .home {
 }
 
 .wrapper-course-material {
-  background-color: #f3f3f3;
+  background-color: $body-bg;
 }
 
 .xmodule_display.xmodule_SequenceModule .sequence-nav .sequence-list-wrapper {
@@ -445,13 +445,13 @@ main .home {
 .course-outline .block-tree.accordion .section {
   .section-name .section-title {
     font-size: 1.3rem;
-  } 
+  }
 
   .subsection-title {
     font-size: 1.1rem;
     font-weight: 400 !important;
   }
-  
+
   .outline-button .fa {
     color: $main-color !important;
   }
@@ -589,7 +589,7 @@ a.ui-slider-handle {
 .view-profile .profile-self .wrapper-profile-field-account-privacy {
   background-color: #e4e4e4;
 }
- 
+
 .dashboard .my-courses,
 .dashboard .main-container,
 .dashboard .main-container .my-courses .listing-courses .course-item,
@@ -611,12 +611,12 @@ a.ui-slider-handle {
 
 .wrapper-account-settings main:not(.home),
 .content-wrapper .course-tabs .navbar-nav .nav-item a {
-  background-color: #f3f3f3;
-  box-shadow: none; 
+  background-color: $body-bg;
+  box-shadow: none;
 }
 
 .openassessment.problem .wrapper--ui-staff div {
-  background: #2c2f36;
+  background: $gray-dark;
 }
 
 .openassessment.problem .wrapper--ui-staff .staff-grading.ui-staff div,
