@@ -21,6 +21,18 @@ main.home > div:last-child {
   }
 }
 
+.home-feedback-courses-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  iframe {
+    min-height: 270px;
+    margin-top: 20px;
+    border: none;
+    height: 100%;
+    width: 100%;
+  }
+}
+
 /* ========================================================
    Downgrade path styles
 ======================================================== */
