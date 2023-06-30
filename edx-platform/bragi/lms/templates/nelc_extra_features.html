@@ -1,0 +1,27 @@
+<%
+show_stats = getattr(settings, 'SHOW_STATS', {})
+stats_query_params = ''
+if isinstance(show_stats, dict) and show_stats:
+    stats_query_params = "?"
+    for key, value in show_stats.items():
+        stats_query_params += f"{key}={str(value).lower()}&"
+    stats_query_params = stats_query_params.rstrip("&")
+%>
+
+% if getattr(settings, 'HOME_SHOW_STATS', False):
+  <section class="home-courses" >
+    <div class="tenant-stats-container" >
+      <iframe
+        src="/eox-nelp/frontend/stats/tenant/${stats_query_params}" title="tenant-stats">
+      </iframe>
+    </div>
+  </section>
+% endif
+
+% if getattr(settings, 'HOME_SHOW_COURSES_FEEDBACK', False):
+  <section class="home-courses" >
+    <div class="home-feedback-courses-container" >
+      <iframe src="/eox-nelp/frontend/experience/feedback/courses" title="feedback courses carousel"></iframe>
+    </div>
+  </section>
+% endif
