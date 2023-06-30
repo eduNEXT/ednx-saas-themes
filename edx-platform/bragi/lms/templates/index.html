@@ -148,13 +148,7 @@ from openedx.core.djangolib.markup import HTML, Text
       </div>
     % endif
   % endif
-  % if getattr(settings, 'HOME_SHOW_COURSES_FEEDBACK', False):
-    <section class="home-courses" >
-      <div class="home-feedback-courses-container" >
-        <iframe src="/eox-nelp/frontend/experience/feedback/courses" title="feedback courses carousel"></iframe>
-      </div>
-    </section>
-  % endif
+  <%include file="nelc_extra_features.html"/>
 </main>
 
 <%block name="js_extra">

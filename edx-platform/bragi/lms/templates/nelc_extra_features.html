@@ -1,0 +1,28 @@
+<%
+  course_stats = "true" if getattr(settings, 'SHOW_COURSE_STATS', False) else None
+  instructor_stats = "true" if getattr(settings, 'SHOW_INSTRUCTOR_STATS', False) else None
+  video_stats = "true" if getattr(settings, 'SHOW_VIDEO_STATS', False) else None
+  learner_stats = "true" if getattr(settings, 'SHOW_LEARNER_STATS', False) else None
+  problem_stats = "true" if getattr(settings, 'SHOW_PROBLEM_STATS', False) else None
+  show_stats = (course_stats or instructor_stats or video_stats or learner_stats or problem_stats)
+%>
+
+
+% if getattr(settings, 'HOME_SHOW_COURSES_FEEDBACK', False):
+  <section class="home-courses" >
+    <div class="home-feedback-courses-container" >
+      <iframe src="/eox-nelp/frontend/experience/feedback/courses" title="feedback courses carousel"></iframe>
+    </div>
+  </section>
+% endif
+
+% if show_stats:
+  <section class="home-courses" >
+    <div class="tenant-stats-container" >
+      <iframe
+        src="/eox-nelp/stats/tenant/?showVideos=${video_stats}&showCourses=${course_stats}&showInstructors=${instructor_stats}&showLearners=${learner_stats}&showProblems=${problem_stats}"
+        title="tenant-stats">
+      </iframe>
+    </div>
+  </section>
+% endif
