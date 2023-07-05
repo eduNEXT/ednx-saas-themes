@@ -1,14 +1,15 @@
 <%
-show_stats = getattr(settings, 'SHOW_STATS', {})
-stats_query_params = ''
-if isinstance(show_stats, dict) and show_stats:
-    stats_query_params = "?"
-    for key, value in show_stats.items():
-        stats_query_params += f"{key}={str(value).lower()}&"
-    stats_query_params = stats_query_params.rstrip("&")
+stats_settings = getattr(settings, 'STATS_SETTINGS', {})
 %>
 
-% if getattr(settings, 'HOME_SHOW_STATS', False):
+% if stats_settings.get('SHOW_HOME_CONTENT', False):
+  <%
+  stats_query_params = ''
+  hidden_items = [f'hide{item.capitalize()}' for item in stats_settings.get('HIDDEN_HOME_ITEMS', [])]
+
+  if hidden_items:
+      stats_query_params = f"?{'&'.join(hidden_items)}"
+  %>
   <section class="home-courses" >
     <div class="tenant-stats-container" >
       <iframe
