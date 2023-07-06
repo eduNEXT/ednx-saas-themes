@@ -5,7 +5,11 @@ stats_settings = getattr(settings, 'STATS_SETTINGS', {})
 % if stats_settings.get('SHOW_HOME_CONTENT', False):
   <%
   stats_query_params = ''
-  hidden_items = [f'hide{item.capitalize()}' for item in stats_settings.get('HIDDEN_HOME_ITEMS', [])]
+  hidden_items = [
+    f'show_{key.lower()}=false'
+    for key, value in stats_settings.get('HIDDEN_HOME_STATS', {}).items()
+    if value == False
+  ]
 
   if hidden_items:
       stats_query_params = f"?{'&'.join(hidden_items)}"
@@ -13,7 +17,7 @@ stats_settings = getattr(settings, 'STATS_SETTINGS', {})
   <section class="home-courses" >
     <div class="tenant-stats-container" >
       <iframe
-        src="/eox-nelp/frontend/stats/tenant/${stats_query_params}" title="tenant-stats">
+        src="/eox-nelp/stats/tenant/${stats_query_params}" title="tenant-stats">
       </iframe>
     </div>
   </section>
