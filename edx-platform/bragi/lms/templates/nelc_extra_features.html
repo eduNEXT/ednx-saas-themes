@@ -8,7 +8,7 @@ stats_settings = getattr(settings, 'STATS_SETTINGS', {})
   hidden_items = [
     f'show_{key.lower()}=false'
     for key, value in stats_settings.get('HIDDEN_HOME_STATS', {}).items()
-    if value == False
+    if value == True
   ]
 
   if hidden_items:
