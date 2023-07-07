@@ -51,7 +51,7 @@ from openedx.core.djangoapps.lang_pref.api import header_language_selector_is_en
             %for link in header_links:
              <li class="mobile-nav-item nav-item ${link.get('class', '') | h}">
               %if link.get('txt'):
-                <a class="nav-link px-2" href="${link.get('url', '#') | h}" target="${link.get('target', '_self') | h}">${link.get('txt') | h}</a>
+                <a class="nav-link px-2" href="${link.get('url', '#') | h}" target="${link.get('target', '_self') | h}">${_(link.get('txt')) | h}</a>
               %endif
              </li>
             %endfor
