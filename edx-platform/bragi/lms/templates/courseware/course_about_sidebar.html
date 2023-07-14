@@ -109,6 +109,9 @@ from six import text_type
       </div>
     % endif
   </header>
+  % if getattr(settings, "SHOW_COURSE_IMPORTANT_DATES", None):
+    <%include file="./course_important_dates.html" />
+  % endif
 </div>
 
 ## CourseTalk widget
