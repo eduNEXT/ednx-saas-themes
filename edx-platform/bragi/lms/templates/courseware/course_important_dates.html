@@ -1,7 +1,9 @@
 <%!
+from django.urls import reverse
 from django.utils.translation import ugettext as _
+from six import string_types, text_type
 from lms.djangoapps.courseware.courses import get_course_about_section
-from six import string_types
+from openedx.core.djangolib.markup import HTML, Text
 %>
 <%block name="course_about_important_dates">
 <ol class="important-dates">
