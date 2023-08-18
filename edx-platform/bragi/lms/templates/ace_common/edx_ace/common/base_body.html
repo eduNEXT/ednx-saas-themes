@@ -120,7 +120,7 @@
                             {% get_action_links channel omit_unsubscribe_link=omit_unsubscribe_link as action_links %}
                             {% for action_link_url, action_link_text in action_links %}
                                 <p>
-                                    <a href="{{ action_link_url }}" style="color: #2f9fd8">
+                                    <a href="{{ action_link_url }}" style="color: {{ EMAIL_COLORS.email_button__background|default:"#2e9fd8" }}">
                                         <font color="{{ EMAIL_COLORS.email_button__background|default:"#2e9fd8" }}"><b>{{ action_link_text }}</b></font>
                                     </a>
                                 </p>
