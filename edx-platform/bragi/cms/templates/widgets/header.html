@@ -14,6 +14,7 @@
   from openedx.core.djangoapps.discussions.config.waffle import ENABLE_PAGES_AND_RESOURCES_MICROFRONTEND
 
   logo_image_studio = configuration_helpers.get_value('STUDIO_LOGO_URL', '')
+  validation_panel_url = configuration_helpers.get_value('COURSE_AUTHORING_MICROFRONTEND_URL', '')
 %>
 <div class="wrapper-header wrapper" id="view-top">
   <header class="primary" role="banner">
@@ -77,24 +78,15 @@
                   <li class="nav-item nav-course-courseware-updates">
                     <a href="${course_info_url}">${_("Updates")}</a>
                   </li>
-                  % if not pages_and_resources_mfe_enabled:
                   <li class="nav-item nav-course-courseware-pages">
                     <a href="${tabs_url}">${_("Pages")}</a>
                   </li>
-                  % endif
-                  % if pages_and_resources_mfe_enabled:
-                  <li class="nav-item nav-course-courseware-pages-resources">
-                    <a href="${get_pages_and_resources_url(course_key)}">${_("Pages & Resources")}</a>
-                  </li>
-                  % endif
                   <li class="nav-item nav-course-courseware-uploads">
                     <a href="${assets_url}">${_("Files & Uploads")}</a>
                   </li>
-                  % if not pages_and_resources_mfe_enabled:
                   <li class="nav-item nav-course-courseware-textbooks">
                     <a href="${textbooks_url}">${_("Textbooks")}</a>
                   </li>
-                  % endif
                   % if context_course.video_pipeline_configured:
                   <li class="nav-item nav-course-courseware-videos">
                     <a href="${videos_url}">${_("Video Uploads")}</a>
@@ -123,11 +115,6 @@
                   <li class="nav-item nav-course-settings-group-configurations">
                     <a href="${reverse('group_configurations_list_handler', kwargs={'course_key_string': six.text_type(course_key)})}">${_("Group Configurations")}</a>
                   </li>
-                  % if course_authoring_microfrontend_url:
-                  <li class="nav-item nav-course-settings-exams">
-                    <a href="${course_authoring_microfrontend_url}/proctored-exam-settings/${url_encoded_course_key}">${_("Proctored Exam Settings")}</a>
-                  </li>
-                  % endif
                   <li class="nav-item nav-course-settings-advanced">
                     <a href="${advanced_settings_url}">${_("Advanced Settings")}</a>
                   </li>
@@ -190,7 +177,6 @@
       <nav class="nav-course nav-dd ui-left" aria-label="${_('Course')}">
         <h2 class="sr">${_("Course Navigation")}</h2>
         <ol>
-
           <li class="nav-item nav-library-settings">
             <h3 class="title"><span class="label"><span class="label-prefix sr">${_("Library")} </span>${_("Settings")}</span> <span class="icon fa fa-caret-down ui-toggle-dd" aria-hidden="true"></span></h3>
             <div class="wrapper wrapper-nav-sub">
@@ -254,7 +240,12 @@
       % if user.is_authenticated:
       <nav class="nav-account nav-is-signedin nav-dd ui-right" aria-label="${_('Account')}">
         <h2 class="sr-only">${_("Account Navigation")}</h2>
-        <ol>
+        <ol style="display: flex;">
+          %if validation_panel_url:
+          <li class="nav-item nav-validation-panel">
+            <h3 class="title"><span class="label"></span><a href="${validation_panel_url}">${_("Validation Panel")}</a></span></h3>
+          </li>
+          % endif
           % if settings.FEATURES.get('ENABLE_HELP_LINK'):
             <li class="nav-item nav-account-help">
               <h3 class="title"><span class="label"><a href="${get_online_help_info(online_help_token)['doc_url']}" title="${_('Contextual Online Help')}" rel="noopener" target="_blank">${_("Help")}</a></span></h3>
@@ -287,3 +278,18 @@
     </div>
   </header>
 </div>
+
+% if context_course:
+    <div class="page-banner">
+        <div class="user-messages" role="complementary" aria-label="messages">
+            <ul class="user-messages-ul">
+                    <li>
+                        <div class="alert" role="alert" style="background-color: #414141">
+                            <span class="icon icon-alert fa " aria-hidden="true"></span>
+                            hola
+                        </div>
+                    </li>
+            </ul>
+        </div>
+    </div>
+% endif
