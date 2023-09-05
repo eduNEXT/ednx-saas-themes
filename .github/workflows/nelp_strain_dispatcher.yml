@@ -13,10 +13,9 @@ jobs:
       - name: Manipulate strain property if necessary
         run: |
           echo "${BASH_VERSION}"
-          declare -A theme_pos=( [mango.master.nelp]="4" )
-          echo "STRAIN_PROPERTY=${STRAIN_PROPERTY}[${theme_pos[$BASE_REF]}].version" >> $GITHUB_ENV # update GitHub ENV vars
+          echo "STRAIN_PROPERTY=${STRAIN_PROPERTY}" >> $GITHUB_ENV # update GitHub ENV vars
         env:
-          STRAIN_PROPERTY: DISTRO_THEME_DIRS
+          STRAIN_PROPERTY: DISTRO_THEME_DIRS[3].version
           BASE_REF: "${{ github.base_ref }}"
       - name: Strain Repository Dispatch
         if: |
@@ -26,7 +25,7 @@ jobs:
 
         uses: peter-evans/repository-dispatch@v2
         with:
-          token: ${{ secrets.NELP_PAT }}
+          token: ${{ secrets.ROBONEXT_PAT }}
           repository: nelc/edx-platform-strains
           event-type: strain-update-pr
           client-payload: |
