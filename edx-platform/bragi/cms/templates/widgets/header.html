@@ -14,7 +14,11 @@
   from openedx.core.djangoapps.discussions.config.waffle import ENABLE_PAGES_AND_RESOURCES_MICROFRONTEND
 
   logo_image_studio = configuration_helpers.get_value('STUDIO_LOGO_URL', '')
-  validation_panel_url = configuration_helpers.get_value('COURSE_AUTHORING_MICROFRONTEND_URL', '')
+  validation_panel_url = configuration_helpers.get_value('VALIDATION_PANEL_MICROFRONTEND_URL', '')
+  validation_alert = {
+    "button": "Go to the Validation Panel",
+    "message": "Visit the validation panel by following this link."
+  }
 %>
 <div class="wrapper-header wrapper" id="view-top">
   <header class="primary" role="banner">
@@ -279,17 +283,19 @@
   </header>
 </div>
 
-% if context_course:
+<section class="validation-panel-section">
     <div class="page-banner">
-        <div class="user-messages" role="complementary" aria-label="messages">
+        <div class="validation-messages" role="complementary" aria-label="messages">
             <ul class="user-messages-ul">
-                    <li>
-                        <div class="alert" role="alert" style="background-color: #414141">
-                            <span class="icon icon-alert fa " aria-hidden="true"></span>
-                            hola
-                        </div>
-                    </li>
+              <li>
+                <div class="alert alert-warning" role="alert">           
+                    <h2>${_(validation_alert["message"])}</h2>
+                  %if validation_alert["button"]:
+                    <a href="${validation_panel_url}" class="btn">${_(validation_alert["button"])}</a>
+                  % endif
+                </div>
+              </li>
             </ul>
         </div>
     </div>
-% endif
+</section>
