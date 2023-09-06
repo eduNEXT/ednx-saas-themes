@@ -15,7 +15,7 @@ jobs:
           echo "${BASH_VERSION}"
           echo "STRAIN_PROPERTY=${STRAIN_PROPERTY}" >> $GITHUB_ENV # update GitHub ENV vars
         env:
-          STRAIN_PROPERTY: DISTRO_THEME_DIRS[3].version
+          STRAIN_PROPERTY: DISTRO_THEMES[3].version
           BASE_REF: "${{ github.base_ref }}"
       - name: Strain Repository Dispatch
         if: |
