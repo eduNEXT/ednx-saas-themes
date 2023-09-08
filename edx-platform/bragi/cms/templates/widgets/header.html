@@ -282,7 +282,7 @@
     </div>
   </header>
 </div>
-
+%if user.is_authenticated and validation_panel_url:
 <section class="validation-panel-section">
     <div class="page-banner">
         <div class="validation-messages" role="complementary" aria-label="messages">
@@ -299,3 +299,4 @@
         </div>
     </div>
 </section>
+% endif
