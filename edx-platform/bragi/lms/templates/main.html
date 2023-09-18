@@ -202,7 +202,7 @@ ${ browser.browser_alert() }
   <%block name="footer_extra"/>
   <%block name="js_extra"/>
 
-  % if any('instructor_dashboard_2_html' in name[0]  for name in context.namespaces):
+  % if any('instructor_dashboard_2_html' in name[0]  for name in context.namespaces) and getattr(settings,'EDUNEXT_HELP_SIDEBAR', False):
         <%include file="widgets/help-sidebar.html" />
         <script type="text/javascript" src="${static.url('js/help-widget.js')}" charset="utf-8"></script>
   % endif
