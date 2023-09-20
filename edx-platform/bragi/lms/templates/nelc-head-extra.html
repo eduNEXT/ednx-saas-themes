@@ -1,0 +1,53 @@
+<%page expression_filter="h"/>
+<%!
+import colorsys
+%>
+<%namespace name='static' file='static_content.html'/>
+<%interactive_color = theming.options('interactive_color') %>
+
+## External overrides, this replicates the master behavior however this allows to use Django settings instead of just tenant-config settings
+<%
+  style_overrides_file_extra = theming.options('CSS_OVERRIDES_FILE_EXTRA', default= False)
+%>
+
+% if style_overrides_file_extra:
+  <link rel="stylesheet" type="text/css" href="${static.url(style_overrides_file_extra)}" />
+% endif
+
+% if interactive_color:
+
+  <%
+    main_color = interactive_color.lstrip('#')
+    r, g, b = tuple(int(main_color[i:i+2], 16) for i in (0, 2, 4))
+    h, l, s = colorsys.rgb_to_hls(r/255, g/255, b/255)
+
+    key = "--main-color"
+    colors = {}
+
+    def assign_alpha(colors, r, g, b):
+      for alpha in range(0, 11, 1):
+          alpha_key = f"{key}-alpha-{alpha}" if alpha != 10 else key
+          colors[alpha_key] = f"rgba({r}, {g}, {b}, {alpha/10})"
+
+    assign_alpha(colors, r, g, b)
+
+    for theme in  ["light", "dark"]:
+        if theme == "dark":
+            aux_func = lambda x: max(l - x/100, 0)
+        else:
+            aux_func = lambda x: min(l + x/100, 1)
+
+        for i in range(1, 100, 1):
+            key = f"--{theme}-color-lightness-{i}"
+            value = tuple([int(c*255) for c in colorsys.hls_to_rgb(h, aux_func(i), s)])
+            assign_alpha(colors, value[0], value[1], value[2])
+  %>
+
+  <style type="text/css">
+  :root {
+    % for k, v in colors.items():
+    ${k}: ${v};
+    % endfor
+  }
+  </style>
+% endif
