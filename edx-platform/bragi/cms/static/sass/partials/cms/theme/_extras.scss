@@ -15,3 +15,32 @@
 #login_form .action-forgotpassword {
   display: none;
 }
+
+.validation-panel-section {
+  background-color: #C7c7c7;
+  font-weight: 700;
+  width: 100%;
+}
+
+.validation-panel-section .page-banner .validation-messages .alert {
+  align-items: center;
+  background-color: inherit;
+  border: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 3rem 0;
+}
+
+.validation-panel-section .page-banner .validation-messages .alert .btn {
+  background: #000000;
+  border-color: #000000;
+  border-radius: 5px;
+  color: #fcfcfc;
+  font-size: 16px;
+  font-weight: inherit;
+  margin-left: auto;
+  padding: 0.625rem 1.25rem;
+}
+
+   
