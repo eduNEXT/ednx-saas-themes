@@ -7,7 +7,7 @@ Other Components
 body,
 body.view-in-course,
 div.info-wrapper {
-  background: $white;
+  background: var(--pgn-color-white);
 }
 
 body {
@@ -16,7 +16,7 @@ body {
 
 .content-wrapper,
 .wrapper-account-settings {
-  background-color: $body-bg;
+  background-color: var(--pgn-color-body-bg);
 
   // simple animation effect
   > * {
@@ -47,14 +47,34 @@ body {
 a,
 a:not(.btn),
 p a,
+p a:not(.btn),
 span[role*="link"],
 .login a,
 .register a,
 .passwordreset a,
 #forgot-password-modal #password-reset a,
 .account-settings-sections a span,
-.course-index .accordion .course-navigation .button-chapter {
-  @include link-color($link-color, $link-hover-color);
+.course-index .accordion .course-navigation .button-chapter{
+  @include link-color(var(--pgn-color-link-base), var(--pgn-color-link-hover));
+}
+
+.xmodule_display.xmodule_VideoBlock .video .subtitles a,
+.xmodule_display.xmodule_VideoBlock .video .subtitles .subtitles-menu li,
+.xmodule_display.xmodule_StaticTabBlock a:link {
+  color: var(--pgn-color-link-base) !important;
+
+  &:link,
+  &:visited {
+    color: var(--pgn-color-link-base) !important;
+  }
+
+  &:hover,
+  &:focus,
+  &:visited:hover,
+  &:visited:focus {
+    color: var(--pgn-color-link-hover) !important;
+    text-decoration: none;
+  }
 }
 
 li.current span[role*="link"]{
@@ -92,8 +112,8 @@ i:not(.fa):not(b > i),
 span :not(.fa):not(.MathJax *):not(b):not(strong,b, i),
 b:not(span > b),
 label {
-  font-family: $font-family-base !important;
-  font-weight: $font-weight-normal !important;
+  font-family: var(--pgn-typography-font-family-base) !important;
+  font-weight: var(--pgn-typography-font-weight-normal) !important;
 }
 
 // icons fix
@@ -111,38 +131,38 @@ div[class*="fa-"],
 
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
-  font-family: $headings-font-family !important;
-  font-weight: $headings-font-weight !important;
+  font-family: var(--pgn-typography-headings-font-family) !important;
+  font-weight: var(--pgn-typography-headings-font-weight) !important;
 }
 
 h1,
 .h1 { 
-  font-size: $h1-font-size; 
+  font-size: var(--pgn-typography-font-size-h1); 
 }
 
 h2,
 .h2 { 
-  font-size: $h2-font-size; 
+  font-size: var(--pgn-typography-font-size-h2); 
 }
 
 h3,
 .h3 { 
-  font-size: $h3-font-size; 
+  font-size: var(--pgn-typography-font-size-h3); 
 }
 
 h4, 
 .h4 { 
-  font-size: $h4-font-size; 
+  font-size: var(--pgn-typography-font-size-h4); 
 }
 
 h5, 
 .h5 { 
-  font-size: $h5-font-size; 
+  font-size: var(--pgn-typography-font-size-h5); 
 }
 
 h6, 
 .h6 { 
-  font-size: $h6-font-size; 
+  font-size: var(--pgn-typography-font-size-h6); 
 }
 
 .login-register .login-provider .icon {

@@ -45,7 +45,7 @@ main.home > div:last-child {
   margin-left: -392px;
   padding: 40px 0 12px;
   text-align: center;
-  background: $white;
+  background: var(--pgn-color-white);
   border-radius: 8px;
   box-shadow: 0 0 20px rgba(0, 0, 0, .2);
   z-index: 9999;
