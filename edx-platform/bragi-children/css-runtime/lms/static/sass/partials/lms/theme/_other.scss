@@ -6,7 +6,7 @@ Other Components
 .register-header.introduction,
 .login-header.introduction {
   width: 100%;
-  background-color: $white;
+  background-color: var(--pgn-color-white);
 
   header {
     @include content-wrapper;
@@ -39,7 +39,7 @@ Other Components
 
 .register-text-container,
 .login-text-container {
-  background: $white;
+  background: var(--pgn-color-white);
 }
 
 .content-wrapper .section-bkg-wrapper main {
