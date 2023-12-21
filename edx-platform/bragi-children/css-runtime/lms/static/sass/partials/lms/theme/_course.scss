@@ -7,7 +7,7 @@
   }
 
   &__banner {
-    background-color: $white;
+    background-color: var(--pgn-color-white);
 
     .media img {
       height: 98px;
@@ -112,7 +112,7 @@
 
   .course-text {
     position: relative;
-    color: $white;
+    color: var(--pgn-color-white);
     background: $main-color;
     box-shadow: inset 0 0 5rem rgba(0,0,0,.5);
     overflow: hidden;
@@ -134,12 +134,12 @@
 
     h2,
     p {
-      color: $white;
+      color: var(--pgn-color-white);
     }
   }
   
   &#course-info-progress .chapters a:not(.btn):hover {
-    color: $link-hover-color;
+    color: var(--pgn-color-link-hover);
   }
 }
 
@@ -160,7 +160,7 @@
 }
 
 .wrapper-course-material {
-  background-color: $white;
+  background-color: var(--pgn-color-white);
 }
 
 main .home {
@@ -272,7 +272,7 @@ main .home {
 
 .find-courses {
   .filters .clear-filters {
-    @include link-color($link-color, $link-hover-color);
+    @include link-color(var(--pgn-color-link-base), var(--pgn-color-link-hover));
   }
 
   .search-facets,
@@ -331,7 +331,7 @@ main .home {
       overflow: hidden;
 
       .course-title {
-        @include link-color($link-color, $link-hover-color);
+        @include link-color(var(--pgn-color-link-base), var(--pgn-color-link-hover));
       }
     }
 
@@ -342,7 +342,7 @@ main .home {
 
     .course-description {
       height: 100px;
-      color: $body-color;
+      color: var(--pgn-color-body-base);
       overflow: hidden;
     }
 
@@ -364,27 +364,27 @@ main .home {
 .view-in-course {
   .wrapper-course-material .course-tabs li a {
     &.active, &:hover, &:focus {
-      color: $link-color !important;
-      border-bottom-color: $link-color !important;
+      color: var(--pgn-color-link-base) !important;
+      border-bottom-color: var(--pgn-color-link-base) !important;
     }
   }
 }
 .content-wrapper .course-tabs .nav-item{
   &.active .nav-link, &:hover .nav-link {
-    color: $link-color !important;
-    border-bottom-color: $link-color !important;
+    color: var(--pgn-color-link-base) !important;
+    border-bottom-color: var(--pgn-color-link-base) !important;
   }
 }
 
 .instructor-dashboard-content-2 .instructor-nav .nav-item .btn-link, 
 .instructor-dashboard-content-2 .data-download-nav .nav-item .btn-link {
-  color: $link-color;
+  color: var(--pgn-color-link-base);
   &.active, &:hover, &:focus   {
-    border-bottom-color: $link-color !important;
+    border-bottom-color: var(--pgn-color-link-base) !important;
   }
   &.active-section, &.active-section {
-    color: $black ;
-    border-bottom-color: $link-color !important;
+    color: var(--pgn-color-black) ;
+    border-bottom-color: var(--pgn-color-link-base) !important;
   }
 }
 
@@ -434,7 +434,7 @@ main .home {
 }
 
 .wrapper-course-material {
-  background-color: $body-bg;
+  background-color: var(--pgn-color-body-bg);
 }
 
 .xmodule_display.xmodule_SequenceModule .sequence-nav .sequence-list-wrapper {
@@ -506,7 +506,7 @@ a.ui-slider-handle {
 .course-wrapper .course-content {
   h1, h2, h3, h4, h5, h6,
   .h1, .h2, .h3, .h4, .h5, .h6 {
-    margin-bottom: $headings-margin-bottom;
+    margin-bottom: var(--pgn-spacing-headings-margin-bottom);
   }
 
   dl,
@@ -546,7 +546,7 @@ a.ui-slider-handle {
       background: $main-color;
 
       i {
-        color: $white;
+        color: var(--pgn-color-white);
         font-size: 56px;
       }
     }
@@ -566,7 +566,7 @@ a.ui-slider-handle {
 }
 
 .content-wrapper .courses {
-  background-color: $white;
+  background-color: var(--pgn-color-white);
   border: none;
 }
 
@@ -574,7 +574,7 @@ a.ui-slider-handle {
 .course-info-about .course-info__content,
 .dashboard .my-courses {
  color: $gray-dark;
- background-color: $white;
+ background-color: var(--pgn-color-white);
 }
 .wrapper-preview-menu {
   background-color:$main-color !important;
@@ -605,13 +605,13 @@ a.ui-slider-handle {
 .xblock-student_view-problem.xmodule_display,
 .choicegroup.capa_inputtype,
 .problem div:not([id*="answer"], .drag-container, .drag-container *) {
-  background-color: $white;
+  background-color: var(--pgn-color-white);
   box-shadow: none;
 }
 
 .wrapper-account-settings main:not(.home),
 .content-wrapper .course-tabs .navbar-nav .nav-item a {
-  background-color: $body-bg;
+  background-color: var(--pgn-color-body-bg);
   box-shadow: none;
 }
 
@@ -623,5 +623,5 @@ a.ui-slider-handle {
 .openassessment.problem .wrapper--ui-staff .staff-info__staff-override__content div,
 .openassessment.problem .wrapper--ui-staff .staff-info__cancel-submission__content div,
 .openassessment.problem .wrapper--ui-staff .staff-info__student__response .ui-slidable__content div {
-  background: $white;
+  background: var(--pgn-color-white);
 }

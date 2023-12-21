@@ -1,0 +1,32 @@
+{
+  "typography": {
+    "font": {
+      "family": {
+        "base": {
+          "value": "{typography.font.family.sans.serif}",
+          "type": "fontFamily",
+          "source": "$font-family-base"
+        },
+        "sans": {
+          "serif": {
+            "value": "-apple-system, system-ui, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+            "type": "fontFamily",
+            "source": "$font-family-sans-serif"
+          }
+        },
+        "serif": {
+          "value": "Georgia, \"Times New Roman\", Times, serif",
+          "source": "$font-family-serif"
+        },
+        "monospace": {
+          "value": "Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+          "type": "fontFamily",
+          "source": "$font-family-monospace"
+        }
+      },
+      "size": {
+        "base": { "value": "1rem", "type": "dimension", "source": "$font-size-base", "description": "Base font size." }
+      }
+    }
+  }
+}
