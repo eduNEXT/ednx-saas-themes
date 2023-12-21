@@ -124,7 +124,7 @@
   }
 
   .global-header .nav-links .secondary.nav-account {
-    border-radius: $border-radius;
+    border-radius: var(--pgn-size-border-radius-base);
     margin: 0;
 
     .nav-item {

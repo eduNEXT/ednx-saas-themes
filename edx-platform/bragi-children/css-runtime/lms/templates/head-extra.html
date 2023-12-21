@@ -27,9 +27,11 @@ from django.utils.translation import get_language_bidi
 
 ## Optional overrides
 <%
-  style_overrides_file_extra = theming.options('css_overrides_file_extra', default= "css-runtime/css/variables.css")
+  style_overrides_file_extra = theming.options('css_overrides_file_extra', default= "css-runtime/css/bragi/variables.css")
   style_overrides_inline_extra = theming.options('css_overrides_inline_extra', default= False)
 %>
+<link rel="stylesheet" type="text/css" href="${static.url('css-runtime/css/core/variables.css')}" />
+<link rel="stylesheet" type="text/css" href="${static.url('css-runtime/css/bragi/utility-classes.css')}" />
 % if style_overrides_file_extra:
   <link rel="stylesheet" type="text/css" href="${static.url(style_overrides_file_extra)}" />
 % endif
