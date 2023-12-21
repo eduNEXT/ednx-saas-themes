@@ -71,7 +71,7 @@ Other Components
 %container-wrapper {
   @include content-wrapper;
   padding: 1.5rem;
-  background: $white;
+  background: var(--pgn-color-white);
   border-radius: 3px;
   box-shadow: 0 0 20px rgba(0,0,0,.04);
 }
@@ -151,7 +151,7 @@ Other Components
       );
     } @else {
       // Avoid using mixin so we can pass custom focus shadow properly
-      box-shadow: 0 0 0 $btn-focus-width $custom-background-gradient;
+      box-shadow: 0 0 0 var(--pgn-size-btn-focus-width) $custom-background-gradient;
     }
   }
 
@@ -185,14 +185,14 @@ Other Components
         );
       } @else {
         // Avoid using mixin so we can pass custom focus shadow properly
-        box-shadow: 0 0 0 $btn-focus-width $custom-background-gradient;
+        box-shadow: 0 0 0 var(--pgn-size-btn-focus-width) $custom-background-gradient;
       }
     }
   }
 }
 
 @mixin var-gradient-bg($var-color, $var-gradient-color) {
-  //Define this var with mix($body-bg, $var-color, 15%)
+  //Define this var with mix(var(--pgn-color-body-bg), $var-color, 15%)
 
   @if $enable-gradients {
     background: $var-color

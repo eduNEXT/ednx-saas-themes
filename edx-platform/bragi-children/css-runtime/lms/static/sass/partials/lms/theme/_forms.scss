@@ -1,7 +1,7 @@
 .form-control-sm {
-  padding: $input-padding-y-sm $input-padding-x-sm;
-  font-size: $font-size-sm;
-  border-radius: $input-border-radius-sm;
+  padding: var(--pgn-spacing-form-input-padding-y-sm) var(--pgn-spacing-form-input-padding-x-sm);
+  font-size: var(--pgn-typography-font-size-sm);
+  border-radius: var(--pgn-size-form-input-radius-border-sm);
 }
 
 .form-inline {
@@ -71,7 +71,7 @@
     .form-check-input {
       position: relative;
       margin-top: 0;
-      margin-right: $form-check-input-margin-x;
+      margin-right: var(--pgn-spacing-form-input-check-margin-x-base);
       margin-left: 0;
     }
 
@@ -85,7 +85,7 @@
     .custom-control-indicator {
       position: static;
       display: inline-block;
-      margin-right: $form-check-input-margin-x; // Flexbox alignment means we lose our HTML space here, so we compensate.
+      margin-right: var(--pgn-spacing-form-input-check-margin-x-base); // Flexbox alignment means we lose our HTML space here, so we compensate.
       vertical-align: text-bottom;
     }
 

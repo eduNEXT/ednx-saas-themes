@@ -4,7 +4,7 @@
 .course-info-about {
 
 	.course-info__banner h1 {
-		font-size: $h1-font-size;
+		font-size: var(--pgn-typography-font-size-h1);
 	}
 
 	.course-info__banner .media img {
