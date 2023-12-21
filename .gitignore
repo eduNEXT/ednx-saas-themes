@@ -3,4 +3,5 @@
 venv/
 
 **/node_modules
-!**/css/variables.css
+!**/css/**/variables.css
+!**/css/**/utility-classes.css

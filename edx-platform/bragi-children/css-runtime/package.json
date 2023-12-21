@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-tokens": "build-design-tokens --build-dir  ./lms/static/css/ --source ./lms/tokens/*.json",
-    "replace-variables": "replace-scss-with-css -p  ./lms/static/sass/partials/lms/theme/  --source ./lms/tokens/"
+    "build-tokens": "paragon build-tokens --build-dir  ./lms/static/css/ --source ./lms/tokens/ ",
+    "replace-variables": "paragon replace-variables -p  ./lms/static/sass/partials/lms/theme/  -t usage"
   },
   "keywords": [
     "paragon"
@@ -14,6 +14,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@edx/paragon": "^21.0.0-alpha.15"
+    "@edx/paragon": "^22.0.0-alpha.13"
   }
 }
