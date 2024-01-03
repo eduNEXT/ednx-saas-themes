@@ -23,9 +23,7 @@ stats_settings = getattr(settings, 'STATS_SETTINGS', {})
 % endif
 
 % if getattr(settings, 'HOME_SHOW_COURSES_FEEDBACK', False):
-  <section class="home-courses" >
-    <div class="home-feedback-courses-container" >
-      <iframe src="/eox-nelp/frontend/experience/feedback/courses" title="feedback courses carousel"></iframe>
-    </div>
-  </section>
+  <div class="home-feedback-courses-container" >
+    <%include file="feedback_courses.html"/>
+  </div>
 % endif
