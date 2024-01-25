@@ -5,13 +5,11 @@ from django.utils.translation import pgettext
 from django.urls import reverse
 from lms.djangoapps.courseware.courses import get_course_about_section
 from django.conf import settings
-from six import text_type
 from common.djangoapps.edxmako.shortcuts import marketing_link
 from openedx.core.djangolib.js_utils import js_escaped_string
 from openedx.core.djangolib.markup import clean_dangerous_html, HTML, Text
 from openedx.core.lib.courses import course_image_url
 
-from six import string_types
 %>
 <%
   course_intro_html = theming.options('course_about', 'course_intro_html', default= False)
@@ -231,7 +229,7 @@ from six import string_types
                     account=static.get_value('course_about_twitter_account', settings.PLATFORM_TWITTER_ACCOUNT),
                     url=u"http://{domain}{path}".format(
                         domain=site_domain,
-                        path=reverse('about_course', args=[text_type(course.id)])
+                        path=reverse('about_course', args=[str(course.id)])
                     )
                 ).replace(u" ", u"+")
                 tweet_action = u"http://twitter.com/intent/tweet?text={tweet_text}".format(tweet_text=tweet_text)
@@ -246,7 +244,7 @@ from six import string_types
                         platform=platform_name,
                         url=u"http://{domain}{path}".format(
                             domain=site_domain,
-                            path=reverse('about_course', args=[text_type(course.id)]),
+                            path=reverse('about_course', args=[str(course.id)]),
                         )
                     )
                 ).replace(u" ", u"%20")
