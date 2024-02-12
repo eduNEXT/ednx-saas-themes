@@ -174,7 +174,6 @@
 
 	.teacher-image {
 		@include float(left);
-		@include margin(0, 15px, 0, 0);
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -182,6 +181,13 @@
 		overflow: hidden;
 		border: 1px solid #c8c8c8;
 	}
+}
+ 
+.content-wrapper[dir="ltr"] .course-info .details .inner-wrapper .course-staff .teacher .teacher-image {
+	margin:0 15px 0 0;
+}
+.content-wrapper[dir="rtl"] .course-info .details .inner-wrapper .course-staff .teacher .teacher-image {
+	margin:0 0 0 15px;
 }
 
 /* ========================================================
