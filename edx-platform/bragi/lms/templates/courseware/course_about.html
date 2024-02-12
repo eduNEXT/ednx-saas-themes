@@ -9,6 +9,8 @@ from common.djangoapps.edxmako.shortcuts import marketing_link
 from openedx.core.djangolib.js_utils import js_escaped_string
 from openedx.core.djangolib.markup import clean_dangerous_html, HTML, Text
 from openedx.core.lib.courses import course_image_url
+from django.utils.translation import get_language_bidi
+
 
 %>
 <%
@@ -140,7 +142,7 @@ from openedx.core.lib.courses import course_image_url
           <div>${get_course_about_section(request, course, 'short_description')}</div>
         </div>
 
-        <div class="main-cta ml-2 col-md-3 text-center">
+        <div class="main-cta ${'mr-2' if get_language_bidi() else 'ml-2'} col-md-3 text-center">
           %if user.is_authenticated and registered:
             %if show_courseware_link:
               <a class="btn" href="${course_target}">
@@ -196,7 +198,7 @@ from openedx.core.lib.courses import course_image_url
 
     <div class="course-info__content row container mt-5 p-4">
 
-      <div class="details col col-12 mr-0">
+      <div class="details col col-12 ${'ml-0' if get_language_bidi() else 'mr-0'}">
         % if course_text_into_html:
           ${course_text_into_html | n, decode.utf8}
         % endif
@@ -347,7 +349,7 @@ from openedx.core.lib.courses import course_image_url
           <h1 class="course-title d-flex mb-2">
             ${course.display_name_with_default_escaped}
 
-            <div class="main-cta ml-2 text-center">
+            <div class="main-cta ${'mr-2' if get_language_bidi() else 'ml-2'} text-center">
               %if user.is_authenticated and registered:
                 %if show_courseware_link:
                   <a class="btn" href="${course_target}">
@@ -409,7 +411,7 @@ from openedx.core.lib.courses import course_image_url
         <%include file="./course_about_sidebar.html" />
       </div>
 
-      <div class="details col col-12 col-lg-9 mr-0">
+      <div class="details col col-12 col-lg-9 ${'ml-0' if get_language_bidi() else 'mr-0'}">
         % if course_text_into_html:
           ${course_text_into_html | n, decode.utf8}
         % endif
