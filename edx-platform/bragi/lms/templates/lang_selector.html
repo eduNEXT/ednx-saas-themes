@@ -15,7 +15,7 @@
   <li class="nav-link lang mobile-nav-item">
     <form>
       <span class="sr">${_("Choose Language")}</span>
-      <select class="form-control-sm settings-language-values" name="language">
+      <select class="form-control-sm settings-language-values py-0" name="language">
         % for language in languages:
           <% language_name = Locale.parse(language.replace('_', '-'), sep='-').language_name.capitalize() %>
           % if language.lower() == LANGUAGE_CODE:
