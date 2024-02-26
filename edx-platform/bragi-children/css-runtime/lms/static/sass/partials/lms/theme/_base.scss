@@ -13,6 +13,9 @@ div.info-wrapper {
 body {
   @include text-align(left);
 }
+html, button, input, select, textarea, form#wiki_revision .CodeMirror{
+  font-family: $font-family-base !important;
+}
 
 .content-wrapper,
 .wrapper-account-settings {
@@ -55,6 +58,7 @@ span[role*="link"],
 #forgot-password-modal #password-reset a,
 .account-settings-sections a span,
 .course-index .accordion .course-navigation .button-chapter{
+  font-family: $font-family-base !important;
   @include link-color(var(--pgn-color-link-base), var(--pgn-color-link-hover));
 }
 
