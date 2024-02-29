@@ -304,7 +304,7 @@ from six import string_types
 
   </section>
 % else:
-  <section class="course-info pb-5">
+  <section class="course-info-about pb-5">
     % if course_intro_html:
       ${course_intro_html}
     % else:
@@ -413,7 +413,7 @@ from six import string_types
         <%include file="./course_about_sidebar.html" />
       </div>
 
-      <div class="details col col-12 col-lg-9 ${'ml-0' if get_language_bidi() else 'mr-0'}">
+      <div class="details col col-12 ${'ml-0' if get_language_bidi() else 'mr-0'}">
         % if course_text_into_html:
           ${course_text_into_html | n, decode.utf8}
         % endif
