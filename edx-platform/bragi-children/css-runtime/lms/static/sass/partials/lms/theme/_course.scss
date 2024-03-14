@@ -364,27 +364,27 @@ main .home {
 .view-in-course {
   .wrapper-course-material .course-tabs li a {
     &.active, &:hover, &:focus {
-      color: var(--pgn-color-link-base) !important;
-      border-bottom-color: var(--pgn-color-link-base) !important;
+      color: var(--pgn-color-primary-500) !important;
+      border-bottom-color: var(--pgn-color-primary-500) !important;
     }
   }
 }
 .content-wrapper .course-tabs .nav-item{
   &.active .nav-link, &:hover .nav-link {
-    color: var(--pgn-color-link-base) !important;
-    border-bottom-color: var(--pgn-color-link-base) !important;
+    color: var(--pgn-color-primary-500) !important;
+    border-bottom-color: var(--pgn-color-primary-500) !important;
   }
 }
 
 .instructor-dashboard-content-2 .instructor-nav .nav-item .btn-link, 
 .instructor-dashboard-content-2 .data-download-nav .nav-item .btn-link {
-  color: var(--pgn-color-link-base);
+  color: var(--pgn-color-primary-500);
   &.active, &:hover, &:focus   {
-    border-bottom-color: var(--pgn-color-link-base) !important;
+    border-bottom-color:var(--pgn-color-primary-500) !important;
   }
   &.active-section, &.active-section {
     color: var(--pgn-color-black) ;
-    border-bottom-color: var(--pgn-color-link-base) !important;
+    border-bottom-color: var(--pgn-color-primary-500) !important;
   }
 }
 
