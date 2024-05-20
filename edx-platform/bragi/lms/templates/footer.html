@@ -22,7 +22,6 @@
   footer_description = theming.options('footer','footer_description', default='')
   footer_links = theming.options('footer','footer_links', default=[])
 
-  header_langselector = theming.options('header', 'header_langselector', default= False)
   footer_langselector = theming.options('footer','footer_langselector', default=False)
 
   footer_social = theming.options('footer','footer_social', default=[])
@@ -168,33 +167,6 @@
     %endif
   </footer>
 %endif:
-
-%if footer_langselector or header_langselector:
-  <%
-    languages = configuration_helpers.get_value('released_languages', 'en').split(',') 
-  %>
-  % if len(languages) > 1:
-    <form action="/i18n/setlang/" method="post" id="language-settings-form">
-      <input type="hidden" id="csrf_token" name="csrfmiddlewaretoken" value="${csrf_token}">
-      % if user.is_authenticated:
-        <input title="preference api" type="hidden" class="url-endpoint" value="${reverse('preferences_api', kwargs={'username': user.username})}" data-user-is-authenticated="true">
-      % else:
-        <input title="session update url" type="hidden" class="url-endpoint" value="${reverse('session_language')}" data-user-is-authenticated="false">
-      % endif
-
-      <input id="settings-language-value" type="hidden" name="language" value="${LANGUAGE_CODE}">
-    </form>
-  % endif
-
-  <script type="text/javascript">
-    $(window).load (function () {
-      $('.settings-language-values').on('change', function() {
-        var language_code = this.value;
-        $('#settings-language-value').val(language_code).change();
-      });
-    })
-  </script>
-% endif
 
 % if settings.FEATURES.get('ENABLE_COOKIE_CONSENT', False):
   <%include file="/widgets/cookie-consent.html" />
