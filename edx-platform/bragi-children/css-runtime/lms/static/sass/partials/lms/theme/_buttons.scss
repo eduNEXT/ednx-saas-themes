@@ -234,7 +234,7 @@ a.btn-flat {
 
 .xblock {
   .btn-brand:not(:disabled), .xblock .btn-primary:not(:disabled) {
-    color: $btn-bg-primary-yiq !important;
+    color: var(--pgn-color-btn-text-primary) !important;
     background-color: $btn-bg-primary !important;
     border-color:$btn-bg-primary !important;
     &:focus,
@@ -350,4 +350,63 @@ button#navmarker {
 
 .login-register .login-provider {
   width: 50%;
+}
+
+
+.wiki-wrapper section.wiki .btn {
+  border: var(--pgn-size-input-btn-border-width) solid var(--pgn-color-btn-border-outline-primary) !important;
+  border-radius: 3px; 
+  box-shadow: none !important; 
+  color: var(--pgn-color-btn-text-outline-primary) !important;
+  display: inline-block; 
+  font-size: inherit  !important; 
+  font-weight: var(--pgn-typography-btn-font-weight);
+  background-color:var(--pgn-color-btn-bg-outline-primary) !important;
+  background-image: none !important; 
+  padding: 7px 18px; 
+  text-decoration: none !important; 
+  text-shadow: none !important; 
+  background-clip: none !important; 
+  
+  &:focus,
+  &:hover,
+  &:hover:not(:disabled) {
+    border: var(--pgn-size-input-btn-border-width) solid var(--pgn-color-btn-hover-border-outline-primary) !important;
+    color: var(--pgn-color-btn-hover-text-outline-primary) !important;
+    text-decoration: none !important;
+    outline: 0;
+    background-image: none !important;
+    box-shadow: $btn-focus-box-shadow !important;
+    background-color:   var(--pgn-color-btn-hover-bg-outline-primary) !important;
+
+  }
+}
+
+.wiki-wrapper section.wiki .btn.btn-primary, 
+.wiki-wrapper section.wiki .btn.btn-brand {
+  border: var(--pgn-size-input-btn-border-width) solid transparent !important;
+    border-radius: 3px; 
+    box-shadow: none !important; 
+    color: var(--pgn-color-btn-text-primary) !important;
+    display: inline-block; 
+    font-size: inherit  !important; 
+    font-weight: var(--pgn-typography-btn-font-weight);
+    background-color:var(--pgn-color-btn-bg-primary) !important;
+    background-image: none !important; 
+    padding: 7px 18px; 
+    text-decoration: none !important; 
+    text-shadow: none !important; 
+    background-clip: none !important; 
+    
+    
+  &:focus,
+  &:hover,
+  &:hover:not(:disabled) {
+    background-color:   var(--pgn-color-btn-hover-bg-primary) !important;
+    color: var(--pgn-color-btn-hover-text-primary) !important;
+    text-decoration: none !important;
+    outline: 0;
+    background-image: none !important;
+    box-shadow: $btn-focus-box-shadow !important;
+  }
 }
