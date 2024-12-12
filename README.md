@@ -4,19 +4,71 @@ This repository contains the themes customized by Edunext for Openedx's [edx-pla
 
 ## Table of Contents
 
-- [ednx-saas-themes](#ednx-saas-themes)
-  - [Table of Contents](#table-of-contents)
-  - [Demo](#demo)
-  - [Migration Process](#migration-process)
   - [Installation Steps](#installation-steps)
+  - [Migration Process](#migration-process)
   - [Technical Details](#technical-details)
     - [Technologies Used](#technologies-used)
   - [Learn More](#learn-more)
   - [License](#license)
 
-## Demo
+## Installation Steps
+
+Bragi works with [eox-theming](https://github.com/eduNEXT/eox-theming), you need to install the Django plugin to enable the theme.
+
+The easiest way to install Bragi in your instance is using [tutor-contrib-picasso](https://github.com/eduNEXT/tutor-contrib-picasso?tab=readme-ov-file#enable-themes) as follows:
+
+```yml
+PICASSO_THEMES:
+- name: ednx-saas-themes
+  repo: git@github.com:eduNEXT/ednx-saas-themes.git
+  version: edunext/redwood.master
+PICASSO_THEMES_NAME:
+- bragi
+- css-runtime
+PICASSO_THEME_DIRS:
+- /openedx/themes/ednx-saas-themes/edx-platform
+- /openedx/themes/ednx-test-themes/edx-platform/bragi-children
+
+```
+
+If you want to use ``css-runtime`` you need to add the following configuration to the instance or tenant config:
+
+```json
+{
+     "THEME_OPTIONS": {
+        "theme": {
+            "name": "css-runtime",
+            "parent": "bragi"
+        }
+    },
+}
+```
+
+Otherwise add the theme with these steps:
+
+1. Be sure you have eox-tenant and eox-theming in your environment.
+2. Clone the repo in ``env/build/openedx/themes`` and use the branch to work with.
+3. Add this line in ``env/build/openedx/settings/lms/assets.py and env/build/openedx/settings/cms/assets.py``
+
+```py
+COMPREHENSIVE_THEME_DIRS.extend(['/openedx/themes/ednx-saas-themes/edx-platform', '/openedx/themes/ednx-saas-themes/edx-platform/bragi-children'])
+```
 
 
+In the ``lms.env.ym``l`` and ``cms.env.yml`` be sure to add:
+
+```py
+USE_EOX_TENANT: True
+DEFAULT_SITE_THEME: "bragi"
+COMPREHENSIVE_THEME_DIRS: ['/openedx/themes/ednx-saas-themes/edx-platform', '/openedx/themes/ednx-saas-themes/edx-platform/bragi-children']
+```
+4. Open bash and compile bragi theme, context
+``` bash
+source .tvm/bin/activate
+tutor dev run lms bash
+# Inside the lms bash 
+npm run compile-sass -- --theme-dir /openedx/themes/ednx-saas-themes/edx-platform --theme-dir /openedx/themes/ednx-saas-themes/edx-platform/bragi-children  --theme bragi --theme css-runtime
+```
 ## Migration Process
 
 Open edX releases a new version of the platform every 6 months, in that process the templates or styles could be updated, our task here is to make those updates in Bragi if applicable.
@@ -40,9 +92,9 @@ Imagine the current version of Bragi is Alpha and we need to migrate to Beta. Th
 
 4. If during the migration you can not find a file in the Open edX path, you should update it with the new one.
 
-5. Diff the changes between templates in Alpha (upstream) and Beta. You can use Diffchecker to compare them. This helps you as a filter to identify which templates you need to modify.
+5. Diff the changes between templates in Alpha (upstream) and Beta. You can use [Diffchecker](https://www.diffchecker.com/text-compare/#editor) to compare them. This helps you as a filter to identify which templates you need to modify.
 
-6. Diff the templates in Bragi Alpha with upstream Alpha from those with changes (step 3), this helps you to identify the Bragi customizations overwrite.
+6. Diff the templates in Bragi Alpha with upstream Alpha from those with changes (step 3), this helps you to identify the Bragi customizations overwritten.
 
 7. For the template Beta identified in step 3 add the Bragi customizations (step 4).
 
@@ -57,7 +109,7 @@ Imagine the current version of Bragi is Alpha and we need to migrate to Beta. Th
 >[!TIP]
 >You can follow steps 3 to 5 for each template so you can update the tracking documentation at the same time.
 
-## Installation Steps
+For a detailed explanation of Bragi, the migration process, and how it works with eox-theming, please review the following video: https://www.youtube.com/watch?v=A9bEQm4zUWI
 
 
 ## Technical Details
