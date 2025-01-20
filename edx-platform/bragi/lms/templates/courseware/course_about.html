@@ -184,7 +184,7 @@ from django.utils.translation import get_language_bidi
                 href_class = "register"
             %>
             <a href="${reg_href}" class="btn ${href_class}">
-              ${_("Enroll")}
+              ${_("Inscribirse")}
             </a>
             <div id="register_error"></div>
           %endif
@@ -302,7 +302,7 @@ from django.utils.translation import get_language_bidi
 
   </section>
 % else:
-  <section class="course-info pb-5">
+  <section class="course-info-about pb-5">
     % if course_intro_html:
       ${course_intro_html}
     % else:
@@ -411,7 +411,7 @@ from django.utils.translation import get_language_bidi
         <%include file="./course_about_sidebar.html" />
       </div>
 
-      <div class="details col col-12 col-lg-9 ${'ml-0' if get_language_bidi() else 'mr-0'}">
+      <div class="details col col-12 ${'ml-0' if get_language_bidi() else 'mr-0'}">
         % if course_text_into_html:
           ${course_text_into_html | n, decode.utf8}
         % endif
@@ -431,9 +431,9 @@ from django.utils.translation import get_language_bidi
         % endif
       </div>
 
-      <div class="course-sidebar col col-12 col-lg-3 d-none d-lg-block">
-        <%include file="./course_about_sidebar.html" />
-      </div>
+<!--      <div class="course-sidebar col col-12 col-lg-3 d-none d-lg-block">-->
+<!--        <%include file="./course_about_sidebar.html" />-->
+<!--      </div>-->
     </div>
 
     % if course_text_bottom_html:
