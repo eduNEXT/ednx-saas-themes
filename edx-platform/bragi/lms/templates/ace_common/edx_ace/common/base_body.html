@@ -105,6 +105,14 @@
                     </tr>
                 </table>
             {% endif %}
+                <div align="Left" style="margin:100 auto !important;padding:50; color: #545557; font-weight:200; font:cursive; font-size:30px;" ><strong>{{course_title}}</strong></div>
+
+            {% if course_image_url == None %}
+                <img src='https://edunextpublic.s3.us-west-2.amazonaws.com/edxsites/sd-files/ist/ist_cap.jpg' align="right">
+
+            {% else %}
+                <img src="{{ course_image_url }}" align="right"style="width: 214px; height: 118px;">
+            {% endif %}
 
                 {% block content %}{% endblock %}
             </td>
