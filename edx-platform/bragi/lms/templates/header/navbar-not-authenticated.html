@@ -41,13 +41,13 @@ from openedx.core.djangoapps.user_authn.toggles import should_redirect_to_authn_
         % if not settings.FEATURES.get('ednx_navigation__disable_register', False):
           <li class="nav-item mobile-nav-item">
             % if settings.FEATURES.get('ednx_custom_register_link', False):
-              <a class="nav-link nav-login px-4 py-2" href="${ settings.FEATURES.get('ednx_custom_register_link') }">${_("Register Now")}</a>
+              <a class="nav-link nav-login px-4 py-2" href="${ settings.FEATURES.get('ednx_custom_register_link') }">${_("Register")}</a>
             % elif course and settings.FEATURES.get('RESTRICT_ENROLL_BY_REG_METHOD') and course.enrollment_domain:
-              <a class="nav-link nav-login px-4 py-2" href="${reverse('course-specific-register', args=[course.id.to_deprecated_string()])}">${_("Register Now")}</a>
+              <a class="nav-link nav-login px-4 py-2" href="${reverse('course-specific-register', args=[course.id.to_deprecated_string()])}">${_("Register")}</a>
             % elif should_redirect_to_authn_mfe:
-              <a class="nav-link nav-login px-4 py-2" href="${settings.AUTHN_MICROFRONTEND_URL}/register${login_query()}">${_("Register Now")}</a>
+              <a class="nav-link nav-login px-4 py-2" href="${settings.AUTHN_MICROFRONTEND_URL}/register${login_query()}">${_("Register")}</a>
             % else:
-              <a class="nav-link nav-login px-4 py-2" href="/register${login_query()}">${_("Register Now")}</a>
+              <a class="nav-link nav-login px-4 py-2" href="/register${login_query()}">${_("Register")}</a>
             % endif
           </li>
         % endif
