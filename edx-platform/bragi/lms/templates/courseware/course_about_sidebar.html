@@ -2,6 +2,7 @@
 
 <%!
 from django.utils.translation import gettext as _
+from django.utils.translation import pgettext
 from django.urls import reverse
 from django.conf import settings
 from lms.djangoapps.courseware.courses import get_course_about_section
@@ -50,7 +51,7 @@ from lms.djangoapps.courseware.courses import get_course_about_section
           href_class = "register"
       %>
       <a href="${reg_href}" class="btn ${href_class}">
-        ${_("Enroll")}
+        ${pgettext("self", "Enroll")}
       </a>
       <div id="register_error"></div>
     %endif
