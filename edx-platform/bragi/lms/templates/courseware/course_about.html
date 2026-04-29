@@ -195,7 +195,7 @@ from django.utils.translation import get_language_bidi
                 href_class = "register"
             %>
             <a href="${reg_href}" class="btn ${href_class}">
-              ${_("Enroll")}
+              ${pgettext("self", "Enroll")}
             </a>
             <div id="register_error"></div>
           %endif
@@ -402,7 +402,7 @@ from django.utils.translation import get_language_bidi
                     href_class = "register"
                 %>
               <a href="${reg_href}" class="btn ${href_class}">
-                ${_("Enroll")}
+                ${pgettext("self", "Enroll")}
               </a>
               <div id="register_error"></div>
               %endif
